@@ -1,0 +1,2 @@
+class DataOwnershipsController < ApplicationController
+end
