@@ -1,0 +1,2 @@
+class InterestRecommendationsController < ApplicationController
+end
