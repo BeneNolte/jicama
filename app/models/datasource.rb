@@ -4,5 +4,5 @@ class Datasource < ApplicationRecord
   has_many :data_ownerships
   has_many :interest_recommendations
   has_many :locations
-  has_many :you_tube_channels
+  has_many :youtube_channels
 end

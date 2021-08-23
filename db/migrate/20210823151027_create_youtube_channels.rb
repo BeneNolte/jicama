@@ -1,6 +1,6 @@
-class CreateYouTubeChannels < ActiveRecord::Migration[6.1]
+class CreateYoutubeChannels < ActiveRecord::Migration[6.1]
   def change
-    create_table :you_tube_channels do |t|
+    create_table :youtube_channels do |t|
       t.string :channel_title
       t.string :url
       t.string :status
