@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+
+      <h1><%= @datasource.name %></h1>
+
+        <h2>Aggregated score</h2>
+
+        <%= link_to datasource_locations_path(@datasource) do %>
+        <div class="data-control-grid">
+          <div class="data-control-card" id="locations">
+            <h2>Locations</h2>
+          </div>
+        <% end %>
+
+        <div class="data-control-card" id="interests">
+          <h2>Interests</h2>
+        </div>
+
+        <div class="data-control-card" id="advertisements">
+          <h2>Advertisements</h2>
+        </div>
+
+        <div class="data-control-card" id="youtube-channels">
+          <h2>Youtube channels</h2>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
