@@ -1,4 +1,15 @@
 <div class="bottombar">
-  <i class="fas fa-home"></i>
-  <i class="fas fa-user"></i>
+
+  <%= link_to datasource_path(datasource) do %>
+    <i class="fas fa-home"></i>
+  <% end %>
+
+  <%= link_to datasource_data_ownerships_path(datasource) do %>
+    <%= image_tag "jicama-logo.png", class: "bottombar-link" %>
+  <% end %>
+
+  <%= link_to do %>
+    <i class="fas fa-user"></i>
+  <% end %>
+
 </div>
