@@ -46,19 +46,35 @@ puts 'Finished 5 locations'
 
 puts 'Creating 5 companies'
 
-axciom = Company.new(title: "axciom",url: "https://www.acxiom.com/", type_of_ownership: "owner")
+axciom = Company.new(title: "axciom", url: "https://www.acxiom.com/")
 axciom.save!
 
-adform = Company.new(title: "adform",url: "https://site.adform.com/", type_of_ownership: "owner")
+adform = Company.new(title: "adform", url: "https://site.adform.com/")
 adform.save!
 
-experian = Company.new(title: "experian",url: "https://www.experian.fr/", type_of_ownership: "owner")
+experian = Company.new(title: "experian", url: "https://www.experian.fr/")
 experian.save!
 
-levis = Company.new(title: "levis",url: "https://www.levi.com/", type_of_ownership: "accessor")
+levis = Company.new(title: "levis", url: "https://www.levi.com/")
 levis.save!
 
-apple = Company.new(title: "apple",url: "https://www.apple.com/", type_of_ownership: "owner")
+apple = Company.new(title: "apple", url: "https://www.apple.com/")
 apple.save!
 
 puts 'Finished 5 companies'
+
+puts 'Creating data ownerships'
+
+own1 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "buyer")
+own1.save!
+
+own2 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "accessor")
+own2.save!
+
+own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "restricted")
+own3.save!
+
+own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "deleted")
+own4.save!
+
+puts 'Finished data ownerships'
