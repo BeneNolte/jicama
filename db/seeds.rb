@@ -21,7 +21,7 @@ user.save!
 puts 'Finished user'
 
 puts 'Creating Google'
-google = Datasource.new(name: "Google", user: User.all.last)
+google = Datasource.new(name: "Google", user: User.all.last, downloaded: true)
 google.save!
 puts 'Finished Google'
 
