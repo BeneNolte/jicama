@@ -3,8 +3,9 @@
     <div class="col-6 col-lg-12">
       <h1>Jicama</h1>
       <h3>Own your data, own your future</h3>
-      <button>Join now</button>
-      <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+      <% if user_signed_in? == false %>
+        <%= render "devise/shared/log_in" %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -55,7 +56,9 @@
         <h5>3. Control</h5>
         <p>Choose which information companies can and can't access.</p>
       </div>
-      <button>Get started!</button>
+      <%- if controller_name != 'sessions' %>
+        <%= link_to "Get started", new_session_path(resource_name), class: 'btn' %><br />
+      <% end %>
     </div>
   </div>
 </div>
@@ -70,7 +73,9 @@
       <p>79% have adjusted privacy-related settings on their social media accounts or reduced their social media usage</p>
       <p>Facebook owns 80% of the market share of social media platforms
       <p>Google owns 90% of the market share of search engines</p>
-      <button>Try it yourself</button>
+      <%- if controller_name != 'sessions' %>
+        <%= link_to "Try it yourself", new_session_path(resource_name), class: 'btn' %><br />
+      <% end %>
     </div>
   </div>
 </div>
