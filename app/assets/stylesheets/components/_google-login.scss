@@ -12,3 +12,22 @@
   height: 50px;
   margin-right: 10px;
 }
+
+.separator {
+  position: relative;
+  color: $jicama-grey-text;
+  &:before, &:after {
+    width: 75%;
+    height: 1px;
+    content: " ";
+    background-color: $jicama-light-gray;
+    position: absolute;
+    top: 50%;
+  }
+  &:before {
+    left: -80%;
+  }
+  &:after {
+    right: -80%;
+  }
+}
