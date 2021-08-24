@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :datasources
+  has_many :datasources, dependent: :destroy
   has_many :data_ownerships, through: :datasources
   has_many :advertisements, through: :datasources
   has_many :youtube_channels, through: :datasources

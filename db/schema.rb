@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_155452) do
+ActiveRecord::Schema.define(version: 2021_08_24_104237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "advertisements", force: :cascade do |t|
-    t.date "timestamp"
+    t.string "timestamp"
     t.bigint "company_id", null: false
     t.bigint "datasource_id", null: false
-    t.string "status"
+    t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_advertisements_on_company_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_155452) do
   create_table "data_ownerships", force: :cascade do |t|
     t.bigint "company_id", null: false
     t.bigint "datasource_id", null: false
-    t.string "status"
+    t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_data_ownerships_on_company_id"
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 2021_08_23_155452) do
 
   create_table "interest_recommendations", force: :cascade do |t|
     t.string "category_type"
-    t.date "timestamp"
+    t.string "timestamp"
     t.bigint "datasource_id", null: false
-    t.string "status"
+    t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["datasource_id"], name: "index_interest_recommendations_on_datasource_id"
@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(version: 2021_08_23_155452) do
   create_table "locations", force: :cascade do |t|
     t.float "latitude"
     t.float "longitude"
-    t.date "timestamp"
+    t.string "timestamp"
     t.bigint "datasource_id", null: false
-    t.string "status"
+    t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["datasource_id"], name: "index_locations_on_datasource_id"
@@ -90,9 +90,9 @@ ActiveRecord::Schema.define(version: 2021_08_23_155452) do
   create_table "youtube_channels", force: :cascade do |t|
     t.string "channel_title"
     t.string "url"
-    t.string "status"
+    t.boolean "status"
     t.bigint "datasource_id", null: false
-    t.date "timestamp"
+    t.string "timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["datasource_id"], name: "index_youtube_channels_on_datasource_id"
