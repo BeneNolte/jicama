@@ -1,4 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-6 my-3">
+      <div class="form my-5">
+        <h1>Pages#home</h1>
+        <p>Find me in app/views/pages/home.html.erb</p>
+        <% if user_signed_in? == false %>
+        <%= render "devise/shared/log_in" %>
+        <%= "#to remove" %>
+          <%= render "devise/shared/omniauth" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
