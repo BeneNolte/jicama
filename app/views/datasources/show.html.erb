@@ -5,7 +5,7 @@
 
         <div class="datasource-top">
           <h1><%= @datasource.name %></h1>
-          <p class="avatar"></p>
+          <p class="avatar"><i class="fas fa-user"></i></p>
         </div>
 
         <div class="privacy-score">
@@ -30,6 +30,7 @@
           <h4 class="greysubtitle">Data valuation</h4>
           <%= link_to "Details" %>
         </div>
+
         <div class="data-valuation">
           <div class="data-valuation-details">
             <p class="avatar"></p>
@@ -69,10 +70,8 @@
     <div class="data-control-container">
       <%= link_to datasource_locations_path(@datasource) do %>
         <div class="data-control-card" id="locations">
-          <div>
-            <%= @locations.last.latitude %>
-            <h4 class="whitetitle">Locations</h4>
-          </div>
+          <i class="fas fa-map-marker-alt"></i>
+          <h4 class="whitetitle mt-2">Locations</h4>
         </div>
       <% end %>
 
