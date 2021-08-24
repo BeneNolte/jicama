@@ -14,13 +14,14 @@ puts "🗑  Deleting all assets"
 User.destroy_all
 Datasource.destroy_all
 Location.destroy_all
+Company.destroy_all
 
 puts 'Creating a user'
 user = User.new(email: "test@gmail.com", password: "123456", first_name: "Jicama", last_name: "Team")
 user.save!
 puts 'Finished user'
 
-puts 'Creating Google'
+puts 'Creating Google datasource'
 google = Datasource.new(name: "Google", user: User.all.last, downloaded: true)
 google.save!
 puts 'Finished Google'
@@ -43,4 +44,21 @@ season_market.save!
 
 puts 'Finished 5 locations'
 
-puts "You have created #{Location.all.length} locations"
+puts 'Creating 5 companies'
+
+axciom = Company.new(title: "axciom",url: "https://www.acxiom.com/", type_of_ownership: "owner")
+axciom.save!
+
+adform = Company.new(title: "adform",url: "https://site.adform.com/", type_of_ownership: "owner")
+adform.save!
+
+experian = Company.new(title: "experian",url: "https://www.experian.fr/", type_of_ownership: "owner")
+experian.save!
+
+levis = Company.new(title: "levis",url: "https://www.levi.com/", type_of_ownership: "accessor")
+levis.save!
+
+apple = Company.new(title: "apple",url: "https://www.apple.com/", type_of_ownership: "owner")
+apple.save!
+
+puts 'Finished 5 companies'
