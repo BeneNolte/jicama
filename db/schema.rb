@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_24_104237) do
+ActiveRecord::Schema.define(version: 2021_08_24_143647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_104237) do
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type_of_ownership"
     t.index ["company_id"], name: "index_data_ownerships_on_company_id"
     t.index ["datasource_id"], name: "index_data_ownerships_on_datasource_id"
   end
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_104237) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "downloaded"
+    t.string "downloaded"
     t.index ["user_id"], name: "index_datasources_on_user_id"
   end
 
