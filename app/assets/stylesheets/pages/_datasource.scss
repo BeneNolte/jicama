@@ -1,7 +1,6 @@
 .datasource-top {
   display: flex;
   justify-content: space-between;
-
   // temporaire
   .avatar {
     border: 1px solid;
@@ -63,6 +62,7 @@
 }
 .data-control-card {
   display: flex;
+  flex-direction: column;
   width: 120px;
   height: 120px;
   margin: 0px 10px;
@@ -71,4 +71,9 @@
   align-items: center;
   border-radius: 10px;
   background-color: #7551F3;
+
+  i {
+    color: white;
+    font-size: 25px;
+  }
 }
