@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+
+      <h1>Data Control</h1>
+
+      <div class="action-bar d-flex">
+        <h2>Auto-Filter</h2>
+        <h2>On / Off</h2>
+        <div class="btn btn-success">Adjust</div>
+      </div>
+
+      <div class="action-bar d-flex">
+        <h2>All</h2>
+        <h2>Accessors</h2>
+        <h2>Buyers</h2>
+        <h2>Restrictions</h2>
+        <h2>Deletion</h2>
+      </div>
+
+      <div>
+        <% @data_ownerships.each do |data_ownership| %>
+        <%= data_ownership.status %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
