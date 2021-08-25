@@ -29,18 +29,13 @@
   justify-content: space-between;
 }
 
-.data-insights-carousel {
-  overflow-x: auto;
-  &::-webkit-scrollbar {
-  display: none;
-  }
-}
 .data-insights-container {
   width: fit-content;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
+
 .data-insights-card {
   display: flex;
   flex-direction: column;
