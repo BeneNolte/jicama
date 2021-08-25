@@ -1,7 +1,86 @@
 <div class="container">
   <div class="row">
-    <h1>Dashboard</h1>
-    <h3>Connect Datasources</h3>
-    <%= if datasource.status %>
+    <div class="col-12 col-lg-6">
+      <h1>Dashboard</h1>
+
+      <div class="privacy-score">
+        <p class="whitetitle">Privacy score</p>
+        <h1 class="score-header">Good</h1>
+        <hr>
+        <p class="whitetitle">Since September</p>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <h4 class="greysubtitle">Data valuation</h4>
+        <%= link_to "Details" %>
+      </div>
+
+      <div class="data-valuation">
+        <div class="data-valuation-details">
+          <p class="avatar"></p>
+          <div class="data-valuation-values">
+            <p>Data value</p>
+            <h4>€860,63</h4>
+          </div>
+          <p>September</p>
+        </div>
+
+        <div class="data-valuation-details">
+          <p class="avatar"></p>
+          <div class="data-valuation-values">
+            <p>Value recovered</p>
+            <h4>€0,00</h4>
+          </div>
+          <p>September</p>
+        </div>
+
+        <div class="data-valuation-details">
+          <p class="avatar"></p>
+          <div class="data-valuation-values">
+            <p>Companies restricted</p>
+            <h4>0</h4>
+          </div>
+          <p>All time</p>
+        </div>
+      </div>
+
+      <div class="autofilter-configuration">
+        <%# <h4 class="greysubtitle">Privacy cockpit</h4> %>
+        <%# <button type="button" class="button-second" data-toggle="modal" data-target="#create-review-modal<%=index%>"> %>
+        <button id="myBtn">Privacy cockpit</button>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+          <span class="close">&times;</span>
+            <div>
+              <h4>Configure Auto-Filter</h4>
+              <div class="autofilter-setting">
+                <p class="avatar"></p>
+                <p>Sensitive info denial</p>
+              </div>
+              <div class="autofilter-setting">
+                <p class="avatar"></p>
+                <p>Sell Data Securely</p>
+              </div>
+              <div class="autofilter-setting">
+                <p class="avatar"></p>
+                <p>Blabla</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="datasource-selection">
+        <div class="datasource-logo-selection">
+          <i class="fab fa-google"></i>
+        </div>
+        <div class="datasource-logo-selection">
+          <i class="fas fa-plus"></i>
+        </div>
+      <h4 class="greysubtitle">Connect Datasources</h4>
+      <%#= if datasource.downloaded = %>
+      <%# we will need to add the logo in the datasource model %>
+      <%# <i class="fab fa-google"></i> %>
+      </div>
+    </div>
   </div>
 </div>
