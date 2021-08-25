@@ -12,7 +12,10 @@
           <h1 class="score-header">Good</h1>
           <p class="whitetitle r-4">+5%</p>
         </div>
-        <hr>
+        <div class="meter">
+          <span style="width: 70%"></span>
+          <p class="whitetitle">70</p>
+        </div>
         <p class="whitetitle">Since September</p>
       </div>
 
@@ -59,14 +62,22 @@
 
       <h4 class="greysubtitle">Connect Datasources</h4>
       <div class="datasource-selection">
-        <i class="fab fa-google"></i>
-        <i class="fab fa-facebook"></i>
+        <div class="<%= 'non-downloaded-style' if @google.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/google_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <div class="<%= 'non-downloaded-style' if @facebook.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/facebook_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <div class="<%= 'non-downloaded-style' if @twitter.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/twitter_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <div class="<%= 'non-downloaded-style' if @spotify.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/spotify_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <div class="<%= 'non-downloaded-style' if @instagram.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/instagram_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
         <i class="fas fa-plus"></i>
-        <% @datasources.each do |datasource| %>
-          <div class="<%= 'non-downloaded-style' if datasource.downloaded == false %>">
-          </div>
-        <% end %>
-        <%# we will need to add the logo in the datasource model %>
       </div>
     </div>
   </div>

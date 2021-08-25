@@ -1,9 +1,18 @@
-.autofilter-setting, .display-score {
+.autofilter-setting, .display-score, .datasource-selection {
   display: flex;
   justify-content: space-between;
 }
 
 .non-downloaded-style {
-  // filter: grayscale(0);
+  filter: grayscale(0);
   opacity: 0.3;
+}
+
+.logo-design {
+}
+
+.logo-design img {
+  width:40px;
+  height: 40px;
+  border-radius: 5px;
 }
