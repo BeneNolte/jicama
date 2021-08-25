@@ -1,90 +1,92 @@
 <div class="content-wrapper-with-bottombar">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-lg-6">
+  <div class="container", style="height: 75%;">
+    <div class="row" style="height: 100%; padding-bottom: 10px;">
+      <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
 
         <div class="datasource-top">
           <h1><%= @datasource.name %></h1>
           <p class="avatar"><i class="fas fa-user"></i></p>
         </div>
 
-        <div class="privacy-score">
-          <%# we will need to add the logo in the datasource model %>
-          <i class="fab fa-google"></i>
-          <p class="whitetitle">Privacy score</p>
-          <h1 class="score-header"></h1>
-          <hr>
-          <p class="whitetitle">date</p>
-        </div>
+        <%# default display %>
+        <div class="default-display">
+          <h4 class="greysubtitle">Digital footprint</h4>
 
-        <div class="datasource-selection">
-          <div class="datasource-logo-selection">
-            <i class="fab fa-google"></i>
-          </div>
-          <div class="datasource-logo-selection">
-            <i class="fas fa-plus"></i>
-          </div>
-        </div>
+          <div class="digital-footprint">
 
-        <div class="d-flex justify-content-between">
-          <h4 class="greysubtitle">Data valuation</h4>
-          <%= link_to "Details" %>
-        </div>
-
-        <div class="data-valuation">
-          <div class="data-valuation-details">
-            <p class="avatar"></p>
-            <div class="data-valuation-values">
-              <p>Data value</p>
-              <h4>€860,63</h4>
+            <div>
             </div>
-            <p>September</p>
-          </div>
 
-          <div class="data-valuation-details">
-            <p class="avatar"></p>
-            <div class="data-valuation-values">
-              <p>Data value</p>
-              <h4>€860,63</h4>
-            </div>
-            <p>September</p>
-          </div>
+            <hr>
 
-          <div class="data-valuation-details">
-            <p class="avatar"></p>
-            <div class="data-valuation-values">
-              <p>Data value</p>
-              <h4>€860,63</h4>
+            <h4 class="purpletitle">Your google profile</h4>
+            <div class="datasource-content">
+              <p class="greytext">Ads Clicked</p>
+              <p class="greytext">405</p>
             </div>
-            <p>September</p>
+            <div class="datasource-content">
+              <p class="greytext">Ads Clicked</p>
+              <p class="greytext">405</p>
+            </div>
+            <div class="datasource-content">
+              <p class="greytext">Ads Clicked</p>
+              <p class="greytext">405</p>
+            </div>
+            <hr>
+            <div class="datasource-content">
+              <p class="greytext">Ads Clicked</p>
+              <p class="greytext">405</p>
+            </div>
+
           </div>
         </div>
 
-        <h4 class="greysubtitle">Data Insights</h4>
+        <%# when the user click on a insight %>
+        <div class="insights-display d-none">
+          <div class="insights" id="locations-insights">
+            locations
+          </div>
+          <div class="insights" id="interests-insights">
+            interests
+          </div>
+          <div class="insights" id="ads-insights">
+            ads
+          </div>
+          <div class="insights" id="yt-insights">
+            yt
+          </div>
+        </div>
 
       </div>
     </div>
   </div>
 
-  <div class="data-control-carousel">
-    <div class="data-control-container">
-      <%= link_to datasource_locations_path(@datasource) do %>
-        <div class="data-control-card" id="locations">
-          <i class="fas fa-map-marker-alt"></i>
-          <h4 class="whitetitle mt-2">Locations</h4>
-        </div>
-      <% end %>
+  <div class="container">
+    <h4 class="greysubtitle" id="data-insights-title">Data Insights</h4>
+  </div>
 
-      <div class="data-control-card" id="interests">
-        <h4 class="whitetitle">Interests</h4>
+  <div class="data-insights-carousel">
+    <div class="data-insights-container">
+
+      <div class="data-insights-card" id="locations">
+        <i class="fas fa-map-marker-alt"></i>
+        <h4 class="whitetitle mt-2">Locations</h4>
       </div>
 
-      <div class="data-control-card" id="advertisements">
-        <h4 class="whitetitle"></h4>
+      <div class="data-insights-card" id="interests">
+        <i class="far fa-lightbulb"></i>
+        <h4 class="whitetitle mt-2">Interests</h4>
       </div>
 
-      <div class="data-control-card" id="youtube-channels">
-        <h4 class="whitetitle"></h4>
+      <div class="data-insights-card" id="ads">
+        <i class="fas fa-dollar-sign"></i>
+        <h4 class="whitetitle mt-2">Ads</h4>
+      </div>
+
+      <div class="data-insights-card" id="youtube-channels">
+        <i class="fab fa-youtube"></i>
+        <h4 class="whitetitle mt-2 mb-0">Youtube</h4>
+        <h4 class="whitetitle">Channels</h4>
       </div>
     </div>
   </div>
