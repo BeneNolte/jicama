@@ -1,0 +1,40 @@
+.privacy-score {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #7551F3;
+}
+
+.datasource-selection {
+  display: flex;
+}
+
+.datasource-logo-selection {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.data-valuation {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+
+  // temporaire
+  .avatar {
+    border: 1px solid;
+  }
+}
+
+.data-valuation-details {
+  display: flex;
+}
+
+.data-valuation-values {
+  flex-grow: 1;
+}
