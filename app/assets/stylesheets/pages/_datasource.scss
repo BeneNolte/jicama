@@ -1,0 +1,70 @@
+.datasource-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  // temporaire
+  .avatar {
+    border: 1px solid;
+  }
+}
+
+.default-display {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.digital-footprint, .insights-display {
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.08);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  flex-grow: 1;
+}
+
+.datasource-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.data-insights-carousel {
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+  display: none;
+  }
+}
+.data-insights-container {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.data-insights-card {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 120px;
+  margin: 0px 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #7551F3;
+  i {
+    color: white;
+    font-size: 25px;
+  }
+}
+
+.current {
+  transition: all 0.5s ease;
+  box-shadow: 0 2px 6px #7551f3;
+}
+
+.rounded-google-logo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}

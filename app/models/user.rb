@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :locations, through: :datasources
   has_many :interest_recommendations, through: :datasources
 
+  validates :email, presence: true
+  validates :password, presence: true
 
   def self.find_for_oauth(auth)
     # Create the user params
@@ -41,13 +43,6 @@ class User < ApplicationRecord
     end
 
     return user
-  end
-
-
-  def self.from_omniauth(access_token)
-    data = access_token.info
-    user = User.where(email: data['email']).first
-    user
   end
 
 end

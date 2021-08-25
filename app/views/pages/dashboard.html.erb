@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <h1>Dashboard</h1>
+
+      <div class="privacy-score">
+        <div class="display-score">
+          <p class="whitetitle">Privacy score</p>
+          <p class="whitetitle">Overall</p>
+        </div>
+        <div class="display-score" style="margin-right: 100px">
+          <h1 class="score-header">Good</h1>
+          <p class="whitetitle">+5%</p>
+        </div>
+        <div class="meter">
+          <span style="width: 70%"></span>
+          <p class="whitetitle">70</p>
+        </div>
+        <p class="whitetitle">Since September</p>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <h4 class="greysubtitle">Data valuation</h4>
+        <%= link_to "Details" %>
+      </div>
+
+      <div class="data-valuation">
+        <div class="data-valuation-details">
+          <p class="avatar"></p>
+          <div class="data-valuation-values">
+            <p>Data value</p>
+            <h4>€860,63</h4>
+          </div>
+          <p>September</p>
+        </div>
+
+        <div class="data-valuation-details">
+          <p class="avatar"></p>
+          <div class="data-valuation-values">
+            <p>Value recovered</p>
+            <h4>€0,00</h4>
+          </div>
+          <p>September</p>
+        </div>
+
+        <div class="data-valuation-details">
+          <p class="avatar"></p>
+          <div class="data-valuation-values">
+            <p>Companies restricted</p>
+            <h4>0</h4>
+          </div>
+          <p>All time</p>
+        </div>
+      </div>
+
+      <div class="autofilter-configuration">
+      <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary greysubtitle" data-toggle="modal" data-target="#exampleModal">
+          Privacy cockpit
+        </button>
+      </div>
+
+      <h4 class="greysubtitle">Connect Datasources</h4>
+      <div class="datasource-selection">
+        <div class="<%= 'non-downloaded-style' if @google.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/google_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <div class="<%= 'non-downloaded-style' if @facebook.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/facebook_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <div class="<%= 'non-downloaded-style' if @twitter.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/twitter_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <div class="<%= 'non-downloaded-style' if @spotify.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/spotify_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <div class="<%= 'non-downloaded-style' if @instagram.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/instagram_logo.png", width: 400, height: 300, crop: :fill) %>
+        </div>
+        <i class="fas fa-plus"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Privacy cockpit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'button' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ask for information</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Save changes</button>
+        <button type="button" class="btn btn-primary">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
