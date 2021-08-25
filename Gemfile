@@ -66,6 +66,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'pundit'
 gem 'omniauth'
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
+gem 'cloudinary', '~> 1.16.0'
