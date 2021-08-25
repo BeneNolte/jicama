@@ -26,11 +26,11 @@ puts 'Creating 5 datasources'
 instagram = Datasource.new(name: "Instagram", user: User.all.last, downloaded: false)
 instagram.save!
 
-whatsapp = Datasource.new(name: "Whatsapp", user: User.all.last, downloaded: false)
-whatsapp.save!
-
-spotify = Datasource.new(name: "Spotify", user: User.all.last, downloaded: false)
+spotify= Datasource.new(name: "Spotify", user: User.all.last, downloaded: false)
 spotify.save!
+
+twitter = Datasource.new(name: "Twitter", user: User.all.last, downloaded: false)
+twitter.save!
 
 facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: false)
 facebook.save!
