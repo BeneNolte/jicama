@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+
+      <h1>Data Control</h1>
+      <hr>
+      <div class="action-bar d-flex">
+        <h5>Auto-Filter</h5>
+        <%= link_to "Adjust", datasource_path(@datasource), class: "btn btn-primary" %>
+        <h5>On / Off</h5>
+      </div>
+      <hr>
+      <div class="action-bar d-flex">
+        <h5>All</h5>
+        <h5>Accessors</h5>
+        <h5>Buyers</h5>
+        <h5>Restrictions</h5>
+        <h5>Deletion</h5>
+      </div>
+      <hr>
+      <% @data_ownerships.each do |data_ownership| %>
+        <div class="d-flex">
+          <%= Company.find(data_ownership.company_id).title %>
+          <%= Datasource.find(data_ownership.datasource_id).name %>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Restrict
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <%= render 'form', datasource: @datasource, data_ownership: data_ownership %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <%# <div class="modal-dialog modal-dialog-scrollable">
+        ...
+      </div> %>
+
+
+    </div>
+  </div>
+</div>
