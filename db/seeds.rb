@@ -21,10 +21,24 @@ user = User.new(email: "test@gmail.com", password: "123456", first_name: "Jicama
 user.save!
 puts 'Finished user'
 
-puts 'Creating Google datasource'
+puts 'Creating 5 datasources'
+
+instagram = Datasource.new(name: "Instagram", user: User.all.last, downloaded: false)
+instagram.save!
+
+whatsapp = Datasource.new(name: "Whatsapp", user: User.all.last, downloaded: false)
+whatsapp.save!
+
+spotify = Datasource.new(name: "Spotify", user: User.all.last, downloaded: false)
+spotify.save!
+
+facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: false)
+facebook.save!
+
 google = Datasource.new(name: "Google", user: User.all.last, downloaded: true)
 google.save!
-puts 'Finished Google'
+
+puts 'Finished 5 datasources'
 
 puts 'Creating 5 locations...'
 boutique_orange_republique = Location.new(latitude: 488669322, longitude: 23635334, timestamp: "1517499133098", datasource: Datasource.all.last, status: true)

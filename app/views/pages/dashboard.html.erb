@@ -4,8 +4,14 @@
       <h1>Dashboard</h1>
 
       <div class="privacy-score">
-        <p class="whitetitle">Privacy score</p>
-        <h1 class="score-header">Good</h1>
+        <div class="display-score">
+          <p class="whitetitle">Privacy score</p>
+          <p class="whitetitle">Overall</p>
+        </div>
+        <div class="display-score">
+          <h1 class="score-header">Good</h1>
+          <p class="whitetitle r-4">+5%</p>
+        </div>
         <hr>
         <p class="whitetitle">Since September</p>
       </div>
@@ -45,41 +51,44 @@
       </div>
 
       <div class="autofilter-configuration">
-        <%# <h4 class="greysubtitle">Privacy cockpit</h4> %>
-        <%# <button type="button" class="button-second" data-toggle="modal" data-target="#create-review-modal<%=index%>"> %>
-        <button id="myBtn">Privacy cockpit</button>
-        <div id="myModal" class="modal">
-          <div class="modal-content">
-          <span class="close">&times;</span>
-            <div>
-              <h4>Configure Auto-Filter</h4>
-              <div class="autofilter-setting">
-                <p class="avatar"></p>
-                <p>Sensitive info denial</p>
-              </div>
-              <div class="autofilter-setting">
-                <p class="avatar"></p>
-                <p>Sell Data Securely</p>
-              </div>
-              <div class="autofilter-setting">
-                <p class="avatar"></p>
-                <p>Blabla</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary greysubtitle" data-toggle="modal" data-target="#exampleModal">
+          Privacy cockpit
+        </button>
+      </div>
 
-      <div class="datasource-selection">
-        <div class="datasource-logo-selection">
-          <i class="fab fa-google"></i>
-        </div>
-        <div class="datasource-logo-selection">
-          <i class="fas fa-plus"></i>
-        </div>
       <h4 class="greysubtitle">Connect Datasources</h4>
-      <%#= if datasource.downloaded = %>
-      <%# we will need to add the logo in the datasource model %>
-      <%# <i class="fab fa-google"></i> %>
+      <div class="datasource-selection">
+        <i class="fab fa-google"></i>
+        <i class="fab fa-facebook"></i>
+        <i class="fas fa-plus"></i>
+        <% @datasources.each do |datasource| %>
+          <div class="<%= 'non-downloaded-style' if datasource.downloaded == false %>">
+          </div>
+        <% end %>
+        <%# we will need to add the logo in the datasource model %>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Privacy cockpit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'button' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ask for information</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Save changes</button>
+        <button type="button" class="btn btn-primary">Close</button>
       </div>
     </div>
   </div>
