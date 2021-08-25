@@ -4,6 +4,11 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @datasource = Datasource.all
+    datasources = Datasource.all
+    @google = datasources.find_by(name: "Google")
+    @facebook = datasources.find_by(name: "Facebook")
+    @twitter = datasources.find_by(name: "Twitter")
+    @instagram = datasources.find_by(name: "Instagram")
+    @spotify = datasources.find_by(name: "Spotify")
   end
 end

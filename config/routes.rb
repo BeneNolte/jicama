@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  # get "dashboard", to: "pages#dashboard"
+  get "dashboard", to: "pages#dashboard"
   get "login", to: "pages#login"
 
 	resources :datasources, only: [ :show ] do
