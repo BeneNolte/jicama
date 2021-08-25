@@ -8,4 +8,9 @@ class DataOwnershipPolicy < ApplicationPolicy
   def index?
     record.user == user
   end
+
+  def update?
+    record.datasource.user == user
+  end
+
 end
