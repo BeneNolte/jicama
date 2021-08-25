@@ -15,4 +15,10 @@ class DataOwnershipsController < ApplicationController
     @data_ownership.update(data_ownership_params)
     redirect_to datasource_data_ownerships_path, notice: "Your data settings have been updated"
   end
+
+  private
+
+  def data_ownerships_params
+    params.require(:data_ownership).permit(:status, :type_of_ownership)
+  end
 end
