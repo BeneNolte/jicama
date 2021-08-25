@@ -4,6 +4,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @datasource = Datasource.all
+    @datasources = Datasource.all
   end
 end

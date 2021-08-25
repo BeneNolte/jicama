@@ -1,0 +1,9 @@
+.autofilter-setting, .display-score {
+  display: flex;
+  justify-content: space-between;
+}
+
+.non-downloaded-style {
+  // filter: grayscale(0);
+  opacity: 0.3;
+}
