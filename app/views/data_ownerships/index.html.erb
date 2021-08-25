@@ -22,11 +22,15 @@
         </div>
         <hr>
         <div class="d-flex justify-content-between">
-          <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all")  %>
-          <%= link_to  "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor") %>
-          <%= link_to  "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer") %>
-          <%= link_to  "Restrictions", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted") %>
-          <%= link_to  "Deletion", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted") %>
+          <div><%= Company.find(data_ownership.company_id).title %></div>
+          <div>
+          <%#= Datasource.find(data_ownership.datasource_id).name %>
+          <%= image_tag @datasource.photo, class:"rounded-google-logo" %>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Control
+            </button>
+          </div>
         </div>
         <hr>
         <% @data_ownerships.each do |data_ownership| %>

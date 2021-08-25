@@ -51,9 +51,15 @@
     color: white;
     font-size: 25px;
   }
-} 
+}
 
 .current {
   transition: all 0.5s ease;
   box-shadow: 0 2px 6px #7551f3;
+}
+
+.rounded-google-logo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
