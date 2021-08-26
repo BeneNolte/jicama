@@ -1,17 +1,23 @@
-.datasource-top {
+.displays {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  // temporaire
-  .avatar {
-    border: 1px solid;
-  }
+  height: 100%;
 }
 
 .default-display {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.insights-display {
+  z-index: 5;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
 .digital-footprint, .insights-display {
@@ -21,6 +27,18 @@
   display: flex;
   flex-direction: column;
   border-radius: 20px;
+  flex-grow: 1;
+}
+
+.insights {
+  position: absolute;
+}
+
+.digital-footprint-score {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 20px;
   flex-grow: 1;
 }
 
@@ -54,12 +72,10 @@
 }
 
 .current {
-  transition: all 0.5s ease;
-  box-shadow: 0 2px 6px #7551f3;
+  transition: all 0.3s ease;
+  opacity: 0.8;
 }
-
-.rounded-google-logo {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+.opacity {
+  transition: all 0.3s ease;
+  opacity: 0;
 }

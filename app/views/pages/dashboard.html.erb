@@ -3,7 +3,25 @@
     <div class="row" style="height: 100%; padding-bottom: 10px;">
       <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
 
-        <h1>Dashboard</h1>
+        <div class="page-header">
+          <h1>Dashboard</h1>
+          <% if user_signed_in? %>
+            <div class="dropdown">
+              <a class="profile dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= image_tag image_path('empty-profile.png'), class: "avatar" %>
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to "Update profile", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </div>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </div>
 
         <div class="privacy-score">
           <div class="display-score">
@@ -20,6 +38,12 @@
           <p class="whitetext">Since September</p>
         </div>
 
+        <!-- Button trigger modal -->
+        <div class="long-button" data-toggle="modal" data-target="#exampleModal">
+          <i class="fab fa-get-pocket"></i>
+          <h4 class="purpletitle">Privacy cockpit</h4>
+        </div>
+
         <div class="d-flex justify-content-between my-1">
           <h4 class="greysubtitle">Data valuation</h4>
           <%= link_to root_path do %>
@@ -28,7 +52,7 @@
         </div>
 
         <div class="data-valuation">
-          <div class="data-valuation-details" style="margin-bottom: 5%">
+          <div class="data-valuation-details" style="margin-bottom: 7%">
             <div class="data-valuation-logo">
               <i class="fas fa-dollar-sign"></i>
             </div>
@@ -39,7 +63,7 @@
             <p class="greytext">September</p>
           </div>
 
-          <div class="data-valuation-details" style="margin-bottom: 5%">
+          <div class="data-valuation-details" style="margin-bottom: 7%">
             <div class="data-valuation-logo">
               <i class="fas fa-dollar-sign"></i>
             </div>
@@ -62,12 +86,6 @@
           </div>
         </div>
 
-        <!-- Button trigger modal -->
-        <div class="long-button" data-toggle="modal" data-target="#exampleModal">
-          <i class="fab fa-get-pocket"></i>
-          <h4 class="purpletitle">Privacy cockpit</h4>
-        </div>
-
       </div>
     </div>
   </div>
@@ -82,16 +100,7 @@
         <%= cl_image_tag("jicama/google_logo.png") %>
       </div>
       <div class="<%= 'non-downloaded-style' if @facebook.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/facebook_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @twitter.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/twitter_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @spotify.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/spotify_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @instagram.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/instagram_logo.png") %>
+        <div class="logo-plus"><i class="fas fa-plus"></i></div>
       </div>
     </div>
   </div>

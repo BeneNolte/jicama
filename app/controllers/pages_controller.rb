@@ -11,4 +11,7 @@ class PagesController < ApplicationController
     @instagram = datasources.find_by(name: "Instagram")
     @spotify = datasources.find_by(name: "Spotify")
   end
+
+   def loading
+   end
 end
