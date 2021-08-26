@@ -11,7 +11,19 @@
             <p class="whitetext">Overall</p>
           </div>
           <div class="display-score" style="margin-right: 50px">
-            <h1 class="fatwhitetitle">Good</h1>
+            <% @datasources.each do |datasource| %>
+            <% score_arr = [] %>
+            <% score_arr << datasource.score %>
+            <% score = score_arr.sum / score_arr.size %>
+            <% if score < 90 %>
+              <h1 class="fatwhitetitle">Good</h1>
+            <% elsif score < 60 %>
+              <h1 class="fatwhitetitle">Medium</h1>
+            <% elsif score < 30 %>
+              <h1 class="fatwhitetitle">Bad</h1>
+            <% else %>
+              <h1 class="fatwhitetitle">Very Good</h1>
+            <% end %>
             <p id="score-percentage">+5%</p>
           </div>
           <div class="meter">
@@ -95,7 +107,7 @@
       </div>
     </div>
   </div>
-       
+
 </div>
 
 <%= render 'shared/bottombar', datasource: @google %>
