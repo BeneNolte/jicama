@@ -13,10 +13,13 @@ class PagesController < ApplicationController
 
     # Calculate overall score of datasources
     score_arr = []
+    @score = 0
     @datasources.where.not(score: nil).each do |datasource|
       score_arr << datasource.score.to_i
     end
-    @score = score_arr.sum / score_arr.size
+    unless score_arr.size == 0
+      @score = score_arr.sum / score_arr.size
+    end
 
     # Calculate overall value of datasources
     value_arr = []
