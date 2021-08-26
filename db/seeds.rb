@@ -1,13 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-#seed from Pierre's Google takeout - february 2018
-
 require 'json'
 require 'date'
 require 'nokogiri'
@@ -20,70 +10,79 @@ serialized_profile = File.read(filepath)
 profileInfos = JSON.parse(serialized_profile)
 gender = profileInfos["gender"]["type"].capitalize
 
-# BROWSER SEARCH HISTORY
+
+# 1. BROWSER SEARCH WORDS HISTORY
 filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
 serialized_browserHistory = File.read(filepath)
 browserHistories = JSON.parse(serialized_browserHistory)
 
 # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
-monthlyTitles = []
+monthlySearchWords = []
 browserHistories["Browser History"].each do |browserHistory|
   if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-    monthlyTitles << browserHistory["title"] unless browserHistory["title"].nil?
+    monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
   end
 end
-searchHistoryThisMonth = monthlyTitles.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
-p searchHistoryThisMonth[-1]
+counts_monthly_search_words = Hash.new(0)
+monthlySearchWords.join(" ").split(" ").each { |word| counts_monthly_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
+rankedMonthlySearchWords = counts_monthly_search_words.sort_by { |key, value| value.to_i * descending}.to_a
 
-# --> TOP SEARCH WORDS HISTORY
-allTitles = []
+# --> TOP SEARCH WORDS HISTORY OF ALL TIME
+allSearchWords = []
 browserHistories["Browser History"].each do |browserHistory|
-    allTitles << browserHistory["title"] unless browserHistory["title"].nil?
+    allSearchWords << browserHistory["title"] unless browserHistory["title"].nil?
 end
-searchHistory = allTitles.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
-p searchHistory.last
+counts_all_search_words = Hash.new(0)
+allSearchWords.join(" ").split(" ").each { |word| counts_all_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
+rankedAllSearchWords = counts_all_search_words.sort_by { |key, value| value.to_i * descending}.to_a
 
+
+# 2. VISITED LINKS HISTORY
 # --> TOP VISITED LINKS OF CURRENT MONTH
-links = []
+monthlyVisitedLinks = []
 browserHistories["Browser History"].each do |browserHistory|
   pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
   if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-    links << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
+    monthlyVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
   end
 end
-visitedLinks = links.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
-topVisitedLinks = visitedLinks.first(10)
+rankedMonthlyVisitedLinks = monthlyVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
 
-# YOUTUBE CHANNEL HISTORY
+# --> TOP VISITED LINKS OF ALL TIME
+allVisitedLinks = []
+browserHistories["Browser History"].each do |browserHistory|
+  pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+  allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
+end
+rankedAllVisitedLinks = allVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
+
+
+# 3. YOUTUBE CHANNEL HISTORY
 html_file = File.open('./db/TakeoutBene/YouTube and YouTube Music/history/watch-history.html')
 html_doc = Nokogiri::HTML(html_file)
 
-# --> TOP TITLES FROM ALL TIMES
+# --> TOP VIDEO TITLES OF ALL TIMES
 videoTitles = []
 videoTitlesExtract = html_doc.css("div.mdl-grid div:nth-child(2) :first-child")
 # trying to retrieve the date : p videoTitlesExtract.first.text
 videoTitlesExtract.each do |element|
   if element.text.length > 3
-    videoTitles << element.text
+    videoTitles << element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8")
   end
 end
-videoTitles
-
 rankedVideoTitles = videoTitles.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
-rankedVideoTitles
+
 # --> TOP CHANNELS FROM ALL TIMES
-channelNames = []
-channelNamesExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
-channelNamesExtract.each do |element|
+videoChannels = []
+videoChannelsExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
+videoChannelsExtract.each do |element|
   if element.text.length > 3
-    channelNames << element.text
+    videoChannels << element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8")
   end
 end
-rankedChannelNames = channelNames.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
-rankedChannelNames.first(10)
+rankedVideoChannels = videoChannels.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
+
 # Links if we want them ? channelLinks = html_doc.css("div.mdl-grid div:nth-child(2) a").attribute('href').value
-
-
 
 # CREATING THE SEEDS
 # puts "Cleaning db"
@@ -151,5 +150,11 @@ rankedChannelNames.first(10)
 # puts 'Finished data ownerships'
 
 # puts "Creating Bene's search history"
-# beneSearchHistory = SearchHistory.create(top_search_words: topSearchWords, top_visited_links: topVisitedLinks, timestamp: Date.today, deleted: false, datasource: Datasource.find_by(name: "Google") )
+# beneSearchHistory = SearchHistory.create(
+#   top_search_words: rankedAllSearchWords,
+#   top_visited_links: rankedAllVisitedLinks,
+#   timestamp: Date.today, d
+#   eleted: false,
+#   datasource: Datasource.find_by(name: "Google")
+# )
 # puts "Finsih creating Bene's search history"
