@@ -1,0 +1,21 @@
+.meter {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: content-box;
+  height: 10px; /* Can be anything */
+  position: relative;
+  background: #555;
+  border-radius: 25px;
+  margin-bottom: 10px;
+}
+.meter > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}

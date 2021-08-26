@@ -1,68 +1,71 @@
 .datasource-top {
   display: flex;
   justify-content: space-between;
-
+  margin-bottom: 30px;
   // temporaire
   .avatar {
     border: 1px solid;
   }
 }
 
-.privacy-score {
-  padding: 10px;
-  border-radius: 20px;
-  background-color: #7551F3;
+.displays {
+  position: relative;
 }
 
-.datasource-selection {
+.default-display {
   display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
-.datasource-logo-selection {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  padding: 5px;
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
+.insights-display {
+  z-index: 5;
+  position: absolute;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
-.data-valuation {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  padding: 10px;
+.digital-footprint, .insights-display {
   background-color: white;
-  border-radius: 20px;
-
-  // temporaire
-  .avatar {
-    border: 1px solid;
-  }
-}
-
-.data-valuation-details {
+  box-shadow: 0 0 15px rgba(0,0,0,0.08);
+  padding: 15px;
   display: flex;
-}
-
-.data-valuation-values {
+  flex-direction: column;
+  border-radius: 20px;
   flex-grow: 1;
 }
 
-.data-control-carousel {
-  overflow-x: auto;
-  &::-webkit-scrollbar {
-  display: none;
-  }
+.insights {
+  position: absolute;
 }
-.data-control-container {
+
+.digital-footprint-score {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.datasource-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.data-insights-container {
   width: fit-content;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-.data-control-card {
+
+.data-insights-card {
   display: flex;
+  flex-direction: column;
   width: 120px;
   height: 120px;
   margin: 0px 10px;
@@ -71,4 +74,18 @@
   align-items: center;
   border-radius: 10px;
   background-color: #7551F3;
+  i {
+    color: white;
+    font-size: 25px;
+  }
+}
+
+.current {
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+.opacity {
+
+  transition: all 0.3s ease;
+  opacity: 0;
 }
