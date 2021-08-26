@@ -3,7 +3,25 @@
     <div class="row">
       <div class="col-12 col-lg-6">
 
-        <h1>Data Control</h1>
+        <div class="page-header">
+          <h1><%= @datasource.name %> Data</h1>
+          <% if user_signed_in? %>
+            <div class="dropdown">
+              <a class="profile dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= image_tag image_path('empty-profile.png'), class: "avatar" %>
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to "Update profile", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </div>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </div>
         <hr>
         <div class="action-bar d-flex justify-content-between">
           <h5>Auto-Filter</h5>
