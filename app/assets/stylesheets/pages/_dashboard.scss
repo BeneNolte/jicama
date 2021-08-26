@@ -64,7 +64,6 @@
 }
 
 .non-downloaded-style {
-  filter: grayscale(0);
   opacity: 0.3;
 }
 
@@ -80,5 +79,18 @@
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  .logo-plus {
+    width:50px;
+    height: 50px;
+    font-size: 30px;
+    position: relative; 
+
+    i {
+      position: absolute;
+      right: 13px;
+      bottom: 10px;
+    }
   }
 }
