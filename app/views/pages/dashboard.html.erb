@@ -28,7 +28,7 @@
         </div>
 
         <div class="data-valuation">
-          <div class="data-valuation-details" style="margin-bottom: 5%">
+          <div class="data-valuation-details" style="margin-bottom: 7%">
             <div class="data-valuation-logo">
               <i class="fas fa-dollar-sign"></i>
             </div>
@@ -39,7 +39,7 @@
             <p class="greytext">September</p>
           </div>
 
-          <div class="data-valuation-details" style="margin-bottom: 5%">
+          <div class="data-valuation-details" style="margin-bottom: 7%">
             <div class="data-valuation-logo">
               <i class="fas fa-dollar-sign"></i>
             </div>
@@ -82,16 +82,7 @@
         <%= cl_image_tag("jicama/google_logo.png") %>
       </div>
       <div class="<%= 'non-downloaded-style' if @facebook.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/facebook_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @twitter.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/twitter_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @spotify.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/spotify_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @instagram.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/instagram_logo.png") %>
+        <div class="logo-plus"><i class="fas fa-plus"></i></div>
       </div>
     </div>
   </div>
