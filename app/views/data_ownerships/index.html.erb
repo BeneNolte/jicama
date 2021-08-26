@@ -30,12 +30,12 @@
           <% else %>
           <% end %>
           <div class="custom-control custom-switch">
-          <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
-          <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
-            <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1"  %>
-            <label class="custom-control-label" for="customSwitch1"></label>
-            <%= f.submit "Test", class: "d-none" %>
-          <% end %>
+            <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
+            <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
+              <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1"  %>
+              <label class="custom-control-label" for="customSwitch1"></label>
+              <%= f.submit "Test", class: "d-none" %>
+            <% end %>
           </div>
         </div>
         <hr>
@@ -63,18 +63,18 @@
             </div>
             <div>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= data_ownership.id %>">
                 Control
               </button>
             </div>
           </div>
 
           <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="modal-<%= data_ownership.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel"><%= Company.find(data_ownership.company_id).title.capitalize %></h5>
+                  <h5 class="modal-title" id="title-modal-<%= data_ownership.id %>"><%= Company.find(data_ownership.company_id).title.capitalize %></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>

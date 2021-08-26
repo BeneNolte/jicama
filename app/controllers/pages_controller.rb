@@ -4,7 +4,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-
     @datasources = Datasource.all.where(user: current_user)
     @google = @datasources.find_by(name: "Google")
     @facebook = @datasources.find_by(name: "Facebook")
@@ -25,8 +24,8 @@ class PagesController < ApplicationController
       value_arr << datasource.value
     end
     @value = value_arr.sum.round(2)
-  end
 
-   def loading
-   end
+    def loading
+    end
+  end
 end

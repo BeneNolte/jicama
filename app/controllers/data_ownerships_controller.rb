@@ -27,6 +27,7 @@ class DataOwnershipsController < ApplicationController
     redirect_to datasource_data_ownerships_path, notice: "Your data settings have been updated"
 
     @data_ownership.datasource.update_score
+    @data_ownership.datasource.update_value
   end
 
   private
