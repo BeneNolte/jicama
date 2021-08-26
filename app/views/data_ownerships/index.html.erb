@@ -30,12 +30,12 @@
           <% else %>
           <% end %>
           <div class="custom-control custom-switch">
-          <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
-          <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
-            <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1"  %>
-            <label class="custom-control-label" for="customSwitch1"></label>
-            <%= f.submit "Test", class: "d-none" %>
-          <% end %>
+            <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
+            <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
+              <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1"  %>
+              <label class="custom-control-label" for="customSwitch1"></label>
+              <%= f.submit "Test", class: "d-none" %>
+            <% end %>
           </div>
         </div>
         <hr>

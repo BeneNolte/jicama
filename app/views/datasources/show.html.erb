@@ -33,7 +33,7 @@
               <div class="digital-footprint-score">
                 <div class="display-score">
                   <h1 class="fatpurpletitle">€860,63</h1>
-                  <%= image_tag @google.photo, class:"datasource-logo" %>
+                  <%= image_tag @datasource.photo, class:"datasource-logo" %>
                 </div>
                 <div class="meter">
                   <span style="width: 70%"></span>
@@ -69,7 +69,28 @@
                 locations
               </div>
               <div class="insights" id="interests-insights">
-                interests
+                <div>
+                  <h4 class="purpletitle">Search history</h4>
+                  <div class="card-boxless">
+                    <p class="greysubtitle">Top searched words</p>
+                    <% @search_history.first.top_search_word.first(10).each do |word| %>
+                      <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
+                        <p class="m-0 mr-5"><%= word[0] %></p>
+                        <p class="m-0"><%= word[1] %></p>
+                      </div>      
+                    <% end %>
+                  </div>
+
+                  <div class="card-boxless">
+                    <p class="greysubtitle">Top visited links</p>
+                    <% @search_history.first.top_visited_link.first(3).each do |word| %>
+                      <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
+                        <p class="m-0 mr-5"><%= word[0] %></p>
+                        <p class="m-0"><%= word[1] %></p>
+                      </div>      
+                    <% end %>
+                  </div>
+                </div>
               </div>
               <div class="insights" id="ads-insights">
                 ads
@@ -105,8 +126,9 @@
       </div>
 
       <div class="data-insights-card" id="interests">
-        <i class="far fa-lightbulb"></i>
-        <h4 class="whitetitle mt-2">Interests</h4>
+        <i class="fas fa-search"></i>
+        <h4 class="whitetitle mt-2 mb-0">Search</h4>
+        <h4 class="whitetitle">history</h4>
       </div>
 
       <div class="data-insights-card" id="ads">
@@ -117,7 +139,6 @@
       <div class="data-insights-card" id="youtube-channels">
         <i class="fab fa-youtube"></i>
         <h4 class="whitetitle mt-2 mb-0">Youtube</h4>
-        <h4 class="whitetitle">Channels</h4>
       </div>
     </div>
   </div>
