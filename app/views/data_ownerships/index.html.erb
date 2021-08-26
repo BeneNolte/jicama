@@ -40,7 +40,11 @@
         </div>
         <hr>
         <div class="d-flex justify-content-between">
-          
+          <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all")  %>
+          <%= link_to  "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor") %>
+          <%= link_to  "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer") %>
+          <%= link_to  "Restrictions", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted") %>
+          <%= link_to  "Deletion", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted") %>
           <div>
           <%#= Datasource.find(data_ownership.datasource_id).name %>
           <%= image_tag @datasource.photo, class:"rounded-google-logo" %>
@@ -53,22 +57,24 @@
         <hr>
         <% @data_ownerships.each do |data_ownership| %>
           <div class="d-flex justify-content-between">
-            <div><%= Company.find(data_ownership.company_id).title %></div>
             <div>
-            <%= Datasource.find(data_ownership.datasource_id).name %>
+              <strong><%= Company.find(data_ownership.company_id).title.capitalize %></strong>
+              (<%= data_ownership.type_of_ownership.capitalize %>)
+            </div>
+            <div>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= data_ownership.id %>">
                 Control
               </button>
             </div>
           </div>
 
           <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="modal-<%= data_ownership.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel"><%= Company.find(data_ownership.company_id).title.capitalize %></h5>
+                  <h5 class="modal-title" id="title-modal-<%= data_ownership.id %>"><%= Company.find(data_ownership.company_id).title.capitalize %></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -86,7 +92,7 @@
                   <hr>
                   <div class="restrict d-flex justify-content-between">
                     <%= button_to  "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch', class: "btn btn-sm btn-success" %>
-                    <p style="font-size: 14px;">No further data will be shared via Facebook with Axciom.</p>
+                    <p style="font-size: 14px;">No further data will be shared via Facebook with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
                   </div>
                   <div class="delete d-flex justify-content-between">
                     <%= button_to  "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', class: "btn btn-sm btn-success" %>
@@ -110,6 +116,6 @@
       </div>
     </div>
   </div>
-</div>  
+</div>
 
 <%= render 'shared/bottombar', datasource: @datasource %>
