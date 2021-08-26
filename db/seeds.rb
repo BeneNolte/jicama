@@ -71,7 +71,6 @@ videoTitlesExtract.each do |element|
   end
 end
 rankedVideoTitles = videoTitles.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
-
 # --> TOP CHANNELS FROM ALL TIMES
 videoChannels = []
 videoChannelsExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
@@ -161,7 +160,7 @@ beneSearchHistory = SearchHistory.create(
   top_monthly_visited_link: rankedMonthlyVisitedLinks,
   timestamp: Date.today,
   deleted: false,
-  datasource: "google"
+  datasource: google
 )
 puts "Finsih creating Bene's search history"
 
@@ -171,6 +170,6 @@ beneYoutubeHistory = YoutubeHistory.create(
   top_channel_name: rankedVideoChannels,
   timestamp: Date.today,
   deleted: false,
-  datasource: "google"
+  datasource: google
 )
 puts "Finsih creating Bene's youtube history"
