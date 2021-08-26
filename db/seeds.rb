@@ -69,28 +69,34 @@ puts 'Finished user'
 puts 'Creating 5 datasources'
 instagram = Datasource.new(name: "Instagram", user: User.all.last, downloaded: false)
 instagram.save!
+instagram.update_score
 spotify= Datasource.new(name: "Spotify", user: User.all.last, downloaded: false)
 spotify.save!
+spotify.update_score
 twitter = Datasource.new(name: "Twitter", user: User.all.last, downloaded: false)
 twitter.save!
+twitter.update_score
 facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: false)
 facebook.save!
+facebook.update_score
 google = Datasource.new(name: "Google", user: User.all.last, downloaded: true)
-file = URI.open('app/assets/images/Google.png')
 google.save!
+google.update_score
+
+file = URI.open('app/assets/images/Google.png')
 google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
 puts 'Finished 5 datasources'
 
 puts 'Creating 5 locations...'
-boutique_orange_republique = Location.new(latitude: 488669322, longitude: 23635334, timestamp: "1517499133098", datasource: Datasource.all.last, status: true)
+boutique_orange_republique = Location.new(latitude: 488669322, longitude: 23635334, timestamp: "1517499133098", datasource: google, status: true)
 boutique_orange_republique.save!
-rue_saintonge = Location.new(latitude: 488627548, longitude: 23636928, timestamp: "1517503380552", datasource: Datasource.all.last, status: true)
+rue_saintonge = Location.new(latitude: 488627548, longitude: 23636928, timestamp: "1517503380552", datasource: google, status: true)
 rue_saintonge.save!
-mannerheim_gallery = Location.new(latitude: 488671050, longitude: 23617439, timestamp: "1517499133098", datasource: Datasource.all.last, status: true)
+mannerheim_gallery = Location.new(latitude: 488671050, longitude: 23617439, timestamp: "1517499133098", datasource: google, status: true)
 mannerheim_gallery.save!
-opticien_grandoptical = Location.new(latitude: 488669636, longitude: 23634875, timestamp: "1517499133098", datasource: Datasource.all.last, status: true)
+opticien_grandoptical = Location.new(latitude: 488669636, longitude: 23634875, timestamp: "1517499133098", datasource: google, status: true)
 opticien_grandoptical.save!
-season_market = Location.new(latitude: 488628811, longitude: 23620257, timestamp: "1517503380552", datasource: Datasource.all.last, status: true)
+season_market = Location.new(latitude: 488628811, longitude: 23620257, timestamp: "1517503380552", datasource: google, status: true)
 season_market.save!
 puts 'Finished 5 locations'
 
@@ -108,15 +114,16 @@ apple.save!
 puts 'Finished 5 companies'
 
 puts 'Creating data ownerships'
-own1 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "buyer")
+own1 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: google, status: true, type_of_ownership: "buyer")
 own1.save!
-own2 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "accessor")
+own2 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: google, status: true, type_of_ownership: "accessor")
 own2.save!
-own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "restricted")
+own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: google, status: false, type_of_ownership: "restricted")
 own3.save!
-own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "deleted")
+own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: google, status: false, type_of_ownership: "deleted")
 own4.save!
 puts 'Finished data ownerships'
+google.update_score
 
 puts "Creating Bene's search history"
 beneSearchHistory = SearchHistory.create(top_search_words: topSearchWords, top_visited_links: topVisitedLinks, timestamp: Date.today, deleted: false, datasource: Datasource.find_by(name: "Google") )

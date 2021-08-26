@@ -18,5 +18,15 @@ class PagesController < ApplicationController
       score_arr << datasource.score.to_i
     end
     @score = score_arr.sum / score_arr.size
+
+    # Calculate overall value of datasources
+    value_arr = []
+    @datasources.where.not(score: nil).each do |datasource|
+      value_arr << datasource.value
+    end
+    @value = value_arr.sum.round(2)
   end
+
+   def loading
+   end
 end

@@ -1,15 +1,7 @@
-.datasource-top {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  // temporaire
-  .avatar {
-    border: 1px solid;
-  }
-}
-
 .displays {
   position: relative;
+  display: flex;
+  height: 100%;
 }
 
 .default-display {
@@ -24,7 +16,6 @@
 
 .insights-display {
   z-index: 5;
-  position: absolute;
   width: 100%;
   transition: all 0.3s ease;
 }
@@ -85,7 +76,6 @@
   opacity: 0.8;
 }
 .opacity {
-
   transition: all 0.3s ease;
   opacity: 0;
 }

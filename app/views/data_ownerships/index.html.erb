@@ -3,7 +3,25 @@
     <div class="row">
       <div class="col-12 col-lg-6">
 
-        <h1>Data Control</h1>
+        <div class="page-header">
+          <h1><%= @datasource.name %> Data</h1>
+          <% if user_signed_in? %>
+            <div class="dropdown">
+              <a class="profile dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= image_tag image_path('empty-profile.png'), class: "avatar" %>
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to "Update profile", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </div>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </div>
         <hr>
         <div class="action-bar d-flex justify-content-between">
           <h5>Auto-Filter</h5>
@@ -27,8 +45,6 @@
           <%= link_to  "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer") %>
           <%= link_to  "Restrictions", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted") %>
           <%= link_to  "Deletion", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted") %>
-
-
           <div>
           <%#= Datasource.find(data_ownership.datasource_id).name %>
           <%= image_tag @datasource.photo, class:"rounded-google-logo" %>
@@ -76,7 +92,7 @@
                   <hr>
                   <div class="restrict d-flex justify-content-between">
                     <%= button_to  "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch', class: "btn btn-sm btn-success" %>
-                    <p style="font-size: 14px;">No further data will be shared via Facebook with Axciom.</p>
+                    <p style="font-size: 14px;">No further data will be shared via Facebook with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
                   </div>
                   <div class="delete d-flex justify-content-between">
                     <%= button_to  "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', class: "btn btn-sm btn-success" %>
