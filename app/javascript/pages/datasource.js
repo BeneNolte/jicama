@@ -7,6 +7,7 @@ const dataInsightCard = () => {
   
     const insights = document.querySelectorAll(".insights")
   
+    const digitalFootprint = document.getElementById("digital-footprint");
     const locations = document.getElementById("locations");
     const interests = document.getElementById("interests");
     const ads = document.getElementById("ads");
@@ -30,19 +31,31 @@ const dataInsightCard = () => {
         insight.classList.add("opacity")
       });
     }
+
+    digitalFootprint.addEventListener("click", () => {
+      insightsDisplay.classList.add("opacity")
+      defaultDisplay.classList.remove("opacity");
+      digitalFootprint.classList.add("current");
+      locations.classList.remove("current");
+      interests.classList.remove("current");
+      ads.classList.remove("current");
+      youtubeChannels.classList.remove("current");
+      insightsTitleLogic();
+    });
   
     locations.addEventListener("click", () => {
       deleteInsightsLogic();
       locationInsights.classList.remove("opacity")
-      locationInsights.classList.remove("d-none")
-      locations.classList.toggle("current");
+      locations.classList.add("current");
+      digitalFootprint.classList.remove("current");
       if (interests.classList.contains("current") || ads.classList.contains("current") || youtubeChannels.classList.contains("current")) {   
         interests.classList.remove("current");
         ads.classList.remove("current");
         youtubeChannels.classList.remove("current");
+        
       } else {
-        insightsDisplay.classList.toggle("opacity");
-        defaultDisplay.classList.toggle("opacity");
+        insightsDisplay.classList.remove("opacity");
+        defaultDisplay.classList.add("opacity");
       }
       insightsTitleLogic();
     });
@@ -50,15 +63,15 @@ const dataInsightCard = () => {
     interests.addEventListener("click", () => {
       deleteInsightsLogic();
       interestInsights.classList.remove("opacity")
-      interestInsights.classList.remove("d-none")
-      interests.classList.toggle("current");
+      interests.classList.add("current");
+      digitalFootprint.classList.remove("current");
       if (locations.classList.contains("current") || ads.classList.contains("current") || youtubeChannels.classList.contains("current")) {   
         locations.classList.remove("current");
         ads.classList.remove("current");
         youtubeChannels.classList.remove("current");
       } else {
-        insightsDisplay.classList.toggle("opacity");
-        defaultDisplay.classList.toggle("opacity");
+        insightsDisplay.classList.remove("opacity");
+        defaultDisplay.classList.add("opacity");
       }
       insightsTitleLogic();
     });
@@ -66,15 +79,15 @@ const dataInsightCard = () => {
     ads.addEventListener("click", () => {
       deleteInsightsLogic();
       adInsights.classList.remove("opacity")
-      adInsights.classList.remove("d-none")
-      ads.classList.toggle("current");
+      ads.classList.add("current");
+      digitalFootprint.classList.remove("current");
       if (interests.classList.contains("current") || locations.classList.contains("current") || youtubeChannels.classList.contains("current")) {   
         interests.classList.remove("current");
         locations.classList.remove("current");
         youtubeChannels.classList.remove("current");
       } else {
-        insightsDisplay.classList.toggle("opacity");
-        defaultDisplay.classList.toggle("opacity");
+        insightsDisplay.classList.remove("opacity");
+        defaultDisplay.classList.add("opacity");
       }
       insightsTitleLogic();
     });
@@ -82,15 +95,15 @@ const dataInsightCard = () => {
     youtubeChannels.addEventListener("click", () => {
       deleteInsightsLogic();
       ytInsights.classList.remove("opacity")
-      ytInsights.classList.remove("d-none")
-      youtubeChannels.classList.toggle("current");
+      youtubeChannels.classList.add("current");
+      digitalFootprint.classList.remove("current");
       if (interests.classList.contains("current") || ads.classList.contains("current") || locations.classList.contains("current")) {   
         interests.classList.remove("current");
         ads.classList.remove("current");
         locations.classList.remove("current");
       } else {
-        insightsDisplay.classList.toggle("opacity");
-        defaultDisplay.classList.toggle("opacity");
+        insightsDisplay.classList.remove("opacity");
+        defaultDisplay.classList.add("opacity");
       }
       insightsTitleLogic();
     });

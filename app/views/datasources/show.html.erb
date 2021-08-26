@@ -3,9 +3,24 @@
     <div class="row" style="height: 100%; padding-bottom: 10px;">
       <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
 
-        <div class="datasource-top">
+        <div class="page-header">
           <h1><%= @datasource.name %> Data</h1>
-          <p class="avatar"><i class="fas fa-user"></i></p>
+          <% if user_signed_in? %>
+            <div class="dropdown">
+              <a class="profile dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= image_tag image_path('empty-profile.png'), class: "avatar" %>
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to "Update profile", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </div>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
         </div>
 
         <div class="displays">
@@ -77,6 +92,12 @@
 
   <div class="carousel">
     <div class="data-insights-container">
+
+      <div class="data-insights-card current" id="digital-footprint">
+        <i class="fas fa-shoe-prints"></i>
+        <h4 class="whitetitle mt-2 mb-0">Digital</h4>
+        <h4 class="whitetitle">footprint</h4>
+      </div>
 
       <div class="data-insights-card" id="locations">
         <i class="fas fa-map-marker-alt"></i>
