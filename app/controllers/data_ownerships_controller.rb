@@ -15,16 +15,19 @@ class DataOwnershipsController < ApplicationController
     # end
   end
 
-  def edit
-    @data_ownership = DataOwnership.find(params[:id])
-    authorize @data_ownership
-  end
+  # def edit
+  #   @data_ownership = DataOwnership.find(params[:id])
+  #   authorize @data_ownership
+  # end
 
   def update
     @data_ownership = DataOwnership.find(params[:id])
     authorize @data_ownership
     @data_ownership.update(data_ownerships_params)
     redirect_to datasource_data_ownerships_path, notice: "Your data settings have been updated"
+
+    @data_ownership.datasource.update_score
+    @data_ownership.datasource.update_value
   end
 
   private
