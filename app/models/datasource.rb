@@ -6,4 +6,5 @@ class Datasource < ApplicationRecord
   has_many :locations, dependent: :destroy
   has_many :youtube_channels, dependent: :destroy
   has_one_attached :photo
+  has_many :search_histories, dependent: :destroy
 end
