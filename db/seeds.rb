@@ -36,6 +36,7 @@ counts_all_search_words = Hash.new(0)
 allSearchWords.join(" ").split(" ").each { |word| counts_all_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
 rankedAllSearchWords = counts_all_search_words.sort_by { |key, value| value.to_i * descending}.to_a
 
+
 # 2. VISITED LINKS HISTORY
 # --> TOP VISITED LINKS OF CURRENT MONTH
 monthlyVisitedLinks = []
@@ -69,8 +70,7 @@ videoTitlesExtract.each do |element|
     videoTitles << element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8")
   end
 end
-rankedVideoTitles = videoTitles.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
-
+rankedVideoTitles = videoTitles.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 # --> TOP CHANNELS FROM ALL TIMES
 videoChannels = []
 videoChannelsExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
@@ -79,8 +79,10 @@ videoChannelsExtract.each do |element|
     videoChannels << element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8")
   end
 end
-rankedVideoChannels = videoChannels.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_h
+rankedVideoChannels = videoChannels.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+
 # Links if we want them ? channelLinks = html_doc.css("div.mdl-grid div:nth-child(2) a").attribute('href').value
+
 
 # CREATING THE SEEDS
 puts "Cleaning db"
@@ -91,6 +93,7 @@ Datasource.destroy_all
 Location.destroy_all
 Company.destroy_all
 SearchHistory.destroy_all
+YoutubeHistory.destroy_all
 
 puts 'Creating a user'
 user = User.new(email: "test@gmail.com", password: "123456", first_name: "Jicama", last_name: "Team")
@@ -157,6 +160,16 @@ beneSearchHistory = SearchHistory.create(
   top_monthly_visited_link: rankedMonthlyVisitedLinks,
   timestamp: Date.today,
   deleted: false,
-  datasource: Datasource.find_by(name: "Google")
+  datasource: google
 )
 puts "Finsih creating Bene's search history"
+
+puts "Creating Bene's youtube history"
+beneYoutubeHistory = YoutubeHistory.create(
+  top_video_title: rankedVideoTitles,
+  top_channel_name: rankedVideoChannels,
+  timestamp: Date.today,
+  deleted: false,
+  datasource: google
+)
+puts "Finsih creating Bene's youtube history"
