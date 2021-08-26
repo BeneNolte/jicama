@@ -76,7 +76,9 @@ twitter.save!
 facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: false)
 facebook.save!
 google = Datasource.new(name: "Google", user: User.all.last, downloaded: true)
+file = URI.open('app/assets/images/Google.png')
 google.save!
+google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
 puts 'Finished 5 datasources'
 
 puts 'Creating 5 locations...'

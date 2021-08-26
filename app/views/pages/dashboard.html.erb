@@ -6,28 +6,25 @@
         <h1>Dashboard</h1>
 
         <div class="privacy-score">
+          <div class=“display-score” style=“margin-right: 50px”>
+            <% if @score < 30 %>
+              <h1 class=“fatwhitetitle”>Bad</h1>
+            <% elsif @score < 60 %>
+              <h1 class=“fatwhitetitle”>Medium</h1>
+            <% elsif @score < 90 %>
+              <h1 class=“fatwhitetitle”>Good</h1>
+            <% else %>
+              <h1 class=“fatwhitetitle”>Very Good</h1>
+            <% end %>
+            <p id=“score-percentage”>+5%</p>
+          </div>
           <div class="display-score">
             <p class="whitetext">Privacy score</p>
             <p class="whitetext">Overall</p>
           </div>
-          <div class="display-score" style="margin-right: 50px">
-            <% @datasources.each do |datasource| %>
-            <% score_arr = [] %>
-            <% score_arr << datasource.score %>
-            <% score = score_arr.sum / score_arr.size %>
-            <% if score < 90 %>
-              <h1 class="fatwhitetitle">Good</h1>
-            <% elsif score < 60 %>
-              <h1 class="fatwhitetitle">Medium</h1>
-            <% elsif score < 30 %>
-              <h1 class="fatwhitetitle">Bad</h1>
-            <% else %>
-              <h1 class="fatwhitetitle">Very Good</h1>
-            <% end %>
-            <p id="score-percentage">+5%</p>
-          </div>
+
           <div class="meter">
-            <span style="width: 70%"></span>
+            <span style="width: <%= @score%>%"></span>
           </div>
           <p class="whitetext">Since September</p>
         </div>
@@ -40,7 +37,7 @@
         </div>
 
         <div class="data-valuation">
-          <div class="data-valuation-details" style="margin-bottom: 5%">
+          <div class="data-valuation-details" style="margin-bottom: 7%">
             <div class="data-valuation-logo">
               <i class="fas fa-dollar-sign"></i>
             </div>
@@ -51,7 +48,7 @@
             <p class="greytext">September</p>
           </div>
 
-          <div class="data-valuation-details" style="margin-bottom: 5%">
+          <div class="data-valuation-details" style="margin-bottom: 7%">
             <div class="data-valuation-logo">
               <i class="fas fa-dollar-sign"></i>
             </div>
@@ -94,23 +91,14 @@
         <%= cl_image_tag("jicama/google_logo.png") %>
       </div>
       <div class="<%= 'non-downloaded-style' if @facebook.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/facebook_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @twitter.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/twitter_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @spotify.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/spotify_logo.png") %>
-      </div>
-      <div class="<%= 'non-downloaded-style' if @instagram.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/instagram_logo.png") %>
+        <div class="logo-plus"><i class="fas fa-plus"></i></div>
       </div>
     </div>
   </div>
 
 </div>
 
-<%= render 'shared/bottombar', datasource: @google %>
+
 
 
  <!-- Modal -->

@@ -7,7 +7,10 @@ class DatasourcesController < ApplicationController
     @locations = Location.where(datasource_id: @datasource.id)
     datasources = Datasource.all
     @google = datasources.find_by(name: "Google")
-    file = URI.open('app/assets/images/Google.png')
-    @google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
+
+    # Calculate score of datasources (temporary)
+    @datasource_score = (@datasource.size * 0.02) + (66 - (5 * DataOwnership.all.where(datasource_id: @datasource.id).count))
+    @datasource.score = @datasource_score
+    @datasource.save
   end
 end
