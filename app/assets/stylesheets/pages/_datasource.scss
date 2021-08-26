@@ -32,6 +32,10 @@
 
 .insights {
   position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
 }
 
 .digital-footprint-score {
@@ -76,6 +80,6 @@
   opacity: 0.8;
 }
 .opacity {
-  transition: all 0.3s ease;
+  transition: all 0.55s ease;
   opacity: 0;
 }
