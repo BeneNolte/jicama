@@ -48,12 +48,12 @@
                   <%= image_tag @google.photo, class:"datasource-logo" %>
                 </div>
                 <div class="meter">
-                  <span style="width: <%= @datasource.score%>%;"></span>
+                  <span style="width: <%= @datasource.score %>%; color: #7551F3"></span>
                 </div>
-                <p class="purpletext">Privacy score</p>
+                <p class="greytext">Privacy score</p>
               </div>
 
-              <h4 class="purpletitle">Your google profile</h4>
+              <h4 class="blacktitle">Your google profile</h4>
               <div class="datasource-content" style="padding-bottom: 10px">
                 <p class="greysubtitle">Ads Clicked</p>
                 <p class="greysubtitle">405</p>
@@ -67,8 +67,8 @@
                 <p class="greysubtitle"><%= (@datasource.size / 1000.0).round(2)  %> GB</p>
               </div>
               <div class="datasource-content" style="padding-top: 10px">
-                <p class="purpletitle">Data Value</p>
-                <p class="purpletitle"><%= @datasource.value  %> €</p>
+                <p class="blacktitle">Data Value</p>
+                <p class="blacktitle"><%= @datasource.value  %> €</p>
               </div>
 
             </div>
