@@ -36,7 +36,7 @@ facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: fal
 facebook.save!
 facebook.update_score
 facebook.update_value
-google = Datasource.new(name: "Google", user: User.all.last, downloaded: true)
+google = Datasource.new(name: "Google", user: User.all.last, downloaded: true, size: 400)
 google.save!
 google.update_score
 google.update_value
