@@ -4,14 +4,31 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    datasources = Datasource.all
-    @google = datasources.find_by(name: "Google")
-    @facebook = datasources.find_by(name: "Facebook")
-    @twitter = datasources.find_by(name: "Twitter")
-    @instagram = datasources.find_by(name: "Instagram")
-    @spotify = datasources.find_by(name: "Spotify")
-  end
+    @datasources = Datasource.all.where(user: current_user)
+    @google = @datasources.find_by(name: "Google")
+    @facebook = @datasources.find_by(name: "Facebook")
+    @twitter = @datasources.find_by(name: "Twitter")
+    @instagram = @datasources.find_by(name: "Instagram")
+    @spotify = @datasources.find_by(name: "Spotify")
 
-   def loading
-   end
+    # Calculate overall score of datasources
+    score_arr = []
+    @score = 0
+    @datasources.where.not(score: nil).each do |datasource|
+      score_arr << datasource.score.to_i
+    end
+    unless score_arr.size == 0
+      @score = score_arr.sum / score_arr.size
+    end
+
+    # Calculate overall value of datasources
+    value_arr = []
+    @datasources.where.not(score: nil).each do |datasource|
+      value_arr << datasource.value
+    end
+    @value = value_arr.sum.round(2)
+
+    def loading
+    end
+  end
 end

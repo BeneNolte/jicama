@@ -22,14 +22,25 @@ puts 'Finished!'
 puts 'Creating 5 datasources'
 instagram = Datasource.new(name: "Instagram", user: User.all.last, downloaded: false)
 instagram.save!
+instagram.update_score
+instagram.update_value
 spotify= Datasource.new(name: "Spotify", user: User.all.last, downloaded: false)
 spotify.save!
+spotify.update_score
+spotify.update_value
 twitter = Datasource.new(name: "Twitter", user: User.all.last, downloaded: false)
 twitter.save!
+twitter.update_score
+twitter.update_value
 facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: false)
 facebook.save!
+facebook.update_score
+facebook.update_value
 google = Datasource.new(name: "Google", user: User.all.last, downloaded: true)
 google.save!
+google.update_score
+google.update_value
+
 file = URI.open('app/assets/images/Google.png')
 google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
 puts 'Finished!'
@@ -69,6 +80,8 @@ own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: D
 own3.save!
 own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "deleted")
 own4.save!
+google.update_score
+google.update_value
 puts 'Finished!'
 
 
@@ -224,6 +237,7 @@ rankedVideoChannels.each do |element|
 end
 puts "Finished!"
 
+# Links if we want them ? channelLinks = html_doc.css("div.mdl-grid div:nth-child(2) a").attribute('href').value
 
 puts "Creating Bene's search history"
 beneSearchHistory = SearchHistory.create(

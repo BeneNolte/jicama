@@ -23,8 +23,8 @@
                         <br>
             <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           </div>
-          <div class="form-actions">
-            <%= f.button :submit, "Sign in", class:"btn btn-dark" %>
+          <div class="form-actions" style="display: flex; align-items: center; justify-content: space-between;">
+            <%= f.button :submit, "Sign in", class:"buttonpurple" %>
             <%= render "devise/shared/sign_up" %>
           </div>
           <% end %>

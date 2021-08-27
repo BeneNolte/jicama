@@ -11,4 +11,37 @@ class Datasource < ApplicationRecord
   has_many :chrome_visited_links, dependent: :destroy
   has_many :youtube_video_titles, dependent: :destroy
   has_many :youtube_video_channels, dependent: :destroy
+
+
+  def update_score
+    # Calculate score of datasources (temporary)
+    return if self.size.nil?
+    accessors = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["accessor","buyer"]).count
+    restricted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["restricted"]).count
+    deleted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["deleted"]).count
+
+    access_points = 75 / (accessors + restricted + deleted)
+
+    if self.size <= 1250
+      score = (self.size * 0.02) + (75 - (accessors *  access_points))
+    else
+      score = 25 + (75 - (accessors *  access_points))
+    end
+    self.score = score
+    self.save
+  end
+
+  def update_value
+    # Calculate score of datasources (temporary)
+    return if self.value.nil?
+    accessors = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["accessor","buyer"]).count
+    restricted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["restricted"]).count
+    deleted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["deleted"]).count
+
+    initial = (self.size / 400) * 860.63
+    deletion_value = initial / (accessors + restricted + deleted)
+    value = initial - (deleted * deletion_value)
+    self.value = value
+    self.save
+  end
 end
