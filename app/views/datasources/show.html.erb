@@ -79,6 +79,8 @@
             <div class="displays">
               <div class="insights" id="locations-insights">
                 locations
+                <div class="scrollable">
+                </div>
               </div>
               <div class="insights" id="interests-insights">
                 <div>
@@ -103,16 +105,21 @@
                     <% end %>
                   </div>
                 </div>
+
+                <div class="scrollable">
+                </div>
               </div>
               <div class="insights" id="ads-insights">
                 ads
+                <div class="scrollable">
+                </div>
               </div>
               <div class="insights" id="yt-insights">
                 <div>
                   <h4 class="purpletitle">Youtube</h4>
                   <div class="card-boxless">
                     <p class="greysubtitle" style="margin-bottom: 0px">Top watched channels</p>
-                    <% @youtube_video_channels.first(5).each do |channel| %>
+                    <% @youtube_video_channels.first(10).each do |channel| %>
                       <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
                         <p class="m-0 mr-5"><%= channel.title %></p>
                         <p class="m-0"><%= channel.count %></p>
@@ -128,6 +135,9 @@
                         <p class="m-0"><%= video.count %></p>
                       </div>
                     <% end %>
+                  </div>
+
+                  <div class="scrollable">
                   </div>
 
                 </div>
