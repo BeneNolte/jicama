@@ -24,7 +24,7 @@
         </div>
         <div class="card-purple" id="datacontrol-purple-card">
           <div class="d-flex">
-            <%= image_tag @datasource.photo, class:"datasource-logo mr-3" %>
+            <i class="fab fa-google mr-3" style="font-size: 24px; color: white;"></i>
             <h5 class="whitetitle my-0" style="align-self: center;">Auto-Filter</h5>
           </div>
           <% if params[:auto_filter] == "0" %>
@@ -34,13 +34,13 @@
           <div class="custom-control custom-switch">
             <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
             <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
-              <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1"  %>
+              <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1", value: params[:auto_fitler]  %>
               <label class="custom-control-label" for="customSwitch1"></label>
               <%= f.submit "Test", class: "d-none" %>
             <% end %>
           </div>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mt-4">
           <div class="carousel">
             <ul class="list-inline tabs-underlined">
               <li>
@@ -60,7 +60,7 @@
               </li>
             </ul>
           </div>
-         
+
           <!--
           <div>
           <%#= Datasource.find(data_ownership.datasource_id).name %>
@@ -70,14 +70,13 @@
             </button>
           </div>
           -->
-          
+
         </div>
         <hr>
         <% @data_ownerships.each do |data_ownership| %>
           <div class="card-style datacontrol-card">
             <div>
               <strong><%= Company.find(data_ownership.company_id).title.capitalize %></strong>
-              (<%= data_ownership.type_of_ownership.capitalize %>)
             </div>
             <div>
               <!-- Button trigger modal -->
@@ -98,16 +97,16 @@
                   </button>
                 </div>
                 <div class="modal-body">
+                  <div class="mb-2 d-flex"><strong style="font-size: 14px">Data Status: <%= data_ownership.type_of_ownership.capitalize %></strong></div>
                   <div class="greytext">
-                    Missed DB integration with description!  = Company.find(data_ownership
-                    .company_id).description
+                    <%=Company.find(data_ownership.company_id).description %>
                   </div>
                   <hr>
                   <strong style="font-size: 14px">Who did they get my data from?</strong>
                   <%= image_tag @datasource.photo, class:"datasource-logo ml-3" %>
                   <hr>
                   <div class="restrict d-flex justify-content-between">
-                    <div style="width: 125px">
+                    <div style="width: 125px; margin-bottom: 25px;">
                       <%= button_to "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch', class: "small-button" %>
                     </div>
                     <p class="greytext ml-3">No further data will be shared via Facebook with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
@@ -118,13 +117,12 @@
                     </div>
                     <p class="greytext ml-3">Jicama will contact <%= Company.find(data_ownership.company_id).title.capitalize %> in your name to delete the data they collected of you.</p>
                   </div>
-                  <em>temporary /!\</em>
-                  <%= render 'form', datasource: @datasource, data_ownership: data_ownership %>
+                  <%#= render 'form', datasource: @datasource, data_ownership: data_ownership %>
                 </div>
               </div>
             </div>
           </div>
-         
+
         <% end %>
 
         <%# <div class="modal-dialog modal-dialog-scrollable">
@@ -138,4 +136,3 @@
 </div>
 
 <%= render 'shared/bottombar', datasource: @datasource %>
-
