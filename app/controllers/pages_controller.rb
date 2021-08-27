@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     @spotify = @datasources.find_by(name: "Spotify")
 
     # Calculate overall score of datasources
-        score_arr = []
+    score_arr = []
     if @datasources.where.not(score: nil).empty?
       @score = 0
     else
