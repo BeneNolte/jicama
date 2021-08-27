@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     # @datasources = policy_scope(Datasource)
   end
 
+  def after_sign_in_path_for(resource)
+    dashboard_path
+  end
+
   private
 
   def skip_pundit?
