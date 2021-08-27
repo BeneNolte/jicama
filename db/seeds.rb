@@ -85,10 +85,10 @@
 
 
 
-# require 'json'
-# require 'date'
-# require 'nokogiri'
-# descending = -1
+require 'json'
+require 'date'
+require 'nokogiri'
+descending = -1
 # # TIPS: to find the right relative path use ====> Dir.pwd
 
 
@@ -265,10 +265,33 @@
 
 
 # 4. LOCATIONS
-html_file = URI.open('./db/TakeoutBene/My Activity/Maps/MyActivity.html')
+html_file = File.open('./db/TakeoutBene/My Activity/Maps/MyActivity.html')
 html_doc = Nokogiri::HTML(html_file)
 
-locations = []
-locationsExtract = html_doc.css("div.outer-cell").first
-html_doc.css("div.outer-cell div.mdl-grid div:nth-child(2) :first-child")
-p locationsExtract
+
+dateExtracts = html_doc.search("div.content-cell").first.to_s
+pattern = /(<br>\w+ \d+, \d+, \d+:\d+:\d+ \w+ \w+)/
+p dateExtracts.match(pattern)[1].gsub("<br>", "")
+
+# locations = []
+# locationExtracts = html_doc.search("div.content-cell a")
+
+# locationExtracts.each do |locationExtract|
+#   if locationExtract.nil? == false && locationExtract.attribute('href')&.value.present?
+#     match_data = locationExtract.attribute("href").value.match(/(\d+\.\d+\,\d+\.\d+)/)
+#     if match_data.nil? == false
+#     latitude = match_data[1].split(",")[0]
+#     longitude = match_data[1].split(",")[1]
+#     locationName = locationExtract.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8")
+#     locations << [latitude, longitude, locationName]
+#     end
+#   end
+# end
+
+# p locations.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+# puts "Creating Maps location seeds"
+# Location.create(
+#   latitude: locations[0][0],
+#   longitude: locations[0][1]
+# )
+# puts "Finished!"
