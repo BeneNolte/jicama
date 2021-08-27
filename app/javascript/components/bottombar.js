@@ -3,8 +3,7 @@ const initBottombar = () => {
   const dashboardButton = document.getElementById("dashboard-button")
   const datacontrolButton = document.getElementById("datacontrol-button")
 
-  if (document.location.pathname.includes("datasources") && !document.location.pathname.includes("data_ownerships")  ) {
-    console.log("hello")
+  if (document.location.pathname.includes("datasources") && !document.location.pathname.includes("data_ownerships")) {
     datasourceButton.style.opacity = 1;
   }
 
