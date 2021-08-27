@@ -40,23 +40,23 @@
             <% end %>
           </div>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mt-4">
           <div class="carousel">
             <ul class="list-inline tabs-underlined">
               <li>
-                <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all"), class: "tab-underlined", id: "all-tab"%>
+                <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all"), class: "tab-underlined #{'active' if ( params[:type_of_ownership] == "all" || params[:type_of_ownership].nil? )}", id: "all-tab"%>
               </li>
               <li>
-                <%= link_to  "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "tab-underlined", id: "accessors-tab" %>
+                <%= link_to  "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "accessor"}", id: "accessors-tab" %>
               </li>
               <li>
-                <%= link_to  "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer"), class: "tab-underlined", id: "buyers-tab" %>
+                <%= link_to  "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "buyer"}", id: "buyers-tab" %>
               </li>
               <li>
-                <%= link_to  "Restrictions", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted"), class: "tab-underlined", id: "restrictions-tab" %>
+                <%= link_to  "Restrictions", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "restricted"}", id: "restrictions-tab" %>
               </li>
               <li>
-                <%= link_to  "Deletion", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted"), class: "tab-underlined", id: "deletion-tab" %>
+                <%= link_to  "Deletion", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "deleted"}", id: "deletion-tab" %>
               </li>
             </ul>
           </div>

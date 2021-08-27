@@ -23,7 +23,7 @@
           <% end %>
         </div>
 
-        <%= link_to "control", datasource_data_ownerships_path(@datasource), id: "buttoncontrol" %>
+        <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "mr-3", id: "buttoncontrol" %>
 
         <div class="displays">
           <%# default display %>
@@ -48,12 +48,12 @@
                   <%= image_tag @google.photo, class:"datasource-logo" %>
                 </div>
                 <div class="meter">
-                  <span style="width: <%= @datasource.score%>%;"></span>
+                  <span style="width: <%= @datasource.score %>%; border: 1px solid #7551F3;"></span>
                 </div>
-                <p class="purpletext">Privacy score</p>
+                <p class="greytext">Privacy score</p>
               </div>
 
-              <h4 class="purpletitle">Your google profile</h4>
+              <h4 class="purpletitle">Your <%= @datasource.name%> Profile</h4>
               <div class="datasource-content" style="padding-bottom: 10px">
                 <p class="greysubtitle">Ads Clicked</p>
                 <p class="greysubtitle">405</p>
@@ -69,6 +69,7 @@
               <div class="datasource-content" style="padding-top: 10px">
                 <p class="purpletitle">Data Value</p>
                 <p class="purpletitle"><%= @datasource.value.round(2)  %> €</p>
+
               </div>
 
             </div>
@@ -79,6 +80,8 @@
             <div class="displays">
               <div class="insights" id="locations-insights">
                 locations
+                <div class="scrollable">
+                </div>
               </div>
               <div class="insights" id="interests-insights">
                 <div>
@@ -103,16 +106,21 @@
                     <% end %>
                   </div>
                 </div>
+
+                <div class="scrollable">
+                </div>
               </div>
               <div class="insights" id="ads-insights">
                 ads
+                <div class="scrollable">
+                </div>
               </div>
               <div class="insights" id="yt-insights">
                 <div>
                   <h4 class="purpletitle">Youtube</h4>
                   <div class="card-boxless">
                     <p class="greysubtitle" style="margin-bottom: 0px">Top watched channels</p>
-                    <% @youtube_video_channels.first(5).each do |channel| %>
+                    <% @youtube_video_channels.first(10).each do |channel| %>
                       <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
                         <p class="m-0 mr-5"><%= channel.title %></p>
                         <p class="m-0"><%= channel.count %></p>
@@ -128,6 +136,9 @@
                         <p class="m-0"><%= video.count %></p>
                       </div>
                     <% end %>
+                  </div>
+
+                  <div class="scrollable">
                   </div>
 
                 </div>
