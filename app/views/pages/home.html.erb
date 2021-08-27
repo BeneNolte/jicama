@@ -30,7 +30,7 @@
           <div class="text-center">
             <%= image_tag "control.png", class: "mini-logo-sizing" %>
           </div>
-        <p>Control your data flows</p>
+        <p>Control your <br>data flows</p>
         </div>
         <div class="icons-aligned">
           <div class="text-center">
@@ -45,23 +45,23 @@
 
 <div class="container black-background", style="margin-top: 80px">
   <div class="row">
-    <div class="col-12 col-lg-6">
-      <h4 class="title-design">Take back control</h4>
-      <h5 class="whitetitle">Just follow these 3 steps:</h5>
+    <div class="col-12 col-lg-6 text-center box-sizing ">
+      <h3 class="title-design", style="margin-bottom: 40px">Take back control</h3>
+      <h5 class="whitetitle", style="color:#A5A5A5">Just follow these 3 steps:</h5>
       <div class="cards">
-        <h5>1. Collect</h5>
-        <p>Collect data from your favorite websites and apps.</p>
+        <h5 class="whitetitle", style="margin-top: 35px">1. Collect</h5>
+        <p class="greytext">Collect data from your favorite <br>websites and apps.</p>
       </div>
       <div class="cards">
-        <h5>2. View</h5>
-        <p>Get an overview of your digital footprint. Understand what companies know about your data.</p>
+        <h5 class="whitetitle", style="margin-top: 35px">2. View</h5>
+        <p class="greytext">Get an overview of your digital footprint. Understand what companies know about your data.</p>
       </div>
       <div class="cards">
-        <h5>3. Control</h5>
-        <p>Choose which information companies can and can't access.</p>
+        <h5 class="whitetitle", style="margin-top: 35px">3. Control</h5>
+        <p class="greytext">Choose which information companies can and can't access.</p>
       </div>
       <%- if controller_name != 'sessions' %>
-        <div class="text-center">
+        <div class="text-center margin-button">
           <%= link_to "Get started", root_path, class: "short-button" %><br />
         </div>
       <% end %>

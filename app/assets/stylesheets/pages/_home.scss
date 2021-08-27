@@ -38,7 +38,6 @@
   text-align: center;
   font-weight: bold;
   color: white;
-  text-align: left;
   h5 {
     color: white;
   }
@@ -85,7 +84,7 @@ p.styling {
   flex-direction: column;
   background-color: rgb(223, 218, 218);
   padding: 10px 20px;
-  width: 200px;
+  width: 212px;
   height: 150px;
   margin-bottom: 15px;
   margin-left: auto;
@@ -104,6 +103,15 @@ p.styling {
   }
   p {
     font-weight: normal;
-    color: white
   }
+}
+
+.box-sizing {
+  margin: 5px 0px;
+  padding: 50px 60px;
+}
+
+.margin-button {
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
