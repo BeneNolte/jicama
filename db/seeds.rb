@@ -188,7 +188,10 @@ end
 puts "Finished!"
 
 # 3. YOUTUBE CHANNEL HISTORY
-html_file = File.open('./db/TakeoutBene/YouTube and YouTube Music/history/watch-history.html')
+# youtube_file = './db/TakeoutBene/YouTube and YouTube Music/history/watch-history.html'
+
+youtube_file = ENV.fetch("SECRET_YOUTUBE")
+html_file = URI.open(youtube_file)
 html_doc = Nokogiri::HTML(html_file)
 
 # --> TOP VIDEO TITLES OF ALL TIMES

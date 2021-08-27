@@ -5,20 +5,18 @@
   align-items: center;
   justify-content: space-around;
   background-color: white;
+}
 
-  i, .bottombar-link {
+.bottombar-link {
+  opacity: 0.3;
+  transition: all 0.3s ease;
+  i, img {
     color: black;
     cursor: pointer;
     font-size: 33px;
     height: 33px;
     width: auto;
-    opacity: 0.3;
-    transition: all 0.3s ease;
-    &:hover {
-      opacity: 1;
-    }
-  } 
-}
-
+  }
+} 
 
 

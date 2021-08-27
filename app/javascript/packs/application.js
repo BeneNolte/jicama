@@ -28,6 +28,7 @@ import { initAutoFilter } from '../components/data_ownership_toggle';
 // import { initSelect2 } from '../components/init_select2';
 import { dataInsightCard } from "../pages/datasource";
 import { initNavbar } from "../components/navbar";
+import { initBottombar } from "../components/bottombar"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -36,4 +37,5 @@ document.addEventListener('turbolinks:load', () => {
   initAutoFilter();
   dataInsightCard();
   initNavbar();
+  initBottombar();
 });
