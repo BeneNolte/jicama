@@ -14,4 +14,9 @@ class PagesController < ApplicationController
 
    def loading
    end
+
+  def tuto
+    datasources = Datasource.all
+    @google = datasources.find_by(name: "Google")
+  end
 end

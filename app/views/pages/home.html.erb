@@ -1,49 +1,46 @@
 <div class="banner">
-  <div class="text-center">
-
-      <h1>Jicama</h1>
-      <p>Own your data, <br>own your future</p>
-      <% if user_signed_in? == false %>
-        <%= render "devise/shared/log_in" %>
-      <% end %>
-
-  </div>
+    <h1>Jicama</h1>
+    <h3>Own your data, <br>own your future</h3>
+    <%= image_tag "jicama-logo.png", class: "logo-sizing", style:"display: block; margin-bottom: 10px" %>
+    <%# if user_signed_in? == false %>
+      <%#= render "devise/shared/log_in" %>
+    <%# end %>
+    <%= link_to "Join now", "devise/shared/log_in", class: "short-button" %>
 </div>
 
-<div class="container">
+<div class="container", style="margin-top: 80px">
   <div class="row">
-    <div class="col-6 col-lg-12">
-      <h2>Today’s data economy is opaque</h2>
-      <div class="cards">
-        <h5>Who owns your data and uses it?</h5>
-      </div>
-      <div class="cards">
-        <h5>How to take back control?</h5>
-      </div>
-      <div class="cards">
-        <h5>Where is your personal data?</h5>
+    <div class="col-12 col-lg-6">
+    <h3 class="title-design black-background">Jicama leads the way to a user-centric and secure data economy</h3>
+      <div class="list-align", style="margin-top: 50px">
+        <div class="icons-aligned">
+          <div class="text-center">
+            <%= image_tag "flow.png", class: "mini-logo-sizing" %>
+          </div>
+          <p>Understand who owns <br>and uses your data</p>
+        </div>
+        <div class="icons-aligned">
+          <div class="text-center">
+            <%= image_tag "control.png", class: "mini-logo-sizing" %>
+          </div>
+        <p>Control your data flows</p>
+        </div>
+        <div class="icons-aligned">
+          <div class="text-center">
+            <%= image_tag "money.png", class: "mini-logo-sizing" %>
+          </div>
+        <p>Monetize your personal data</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container black-background", style="margin-top: 80px">
   <div class="row">
-    <div class="col-6 col-lg-12">
-      <h2>Jicama leads the way to a user-centric and secure data economy</h2>
-      <ul>
-        <li>Understand value</li>
-        <li>Control information-flow</li>
-        <li>Monetize data</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-6 col-lg-12">
-      <h2>Take back control in 3 steps</h2>
+    <div class="col-12 col-lg-6">
+      <h4 class="title-design">Take back control</h4>
+      <h5 class="whitetitle">Just follow these 3 steps:</h5>
       <div class="cards">
         <h5>1. Collect</h5>
         <p>Collect data from your favorite websites and apps.</p>
@@ -57,7 +54,9 @@
         <p>Choose which information companies can and can't access.</p>
       </div>
       <%- if controller_name != 'sessions' %>
-        <%= link_to "Get started", new_session_path(resource_name), class: 'btn' %><br />
+        <div class="text-center">
+          <%= link_to "Get started", new_session_path(resource_name), class: "short-button" %><br />
+        </div>
       <% end %>
     </div>
   </div>
@@ -65,16 +64,18 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-6 col-lg-12">
-      <h2>Let's data talk about data</h2>
+    <div class="col-12 col-lg-6">
+      <h4 class="title-design">Let's data talk about data</h4>
       <%# source: https://dataprivacymanager.net/100-data-privacy-and-data-security-statistics-for-2020/ %>
-      <p>84% care about privacy, their own data, the data of other members of society, and want more control over how their data is being used</p>
-      <p>81% feel they have little or no control over the data collected</p>
-      <p>79% have adjusted privacy-related settings on their social media accounts or reduced their social media usage</p>
-      <p>Facebook owns 80% of the market share of social media platforms
-      <p>Google owns 90% of the market share of search engines</p>
+      <p class="styling">84% care about privacy, their own data, the data of other members of society, and want more control over how their data is being used</p>
+      <p class="styling">81% feel they have little or no control over the data collected</p>
+      <p class="styling">79% have adjusted privacy-related settings on their social media accounts or reduced their social media usage</p>
+      <p class="styling">Facebook owns 80% of the market share of social media platforms
+      <p class="styling">Google owns 90% of the market share of search engines</p>
       <%- if controller_name != 'sessions' %>
-        <%= link_to "Try it yourself", new_session_path(resource_name), class: 'btn' %><br />
+        <div class="text-center">
+          <%= link_to "Try it yourself", new_session_path(resource_name), class: "short-button" %><br />
+        </div>
       <% end %>
     </div>
   </div>
