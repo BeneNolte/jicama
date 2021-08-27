@@ -1,15 +1,21 @@
 <div class="bottombar">
 
   <%= link_to datasource_path(datasource) do %>
-    <i class="fas fa-chart-bar"></i>
+    <div class= "bottombar-link" id="datasource-button">
+      <i class="fas fa-chart-bar"></i>
+    </div>
   <% end %>
 
   <%= link_to dashboard_path do %>
-    <%= image_tag "jicama-logo.png", class: "bottombar-link" %>
+    <div class= "bottombar-link" id="dashboard-button">
+      <%= image_tag "jicama-logo.png" %>
+    </div>
   <% end %>
 
   <%= link_to datasource_data_ownerships_path(datasource) do %>
-    <i class="fas fa-lock"></i>
+    <div class= "bottombar-link" id="datacontrol-button">
+      <i class="fas fa-lock"></i>
+    </div>
   <% end %>
 
 </div>
