@@ -100,14 +100,16 @@
   </div>
 
   <div class="container">
-    <h4 class="greysubtitle">Connect Datasources</h4>
+    <h4 class="greysubtitle">Datasources</h4>
   </div>
 
   <div class="carousel">
     <div class="datasource-selection">
-      <div class="<%= 'non-downloaded-style' if @google.downloaded == false %> logo-design">
-        <%= cl_image_tag("jicama/google_logo.png") %>
-      </div>
+      <%= link_to datasource_path(@google) do %>
+        <div class="<%= 'non-downloaded-style' if @google.downloaded == false %> logo-design">
+          <%= cl_image_tag("jicama/google_logo.png") %>
+        </div>
+      <% end %>
       <div class="<%= 'non-downloaded-style' if @facebook.downloaded == false %> logo-design">
         <div class="logo-plus"><i class="fas fa-plus"></i></div>
       </div>
