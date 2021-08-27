@@ -1,0 +1,96 @@
+{
+    "Extensions": [
+        {
+            "incognito_enabled": false,
+            "remote_install": false,
+            "disable_reasons": 0,
+            "update_url": "https://clients2.google.com/service/update2/crx",
+            "name": "Skrapp.io - Email Finder",
+            "id": "geplbbbmdpmdodfmohpikfacgkfpkhec",
+            "version": "1.0.1",
+            "enabled": true
+},
+        {
+            "incognito_enabled": false,
+            "remote_install": false,
+            "disable_reasons": 0,
+            "update_url": "https://clients2.google.com/service/update2/crx",
+            "name": "ColorZilla",
+            "id": "bhlhnicpbhignbdhedgjhgdocnmhomnp",
+            "version": "2.0",
+            "enabled": true
+},
+        {
+            "incognito_enabled": false,
+            "remote_install": false,
+            "disable_reasons": 0,
+            "update_url": "https://clients2.google.com/service/update2/crx",
+            "name": "JSON Formatter",
+            "id": "bcjindcccaagfpapjjmafapmmgkkhgoa",
+            "version": "0.6.0",
+            "enabled": true
+},
+        {
+            "incognito_enabled": false,
+            "remote_install": false,
+            "disable_reasons": 0,
+            "update_url": "https://clients2.google.com/service/update2/crx",
+            "name": "Google Scholar Button",
+            "id": "ldipcbpaocekfooobnbcddclnhejkcpn",
+            "version": "3.1",
+            "enabled": true
+},
+        {
+            "incognito_enabled": false,
+            "remote_install": false,
+            "disable_reasons": 0,
+            "update_url": "https://clients2.google.com/service/update2/crx",
+            "name": "Google Hangouts",
+            "id": "nckgahadagoaajjgafhacjanaoiihapd",
+            "version": "2020.803.419.1",
+            "enabled": true
+},
+        {
+            "incognito_enabled": false,
+            "remote_install": false,
+            "disable_reasons": 0,
+            "update_url": "https://clients2.google.com/service/update2/crx",
+            "name": "Fonts Ninja",
+            "id": "eljapbgkmlngdpckoiiibecpemleclhh",
+            "version": "6.0.24",
+            "enabled": true
+}
+    ],
+    "Extension Settings": [
+        {
+            "extension_id": "geplbbbmdpmdodfmohpikfacgkfpkhec",
+            "value": "\"378189107Peua7b26PXtL0OaT4xV7YPVVcCyTFnIeR\"",
+            "key": "accessKey"
+},
+        {
+            "extension_id": "nckgahadagoaajjgafhacjanaoiihapd",
+            "value": "[[1571646336079.0,null,true]]",
+            "key": "app_sync_settings"
+},
+        {
+            "extension_id": "geplbbbmdpmdodfmohpikfacgkfpkhec",
+            "value": "\"1.0.1\"",
+            "key": "key"
+},
+        {
+            "extension_id": "eljapbgkmlngdpckoiiibecpemleclhh",
+            "value": "\"{\\\"darkMode\\\":\\\"true\\\",\\\"ninjaMode\\\":\\\"false\\\",\\\"tutoSeen\\\":\\\"\\\\\\\"bookmark\\\\\\\"\\\",\\\"tutoForce\\\":\\\"false\\\",\\\"instaSeen\\\":\\\"true\\\",\\\"instaForce\\\":\\\"false\\\",\\\"hideAppInstall\\\":\\\"false\\\",\\\"hideFeedback\\\":\\\"false\\\",\\\"auth\\\":\\\"null\\\",\\\"unreadBookmarks\\\":\\\"[]\\\",\\\"iconIndex\\\":\\\"1\\\",\\\"launchCount\\\":\\\"4\\\",\\\"sessionRand\\\":\\\"0.10382887813233621\\\",\\\"_persist\\\":\\\"{\\\\\\\"version\\\\\\\":-1,\\\\\\\"rehydrated\\\\\\\":true}\\\"}\"",
+            "key": "persist:settings"
+},
+        {
+            "extension_id": "eljapbgkmlngdpckoiiibecpemleclhh",
+            "value": "\"{\\\"machineId\\\":\\\"\\\\\\\"1ab8f238-d322-4f47-949b-b7f9c9df88f4\\\\\\\"\\\",\\\"authError\\\":\\\"null\\\",\\\"authId\\\":\\\"\\\\\\\"c8dce9c3f794409aacc40f8a305fa5a777ffd79d\\\\\\\"\\\",\\\"authToken\\\":\\\"{\\\\\\\"idWebUser\\\\\\\":400726,\\\\\\\"expires\\\\\\\":1629735858403}\\\",\\\"_persist\\\":\\\"{\\\\\\\"version\\\\\\\":-1,\\\\\\\"rehydrated\\\\\\\":true}\\\"}\"",
+            "key": "persist:auth"
+},
+        {
+            "extension_id": "geplbbbmdpmdodfmohpikfacgkfpkhec",
+            "value": "\"ajax:3268091418571400668\"",
+            "key": "dfd34q_crsf"
+}
+    ]
+}

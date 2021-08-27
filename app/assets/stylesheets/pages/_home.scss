@@ -1,1 +1,107 @@
-// Specific CSS for your home-page
+.banner {
+  height: 100vh;
+  padding: 240px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), image-url("data-background.jpg");
+  background-size: cover;
+  background-position: center;
+  h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 45px;
+  }
+  h3 {
+    color: white;
+    opacity: .8;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .btn {
+    padding: 15px 50px;
+  }
+}
+
+.card-boxes {
+  box-shadow: 0 1px 3px grey;
+  border-radius: 5px;
+  margin-top: 5px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.title-design{
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  h5 {
+    color: white;
+  }
+  p {
+    font-weight: normal;
+    color: white
+  }
+}
+
+p.styling {
+  font-weight: normal;
+}
+
+.list-align {
+  justify-content: space-between;
+  padding: 10px;
+  p {
+    text-align: center;
+  }
+}
+
+.black-background {
+  background-color: black;
+}
+
+.logo-sizing {
+  width: 140px;
+  height: 100px;
+  border-radius: 30px;
+}
+
+.mini-logo-sizing {
+  width: 80px;
+  height: 60px;
+}
+
+.icon-design {
+  width: 100px;
+  height: 80px;
+}
+
+.icons-aligned {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(223, 218, 218);
+  padding: 10px 20px;
+  width: 200px;
+  height: 150px;
+  margin-bottom: 15px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cards{
+  h5 {
+    color: white;
+  }
+  p {
+    font-weight: normal;
+    color: white
+  }
+}

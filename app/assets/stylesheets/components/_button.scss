@@ -26,6 +26,18 @@
   border: #fff;
 }
 
+.short-button {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  padding: 10px 10px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 10px 0px;
+  color: #7551F3;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 .buttonpurple {
   cursor: pointer;
   padding: 10px;
@@ -50,3 +62,4 @@
   z-index: 6;
   font-weight: 600;
 }
+>>>>>>> 2ed50b7663d168e10ff5ab0bd074e7fdb8a9928f

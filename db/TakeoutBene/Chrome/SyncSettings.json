@@ -1,0 +1,195 @@
+{
+    "Apps": [
+        {
+            "app_launch_ordinal": "t",
+            "extension": {
+                        "incognito_enabled": true,
+                        "remote_install": false,
+                        "disable_reasons": 0,
+                        "update_url": "",
+                        "name": "Web Store",
+                        "id": "ahfgeienlihckogmohjhadlkjgocpleb",
+                        "version": "0.2",
+                        "enabled": true
+            },
+            "page_ordinal": "n"
+}
+    ],
+    "App Settings": [],
+    "Preferences": [
+        {
+            "name": "enable_do_not_track",
+            "value": "false"
+},
+        {
+            "name": "profile.content_settings.exceptions.images",
+            "value": "{}"
+},
+        {
+            "name": "intl.accept_languages",
+            "value": "\"de-DE,de,en-US,en\""
+},
+        {
+            "name": "profile.content_settings.exceptions.flash_data",
+            "value": "{}"
+},
+        {
+            "name": "custom_links.initialized",
+            "value": "true"
+},
+        {
+            "name": "translate_whitelists",
+            "value": "{}"
+},
+        {
+            "name": "privacy_sandbox.apis_enabled",
+            "value": "false"
+},
+        {
+            "name": "translate_too_often_denied_for_language",
+            "value": "{\"en\":true,\"fr\":true,\"pt\":true}"
+},
+        {
+            "name": "browser.clear_data.time_period",
+            "value": "0"
+},
+        {
+            "name": "profile.content_settings.exceptions.popups",
+            "value": "{\"https://simon-kucher.csod.com:443,*\":{\"last_modified\":\"13161977818716519\",\"setting\":1}}"
+},
+        {
+            "name": "profile.default_content_setting_values.cookies",
+            "value": "4"
+},
+        {
+            "name": "net.easter_egg_high_score",
+            "value": "96393"
+},
+        {
+            "name": "profile.cookie_controls_mode",
+            "value": "1"
+},
+        {
+            "name": "profile.content_settings.exceptions.font_access",
+            "value": "{}"
+},
+        {
+            "name": "browser.clear_data.download_history",
+            "value": "false"
+},
+        {
+            "name": "translate_ignored_count_for_language",
+            "value": "{\"cy\":1,\"da\":2,\"en\":94,\"es\":12,\"fr\":53,\"la\":11,\"mt\":1,\"pt\":33,\"ru\":8,\"vi\":2}"
+},
+        {
+            "name": "profile.name",
+            "value": "\"Profil 1\""
+},
+        {
+            "name": "custom_links.list",
+            "value": "[{\"isMostVisited\":true,\"title\":\"(1) Feed\",\"url\":\"https://www.linkedin.com/feed/\"},{\"isMostVisited\":true,\"title\":\"LEO.org\",\"url\":\"https://www.leo.org/\"},{\"isMostVisited\":true,\"title\":\"Anmelden\",\"url\":\"https://campus.tum.de/tumonline/ee/ui/ca2/app/desktop/#/login\"},{\"isMostVisited\":true,\"title\":\"Volksbank Lübeck\",\"url\":\"https://www.volksbank-luebeck.de/banking-private/entry?trackid\u003dpiwikd1557e14c7be7033\"},{\"isMostVisited\":true,\"title\":\"Launch Meeting\",\"url\":\"https://tum-conf.zoom.us/j/8512115759\"},{\"isMostVisited\":true,\"title\":\"LinkedIn\",\"url\":\"https://www.linkedin.com/\"},{\"isMostVisited\":true,\"title\":\"10 Minute Mail\",\"url\":\"https://10minutemail.com/\"},{\"isMostVisited\":true,\"title\":\"Datacoup\",\"url\":\"https://datacoup.com/\"}]"
+},
+        {
+            "name": "profile.content_settings.exceptions.cookies",
+            "value": "{\"*,https://portal.voltdeutschland.org:443\":{\"expiration\":\"0\",\"last_modified\":\"13246725262007737\",\"model\":0,\"setting\":1},\"facebook.com,*\":{\"last_modified\":\"13225980095369725\",\"setting\":2},\"google.com,*\":{\"last_modified\":\"13225980113777991\",\"setting\":2},\"google.de,*\":{\"last_modified\":\"13225980122726739\",\"setting\":2},\"https://[*.]cdtm.streavent.de:443,*\":{\"last_modified\":\"13234371228029601\",\"setting\":1},\"https://[*.]dev.streavent.de:443,*\":{\"last_modified\":\"13233677294156417\",\"setting\":1},\"https://dev.streavent.de,*\":{\"last_modified\":\"13233677347525391\",\"setting\":1},\"https://www.sli.do,*\":{\"last_modified\":\"13233677192804741\",\"setting\":1},\"linkedin.com,*\":{\"last_modified\":\"13225980105434272\",\"setting\":2}}"
+},
+        {
+            "name": "ntp.app_page_names",
+            "value": "[\"Apps\"]"
+},
+        {
+            "name": "browser.show_fullscreen_toolbar",
+            "value": "true"
+},
+        {
+            "name": "profile.avatar_index",
+            "value": "26"
+},
+        {
+            "name": "translate_recent_target",
+            "value": "\"de\""
+},
+        {
+            "name": "browser.clear_data.browsing_history",
+            "value": "false"
+},
+        {
+            "name": "profile.content_settings.exceptions.plugins",
+            "value": "{\"https://app.kiratalent.com:443,*\":{\"last_modified\":\"13174312441416617\",\"setting\":1},\"https://en.softonic.com:443,*\":{\"last_modified\":\"13174312228964016\",\"setting\":1}}"
+},
+        {
+            "name": "translate_site_blacklist_with_time",
+            "value": "{}"
+},
+        {
+            "name": "browser.clear_data.time_period_basic",
+            "value": "4"
+},
+        {
+            "name": "extensions.pinned_extensions",
+            "value": "[\"ldipcbpaocekfooobnbcddclnhejkcpn\",\"nckgahadagoaajjgafhacjanaoiihapd\",\"geplbbbmdpmdodfmohpikfacgkfpkhec\",\"bhlhnicpbhignbdhedgjhgdocnmhomnp\",\"eljapbgkmlngdpckoiiibecpemleclhh\"]"
+},
+        {
+            "name": "translate_accepted_count",
+            "value": "{\"en\":0,\"es\":1,\"fr\":0,\"la\":0,\"pt\":0,\"ru\":0,\"sv\":0}"
+},
+        {
+            "name": "intl.selected_languages",
+            "value": "\"de-DE,de,en-US,en\""
+},
+        {
+            "name": "profile.content_settings.exceptions.javascript",
+            "value": "{}"
+},
+        {
+            "name": "sharing.vapid_key",
+            "value": "{\"vapid_creation_timestamp\":\"13214478081579803\",\"vapid_private_key\":\"MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgYIAbmJj8NP8pupFG2WeHGW+unAcXbZdjk2Q8X7PkTwqhRANCAASysZcEuKKys2nrl9nud3LfjEszZDyNx8CFJHYvypLwpzPzNNjfUX/efQaGKOnU2S/lCYNQ/BSHNnUbd/dZs6+1\"}"
+},
+        {
+            "name": "extensions.toolbar",
+            "value": "[\"ldipcbpaocekfooobnbcddclnhejkcpn\",\"nckgahadagoaajjgafhacjanaoiihapd\",\"ppcdkdcafnbklehdngbhmhpidandcjke\",\"geplbbbmdpmdodfmohpikfacgkfpkhec\"]"
+},
+        {
+            "name": "browser.clear_data.cache",
+            "value": "true"
+},
+        {
+            "name": "profile.content_settings.exceptions.storage_access",
+            "value": "{}"
+},
+        {
+            "name": "bookmark_bar.show_apps_shortcut",
+            "value": "false"
+},
+        {
+            "name": "translate_denied_count_for_language",
+            "value": "{\"en\":19,\"es\":0,\"fr\":7,\"la\":3,\"pt\":4,\"ru\":1,\"sv\":1}"
+},
+        {
+            "name": "profile.content_settings.exceptions.automatic_downloads",
+            "value": "{\"https://application.cdtm.de:443,*\":{\"last_modified\":\"13220460040280357\",\"setting\":1},\"https://unsplash.com:443,*\":{\"last_modified\":\"13221134645066287\",\"setting\":1}}"
+},
+        {
+            "name": "profile.block_third_party_cookies",
+            "value": "true"
+},
+        {
+            "name": "profile.content_settings.exceptions.window_placement",
+            "value": "{}"
+},
+        {
+            "name": "sharing.synced_devices",
+            "value": "{\"UXIogHvt3lTEef7rYLSFQQ\u003d\u003d\":{\"device_auth_secret\":\"Z4toj3c1jQlEy1INU89mfQ\u003d\u003d\",\"device_capabilities\":2,\"device_fcm_token\":\"fsfl3hXr5AA:APA91bFQHw75E9OO-a38M-CfD7Nz8UpkTD0W9iM1gOVoN2vmdOxsiQntssjpfGg_PdN2L6eOA9igvkOiwZqAVGOf2Fgc7hVqbEvF00ni9S-hakTzQVI34MAgxDjTC4z6B0oNZE8D0Os_\",\"device_p256dh\":\"BOvJbUPzvqTqqOkeAwkJiZNRKBlnpNBzWmux4uHZDERlLbPoSNPUHwNwSF2gsNPB/meSeDf30lJuRYfUZ6KWQak\u003d\"}}"
+},
+        {
+            "name": "browser.clear_data.site_settings",
+            "value": "false"
+}
+    ],
+    "Themes": [
+        {
+            "use_system_theme_by_default": false,
+            "use_custom_theme": false
+}
+    ]
+}

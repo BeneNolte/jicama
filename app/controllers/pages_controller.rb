@@ -21,6 +21,14 @@ class PagesController < ApplicationController
       @score = score_arr.sum / score_arr.size
     end
 
+<<<<<<< HEAD
+   def loading
+   end
+
+  def tuto
+    datasources = Datasource.all
+    @google = datasources.find_by(name: "Google")
+=======
     # Calculate overall value of datasources
     value_arr = []
     @datasources.where.not(score: nil).each do |datasource|
@@ -30,5 +38,6 @@ class PagesController < ApplicationController
 
     def loading
     end
+>>>>>>> 2ed50b7663d168e10ff5ab0bd074e7fdb8a9928f
   end
 end
