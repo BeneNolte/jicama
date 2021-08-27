@@ -1,11 +1,18 @@
+<div class="page-header">
+  <h1>Dashboard</h1>
+  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+</div>
+
 <div class="banner">
     <h1>Jicama</h1>
     <h3>Own your data, <br>own your future</h3>
     <%= image_tag "jicama-logo.png", class: "logo-sizing", style:"display: block; margin-bottom: 10px" %>
-    <%# if user_signed_in? == false %>
-      <%#= render "devise/shared/log_in" %>
-    <%# end %>
-    <%= link_to "Join now", "devise/shared/log_in", class: "short-button" %>
+    <% if user_signed_in? == false %>
+      <%= link_to "Join now", new_user_registration_path, class: "short-button" %>
+      <% else %>
+      <%= link_to "login", dashboard_path, class: "short-button" %>
+    <% end %>
+
 </div>
 
 <div class="container", style="margin-top: 80px">
@@ -55,7 +62,7 @@
       </div>
       <%- if controller_name != 'sessions' %>
         <div class="text-center">
-          <%= link_to "Get started", new_session_path(resource_name), class: "short-button" %><br />
+          <%= link_to "Get started", root_path, class: "short-button" %><br />
         </div>
       <% end %>
     </div>
@@ -74,7 +81,7 @@
       <p class="styling">Google owns 90% of the market share of search engines</p>
       <%- if controller_name != 'sessions' %>
         <div class="text-center">
-          <%= link_to "Try it yourself", new_session_path(resource_name), class: "short-button" %><br />
+          <%= link_to "Try it yourself", root_path, class: "short-button" %><br />
         </div>
       <% end %>
     </div>
