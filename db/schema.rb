@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_154200) do
-
+ActiveRecord::Schema.define(version: 2021_08_26_161942) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +51,26 @@ ActiveRecord::Schema.define(version: 2021_08_26_154200) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_advertisements_on_company_id"
     t.index ["datasource_id"], name: "index_advertisements_on_datasource_id"
+  end
+
+  create_table "chrome_search_words", force: :cascade do |t|
+    t.text "word"
+    t.integer "count"
+    t.string "time_range"
+    t.bigint "datasource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["datasource_id"], name: "index_chrome_search_words_on_datasource_id"
+  end
+
+  create_table "chrome_visited_links", force: :cascade do |t|
+    t.string "link"
+    t.integer "count"
+    t.string "time_range"
+    t.bigint "datasource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["datasource_id"], name: "index_chrome_visited_links_on_datasource_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -148,10 +167,34 @@ ActiveRecord::Schema.define(version: 2021_08_26_154200) do
     t.index ["datasource_id"], name: "index_youtube_histories_on_datasource_id"
   end
 
+  create_table "youtube_video_channels", force: :cascade do |t|
+    t.text "title"
+    t.integer "count"
+    t.string "url"
+    t.string "time_range"
+    t.bigint "datasource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["datasource_id"], name: "index_youtube_video_channels_on_datasource_id"
+  end
+
+  create_table "youtube_video_titles", force: :cascade do |t|
+    t.text "title"
+    t.integer "count"
+    t.string "url"
+    t.string "time_range"
+    t.bigint "datasource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["datasource_id"], name: "index_youtube_video_titles_on_datasource_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "advertisements", "companies"
   add_foreign_key "advertisements", "datasources"
+  add_foreign_key "chrome_search_words", "datasources"
+  add_foreign_key "chrome_visited_links", "datasources"
   add_foreign_key "data_ownerships", "companies"
   add_foreign_key "data_ownerships", "datasources"
   add_foreign_key "datasources", "users"
@@ -159,4 +202,6 @@ ActiveRecord::Schema.define(version: 2021_08_26_154200) do
   add_foreign_key "locations", "datasources"
   add_foreign_key "search_histories", "datasources"
   add_foreign_key "youtube_histories", "datasources"
+  add_foreign_key "youtube_video_channels", "datasources"
+  add_foreign_key "youtube_video_titles", "datasources"
 end

@@ -7,6 +7,10 @@ class Datasource < ApplicationRecord
   has_one_attached :photo
   has_many :search_histories, dependent: :destroy
   has_many :youtube_histories, dependent: :destroy
+  has_many :chrome_search_words, dependent: :destroy
+  has_many :chrome_visited_links, dependent: :destroy
+  has_many :youtube_video_titles, dependent: :destroy
+  has_many :youtube_video_channels, dependent: :destroy
 
 
   def update_score
@@ -40,5 +44,4 @@ class Datasource < ApplicationRecord
     self.value = value
     self.save
   end
-
 end
