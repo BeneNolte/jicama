@@ -93,20 +93,25 @@ descending = -1
 
 
 # PROFIL INFOS
-filepath = './db/TakeoutBene/Profile/Profile.json'
-serialized_profile = File.read(filepath)
+# filepath = './db/TakeoutBene/Profile/Profile.json'
+profile_file = ENV.fetch("SECRET_PROFILE")
+serialized_profile = URI.open(profile_file).read
 profileInfos = JSON.parse(serialized_profile)
 gender = profileInfos["gender"]["type"].capitalize
 
 
 # 1. BROWSER SEARCH WORDS HISTORY
-filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
-serialized_browserHistory = File.read(filepath)
-browserHistories = JSON.parse(serialized_browserHistory)
+# filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
+
+browser_history_file = ENV.fetch("SECRET_BROWSER_HISTORY")
+serialized_browser_history = URI.open(browser_history_file).read
+browser_histories = JSON.parse(serialized_browser_history)
+
+
 
 # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
 monthlySearchWords = []
-browserHistories["Browser History"].each do |browserHistory|
+browser_histories["Browser History"].each do |browserHistory|
   if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
     monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
   end
@@ -128,7 +133,7 @@ puts "Finished!"
 
 # --> TOP SEARCH WORDS HISTORY OF ALL TIME
 allSearchWords = []
-browserHistories["Browser History"].each do |browserHistory|
+browser_histories["Browser History"].each do |browserHistory|
     allSearchWords << browserHistory["title"] unless browserHistory["title"].nil?
 end
 counts_all_search_words = Hash.new(0)
@@ -149,7 +154,7 @@ puts "Finished!"
 # 2. VISITED LINKS HISTORY
 # --> TOP VISITED LINKS OF CURRENT MONTH
 monthlyVisitedLinks = []
-browserHistories["Browser History"].each do |browserHistory|
+browser_histories["Browser History"].each do |browserHistory|
   pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
   if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
     monthlyVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
@@ -170,7 +175,7 @@ puts "Finished!"
 
 # --> TOP VISITED LINKS OF ALL TIME
 allVisitedLinks = []
-browserHistories["Browser History"].each do |browserHistory|
+browser_histories["Browser History"].each do |browserHistory|
   pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
   allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
 end
