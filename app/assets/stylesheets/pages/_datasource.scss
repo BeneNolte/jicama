@@ -38,6 +38,7 @@
   justify-content: center;
   text-align: center;
   overflow-y: auto;
+  z-index: 5;
 }
 
 .scrollable {
@@ -71,6 +72,7 @@
 }
 
 .data-insights-card {
+  z-index: 5;
   display: flex;
   flex-direction: column;
   width: 120px;
@@ -94,4 +96,5 @@
 .opacity {
   transition: all 0.55s ease;
   opacity: 0;
+  z-index: 4;
 }
