@@ -1,16 +1,13 @@
-<div class="page-header">
-  <h1>Dashboard</h1>
-  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-</div>
-
 <div class="banner">
     <h1>Jicama</h1>
     <h3>Own your data, <br>own your future</h3>
     <%= image_tag "jicama-logo.png", class: "logo-sizing", style:"display: block; margin-bottom: 10px" %>
+    
+
     <% if user_signed_in? == false %>
-      <%= link_to "Join now", new_user_registration_path, class: "short-button" %>
-      <% else %>
-      <%= link_to "login", dashboard_path, class: "short-button" %>
+      <%= link_to "Join now", new_user_session_path, class: "short-button" %>
+    <% else %>
+      <%= link_to "dashboard", dashboard_path, class: "short-button" %>
     <% end %>
 
 </div>
