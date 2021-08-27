@@ -262,3 +262,13 @@ beneYoutubeHistory = YoutubeHistory.create(
   datasource: google
 )
 puts "Finsihed!"
+
+
+# 4. LOCATIONS
+html_file = URI.open('./db/TakeoutBene/My Activity/Maps/MyActivity.html')
+html_doc = Nokogiri::HTML(html_file)
+
+locations = []
+locationsExtract = html_doc.css("div.outer-cell div.mdl-grid div:nth-child(2) :first-child")
+
+p locationsExtract.first
