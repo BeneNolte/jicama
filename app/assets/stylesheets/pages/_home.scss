@@ -47,8 +47,32 @@
   }
 }
 
-p.styling {
-  font-weight: normal;
+.title-design-black{
+  margin-top: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 40px
+}
+
+.styling {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.stat-big {
+  font-size: 60px;
+  margin-right: 10px;
+}
+
+.text-stat{
+  text-align: right;
+  align-self: center;
+}
+
+.text-stat-right{
+  text-align: left;
+  align-self: center;
 }
 
 .list-align {
