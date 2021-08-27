@@ -20,7 +20,12 @@ class Datasource < ApplicationRecord
     restricted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["restricted"]).count
     deleted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["deleted"]).count
 
-    access_points = 75 / (accessors + restricted + deleted)
+    companies = accessors + restricted + deleted
+    if companies == 0
+      access_points = 75
+    else
+      access_points = 75 / companies
+    end
 
     if self.size <= 1250
       score = (self.size * 0.02) + (75 - (accessors *  access_points))

@@ -2,7 +2,6 @@
 puts "Cleaning db"
 puts "🗑  Deleting all assets"
 
-User.destroy_all
 Datasource.destroy_all
 Location.destroy_all
 Company.destroy_all
