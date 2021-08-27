@@ -18,7 +18,9 @@ class DatasourcesController < ApplicationController
     end
     @score = @datasource.score
 
-    @search_history = SearchHistory.where(datasource_id: @datasource.id)
-    @youtube_history = YoutubeHistory.where(datasource_id: @datasource.id)
+    @chrome_search_words = ChromeSearchWord.where(datasource_id: @datasource.id)
+    @chrome_visited_links = ChromeVisitedLink.where(datasource_id: @datasource.id)
+    @youtube_video_channels = YoutubeVideoChannel.where(datasource_id: @datasource.id)
+    @youtube_video_titles = YoutubeVideoTitle.where(datasource_id: @datasource.id)
   end
 end
