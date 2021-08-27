@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_092033) do
+ActiveRecord::Schema.define(version: 2021_08_26_154200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,9 @@ ActiveRecord::Schema.define(version: 2021_08_26_092033) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "downloaded"
+    t.float "size"
+    t.float "score"
+    t.float "value"
     t.index ["user_id"], name: "index_datasources_on_user_id"
   end
 
@@ -103,13 +106,15 @@ ActiveRecord::Schema.define(version: 2021_08_26_092033) do
   end
 
   create_table "search_histories", force: :cascade do |t|
-    t.text "top_search_words", default: [], array: true
-    t.text "top_visited_links", default: [], array: true
+    t.text "top_search_word", default: [], array: true
+    t.text "top_visited_link", default: [], array: true
     t.date "timestamp"
     t.boolean "deleted", default: false
     t.bigint "datasource_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "top_monthly_search_word", default: [], array: true
+    t.text "top_monthly_visited_link", default: [], array: true
     t.index ["datasource_id"], name: "index_search_histories_on_datasource_id"
   end
 
@@ -132,15 +137,15 @@ ActiveRecord::Schema.define(version: 2021_08_26_092033) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "youtube_channels", force: :cascade do |t|
-    t.string "channel_title"
-    t.string "url"
-    t.boolean "status"
+  create_table "youtube_histories", force: :cascade do |t|
+    t.text "top_video_title"
+    t.text "top_channel_name"
+    t.date "timestamp"
+    t.boolean "deleted"
     t.bigint "datasource_id", null: false
-    t.string "timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["datasource_id"], name: "index_youtube_channels_on_datasource_id"
+    t.index ["datasource_id"], name: "index_youtube_histories_on_datasource_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -153,5 +158,5 @@ ActiveRecord::Schema.define(version: 2021_08_26_092033) do
   add_foreign_key "interest_recommendations", "datasources"
   add_foreign_key "locations", "datasources"
   add_foreign_key "search_histories", "datasources"
-  add_foreign_key "youtube_channels", "datasources"
+  add_foreign_key "youtube_histories", "datasources"
 end

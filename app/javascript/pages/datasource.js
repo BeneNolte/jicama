@@ -4,6 +4,7 @@ const dataInsightCard = () => {
     const defaultDisplay = document.querySelector(".default-display");
     const insightsDisplay = document.querySelector(".insights-display");
     const insightsTitle = document.getElementById("data-insights-title")
+    const buttonControl = document.getElementById("buttoncontrol")
   
     const insights = document.querySelectorAll(".insights")
   
@@ -21,8 +22,13 @@ const dataInsightCard = () => {
     const insightsTitleLogic = () => {
       if (defaultDisplay.classList.contains("opacity")) {
         insightsTitle.style.color = "white";
+        buttonControl.style.color = "white";
+        // line below doesn't work!!
+        buttonControl.setAttribute('disabled', true);
       } else {
-        insightsTitle.style.color = "black";
+        insightsTitle.style.color = "#A5A5A5";
+        buttonControl.style.color = "#7551F3";
+        buttonControl.setAttribute('disabled', false);
       }
     }
   

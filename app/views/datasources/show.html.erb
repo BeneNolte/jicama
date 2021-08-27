@@ -23,6 +23,8 @@
           <% end %>
         </div>
 
+        <%= link_to "control", datasource_data_ownerships_path(@datasource), id: "buttoncontrol" %>
+
         <div class="displays">
           <%# default display %>
           <div class="default-display">
@@ -32,11 +34,21 @@
 
               <div class="digital-footprint-score">
                 <div class="display-score">
-                  <h1 class="fatpurpletitle">€860,63</h1>
+                  <div class="display-score d-flex"  style="margin-right: 50px">
+                    <% if @score < 30 %>
+                      <h1 class="fatpurpletitle">Bad</h1>
+                    <% elsif @score < 60 %>
+                      <h1 class="fatpurpletitle">Medium</h1>
+                    <% elsif @score < 90 %>
+                      <h1 class="fatpurpletitle">Good</h1>
+                    <% else %>
+                      <h1 class="fatpurpletitle">Very Good</h1>
+                    <% end %>
+                  </div>
                   <%= image_tag @google.photo, class:"datasource-logo" %>
                 </div>
                 <div class="meter">
-                  <span style="width: 70%"></span>
+                  <span style="width: <%= @datasource.score%>%;"></span>
                 </div>
                 <p class="purpletext">Privacy score</p>
               </div>
@@ -48,15 +60,15 @@
               </div>
               <div class="datasource-content" style="padding-bottom: 10px">
                 <p class="greysubtitle">Companies shared with</p>
-                <p class="greysubtitle">34</p>
+                <p class="greysubtitle"> <%= @datasource.data_ownerships.count %></p>
               </div>
               <div class="datasource-content" style="padding-bottom: 10px; border-bottom: 1px solid lightgrey;">
                 <p class="greysubtitle">Data uploaded</p>
-                <p class="greysubtitle">35.1 GB</p>
+                <p class="greysubtitle"><%= (@datasource.size / 1000.0).round(2)  %> GB</p>
               </div>
               <div class="datasource-content" style="padding-top: 10px">
-                <p class="greysubtitle">Accounts connected</p>
-                <p class="greysubtitle">1</p>
+                <p class="purpletitle">Data Value</p>
+                <p class="purpletitle"><%= @datasource.value  %> €</p>
               </div>
 
             </div>
@@ -69,13 +81,36 @@
                 locations
               </div>
               <div class="insights" id="interests-insights">
-                interests
+                <div>
+                  <h4 class="purpletitle">Search history</h4>
+                  <div class="card-boxless">
+                    <p class="greysubtitle" style="margin-bottom: 0px">Top searched words</p>
+                    <% @search_history.first.top_search_word.first(10).each do |word| %>
+                      <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
+                        <p class="m-0 mr-5"><%= word[0] %></p>
+                        <p class="m-0"><%= word[1] %></p>
+                      </div>
+                    <% end %>
+                  </div>
+
+                  <div class="card-boxless">
+                    <p class="greysubtitle" style="margin-bottom: 0px">Top visited links</p>
+                    <% @search_history.first.top_visited_link.first(3).each do |word| %>
+                      <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
+                        <p class="m-0 mr-5"><%= word[0] %></p>
+                        <p class="m-0"><%= word[1] %></p>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
               </div>
               <div class="insights" id="ads-insights">
                 ads
               </div>
               <div class="insights" id="yt-insights">
-                yt
+                <div>
+                  <h4 class="purpletitle">Youtube</h4>
+                </div>
               </div>
             </div>
           </div>
@@ -105,8 +140,9 @@
       </div>
 
       <div class="data-insights-card" id="interests">
-        <i class="far fa-lightbulb"></i>
-        <h4 class="whitetitle mt-2">Interests</h4>
+        <i class="fas fa-search"></i>
+        <h4 class="whitetitle mt-2 mb-0">Search</h4>
+        <h4 class="whitetitle">history</h4>
       </div>
 
       <div class="data-insights-card" id="ads">
@@ -117,7 +153,6 @@
       <div class="data-insights-card" id="youtube-channels">
         <i class="fab fa-youtube"></i>
         <h4 class="whitetitle mt-2 mb-0">Youtube</h4>
-        <h4 class="whitetitle">Channels</h4>
       </div>
     </div>
   </div>
