@@ -64,19 +64,19 @@
           <div class="carousel">
             <ul class="list-inline tabs-underlined">
               <li>
+                <%= link_to "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "accessor"}", id: "accessors-tab" %>
+              </li>
+              <li>
+                <%= link_to "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "buyer"}", id: "buyers-tab" %>
+              </li>
+              <li>
+                <%= link_to "Restricted", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "restricted"}", id: "restrictions-tab" %>
+              </li>
+              <li>
+                <%= link_to "Deleted", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "deleted"}", id: "deletion-tab" %>
+              </li>
+              <li>
                 <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all"), class: "tab-underlined #{'active' if ( params[:type_of_ownership] == "all" || params[:type_of_ownership].nil? )}", id: "all-tab"%>
-              </li>
-              <li>
-                <%= link_to  "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "accessor"}", id: "accessors-tab" %>
-              </li>
-              <li>
-                <%= link_to  "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "buyer"}", id: "buyers-tab" %>
-              </li>
-              <li>
-                <%= link_to  "Restrictions", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "restricted"}", id: "restrictions-tab" %>
-              </li>
-              <li>
-                <%= link_to  "Deletion", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "deleted"}", id: "deletion-tab" %>
               </li>
             </ul>
           </div>
@@ -133,7 +133,20 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <div class="mb-2 d-flex"><strong style="font-size: 14px">Data Status: <%= data_ownership.type_of_ownership.capitalize %></strong></div>
+                  <div class="mb-2 d-flex">
+                    <strong style="font-size: 14px">Level of trust: </strong>
+                    <div>
+                      <% if data_ownership.company.rating == 1 %>
+                        <div style="color:green; font-size: 14px; margin-left: 10px;">High</div>
+                      <% end %>
+                      <% if data_ownership.company.rating == 3 %>
+                        <div style="color:red; font-size: 14px; margin-left: 10px;">Low</div>
+                      <% end %>
+                      <% if data_ownership.company.rating == 2  %>
+                        <div style="color:orange; font-size: 14px; margin-left: 10px;">Medium</div>
+                      <% end %>
+                    </div>
+                  </div>
                   <div class="greytext">
                     <%=Company.find(data_ownership.company_id).description %>
                   </div>
@@ -141,10 +154,15 @@
                   <strong style="font-size: 14px">Who did they get my data from?</strong>
                   <%= image_tag @datasource.photo, class:"datasource-logo ml-3" %>
                   <hr>
+                  <div class="mb-2 d-flex"><strong style="font-size: 14px"><%= data_ownership.type_of_ownership.capitalize %></strong></div>
                   <div class="restrict d-flex justify-content-between">
                     <div style="margin-bottom: 25px;">
                       <div class="small-button">
-                        <%= button_to "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "restricted" %>
+                        <% if data_ownership.type_of_ownership == "restricted" || data_ownership.type_of_ownership == "deleted" %>
+                          <%= button_to "Allow", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "Accessor"} ), method: 'patch' %>
+                        <% else %>
+                          <%= button_to "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch' %>
+                        <% end %>
                       </div>
                     </div>
                     <p class="greytext ml-3" style="width: 230px">No further data will be shared via Google with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
@@ -152,7 +170,7 @@
                   <div class="delete d-flex justify-content-between mb-3">
                     <div>
                       <div class="small-button">
-                        <%= button_to "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "deleted" || data_ownership.type_of_ownership == "restricted"%>
+                        <%= button_to "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "deleted" %>
                       </div>
                     </div>
                     <p class="greytext ml-3" style="width: 230px">Jicama will contact <%= Company.find(data_ownership.company_id).title.capitalize %> in your name to delete the data they collected of you.</p>
