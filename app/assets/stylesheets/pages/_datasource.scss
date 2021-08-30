@@ -33,9 +33,32 @@
 .insights {
   position: absolute;
   display: flex;
+  height: 100%;
   width: 100%;
   justify-content: center;
   text-align: center;
+  overflow-y: auto;
+  z-index: 5;
+}
+
+.insights-map {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.scrollable {
+  background-color: white;
+  background: linear-gradient(rgba(246, 244, 244, 0), white 100%);
+  z-index: 10000;
+  position: sticky;
+  width: 100%;
+  height: 20px;
+  bottom: 0px;
 }
 
 .digital-footprint-score {
@@ -59,6 +82,7 @@
 }
 
 .data-insights-card {
+  z-index: 5;
   display: flex;
   flex-direction: column;
   width: 120px;
@@ -82,4 +106,5 @@
 .opacity {
   transition: all 0.55s ease;
   opacity: 0;
+  z-index: 4;
 }

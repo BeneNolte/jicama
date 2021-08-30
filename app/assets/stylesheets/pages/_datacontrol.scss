@@ -1,0 +1,17 @@
+#datacontrol-purple-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datacontrol-card {
+  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.company-rating-btn {
+  display: flex;
+  text-align: left;
+}

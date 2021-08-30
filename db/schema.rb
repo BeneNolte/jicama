@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_27_101409) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2021_08_30_091336) do
+=======
+ActiveRecord::Schema.define(version: 2021_08_30_095506) do
+>>>>>>> d4339344ad7b99d22b418638c73b8c9452700a78
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +83,8 @@ ActiveRecord::Schema.define(version: 2021_08_27_101409) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
+    t.integer "rating"
   end
 
   create_table "data_ownerships", force: :cascade do |t|
@@ -117,25 +123,13 @@ ActiveRecord::Schema.define(version: 2021_08_27_101409) do
   create_table "locations", force: :cascade do |t|
     t.float "latitude"
     t.float "longitude"
-    t.string "timestamp"
     t.bigint "datasource_id", null: false
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["datasource_id"], name: "index_locations_on_datasource_id"
-  end
-
-  create_table "search_histories", force: :cascade do |t|
-    t.text "top_search_word", default: [], array: true
-    t.text "top_visited_link", default: [], array: true
+    t.string "name"
     t.date "timestamp"
-    t.boolean "deleted", default: false
-    t.bigint "datasource_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.text "top_monthly_search_word", default: [], array: true
-    t.text "top_monthly_visited_link", default: [], array: true
-    t.index ["datasource_id"], name: "index_search_histories_on_datasource_id"
+    t.index ["datasource_id"], name: "index_locations_on_datasource_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -155,17 +149,6 @@ ActiveRecord::Schema.define(version: 2021_08_27_101409) do
     t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "youtube_histories", force: :cascade do |t|
-    t.text "top_video_title"
-    t.text "top_channel_name"
-    t.date "timestamp"
-    t.boolean "deleted"
-    t.bigint "datasource_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["datasource_id"], name: "index_youtube_histories_on_datasource_id"
   end
 
   create_table "youtube_video_channels", force: :cascade do |t|
@@ -201,8 +184,6 @@ ActiveRecord::Schema.define(version: 2021_08_27_101409) do
   add_foreign_key "datasources", "users"
   add_foreign_key "interest_recommendations", "datasources"
   add_foreign_key "locations", "datasources"
-  add_foreign_key "search_histories", "datasources"
-  add_foreign_key "youtube_histories", "datasources"
   add_foreign_key "youtube_video_channels", "datasources"
   add_foreign_key "youtube_video_titles", "datasources"
 end
