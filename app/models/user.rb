@@ -45,4 +45,13 @@ class User < ApplicationRecord
     return user
   end
 
+  def auto_filter!
+    data_ownerships.each do |data_ownership|
+      if data_ownership.company.rating == 2
+        data_ownership.update(status: false, type_of_ownership: 'restricted')
+      elsif data_ownership.company.rating == 3
+        data_ownership.update(status: false, type_of_ownership: 'deleted')
+      end
+    end
+  end
 end

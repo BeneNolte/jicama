@@ -31,6 +31,7 @@ import { initAutoFilter } from '../components/data_ownership_toggle';
 import { dataInsightCard } from "../pages/datasource";
 import { initNavbar } from "../components/navbar";
 import { initBottombar } from "../components/bottombar"
+import { initPopover } from "../components/popover"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -40,6 +41,10 @@ document.addEventListener('turbolinks:load', () => {
   dataInsightCard();
   initNavbar();
   initBottombar();
+<<<<<<< HEAD
   initMapbox();
   initFlatpickr();
+=======
+  initPopover();
+>>>>>>> d4339344ad7b99d22b418638c73b8c9452700a78
 });

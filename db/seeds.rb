@@ -1,4 +1,10 @@
 
+require 'json'
+require 'date'
+require 'nokogiri'
+require 'faker'
+descending = -1
+
 # CREATING THE SEEDS
 puts "Cleaning db"
 puts "🗑  Deleting all assets"
@@ -10,7 +16,6 @@ ChromeSearchWord.destroy_all
 ChromeVisitedLink.destroy_all
 YoutubeVideoTitle.destroy_all
 YoutubeVideoChannel.destroy_all
-
 
 puts 'Creating a user'
 user = User.new(email: "test@gmail.com", password: "123456", first_name: "Jicama", last_name: "Team")
@@ -43,43 +48,59 @@ file = URI.open('app/assets/images/Google.png')
 google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
 puts 'Finished!'
 
-puts 'Creating 5 companies'
-axciom = Company.new(title: "axciom", url: "https://www.acxiom.com/", description: "Acxiom (pronounced ax-ee-um) is a Conway, Arkansas-based database marketing company. The company collects, analyzes and sells customer and business information used for targeted advertising campaigns.")
-axciom.save!
-adform = Company.new(title: "adform", url: "https://site.adform.com/", description: "Adform is a global digital media advertising technology company. Its operations are headquartered in Europe, and its clients vary in size and industry.")
-adform.save!
-experian = Company.new(title: "experian", url: "https://www.experian.fr/", description: "Experian plc is an Anglo-Irish multinational consumer credit reporting company. Experian collects and aggregates information on over 1 billion people and businesses including 235 million individual U.S. consumers and more than 25 million U.S. businesses.")
-experian.save!
-levis = Company.new(title: "levis", url: "https://www.levi.com/", description: "Levi Strauss & Co. is an American clothing company known worldwide for its Levi's brand of denim jeans.")
-levis.save!
-apple = Company.new(title: "apple", url: "https://www.apple.com/", description: "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software, and online services.")
+
+puts 'Creating 20 companies'
+apple = Company.new(title: "Apple", url: "https://www.apple.com/", rating: 1, description: "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software, and online services.")
 apple.save!
+adform = Company.new(title: "Adform", url: "https://site.adform.com/", rating: 3, description: "Adform is a global digital media advertising technology company. Its operations are headquartered in Europe, and its clients vary in size and industry.")
+adform.save!
+airbus = Company.new(title: "Airbus", url: "https://www.airbus.com/", rating: 2, description: Faker::Company.catch_phrase)
+airbus.save!
+amazon = Company.new(title: "Amazon", url: "https://www.amazon.com/", rating: 3, description: Faker::Company.catch_phrase)
+amazon.save!
+axciom = Company.new(title: "Axciom", url: "https://www.acxiom.com/", rating: 3, description: "Acxiom (pronounced ax-ee-um) is a Conway, Arkansas-based database marketing company. The company collects, analyzes and sells customer and business information used for targeted advertising campaigns.")
+axciom.save!
+experian = Company.new(title: "Experian", url: "https://www.experian.fr/", rating: 3, description: "Experian plc is an Anglo-Irish multinational consumer credit reporting company. Experian collects and aggregates information on over 1 billion people and businesses including 235 million individual U.S. consumers and more than 25 million U.S. businesses.")
+experian.save!
+huawei = Company.new(title: "Huawei", url: "https://www.huawei.com/", rating: 3, description: Faker::Company.catch_phrase)
+huawei.save!
+hsbc = Company.new(title: "HSBC", url: "https://www.hsbc.com/", rating: 1, description: Faker::Company.catch_phrase)
+hsbc.save!
+levis = Company.new(title: "Levi's", url: "https://www.levi.com/", rating: 2, description: "Levi Strauss & Co. is an American clothing company known worldwide for its Levi's brand of denim jeans.")
+levis.save!
+netflix = Company.new(title: "Netflix", url: "https://www.netflix.com/", rating: 3, description: Faker::Company.catch_phrase)
+netflix.save!
+nike = Company.new(title: "Nike", url: "https://www.nike.com/", rating: 2, description: Faker::Company.catch_phrase)
+nike.save!
+randstad = Company.new(title: "Randstad", url: "https://www.randstad.com/", rating: 1, description: Faker::Company.catch_phrase)
+randstad.save!
+spotify = Company.new(title: "Spotify", url: "https://www.spotify.com/", rating: 2, description: Faker::Company.catch_phrase)
+spotify.save!
+tesla = Company.new(title: "Tesla", url: "https://www.tesla.com/", rating: 2, description: Faker::Company.catch_phrase)
+tesla.save!
+waltdisney = Company.new(title: "Walt Disney", url: "https://www.waltdisney.com/", rating: 1, description: Faker::Company.catch_phrase)
+waltdisney.save!
 puts 'Finished!'
 
 puts 'Creating data ownerships'
-own1 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "accessor")
-own1.save!
-own2 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "accessor")
-own2.save!
-own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "accessor")
-own3.save!
-own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "accessor")
-own4.save!
+ownerships = []
+Company.all.each do |company|
+  ownerships << DataOwnership.new(company: company, datasource: Datasource.all.last, status: [true, false].sample, type_of_ownership: "accessor")
+end
+ownerships.each do |ownership|
+  ownership.save
+end
 google.update_score
 google.update_value
 puts 'Finished!'
 
 
-require 'json'
-require 'date'
-require 'nokogiri'
-descending = -1
 # TIPS: to find the right relative path use ====> Dir.pwd
 
-
-# PROFIL INFOS
-filepath = './db/TakeoutBene/Profile/Profile.json'
-serialized_profile = File.read(filepath)
+# PROFILE INFOS
+# filepath = './db/TakeoutBene/Profile/Profile.json'
+profile_file = ENV.fetch("SECRET_PROFILE")
+serialized_profile = URI.open(profile_file).read
 profileInfos = JSON.parse(serialized_profile)
 gender = profileInfos["gender"]["type"].capitalize
 
@@ -102,12 +123,12 @@ rankedMonthlySearchWords = counts_monthly_search_words.sort_by { |key, value| va
 
 puts "Creating Chrome Search Words monthly seeds"
 rankedMonthlySearchWords.each do |element|
-  ChromeSearchWord.create(
-    word: element[0],
-    count: element[1],
-    time_range: "monthly",
-    datasource: google
-  )
+ChromeSearchWord.create(
+word: element[0],
+count: element[1],
+time_range: "monthly",
+datasource: google
+)
 end
 puts "Finished!"
 
@@ -122,12 +143,12 @@ rankedAllSearchWords = counts_all_search_words.sort_by { |key, value| value.to_i
 
 puts "Creating Chrome Search Words from all time seeds"
 rankedAllSearchWords.each do |element|
-  ChromeSearchWord.create(
-    word: element[0],
-    count: element[1],
-    time_range: "all",
-    datasource: google
-  )
+ChromeSearchWord.create(
+word: element[0],
+count: element[1],
+time_range: "all",
+datasource: google
+)
 end
 puts "Finished!"
 
@@ -144,12 +165,12 @@ rankedMonthlyVisitedLinks = monthlyVisitedLinks.group_by(&:itself).transform_val
 
 puts "Creating Chrome Visited Links monthly seeds"
 rankedMonthlyVisitedLinks.each do |element|
-  ChromeVisitedLink.create(
-    link: element[0],
-    count: element[1],
-    time_range: "monthly",
-    datasource: google
-  )
+ChromeVisitedLink.create(
+link: element[0],
+count: element[1],
+time_range: "monthly",
+datasource: google
+)
 end
 puts "Finished!"
 
@@ -163,12 +184,12 @@ rankedAllVisitedLinks = allVisitedLinks.group_by(&:itself).transform_values { |v
 
 puts "Creating Chrome Visited Links all time seeds"
 rankedAllVisitedLinks.each do |element|
-  ChromeVisitedLink.create(
-    link: element[0],
-    count: element[1],
-    time_range: "all",
-    datasource: google
-  )
+ChromeVisitedLink.create(
+link: element[0],
+count: element[1],
+time_range: "all",
+datasource: google
+)
 end
 puts "Finished!"
 
@@ -183,21 +204,21 @@ videos = []
 videoTitlesExtract = html_doc.css("div.mdl-grid div:nth-child(2) :first-child")
 # trying to retrieve the date : p videoTitlesExtract.first.text
 videoTitlesExtract.each do |element|
-  if element.text.length > 3 && element.attribute('href')&.value.present?
-    videos << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
-  end
+if element.text.length > 3 && element.attribute('href')&.value.present?
+videos << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
+end
 end
 rankedVideoTitles = videos.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
 puts "Creating Youtube Video Titles all time seeds"
 rankedVideoTitles.each do |element|
-  YoutubeVideoTitle.create(
-    title: element[0][0],
-    count: element[1],
-    url: element[0][1],
-    time_range: "all",
-    datasource: google
-  )
+YoutubeVideoTitle.create(
+title: element[0][0],
+count: element[1],
+url: element[0][1],
+time_range: "all",
+datasource: google
+)
 end
 puts "Finished!"
 
@@ -205,26 +226,25 @@ puts "Finished!"
 channels = []
 videoChannelsExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
 videoChannelsExtract.each do |element|
-  if element.text.length > 3 && element.attribute('href')&.value.present?
-    channels << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
-  end
+if element.text.length > 3 && element.attribute('href')&.value.present?
+channels << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
+end
 end
 rankedVideoChannels = channels.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
 puts "Creating Youtube Video Channels all time seeds"
 rankedVideoChannels.each do |element|
-  YoutubeVideoChannel.create(
-    title: element[0][0],
-    count: element[1],
-    url: element[0][1],
-    time_range: "all",
-    datasource: google
-  )
+YoutubeVideoChannel.create(
+title: element[0][0],
+count: element[1],
+url: element[0][1],
+time_range: "all",
+datasource: google
+)
 end
 puts "Finished!"
 
 # Links if we want them ? channelLinks = html_doc.css("div.mdl-grid div:nth-child(2) a").attribute('href').value
-
 
 # 4. LOCATIONS
 html_file = File.open('./db/TakeoutBene/My Activity/Maps/MyActivity.html')
@@ -248,8 +268,6 @@ dateExtracts.each do |dateExtract|
   end
 end
 
-
-
 puts "Creating Bene's Maps location seeds"
 locations.each do |location|
   Location.create(
@@ -261,3 +279,32 @@ locations.each do |location|
   )
 end
 puts "Finished!"
+
+#--> NUMBER OF ADS
+
+html_ads_file = File.open('./db/TakeoutBene/My Activity/Ads/MyActivity.html')
+html_ads_doc = Nokogiri::HTML(html_ads_file)
+
+adsExtract = html_ads_doc.css("div.outer-cell")
+puts adsExtract.count
+
+adsWithLinkExtract = html_ads_doc.css("div.content-cell a")
+puts adsWithLinkExtract.first
+
+adsWithLink = []
+pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+pattern_g = /url\?q=(.+)\//
+adsWithLinkExtract.each do |ad|
+  if ad.attribute('href')&.value.present?
+    attr = ad.attribute('href').value
+    if attr.match(pattern_g).nil?
+      if attr.match(pattern_yt)
+        adsWithLink << attr
+      end
+    else
+      adsWithLink << attr.match(pattern_g)[1]
+    end
+  end
+end
+puts adsWithLink.count
+puts adsWithLink.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a

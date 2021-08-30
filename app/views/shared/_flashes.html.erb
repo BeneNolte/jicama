@@ -1,12 +1,26 @@
-<% if notice %>
-  <div class="alert alert-info alert-dismissible" role="alert">
+<% if alert %>
+  <div class="alert" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= notice %>
+    <p class="blacktitle" style="text-align: center;">Congratulations !   🎉🎊</p>
+    <p class="greysubtitle"><%= alert %></p>
+    <br>
+    <p class="blacktitle" style="margin-bottom: 0px">Your privacy score has improved !</p>
+    <a href='/dashboard' class='buttontext' style="font-size: 20px;">Go to dashboard</a>
   </div>
 <% end %>
+
+<!--
 <% if alert %>
-  <div class="alert alert-warning alert-dismissible" role="alert">
+  <div class="alert-info" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <%= alert %>
+  </div>
+<% end %>
+-->
+
+<% if notice %>
+  <div class="alert notice-flash" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <p class="greysubtitle mb-0"><%= notice %></p>
   </div>
 <% end %>

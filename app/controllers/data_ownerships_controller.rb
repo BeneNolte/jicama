@@ -24,10 +24,20 @@ class DataOwnershipsController < ApplicationController
     @data_ownership = DataOwnership.find(params[:id])
     authorize @data_ownership
     @data_ownership.update(data_ownerships_params)
-    redirect_to datasource_data_ownerships_path, notice: "Your data settings have been updated"
-
+    if data_ownerships_params["type_of_ownership"] == "restricted"
+      redirect_to datasource_data_ownerships_path, alert: "#{@data_ownership.company.title} has now a restricted access to your personal data"
+    elsif data_ownerships_params["type_of_ownership"] == "deleted"
+      redirect_to datasource_data_ownerships_path, alert: "An email has been sent to #{@data_ownership.company.title} to delete all the data they have on you"
+    elsif data_ownerships_params["type_of_ownership"] == "Accessor"
+      redirect_to datasource_data_ownerships_path, notice: "#{@data_ownership.company.title} has now access to your data"
+    end
     @data_ownership.datasource.update_score
     @data_ownership.datasource.update_value
+  end
+
+  def filter
+    current_user.auto_filter!
+    skip_authorization
   end
 
   private
