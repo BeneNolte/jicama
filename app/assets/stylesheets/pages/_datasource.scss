@@ -41,6 +41,16 @@
   z-index: 5;
 }
 
+.insights-map {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  z-index: 5;
+  overflow: hidden;
+}
+
 .scrollable {
   background-color: white;
   background: linear-gradient(rgba(246, 244, 244, 0), white 100%);
