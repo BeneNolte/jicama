@@ -28,6 +28,8 @@ class DataOwnershipsController < ApplicationController
       redirect_to datasource_data_ownerships_path, alert: "#{@data_ownership.company.title} has now a restricted access to your personal data"
     elsif data_ownerships_params["type_of_ownership"] == "deleted"
       redirect_to datasource_data_ownerships_path, alert: "An email has been sent to #{@data_ownership.company.title} to delete all the data they have on you"
+    elsif data_ownerships_params["type_of_ownership"] == "Accessor"
+      redirect_to datasource_data_ownerships_path, notice: "#{@data_ownership.company.title} has now access to your data"
     end
     @data_ownership.datasource.update_score
     @data_ownership.datasource.update_value
