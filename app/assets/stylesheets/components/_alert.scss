@@ -1,6 +1,16 @@
 .alert {
+  transition: all 0.3s ease;
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  bottom: 110px;
+  right: 10px;
+  left: 10px;
   z-index: 1000;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  border: none;
+  font-size: larger;
+  font-weight: 400;
+  padding: 10px 20px;
+  margin: 0px;
 }
