@@ -60,6 +60,11 @@ button, input[type="submit"], input[type="reset"] {
   color: #7551F3;
   font-size: 12px;
   font-weight: 600;
+  .button_to {
+    input:disabled {
+      opacity: 0.3;
+    }
+  }
 }
 
 .buttonpurple {
