@@ -25,7 +25,12 @@ class DatasourcesController < ApplicationController
     @youtube_video_titles = YoutubeVideoTitle.where(datasource_id: @datasource.id)
 
 
-    @locations = current_user.locations.first(500)
+    @locations = current_user.locations.limit(500)
+
+    if params[:start_date].present?
+      @locations = @locations.where('timestamp >= ?', params[:start_date])
+    end
+
     @markers = @locations.map do |location|
       {
         lat: location.latitude,

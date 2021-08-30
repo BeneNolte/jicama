@@ -1,0 +1,25 @@
+<%= form_tag datasource_path, class:"simple_form search", method: :get do %>
+  <div class="search-bar">
+    <div class="search-bar-item-1">
+      <p>From</p>
+      <%= date_field_tag :start_date,
+          params[:start_date],
+          include_blank: true
+          # class: "datepicker"
+          %>
+    </div>
+
+    <div class="search-bar-item-2">
+      <p>To</p>
+      <%= date_field_tag :end_date,
+          params[:end_date],
+          include_blank: true
+          # class: "datepicker"
+          %>
+    </div>
+
+    <button name="button" type="submit" class="btn btn-flat">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+<% end %>
