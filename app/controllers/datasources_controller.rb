@@ -25,11 +25,12 @@ class DatasourcesController < ApplicationController
     @youtube_video_titles = YoutubeVideoTitle.where(datasource_id: @datasource.id)
 
 
-    @locations = current_user.locations
+    @locations = current_user.locations.first(500)
     @markers = @locations.map do |location|
       {
         lat: location.latitude,
-        lng: location.longitude
+        lng: location.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { location: location })
       }
     end
   end
