@@ -113,210 +113,210 @@ google.update_value
 puts 'Finished!'
 
 
-# # TIPS: to find the right relative path use ====> Dir.pwd
+# TIPS: to find the right relative path use ====> Dir.pwd
 
-# # PROFILE INFOS
-# # filepath = './db/TakeoutBene/Profile/Profile.json'
-# profile_file = ENV.fetch("SECRET_PROFILE")
-# serialized_profile = URI.open(profile_file).read
+# PROFILE INFOS
+# filepath = './db/TakeoutBene/Profile/Profile.json'
+profile_file = ENV.fetch("SECRET_PROFILE")
+serialized_profile = URI.open(profile_file).read
 
-# profileInfos = JSON.parse(serialized_profile)
-# gender = profileInfos["gender"]["type"].capitalize
-
-
-# # 1. BROWSER SEARCH WORDS HISTORY
-# # filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
-
-# browser_history_file = ENV.fetch("SECRET_BROWSER_HISTORY")
-# serialized_browser_history = URI.open(browser_history_file).read
-# browser_histories = JSON.parse(serialized_browser_history)
+profileInfos = JSON.parse(serialized_profile)
+gender = profileInfos["gender"]["type"].capitalize
 
 
+# 1. BROWSER SEARCH WORDS HISTORY
+# filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
 
-# # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
-# monthlySearchWords = []
-# browser_histories["Browser History"].each do |browserHistory|
-#   if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-#     monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
-#   end
-# end
-# counts_monthly_search_words = Hash.new(0)
-# monthlySearchWords.join(" ").split(" ").each { |word| counts_monthly_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
-# rankedMonthlySearchWords = counts_monthly_search_words.sort_by { |key, value| value.to_i * descending}.to_a
+browser_history_file = ENV.fetch("SECRET_BROWSER_HISTORY")
+serialized_browser_history = URI.open(browser_history_file).read
+browser_histories = JSON.parse(serialized_browser_history)
 
-# puts "Creating Chrome Search Words monthly seeds"
-# rankedMonthlySearchWords.each do |element|
-# ChromeSearchWord.create(
-# word: element[0],
-# count: element[1],
-# time_range: "monthly",
-# datasource: google
-# )
-# end
-# puts "Finished!"
 
-# # --> TOP SEARCH WORDS HISTORY OF ALL TIME
-# allSearchWords = []
-# browser_histories["Browser History"].each do |browserHistory|
-#     allSearchWords << browserHistory["title"] unless browserHistory["title"].nil?
-# end
-# counts_all_search_words = Hash.new(0)
-# allSearchWords.join(" ").split(" ").each { |word| counts_all_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
-# rankedAllSearchWords = counts_all_search_words.sort_by { |key, value| value.to_i * descending}.to_a
 
-# puts "Creating Chrome Search Words from all time seeds"
-# rankedAllSearchWords.each do |element|
-# ChromeSearchWord.create(
-# word: element[0],
-# count: element[1],
-# time_range: "all",
-# datasource: google
-# )
-# end
-# puts "Finished!"
+# --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
+monthlySearchWords = []
+browser_histories["Browser History"].each do |browserHistory|
+  if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
+    monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
+  end
+end
+counts_monthly_search_words = Hash.new(0)
+monthlySearchWords.join(" ").split(" ").each { |word| counts_monthly_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
+rankedMonthlySearchWords = counts_monthly_search_words.sort_by { |key, value| value.to_i * descending}.to_a
 
-# # 2. VISITED LINKS HISTORY
-# # --> TOP VISITED LINKS OF CURRENT MONTH
-# monthlyVisitedLinks = []
-# browser_histories["Browser History"].each do |browserHistory|
-#   pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
-#   if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-#     monthlyVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
-#   end
-# end
-# rankedMonthlyVisitedLinks = monthlyVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+puts "Creating Chrome Search Words monthly seeds"
+rankedMonthlySearchWords.each do |element|
+ChromeSearchWord.create(
+word: element[0],
+count: element[1],
+time_range: "monthly",
+datasource: google
+)
+end
+puts "Finished!"
 
-# puts "Creating Chrome Visited Links monthly seeds"
-# rankedMonthlyVisitedLinks.each do |element|
-# ChromeVisitedLink.create(
-# link: element[0],
-# count: element[1],
-# time_range: "monthly",
-# datasource: google
-# )
-# end
-# puts "Finished!"
+# --> TOP SEARCH WORDS HISTORY OF ALL TIME
+allSearchWords = []
+browser_histories["Browser History"].each do |browserHistory|
+    allSearchWords << browserHistory["title"] unless browserHistory["title"].nil?
+end
+counts_all_search_words = Hash.new(0)
+allSearchWords.join(" ").split(" ").each { |word| counts_all_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
+rankedAllSearchWords = counts_all_search_words.sort_by { |key, value| value.to_i * descending}.to_a
 
-# # --> TOP VISITED LINKS OF ALL TIME
-# allVisitedLinks = []
-# browser_histories["Browser History"].each do |browserHistory|
-#   pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
-#   allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
-# end
-# rankedAllVisitedLinks = allVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+puts "Creating Chrome Search Words from all time seeds"
+rankedAllSearchWords.each do |element|
+ChromeSearchWord.create(
+word: element[0],
+count: element[1],
+time_range: "all",
+datasource: google
+)
+end
+puts "Finished!"
 
-# puts "Creating Chrome Visited Links all time seeds"
-# rankedAllVisitedLinks.each do |element|
-# ChromeVisitedLink.create(
-# link: element[0],
-# count: element[1],
-# time_range: "all",
-# datasource: google
-# )
-# end
-# puts "Finished!"
+# 2. VISITED LINKS HISTORY
+# --> TOP VISITED LINKS OF CURRENT MONTH
+monthlyVisitedLinks = []
+browser_histories["Browser History"].each do |browserHistory|
+  pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+  if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
+    monthlyVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
+  end
+end
+rankedMonthlyVisitedLinks = monthlyVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
-# # 3. YOUTUBE CHANNEL HISTORY
-# # youtube_file = './db/TakeoutBene/YouTube and YouTube Music/history/watch-history.html'
+puts "Creating Chrome Visited Links monthly seeds"
+rankedMonthlyVisitedLinks.each do |element|
+ChromeVisitedLink.create(
+link: element[0],
+count: element[1],
+time_range: "monthly",
+datasource: google
+)
+end
+puts "Finished!"
 
-# youtube_file = ENV.fetch("SECRET_YOUTUBE")
-# html_file = URI.open(youtube_file)
-# html_doc = Nokogiri::HTML(html_file)
+# --> TOP VISITED LINKS OF ALL TIME
+allVisitedLinks = []
+browser_histories["Browser History"].each do |browserHistory|
+  pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+  allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
+end
+rankedAllVisitedLinks = allVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
-# # --> TOP VIDEO TITLES OF ALL TIMES
-# videos = []
-# videoTitlesExtract = html_doc.css("div.mdl-grid div:nth-child(2) :first-child")
-# # trying to retrieve the date : p videoTitlesExtract.first.text
-# videoTitlesExtract.each do |element|
-# if element.text.length > 3 && element.attribute('href')&.value.present?
-# videos << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
-# end
-# end
-# rankedVideoTitles = videos.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+puts "Creating Chrome Visited Links all time seeds"
+rankedAllVisitedLinks.each do |element|
+ChromeVisitedLink.create(
+link: element[0],
+count: element[1],
+time_range: "all",
+datasource: google
+)
+end
+puts "Finished!"
 
-# puts "Creating Youtube Video Titles all time seeds"
-# rankedVideoTitles.each do |element|
-# YoutubeVideoTitle.create(
-# title: element[0][0],
-# count: element[1],
-# url: element[0][1],
-# time_range: "all",
-# datasource: google
-# )
-# end
-# puts "Finished!"
+# 3. YOUTUBE CHANNEL HISTORY
+# youtube_file = './db/TakeoutBene/YouTube and YouTube Music/history/watch-history.html'
 
-# # --> TOP CHANNELS FROM ALL TIMES
-# channels = []
-# videoChannelsExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
-# videoChannelsExtract.each do |element|
-# if element.text.length > 3 && element.attribute('href')&.value.present?
-# channels << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
-# end
-# end
-# rankedVideoChannels = channels.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+youtube_file = ENV.fetch("SECRET_YOUTUBE")
+html_file = URI.open(youtube_file)
+html_doc = Nokogiri::HTML(html_file)
 
-# puts "Creating Youtube Video Channels all time seeds"
-# rankedVideoChannels.each do |element|
-# YoutubeVideoChannel.create(
-# title: element[0][0],
-# count: element[1],
-# url: element[0][1],
-# time_range: "all",
-# datasource: google
-# )
-# end
-# puts "Finished!"
+# --> TOP VIDEO TITLES OF ALL TIMES
+videos = []
+videoTitlesExtract = html_doc.css("div.mdl-grid div:nth-child(2) :first-child")
+# trying to retrieve the date : p videoTitlesExtract.first.text
+videoTitlesExtract.each do |element|
+if element.text.length > 3 && element.attribute('href')&.value.present?
+videos << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
+end
+end
+rankedVideoTitles = videos.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
-# # Links if we want them ? channelLinks = html_doc.css("div.mdl-grid div:nth-child(2) a").attribute('href').value
+puts "Creating Youtube Video Titles all time seeds"
+rankedVideoTitles.each do |element|
+YoutubeVideoTitle.create(
+title: element[0][0],
+count: element[1],
+url: element[0][1],
+time_range: "all",
+datasource: google
+)
+end
+puts "Finished!"
 
-# puts "Creating Bene's search history"
-# beneSearchHistory = SearchHistory.create(
-# top_search_word: rankedAllSearchWords,
-# top_monthly_search_word: rankedMonthlySearchWords,
-# top_visited_link: rankedAllVisitedLinks,
-# top_monthly_visited_link: rankedMonthlyVisitedLinks,
-# timestamp: Date.today,
-# deleted: false,
-# datasource: google
-# )
-# puts "Finished!"
+# --> TOP CHANNELS FROM ALL TIMES
+channels = []
+videoChannelsExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
+videoChannelsExtract.each do |element|
+if element.text.length > 3 && element.attribute('href')&.value.present?
+channels << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
+end
+end
+rankedVideoChannels = channels.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
-# puts "Creating Bene's youtube history"
-# beneYoutubeHistory = YoutubeHistory.create(
-# top_video_title: rankedVideoTitles,
-# top_channel_name: rankedVideoChannels,
-# timestamp: Date.today,
-# deleted: false,
-# datasource: google
-# )
-# puts "Finished!"
+puts "Creating Youtube Video Channels all time seeds"
+rankedVideoChannels.each do |element|
+YoutubeVideoChannel.create(
+title: element[0][0],
+count: element[1],
+url: element[0][1],
+time_range: "all",
+datasource: google
+)
+end
+puts "Finished!"
 
-# #--> NUMBER OF ADS
+# Links if we want them ? channelLinks = html_doc.css("div.mdl-grid div:nth-child(2) a").attribute('href').value
 
-# html_ads_file = File.open('./db/TakeoutBene/My Activity/Ads/MyActivity.html')
-# html_ads_doc = Nokogiri::HTML(html_ads_file)
+puts "Creating Bene's search history"
+beneSearchHistory = SearchHistory.create(
+top_search_word: rankedAllSearchWords,
+top_monthly_search_word: rankedMonthlySearchWords,
+top_visited_link: rankedAllVisitedLinks,
+top_monthly_visited_link: rankedMonthlyVisitedLinks,
+timestamp: Date.today,
+deleted: false,
+datasource: google
+)
+puts "Finished!"
 
-# adsExtract = html_ads_doc.css("div.outer-cell")
-# puts adsExtract.count
+puts "Creating Bene's youtube history"
+beneYoutubeHistory = YoutubeHistory.create(
+top_video_title: rankedVideoTitles,
+top_channel_name: rankedVideoChannels,
+timestamp: Date.today,
+deleted: false,
+datasource: google
+)
+puts "Finished!"
 
-# adsWithLinkExtract = html_ads_doc.css("div.content-cell a")
-# puts adsWithLinkExtract.first
+#--> NUMBER OF ADS
 
-# adsWithLink = []
-# pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
-# pattern_g = /url\?q=(.+)\//
-# adsWithLinkExtract.each do |ad|
-#   if ad.attribute('href')&.value.present?
-#     attr = ad.attribute('href').value
-#     if attr.match(pattern_g).nil?
-#       if attr.match(pattern_yt)
-#         adsWithLink << attr
-#       end
-#     else
-#       adsWithLink << attr.match(pattern_g)[1]
-#     end
-#   end
-# end
-# puts adsWithLink.count
-# puts adsWithLink.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+html_ads_file = File.open('./db/TakeoutBene/My Activity/Ads/MyActivity.html')
+html_ads_doc = Nokogiri::HTML(html_ads_file)
+
+adsExtract = html_ads_doc.css("div.outer-cell")
+puts adsExtract.count
+
+adsWithLinkExtract = html_ads_doc.css("div.content-cell a")
+puts adsWithLinkExtract.first
+
+adsWithLink = []
+pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+pattern_g = /url\?q=(.+)\//
+adsWithLinkExtract.each do |ad|
+  if ad.attribute('href')&.value.present?
+    attr = ad.attribute('href').value
+    if attr.match(pattern_g).nil?
+      if attr.match(pattern_yt)
+        adsWithLink << attr
+      end
+    else
+      adsWithLink << attr.match(pattern_g)[1]
+    end
+  end
+end
+puts adsWithLink.count
+puts adsWithLink.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a

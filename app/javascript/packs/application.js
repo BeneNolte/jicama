@@ -41,5 +41,3 @@ document.addEventListener('turbolinks:load', () => {
   initBottombar();
   initPopover();
 });
-
-import "controllers"
