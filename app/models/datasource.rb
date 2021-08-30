@@ -38,7 +38,8 @@ class Datasource < ApplicationRecord
 
   def update_value
     # Calculate score of datasources (temporary)
-    return if self.value.nil?
+    return if self.size.nil?
+    puts "hihi"
     accessors = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["accessor","buyer"]).count
     restricted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["restricted"]).count
     deleted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["deleted"]).count
@@ -48,5 +49,7 @@ class Datasource < ApplicationRecord
     value = initial - (deleted * deletion_value)
     self.value = value
     self.save
+    puts value
+    return value
   end
 end

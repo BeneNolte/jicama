@@ -63,26 +63,26 @@ season_market.save!
 puts 'Finished!'
 
 puts 'Creating 5 companies'
-axciom = Company.new(title: "axciom", url: "https://www.acxiom.com/")
+axciom = Company.new(title: "axciom", url: "https://www.acxiom.com/", description: "Acxiom (pronounced ax-ee-um) is a Conway, Arkansas-based database marketing company. The company collects, analyzes and sells customer and business information used for targeted advertising campaigns.")
 axciom.save!
-adform = Company.new(title: "adform", url: "https://site.adform.com/")
+adform = Company.new(title: "adform", url: "https://site.adform.com/", description: "Adform is a global digital media advertising technology company. Its operations are headquartered in Europe, and its clients vary in size and industry.")
 adform.save!
-experian = Company.new(title: "experian", url: "https://www.experian.fr/")
+experian = Company.new(title: "experian", url: "https://www.experian.fr/", description: "Experian plc is an Anglo-Irish multinational consumer credit reporting company. Experian collects and aggregates information on over 1 billion people and businesses including 235 million individual U.S. consumers and more than 25 million U.S. businesses.")
 experian.save!
-levis = Company.new(title: "levis", url: "https://www.levi.com/")
+levis = Company.new(title: "levis", url: "https://www.levi.com/", description: "Levi Strauss & Co. is an American clothing company known worldwide for its Levi's brand of denim jeans.")
 levis.save!
-apple = Company.new(title: "apple", url: "https://www.apple.com/")
+apple = Company.new(title: "apple", url: "https://www.apple.com/", description: "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software, and online services.")
 apple.save!
 puts 'Finished!'
 
 puts 'Creating data ownerships'
-own1 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "buyer")
+own1 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "accessor")
 own1.save!
 own2 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "accessor")
 own2.save!
-own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "restricted")
+own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "accessor")
 own3.save!
-own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "deleted")
+own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "accessor")
 own4.save!
 google.update_score
 google.update_value
@@ -93,25 +93,30 @@ puts 'Finished!'
 
 # TIPS: to find the right relative path use ====> Dir.pwd
 
+# PROFIL INFOS
+# filepath = './db/TakeoutBene/Profile/Profile.json'
+profile_file = ENV.fetch("SECRET_PROFILE")
+serialized_profile = URI.open(profile_file).read
 
-# PROFILE INFOS
-filepath = './db/TakeoutBene/Profile/Profile.json'
-serialized_profile = File.read(filepath)
 profileInfos = JSON.parse(serialized_profile)
 gender = profileInfos["gender"]["type"].capitalize
 
 
 # 1. BROWSER SEARCH WORDS HISTORY
-filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
-serialized_browserHistory = File.read(filepath)
-browserHistories = JSON.parse(serialized_browserHistory)
+# filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
+
+browser_history_file = ENV.fetch("SECRET_BROWSER_HISTORY")
+serialized_browser_history = URI.open(browser_history_file).read
+browser_histories = JSON.parse(serialized_browser_history)
+
+
 
 # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
 monthlySearchWords = []
-browserHistories["Browser History"].each do |browserHistory|
-if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
-end
+browser_histories["Browser History"].each do |browserHistory|
+  if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
+    monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
+  end
 end
 counts_monthly_search_words = Hash.new(0)
 monthlySearchWords.join(" ").split(" ").each { |word| counts_monthly_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
@@ -130,8 +135,8 @@ puts "Finished!"
 
 # --> TOP SEARCH WORDS HISTORY OF ALL TIME
 allSearchWords = []
-browserHistories["Browser History"].each do |browserHistory|
-allSearchWords << browserHistory["title"] unless browserHistory["title"].nil?
+browser_histories["Browser History"].each do |browserHistory|
+    allSearchWords << browserHistory["title"] unless browserHistory["title"].nil?
 end
 counts_all_search_words = Hash.new(0)
 allSearchWords.join(" ").split(" ").each { |word| counts_all_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
@@ -151,11 +156,11 @@ puts "Finished!"
 # 2. VISITED LINKS HISTORY
 # --> TOP VISITED LINKS OF CURRENT MONTH
 monthlyVisitedLinks = []
-browserHistories["Browser History"].each do |browserHistory|
-pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
-if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-monthlyVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
-end
+browser_histories["Browser History"].each do |browserHistory|
+  pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+  if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
+    monthlyVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
+  end
 end
 rankedMonthlyVisitedLinks = monthlyVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
@@ -172,9 +177,9 @@ puts "Finished!"
 
 # --> TOP VISITED LINKS OF ALL TIME
 allVisitedLinks = []
-browserHistories["Browser History"].each do |browserHistory|
-pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
-allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
+browser_histories["Browser History"].each do |browserHistory|
+  pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+  allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
 end
 rankedAllVisitedLinks = allVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 

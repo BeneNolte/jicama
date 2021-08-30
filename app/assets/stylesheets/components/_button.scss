@@ -38,6 +38,20 @@
   text-decoration: none;
 }
 
+.small-button {
+  background-color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #7551F3;
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  color: #7551F3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .buttonpurple {
   cursor: pointer;
   padding: 10px;
