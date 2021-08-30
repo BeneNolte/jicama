@@ -64,7 +64,7 @@
           <div class="carousel">
             <ul class="list-inline tabs-underlined">
               <li>
-                <%= link_to "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "accessor"}", id: "accessors-tab" %>
+                <%= link_to "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "tab-underlined #{'active' if ( params[:type_of_ownership] == "accessor" || params[:type_of_ownership].nil? )}", id: "accessors-tab" %>
               </li>
               <li>
                 <%= link_to "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "buyer"}", id: "buyers-tab" %>
@@ -76,7 +76,7 @@
                 <%= link_to "Deleted", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "deleted"}", id: "deletion-tab" %>
               </li>
               <li>
-                <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all"), class: "tab-underlined #{'active' if ( params[:type_of_ownership] == "all" || params[:type_of_ownership].nil? )}", id: "all-tab"%>
+                <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "all"}", id: "all-tab"%>
               </li>
             </ul>
           </div>
