@@ -21,6 +21,7 @@ ActiveStorage.start()
 // External imports
 import "bootstrap";
 import { initMapbox } from '../plugins/init_mapbox';
+import { initFlatpickr } from "../plugins/flatpickr";
 
 // Internal imports
 import { initAutoFilter } from '../components/data_ownership_toggle';
@@ -40,4 +41,5 @@ document.addEventListener('turbolinks:load', () => {
   initNavbar();
   initBottombar();
   initMapbox();
+  initFlatpickr();
 });

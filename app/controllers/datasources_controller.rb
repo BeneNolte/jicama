@@ -31,6 +31,10 @@ class DatasourcesController < ApplicationController
       @locations = @locations.where('timestamp >= ?', params[:start_date])
     end
 
+    if params[:end_date].present?
+      @locations = @locations.where('timestamp <= ?', params[:end_date])
+    end
+
     @markers = @locations.map do |location|
       {
         lat: location.latitude,
