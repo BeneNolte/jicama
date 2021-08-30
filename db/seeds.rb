@@ -283,7 +283,6 @@ adsWithLink = [ ]
 pattern_g = /url\?q=(.+.com)/
 adsWithLinkExtract.each do |ad|
   if ad.attribute('href')&.value.present?
-  # adsWithLink << ad.attribute('href').match(pattern_g)[1]
   adsWithLink << ad.match(pattern_g)[1]
   end
 end
