@@ -58,26 +58,26 @@ season_market.save!
 puts 'Finished!'
 
 puts 'Creating 5 companies'
-axciom = Company.new(title: "axciom", url: "https://www.acxiom.com/")
+axciom = Company.new(title: "axciom", url: "https://www.acxiom.com/", description: "Acxiom (pronounced ax-ee-um) is a Conway, Arkansas-based database marketing company. The company collects, analyzes and sells customer and business information used for targeted advertising campaigns.")
 axciom.save!
-adform = Company.new(title: "adform", url: "https://site.adform.com/")
+adform = Company.new(title: "adform", url: "https://site.adform.com/", description: "Adform is a global digital media advertising technology company. Its operations are headquartered in Europe, and its clients vary in size and industry.")
 adform.save!
-experian = Company.new(title: "experian", url: "https://www.experian.fr/")
+experian = Company.new(title: "experian", url: "https://www.experian.fr/", description: "Experian plc is an Anglo-Irish multinational consumer credit reporting company. Experian collects and aggregates information on over 1 billion people and businesses including 235 million individual U.S. consumers and more than 25 million U.S. businesses.")
 experian.save!
-levis = Company.new(title: "levis", url: "https://www.levi.com/")
+levis = Company.new(title: "levis", url: "https://www.levi.com/", description: "Levi Strauss & Co. is an American clothing company known worldwide for its Levi's brand of denim jeans.")
 levis.save!
-apple = Company.new(title: "apple", url: "https://www.apple.com/")
+apple = Company.new(title: "apple", url: "https://www.apple.com/", description: "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software, and online services.")
 apple.save!
 puts 'Finished!'
 
 puts 'Creating data ownerships'
-own1 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "buyer")
+own1 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "accessor")
 own1.save!
 own2 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: true, type_of_ownership: "accessor")
 own2.save!
-own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "restricted")
+own3 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "accessor")
 own3.save!
-own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "deleted")
+own4 = DataOwnership.new(company: Company.order('RANDOM()').first, datasource: Datasource.all.last, status: false, type_of_ownership: "accessor")
 own4.save!
 google.update_score
 google.update_value
@@ -100,9 +100,13 @@ gender = profileInfos["gender"]["type"].capitalize
 
 
 # 1. BROWSER SEARCH WORDS HISTORY
-filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
-serialized_browserHistory = File.read(filepath)
-browserHistories = JSON.parse(serialized_browserHistory)
+# filepath = './db/TakeoutBene/Chrome/BrowserHistory.json'
+
+browser_history_file = ENV.fetch("SECRET_BROWSER_HISTORY")
+serialized_browser_history = URI.open(browser_history_file).read
+browser_histories = JSON.parse(serialized_browser_history)
+
+
 
 # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
 monthlySearchWords = []

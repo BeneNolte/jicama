@@ -22,9 +22,11 @@
             </li>
           <% end %>
         </div>
-        <hr>
-        <div class="action-bar d-flex justify-content-between">
-          <h5>Auto-Filter</h5>
+        <div class="card-purple" id="datacontrol-purple-card">
+          <div class="d-flex">
+            <i class="fab fa-google mr-3" style="font-size: 24px; color: white;"></i>
+            <h5 class="whitetitle my-0" style="align-self: center;">Auto-Filter</h5>
+          </div>
           <% if params[:auto_filter] == "0" %>
             <%= link_to "Adjust", datasource_path(@datasource), class: "btn btn-primary" %>
           <% else %>
@@ -32,38 +34,53 @@
           <div class="custom-control custom-switch">
             <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
             <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
-              <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1"  %>
+              <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1", value: params[:auto_fitler]  %>
               <label class="custom-control-label" for="customSwitch1"></label>
               <%= f.submit "Test", class: "d-none" %>
             <% end %>
           </div>
         </div>
-        <hr>
-        <div class="d-flex justify-content-between">
-          <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all")  %>
-          <%= link_to  "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor") %>
-          <%= link_to  "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer") %>
-          <%= link_to  "Restrictions", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted") %>
-          <%= link_to  "Deletion", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted") %>
+        <div class="d-flex justify-content-between mt-4">
+          <div class="carousel">
+            <ul class="list-inline tabs-underlined">
+              <li>
+                <%= link_to "All", datasource_data_ownerships_path(@datasource, type_of_ownership: "all"), class: "tab-underlined #{'active' if ( params[:type_of_ownership] == "all" || params[:type_of_ownership].nil? )}", id: "all-tab"%>
+              </li>
+              <li>
+                <%= link_to  "Accessors", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "accessor"}", id: "accessors-tab" %>
+              </li>
+              <li>
+                <%= link_to  "Buyers", datasource_data_ownerships_path(@datasource, type_of_ownership: "buyer"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "buyer"}", id: "buyers-tab" %>
+              </li>
+              <li>
+                <%= link_to  "Restrictions", datasource_data_ownerships_path(@datasource, type_of_ownership: "restricted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "restricted"}", id: "restrictions-tab" %>
+              </li>
+              <li>
+                <%= link_to  "Deletion", datasource_data_ownerships_path(@datasource, type_of_ownership: "deleted"), class: "tab-underlined #{'active' if params[:type_of_ownership] == "deleted"}", id: "deletion-tab" %>
+              </li>
+            </ul>
+          </div>
+
+          <!--
           <div>
           <%#= Datasource.find(data_ownership.datasource_id).name %>
           <%= image_tag @datasource.photo, class:"rounded-google-logo" %>
-            <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
               Control
             </button>
           </div>
+          -->
+
         </div>
         <hr>
         <% @data_ownerships.each do |data_ownership| %>
-          <div class="d-flex justify-content-between">
+          <div class="card-style datacontrol-card">
             <div>
               <strong><%= Company.find(data_ownership.company_id).title.capitalize %></strong>
-              (<%= data_ownership.type_of_ownership.capitalize %>)
             </div>
             <div>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-<%= data_ownership.id %>">
+              <button type="button" class="small-button" data-toggle="modal" data-target="#modal-<%= data_ownership.id %>">
                 Control
               </button>
             </div>
@@ -74,38 +91,38 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="title-modal-<%= data_ownership.id %>"><%= Company.find(data_ownership.company_id).title.capitalize %></h5>
+                  <h5 class="fatpurpletitle" id="title-modal-<%= data_ownership.id %>"><%= Company.find(data_ownership.company_id).title.capitalize %></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <div class="description" style="font-size: 14px;">
-                    Missed DB integration with description!  = Company.find(data_ownership
-                    .company_id).description
+                  <div class="mb-2 d-flex"><strong style="font-size: 14px">Data Status: <%= data_ownership.type_of_ownership.capitalize %></strong></div>
+                  <div class="greytext">
+                    <%=Company.find(data_ownership.company_id).description %>
                   </div>
                   <hr>
-                  <div class="datasource-relationship d-flex justify-content-between">
-                    <strong style="font-size: 14px;">Who did they get my data from?</strong>
-                    <i class="fab fa-google" style="font-size: 22px;"></i>
-                  </div>
+                  <strong style="font-size: 14px">Who did they get my data from?</strong>
+                  <%= image_tag @datasource.photo, class:"datasource-logo ml-3" %>
                   <hr>
                   <div class="restrict d-flex justify-content-between">
-                    <%= button_to  "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch', class: "btn btn-sm btn-success" %>
-                    <p style="font-size: 14px;">No further data will be shared via Facebook with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
+                    <div style="width: 125px; margin-bottom: 25px;">
+                      <%= button_to "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch', class: "small-button" %>
+                    </div>
+                    <p class="greytext ml-3">No further data will be shared via Facebook with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
                   </div>
-                  <div class="delete d-flex justify-content-between">
-                    <%= button_to  "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', class: "btn btn-sm btn-success" %>
-                    <p style="font-size: 14px;">Jicama will contact <%= Company.find(data_ownership.company_id).title.capitalize %> in your name to delete the data they collected of you.</p>
+                  <div class="delete d-flex justify-content-between mb-3">
+                    <div style="width: 125px">
+                      <%= button_to "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', class: "small-button" %>
+                    </div>
+                    <p class="greytext ml-3">Jicama will contact <%= Company.find(data_ownership.company_id).title.capitalize %> in your name to delete the data they collected of you.</p>
                   </div>
-                  <%= render 'form', datasource: @datasource, data_ownership: data_ownership %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <%#= render 'form', datasource: @datasource, data_ownership: data_ownership %>
                 </div>
               </div>
             </div>
           </div>
+
         <% end %>
 
         <%# <div class="modal-dialog modal-dialog-scrollable">

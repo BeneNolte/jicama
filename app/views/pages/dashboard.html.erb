@@ -23,7 +23,7 @@
           <% end %>
         </div>
 
-        <div class="privacy-score">
+        <div class="card-purple">
           <div class="display-score d-flex"  style="margin-right: 50px">
             <% if @score < 30 %>
               <h1 class="fatwhitetitle">Bad</h1>
@@ -34,7 +34,6 @@
             <% else %>
               <h1 class="fatwhitetitle">Very Good</h1>
             <% end %>
-            <p id="score-percentage">+0%</p>
           </div>
           <div class="display-score">
             <p class="whitetext">Privacy score</p>
@@ -124,7 +123,7 @@
 
  <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="fatpurpletitle" id="exampleModalLabel">Privacy cockpit</h4>
