@@ -25,19 +25,39 @@
         <div class="card-purple" id="datacontrol-purple-card">
           <div class="d-flex">
             <i class="fab fa-google mr-3" style="font-size: 24px; color: white;"></i>
-            <h5 class="whitetitle my-0" style="align-self: center;">Auto-Filter</h5>
+            <h5 class="whitetitle my-0" style="align-self: center; padding-top: 1px;">Auto-Filter</h5>
           </div>
-          <% if params[:auto_filter] == "0" %>
-            <%= link_to "Adjust", datasource_path(@datasource), class: "btn btn-primary" %>
-          <% else %>
-          <% end %>
-          <div class="custom-control custom-switch">
-            <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
-            <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
-              <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1", value: params[:auto_fitler]  %>
-              <label class="custom-control-label" for="customSwitch1"></label>
-              <%= f.submit "Test", class: "d-none" %>
+          <div class="d-flex">
+            <% if params[:auto_filter] == "0" %>
+              <%= link_to "Adjust", datasource_path(@datasource), class: "buttonpurple" %>
+            <% else %>
             <% end %>
+            <div class="custom-control custom-switch">
+              <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
+              <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
+                <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1", value: params[:auto_fitler]  %>
+                <label class="custom-control-label" for="customSwitch1"></label>
+                <%= f.submit "Test", class: "d-none" %>
+              <% end %>
+            </div>
+            <button type="button" 
+                    style="color: white; padding-top: 1px;"
+                    id= "button-info" 
+                    data-trigger="focus" 
+                    data-container="body" 
+                    data-html="true"
+                    data-toggle="popover" 
+                    data-placement="left" 
+                    data-content="For each company below, you can either choose to <em>restrict</em> or <em>delete</em> their access to your data individually, or you can rely on the <strong>autofilter</strong> to deal with every company at once according to your preferences ! <br><br>
+                                  <a href='/dashboard' class='buttontext'>Go to privacy cockpit</a>
+                                  <hr>
+                                  <strong>Accessors</strong> : companies that have access to your data <br><br>
+                                  <strong>Buyers</strong> : companies that have bought the access to your data <br><br>
+                                  <strong>Restricted</strong> : companies that don't have access to your data anymore but may still have your former data <br><br>
+                                  <strong>Deleted</strong> : companies that neither have access to your data nor have any data about you
+                                  ">
+                <i class="far fa-question-circle"></i>
+              </button>
           </div>
         </div>
         <div class="d-flex justify-content-between mt-4">
@@ -122,16 +142,20 @@
                   <%= image_tag @datasource.photo, class:"datasource-logo ml-3" %>
                   <hr>
                   <div class="restrict d-flex justify-content-between">
-                    <div style="width: 125px; margin-bottom: 25px;">
-                      <%= button_to "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch', class: "small-button" %>
+                    <div style="margin-bottom: 25px;">
+                      <div class="small-button">
+                        <%= button_to "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "restricted" %>
+                      </div>
                     </div>
-                    <p class="greytext ml-3">No further data will be shared via Facebook with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
+                    <p class="greytext ml-3" style="width: 230px">No further data will be shared via Google with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
                   </div>
                   <div class="delete d-flex justify-content-between mb-3">
-                    <div style="width: 125px">
-                      <%= button_to "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', class: "small-button" %>
+                    <div>
+                      <div class="small-button">
+                        <%= button_to "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "deleted" || data_ownership.type_of_ownership == "restricted"%>
+                      </div>
                     </div>
-                    <p class="greytext ml-3">Jicama will contact <%= Company.find(data_ownership.company_id).title.capitalize %> in your name to delete the data they collected of you.</p>
+                    <p class="greytext ml-3" style="width: 230px">Jicama will contact <%= Company.find(data_ownership.company_id).title.capitalize %> in your name to delete the data they collected of you.</p>
                   </div>
                   <%#= render 'form', datasource: @datasource, data_ownership: data_ownership %>
                 </div>
