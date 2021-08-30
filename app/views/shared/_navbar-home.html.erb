@@ -1,0 +1,23 @@
+<%# <div class="color-change"> %>
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon-home">
+    <%# <div class="color-change"> %>
+      <div class="d-flex">
+        <h1>Jicama</h1>
+        <div >
+          <%= link_to "#", class: "navbar-brand" do %>
+            <%= image_tag "jicama-logo-white.png", class: "logo-navbar", id: "logo-navbar-home" %>
+          <% end %>
+        </div>
+      </div>
+      <% if user_signed_in? == false %>
+        <%= link_to "Login", new_user_session_path, class: "short-button-light" %>
+      <% else %>
+        <%= link_to "Logout", dashboard_path, class: "short-button-light" %>
+      <% end %>
+    <%# </div> %>
+  </div>
+<%# </div> %>
+
+<style>
+
+</style>

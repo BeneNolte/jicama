@@ -1,34 +1,16 @@
+<%= render 'shared/navbar' %>
+
 <div class="content-wrapper-with-bottombar">
   <div class="container", style="height: 75%;">
     <div class="row" style="height: 100%; padding-bottom: 10px;">
       <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
-
-        <div class="page-header">
-          <h1><%= @datasource.name %> Data</h1>
-          <% if user_signed_in? %>
-            <div class="dropdown">
-              <a class="profile dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag image_path('empty-profile.png'), class: "avatar" %>
-              </a>
-
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <%= link_to "Update profile", edit_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </div>
-            </div>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
-        </div>
-
+        <h1 class="app-header"><%= @datasource.name.capitalize %> Data</h1>
         <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "mr-3", id: "buttoncontrol" %>
 
         <div class="displays">
           <%# default display %>
           <div class="default-display">
-            <h4 class="greysubtitle">Digital footprint</h4>
+            <h4 class="greysubtitle">Digital Footprint</h4>
 
             <div class="digital-footprint">
 
@@ -80,14 +62,14 @@
             <div class="displays">
               <div class="insights" id="locations-insights">
                 <div>
-                  <h4 class="purpletitle">locations</h4>
+                  <h4 class="purpletitle">Locations</h4>
                   <div class="scrollable">
                   </div>
                 </div>
               </div>
               <div class="insights" id="interests-insights">
                 <div>
-                  <h4 class="purpletitle">Search history</h4>
+                  <h4 class="purpletitle">Search History</h4>
                   <div class="card-boxless", style="border-bottom: 1px solid grey">
                     <p class="greysubtitle" style="margin-bottom: 0px">Top searched words</p>
                     <% @chrome_search_words.first(10).each do |word| %>
@@ -107,7 +89,7 @@
                       </div>
                     <% end %>
                   </div>
-                  
+
                   <div class="scrollable">
                   </div>
                 </div>
@@ -165,25 +147,23 @@
     <div class="data-insights-container">
 
       <div class="data-insights-card current" id="digital-footprint">
-        <i class="fas fa-shoe-prints"></i>
-        <h4 class="whitetitle mt-2 mb-0">Digital</h4>
-        <h4 class="whitetitle">footprint</h4>
+        <i class="fas fa-shoe-prints" style="transform: rotate(-90deg)"></i>
+        <h4 class="whitetitle mt-2 mb-0">Footprint</h4>
       </div>
 
       <div class="data-insights-card" id="locations">
         <i class="fas fa-map-marker-alt"></i>
-        <h4 class="whitetitle mt-2">Locations</h4>
+        <h4 class="whitetitle mt-2 mb-0">Locations</h4>
       </div>
 
       <div class="data-insights-card" id="interests">
         <i class="fas fa-search"></i>
         <h4 class="whitetitle mt-2 mb-0">Search</h4>
-        <h4 class="whitetitle">history</h4>
       </div>
 
       <div class="data-insights-card" id="ads">
         <i class="fas fa-dollar-sign"></i>
-        <h4 class="whitetitle mt-2">Ads</h4>
+        <h4 class="whitetitle mt-2 mb-0">Ads</h4>
       </div>
 
       <div class="data-insights-card" id="youtube-channels">

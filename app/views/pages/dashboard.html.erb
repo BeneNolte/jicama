@@ -1,27 +1,9 @@
+<%= render 'shared/navbar' %>
 <div class="content-wrapper-with-bottombar">
   <div class="container", style="height: 82%;">
     <div class="row" style="height: 100%; padding-bottom: 10px;">
       <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
-
-        <div class="page-header">
-          <h1>Dashboard</h1>
-          <% if user_signed_in? %>
-            <div class="dropdown">
-              <a class="profile dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag image_path('empty-profile.png'), class: "avatar" %>
-              </a>
-
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <%= link_to "Update profile", edit_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </div>
-            </div>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
-        </div>
+        <h1 class="app-header">Dashboard</h1>
 
         <div class="card-purple">
           <div class="display-score d-flex"  style="margin-right: 50px">

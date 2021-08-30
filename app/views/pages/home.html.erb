@@ -1,61 +1,61 @@
+<%= render 'shared/navbar-home' %>
 <div class="banner">
-    <h1>Jicama</h1>
-    <h3>Own your data, <br>own your future</h3>
-    <%= image_tag "jicama-logo.png", class: "logo-sizing", style:"display: block; margin-bottom: 10px" %>
-
+    <%= image_tag "jicama-logo-white.png", class: "logo-sizing", style:"display: block; margin-bottom: 10px; margin-top:80px;" %>
+    <h3>Your data <br>privacy manager.</h3>
+    <h5 style="font-family: Roboto; color: #A5A5A5; font-size: 14px; font-weight: normal;">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
 
     <% if user_signed_in? == false %>
       <%= link_to "Join now", new_user_session_path, class: "short-button" %>
     <% else %>
-      <%= link_to "dashboard", dashboard_path, class: "short-button" %>
+      <%= link_to "Dashboard", dashboard_path, class: "short-button" %>
     <% end %>
 
 </div>
 
-<div class="container", style="margin-top: 80px">
+<div class="container white-background">
+
   <div class="row">
     <div class="col-12 col-lg-6">
-    <h3 class="title-design black-background">Jicama leads the way to a user-centric and secure data economy</h3>
-      <div class="list-align", style="margin-top: 50px">
-        <div class="icons-aligned">
-          <div class="text-center">
-            <%= image_tag "flow.png", class: "mini-logo-sizing" %>
-          </div>
-          <p>Understand who owns <br>and uses your data</p>
-        </div>
-        <div class="icons-aligned">
-          <div class="text-center">
-            <%= image_tag "control.png", class: "mini-logo-sizing" %>
-          </div>
-        <p>Control your <br>data flows</p>
-        </div>
-        <div class="icons-aligned">
-          <div class="text-center">
-            <%= image_tag "money.png", class: "mini-logo-sizing" %>
-          </div>
-        <p>Monetize your personal data</p>
-        </div>
+      <h3 class="homepage-header" style="font-size: 30px;">The Future of Data Privacy</h1>
+      <div class="intro-card">
+        <div class="control-img"></div>
+        <h4>Control Access</h4>
+        <p>Understand your data and decide who gets access.</p>
       </div>
+      <div class="intro-card">
+        <div class="value-img"></div>
+        <h4>Identify Value</h4>
+        <p>See how much your data is actually worth to big tech.</p>
+      </div>
+      <div class="intro-card">
+        <div class="profile-img"></div>
+        <h4>Earn Money</h4>
+        <p>Sell your data to companies you trust.</p>
+      </div>
+
     </div>
   </div>
 </div>
 
-<div class="container black-background", style="margin-top: 80px">
+<div class="container black-background process-explanation-home">
   <div class="row">
     <div class="col-12 col-lg-6 text-center box-sizing ">
-      <h3 class="title-design", style="margin-bottom: 40px">Take back control</h3>
-      <h5 class="whitetitle", style="color:#A5A5A5">Just follow these 3 steps:</h5>
-      <div class="cards">
-        <h5 class="whitetitle", style="margin-top: 35px">1. Collect</h5>
-        <p class="greytext">Collect data from your favorite <br>websites and apps.</p>
+      <h3 class="title-design" style="margin-bottom: 40px; font-size: 30px">Take back control</h3>
+      <h5 class="whitetitle" style="color:#A5A5A5">Just follow these 3 steps:</h5>
+      <div class="process-card">
+        <i class="fas fa-database info-item-home"></i>
+        <h5 class="whitetitle" style="margin-top: 25px; font-size: 25px;">1. Collect</h5>
+        <p class="greytext" style="font-size: 15px;">Collect data from your favorite <br>websites and apps.</p>
       </div>
-      <div class="cards">
-        <h5 class="whitetitle", style="margin-top: 35px">2. View</h5>
-        <p class="greytext">Get an overview of your digital footprint. Understand what companies know about your data.</p>
+      <div class="process-card">
+        <i class="fas fa-chart-bar info-item-home"></i>
+        <h5 class="whitetitle" style="margin-top: 25px; font-size: 25px;">2. View</h5>
+        <p class="greytext" style="font-size: 15px;">See what many companies already know about you.</p>
       </div>
-      <div class="cards">
-        <h5 class="whitetitle", style="margin-top: 35px">3. Control</h5>
-        <p class="greytext">Choose which information companies can and can't access.</p>
+      <div class="process-card">
+        <i class="fas fa-trash-restore info-item-home"></i>
+        <h5 class="whitetitle", style="margin-top: 25px; font-size: 25px;">3. Control</h5>
+        <p class="greytext" style="font-size: 15px;">Choose which information companies can access.</p>
       </div>
       <% if controller_name != 'sessions' %>
         <div class="text-center margin-button">
@@ -66,36 +66,45 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container  white-background">
   <div class="row">
-    <div class="col-12 col-lg-6">
-      <h4 class="title-design-black">Let's data talk <br>about data</h4>
+    <div class="col-12 col-lg-6 box-sizing-white statistics-home">
+      <h3 class="title-design-black" style="font-size: 30px; opacity: 0.7;">Let's talk data</h3>
+      <h5 class="purple-subtext-home greytext">Data privacy management of the future: <br> No effort, no costs!  </h5>
       <%# source: https://dataprivacymanager.net/100-data-privacy-and-data-security-statistics-for-2020/ %>
-      <div class="styling">
-        <div class="stat-big">84%</div>
-        <div class="text-stat">Care about data privacy & want control over how their data is being used</div>
+      <div class="data-statistics-card d-flex">
+        <div>
+          <%= image_tag image_path("84.png"), class: "statistics-image-1" %>
+        </div>
+        <div class="inner-stats">
+          <div class="stat-big">84%</div>
+          <div class="text-stat greytext">Care about data privacy and wish they had control over it</div>
+        </div>
       </div>
-      <div class="styling">
-        <div class="text-stat-right">Feel they have little or no control over the data collected</div>
-        <div class="stat-big">81%</div>
+      <div class="data-statistics-card d-flex">
+        <div>
+          <%= image_tag image_path("81.png"), class: "statistics-image-2" %>
+        </div>
+        <div class="inner-stats">
+          <div class="stat-big">81%</div>
+          <div class="text-stat greytext">Feel they have little or no control over the data collected</div>
+        </div>
       </div>
-      <div class="styling">
-        <div class="stat-big">79%</div>
-        <div class="text-stat">Have adjusted privacy-related settings on their social media accounts</div>
-      </div>
-      <div class="styling">
-        <div class="text-stat-right">Facebook market share of social media platforms</div>
-        <div class="stat-big">80%</div>
-      </div>
-      <div class="styling">
-        <div class="stat-big">90%</div>
-        <div class="text-stat">Google market share of search engines</div>
+      <div class="data-statistics-card d-flex">
+        <div>
+          <%= image_tag image_path("79.png"), class: "statistics-image-3" %>
+        </div>
+        <div class="inner-stats">
+          <div class="stat-big">79%</div>
+          <div class="text-stat greytext">Have adjusted privacy-related settings on their social accounts</div>
+        </div>
       </div>
       <% if controller_name != 'sessions' %>
         <div class="text-center margin-button">
-          <%= link_to "Try it yourself", root_path, class: "short-button" %><br />
+          <%= link_to "Try it yourself", root_path, class: "short-button-black button-final-home" %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+<%= render 'shared/footer' %>

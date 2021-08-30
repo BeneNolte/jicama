@@ -1,9 +1,9 @@
 .content-wrapper {
-  min-height: calc(100vh - 50px - 70px);
+  min-height: calc(100vh - 70px - 70px);
 }
 
 .content-wrapper-with-bottombar {
-  height: calc(100vh - 50px - 70px);
+  height: calc(100vh - 70px - 70px);
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
