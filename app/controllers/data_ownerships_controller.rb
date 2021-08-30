@@ -5,7 +5,7 @@ class DataOwnershipsController < ApplicationController
 
     # Filtering Companies
     if params[:type_of_ownership].present? && params[:type_of_ownership] != "all"
-      @data_ownerships = @data_ownerships.where(type_of_ownership: params[:type_of_ownership])
+      @data_ownerships = @data_ownerships.where(type_of_ownership: params[:type_of_ownership]).sort_by {|ownership| ownership.company.title }
     end
 
     # if params[:breed].present?
@@ -34,8 +34,10 @@ class DataOwnershipsController < ApplicationController
   end
 
   def filter
+    @datasource = Datasource.find_by(name: "Google")
     current_user.auto_filter!
     skip_authorization
+    redirect_to datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), alert: "Congratulations !! 🎉🎊 We restricted the access of your data and send emails to the companies that have your data according to your preferences"
   end
 
   private
@@ -44,3 +46,4 @@ class DataOwnershipsController < ApplicationController
     params.require(:data_ownership).permit(:status, :type_of_ownership)
   end
 end
+

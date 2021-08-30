@@ -33,11 +33,11 @@
             <% else %>
             <% end %>
             <div class="custom-control custom-switch">
-              <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
+              <%= form_with url: filter_data_ownerships_path, id:"auto-filter-form", method: :patch do |f| %>
               <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
                 <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1", value: params[:auto_fitler]  %>
                   <label class="custom-control-label" for="customSwitch1"></label>
-                <%= f.submit "Test", class: "d-none", id: "auto-submit" %>
+                <%= f.submit "auto filter", class: "d-none", id: "auto-submit" %>
               <% end %>
             </div>
             <button type="button" 
@@ -165,7 +165,11 @@
                         <% end %>
                       </div>
                     </div>
-                    <p class="greytext ml-3" style="width: 230px">No further data will be shared via Google with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
+                    <% if data_ownership.type_of_ownership == "restricted" || data_ownership.type_of_ownership == "deleted" %>
+                      <p class="greytext ml-3" style="width: 230px"><%= Company.find(data_ownership.company_id).title.capitalize %> will have access to your data via Google.</p>
+                    <% else %>
+                      <p class="greytext ml-3" style="width: 230px">No further data will be shared via Google with <%= Company.find(data_ownership.company_id).title.capitalize %>.</p>
+                    <% end %>
                   </div>
                   <div class="delete d-flex justify-content-between mb-3">
                     <div>
