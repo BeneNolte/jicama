@@ -10,6 +10,7 @@ class PagesController < ApplicationController
     @twitter = @datasources.find_by(name: "Twitter")
     @instagram = @datasources.find_by(name: "Instagram")
     @spotify = @datasources.find_by(name: "Spotify")
+    @companies = Company.all
 
     # Calculate overall score of datasources
     score_arr = []
@@ -22,8 +23,6 @@ class PagesController < ApplicationController
     end
      @score = score_arr.sum / score_arr.size
       end
-
-
 
     # Calculate overall value of datasources
     value_arr = []

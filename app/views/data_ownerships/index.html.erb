@@ -75,8 +75,24 @@
         <hr>
         <% @data_ownerships.each do |data_ownership| %>
           <div class="card-style datacontrol-card">
-            <div>
-              <strong><%= Company.find(data_ownership.company_id).title.capitalize %></strong>
+            <div class="company-rating-btn">
+              <div>
+                <% if data_ownership.company.rating == 1 %>
+                  <div class="fas fa-circle fa-lg", style="color:green">
+                  </div>
+                <% end %>
+                <% if data_ownership.company.rating == 3 %>
+                  <div class="fas fa-circle fa-lg", style="color:red">
+                  </div>
+                <% end %>
+                <% if data_ownership.company.rating == 2  %>
+                  <div class="fas fa-circle fa-lg", style="color:orange">
+                  </div>
+                <% end %>
+              </div>
+              <div style="margin-left: 10px">
+                <strong><%= Company.find(data_ownership.company_id).title.capitalize %></strong>
+              </div>
             </div>
             <div>
               <!-- Button trigger modal -->
