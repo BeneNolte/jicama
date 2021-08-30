@@ -7,12 +7,14 @@ class Users::SessionsController < Devise::SessionsController
   def new
     super
     flash.delete(:notice)
+    flash.delete(:alert)
   end
 
   POST /resource/sign_in
   def create
     super
     flash.delete(:notice)
+    flash.delete(:alert)
   end
 
   # DELETE /resource/sign_out
