@@ -33,6 +33,11 @@ class DataOwnershipsController < ApplicationController
     @data_ownership.datasource.update_value
   end
 
+  def filter
+    current_user.auto_filter!
+    skip_authorization
+  end
+
   private
 
   def data_ownerships_params

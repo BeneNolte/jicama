@@ -33,21 +33,21 @@
             <% else %>
             <% end %>
             <div class="custom-control custom-switch">
-              <%= form_with url: datasource_data_ownerships_path(@datasource), id:"auto-filter-form", method: :get do |f| %>
+              <%= form_with url: filter_data_ownerships_path, id: "auto-filter-form", method: :patch do |f| %>
               <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
                 <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1", value: params[:auto_fitler]  %>
-                <label class="custom-control-label" for="customSwitch1"></label>
-                <%= f.submit "Test", class: "d-none" %>
+                  <label class="custom-control-label" for="customSwitch1"></label>
+                <%= f.submit "auto filter", id:"auto-submit", class:"d-none" %>
               <% end %>
             </div>
-            <button type="button" 
+            <button type="button"
                     style="color: white; padding-top: 1px;"
-                    id= "button-info" 
-                    data-trigger="focus" 
-                    data-container="body" 
+                    id= "button-info"
+                    data-trigger="focus"
+                    data-container="body"
                     data-html="true"
-                    data-toggle="popover" 
-                    data-placement="left" 
+                    data-toggle="popover"
+                    data-placement="left"
                     data-content="For each company below, you can either choose to <em>restrict</em> or <em>delete</em> their access to your data individually, or you can rely on the <strong>autofilter</strong> to deal with every company at once according to your preferences ! <br><br>
                                   <a href='/dashboard' class='buttontext'>Go to privacy cockpit</a>
                                   <hr>
