@@ -1,3 +1,8 @@
+require 'json'
+require 'date'
+require 'nokogiri'
+descending = -1
+
 # CREATING THE SEEDS
 puts "Cleaning db"
 puts "🗑  Deleting all assets"
@@ -85,16 +90,14 @@ puts 'Finished!'
 
 
 
-require 'json'
-require 'date'
-require 'nokogiri'
-descending = -1
+
 # TIPS: to find the right relative path use ====> Dir.pwd
 
-
 # PROFILE INFOS
-filepath = './db/TakeoutBene/Profile/Profile.json'
-serialized_profile = File.read(filepath)
+# filepath = './db/TakeoutBene/Profile/Profile.json'
+profile_file = ENV.fetch("SECRET_PROFILE")
+serialized_profile = URI.open(profile_file).read
+
 profileInfos = JSON.parse(serialized_profile)
 gender = profileInfos["gender"]["type"].capitalize
 
@@ -110,10 +113,10 @@ browser_histories = JSON.parse(serialized_browser_history)
 
 # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
 monthlySearchWords = []
-browserHistories["Browser History"].each do |browserHistory|
-if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
-end
+browser_histories["Browser History"].each do |browserHistory|
+  if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
+    monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
+  end
 end
 counts_monthly_search_words = Hash.new(0)
 monthlySearchWords.join(" ").split(" ").each { |word| counts_monthly_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
@@ -132,8 +135,8 @@ puts "Finished!"
 
 # --> TOP SEARCH WORDS HISTORY OF ALL TIME
 allSearchWords = []
-browserHistories["Browser History"].each do |browserHistory|
-allSearchWords << browserHistory["title"] unless browserHistory["title"].nil?
+browser_histories["Browser History"].each do |browserHistory|
+    allSearchWords << browserHistory["title"] unless browserHistory["title"].nil?
 end
 counts_all_search_words = Hash.new(0)
 allSearchWords.join(" ").split(" ").each { |word| counts_all_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
@@ -153,11 +156,11 @@ puts "Finished!"
 # 2. VISITED LINKS HISTORY
 # --> TOP VISITED LINKS OF CURRENT MONTH
 monthlyVisitedLinks = []
-browserHistories["Browser History"].each do |browserHistory|
-pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
-if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-monthlyVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
-end
+browser_histories["Browser History"].each do |browserHistory|
+  pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+  if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
+    monthlyVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
+  end
 end
 rankedMonthlyVisitedLinks = monthlyVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
@@ -174,9 +177,9 @@ puts "Finished!"
 
 # --> TOP VISITED LINKS OF ALL TIME
 allVisitedLinks = []
-browserHistories["Browser History"].each do |browserHistory|
-pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
-allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
+browser_histories["Browser History"].each do |browserHistory|
+  pattern = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+  allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
 end
 rankedAllVisitedLinks = allVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
@@ -278,29 +281,20 @@ puts adsExtract.count
 adsWithLinkExtract = html_ads_doc.css("div.content-cell a")
 puts adsWithLinkExtract.first
 
-adsWithLink = [ ]
-# pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
-pattern_g = /url\?q=(.+.com)/
+adsWithLink = []
+pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
+pattern_g = /url\?q=(.+)\//
 adsWithLinkExtract.each do |ad|
   if ad.attribute('href')&.value.present?
-  adsWithLink << ad.match(pattern_g)[1]
+    attr = ad.attribute('href').value
+    if attr.match(pattern_g).nil?
+      if attr.match(pattern_yt)
+        adsWithLink << attr
+      end
+    else
+      adsWithLink << attr.match(pattern_g)[1]
+    end
   end
 end
-puts "hello"
 puts adsWithLink.count
 puts adsWithLink.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
-
-# pry(main)> pattern = /url\?q=(.+)/
-# => /url\?q=(.+)/
-# [18] pry(main)> ad.match(pattern)
-# => #<MatchData
-#  "url?q=https://cloudinary.com/%3Futm_source%3Dgoogle%26utm_medium%3Dcpc%26utm_campaign%3DRbrand%26utm_content%3D492438439811%26utm_term%3Dcloudinary&usg=AOvVaw2LuO3xOVxMHk9eohvE9sg0"
-#  1:"https://cloudinary.com/%3Futm_source%3Dgoogle%26utm_medium%3Dcpc%26utm_campaign%3DRbrand%26utm_content%3D492438439811%26utm_term%3Dcloudinary&usg=AOvVaw2LuO3xOVxMHk9eohvE9sg0">
-# [19] pry(main)> ad.match(pattern)[1]
-# => "https://cloudinary.com/%3Futm_source%3Dgoogle%26utm_medium%3Dcpc%26utm_campaign%3DRbrand%26utm_content%3D492438439811%26utm_term%3Dcloudinary&usg=AOvVaw2LuO3xOVxMHk9eohvE9sg0"
-# [20] pry(main)> test = ["a", "b", "c", "a"]
-# => ["a", "b", "c", "a"]
-# [21] pry(main)> test.group_by(&:itself)
-# => {"a"=>["a", "a"], "b"=>["b"], "c"=>["c"]}
-# [22] pry(main)> test.group_by(&:itself).transform_values { |value| value.count }
-# => {"a"=>2, "b"=>1, "c"=>1}
