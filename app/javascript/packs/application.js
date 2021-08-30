@@ -29,6 +29,7 @@ import { initAutoFilter } from '../components/data_ownership_toggle';
 import { dataInsightCard } from "../pages/datasource";
 import { initNavbar } from "../components/navbar";
 import { initBottombar } from "../components/bottombar"
+import { initPopover } from "../components/popover"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -38,4 +39,5 @@ document.addEventListener('turbolinks:load', () => {
   dataInsightCard();
   initNavbar();
   initBottombar();
+  initPopover();
 });
