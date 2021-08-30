@@ -1,3 +1,13 @@
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
 .long-button {
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
@@ -85,10 +95,17 @@
   color: #7551F3;
   font-size: 12px;
   font-weight: 600;
+<<<<<<< HEAD
 
   &:active {
     color: white;
     background-color: #7551F3;
+=======
+  .button_to {
+    input:disabled {
+      opacity: 0.3;
+    }
+>>>>>>> d6fa3e3cdbcee6297d8659c90e22652e54e8f19d
   }
 }
 
@@ -106,6 +123,13 @@
   font-weight: 600;
 }
 
+.buttontext {
+  cursor: pointer;
+  color: #7551F3;
+  font-size: 15px;
+  font-weight: 600;
+}
+
 #buttoncontrol {
   position: absolute;
   right: 10px;
@@ -115,4 +139,11 @@
   font-size: 15px;
   z-index: 6;
   font-weight: 600;
+}
+
+#button-info {
+  color: #7551F3;
+  &:active {
+    color: black;
+  }
 }
