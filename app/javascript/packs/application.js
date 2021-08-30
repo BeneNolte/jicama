@@ -41,10 +41,7 @@ document.addEventListener('turbolinks:load', () => {
   dataInsightCard();
   initNavbar();
   initBottombar();
-<<<<<<< HEAD
   initMapbox();
   initFlatpickr();
-=======
   initPopover();
->>>>>>> d4339344ad7b99d22b418638c73b8c9452700a78
 });

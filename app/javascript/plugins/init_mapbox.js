@@ -14,10 +14,18 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10',
-      center: [2.3488, 48.8534],
-      zoom: 10
+      style: 'mapbox://styles/mapbox/streets-v10'
+      // center: [2.3488, 48.8534],
+      // zoom: 10
     });
+
+    map.flyTo({
+      center: [2.3488, 48.8534],
+      zoom: 10,
+      duration: 7000,
+      essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
+
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window);
