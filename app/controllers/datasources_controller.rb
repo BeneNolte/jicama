@@ -25,7 +25,7 @@ class DatasourcesController < ApplicationController
     @youtube_video_titles = YoutubeVideoTitle.where(datasource_id: @datasource.id)
 
 
-    @locations = Location.all
+    @locations = current_user.locations
     @markers = @locations.map do |location|
       {
         lat: location.latitude,

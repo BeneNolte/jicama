@@ -78,19 +78,18 @@
           <%# when the user click on a insight %>
           <div class="insights-display opacity">
             <div class="displays">
-              <div class="insights" id="locations-insights">
+              <div class="insights-map" id="locations-insights">
                 <div>
                   <h4 class="purpletitle">locations</h4>
-                  <div class="scrollable">
 
-                    <%# START : adding map to show user's locations %>
-                    <div id="map"
-                      style="width: 100%; height: 600px;"
-                      data-markers="<%= @markers.to_json %>"
-                      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-                    </div>
-                    <%# END : adding map to show user's locations %>
+                  <%# START : adding map to show user's locations %>
+                  <div id="map"
+                    style="width: 100%; height: 600px;"
+                    data-markers="<%= @markers.to_json %>"
+                    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
                   </div>
+                  <%# END : adding map to show user's locations %>
+
                 </div>
               </div>
               <div class="insights" id="interests-insights">

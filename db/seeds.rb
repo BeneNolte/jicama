@@ -248,13 +248,16 @@ dateExtracts.each do |dateExtract|
   end
 end
 
-p locations
+
 
 puts "Creating Bene's Maps location seeds"
-Location.create(
-  latitude: locations[0][0],
-  longitude: locations[0][1],
-  name: locations[0][2],
-  timestamp: locations[0][3]
-)
+locations.each do |location|
+  Location.create(
+    latitude: location[0],
+    longitude: location[1],
+    name: location[2],
+    timestamp: location[3],
+    datasource: google
+  )
+end
 puts "Finished!"

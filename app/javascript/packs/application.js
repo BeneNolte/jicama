@@ -20,6 +20,7 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
+import { initMapbox } from '../plugins/init_mapbox';
 
 // Internal imports
 import { initAutoFilter } from '../components/data_ownership_toggle';
@@ -38,4 +39,5 @@ document.addEventListener('turbolinks:load', () => {
   dataInsightCard();
   initNavbar();
   initBottombar();
+  initMapbox();
 });
