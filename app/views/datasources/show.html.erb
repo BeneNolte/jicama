@@ -82,6 +82,14 @@
                 <div>
                   <h4 class="purpletitle">locations</h4>
                   <div class="scrollable">
+
+                    <%# START : adding map to show user's locations %>
+                    <div id="map"
+                      style="width: 100%; height: 600px;"
+                      data-markers="<%= @markers.to_json %>"
+                      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+                    </div>
+                    <%# END : adding map to show user's locations %>
                   </div>
                 </div>
               </div>

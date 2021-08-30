@@ -23,5 +23,14 @@ class DatasourcesController < ApplicationController
     @chrome_visited_links = ChromeVisitedLink.where(datasource_id: @datasource.id)
     @youtube_video_channels = YoutubeVideoChannel.where(datasource_id: @datasource.id)
     @youtube_video_titles = YoutubeVideoTitle.where(datasource_id: @datasource.id)
+
+
+    @locations = Location.all
+    @markers = @locations.map do |location|
+      {
+        lat: location.latitude,
+        lng: location.longitude
+      }
+    end
   end
 end
