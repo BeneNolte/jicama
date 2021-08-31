@@ -32,6 +32,7 @@ import { dataInsightCard } from "../pages/datasource";
 import { initUpdateNavbarOnScroll } from "../components/navbar";
 import { initBottombar } from "../components/bottombar"
 import { initPopover } from "../components/popover"
+import { initSweetalert } from "../plugins/sweetalert"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -44,4 +45,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initFlatpickr();
   initPopover();
+  initSweetalert();
 });
