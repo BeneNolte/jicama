@@ -8,26 +8,6 @@ button, input[type="submit"], input[type="reset"] {
 	outline: inherit;
 }
 
-.long-button {
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  padding: 15px;
-  background-color: white;
-  display: flex;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0px;
-  i {
-    color: #7551F3;
-    font-size: 25px;
-  }
-  h4 {
-    margin-bottom: 0;
-    margin-left: 8px;
-  }
-}
-
 .transp-button {
   background-color: transparent;
   height: 50px;
@@ -130,9 +110,20 @@ button, input[type="submit"], input[type="reset"] {
   font-weight: 600;
 }
 
-#button-info {
+.button-info-purple {
   color: #7551F3;
   &:active {
     color: black;
   }
+}
+.button-info-white {
+  color: white;
+  &:active {
+    color: black;
+  }
+}
+#info-control {
+  position: absolute;
+  right: 30px;
+  top: 150px;
 }
