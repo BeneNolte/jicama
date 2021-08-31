@@ -37,8 +37,10 @@ class DataOwnershipsController < ApplicationController
   def filter
     @datasource = Datasource.find_by(name: "Google")
     current_user.auto_filter!
+    @datasource.update_score
+    @datasource.update_value
     skip_authorization
-    redirect_to datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), alert: "Congratulations !! We restricted the access of your data and send emails to the companies that have your data according to your preferences"
+    redirect_to datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor", autofilter: true)
   end
 
   private
@@ -47,4 +49,3 @@ class DataOwnershipsController < ApplicationController
     params.require(:data_ownership).permit(:status, :type_of_ownership)
   end
 end
-

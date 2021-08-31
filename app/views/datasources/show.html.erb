@@ -113,14 +113,24 @@
                   </div>
                 </div>
               </div>
+
               <div class="insights" id="ads-insights">
                 <div>
+
+                <div class="card-boxless">
+                    <p class="subtitle">Top clicked ads</p>
+                    <% @clicked_advertisements.first(5).each do |ad| %>
+                      <div class="content">
+                        <p class="m-0 mr-5"><%= ad.link %></p>
+                        <p class="m-0"><%= ad.count %></p>
+                      </div>
+                    <% end %>
+                  </div>
 
                   <div class="scrollable">
                   </div>
                 </div>
               </div>
-
 
               <div class="insights" id="yt-insights">
                 <div>

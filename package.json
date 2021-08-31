@@ -9,9 +9,10 @@
     "bootstrap": "4.6",
     "flatpickr": "^4.6.9",
     "jquery": "^3.6.0",
-    "midnight.js": "^1.1.1",
     "mapbox-gl": "^2.4.1",
+    "midnight.js": "^1.1.1",
     "popper.js": "^1.16.1",
+    "sweetalert": "^2.1.2",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"

@@ -1,5 +1,9 @@
+.home body {
+  background-color: white;
+}
+
 .banner {
-  height: 90vh;
+  height: 100vh;
   padding: 105px 0px;
   display: flex;
   flex-direction: column;
@@ -147,7 +151,7 @@
 
 .box-sizing {
   margin: 5px 0px;
-  padding: 50px 60px;
+  padding: 95px 60px 110px 60px;
 }
 .box-sizing-white {
   margin: 5px 0px;
