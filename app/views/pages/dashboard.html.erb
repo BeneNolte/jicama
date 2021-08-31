@@ -101,11 +101,13 @@
   <div class="carousel">
     <div class="datasource-selection">
       <%= link_to datasource_path(@google) do %>
-        <div class="<%= 'non-downloaded-style' if @google.downloaded == false %> logo-design">
+        <div class="logo-design">
           <%= cl_image_tag("jicama/google_logo.png") %>
         </div>
       <% end %>
-      <div class="<%= 'non-downloaded-style' if @facebook.downloaded == false %> logo-design">
+
+      <!-- Button trigger modal -->
+      <div class="logo-design" data-toggle="modal" data-target="#datasourceModal">
         <div class="logo-plus"><i class="fas fa-plus"></i></div>
       </div>
     </div>
@@ -114,4 +116,21 @@
 </div>
 
 <%= render 'shared/bottombar', datasource: @google %>
+
+<!-- Modal -->
+<div class="modal fade" id="datasourceModal" tabindex="-1" aria-labelledby="datasourceModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="fatpurpletitle" id="datasourceModalLabel">Link a datasource to Jicama</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'datasources' %>
+      </div>
+    </div>
+  </div>
+</div>
 
