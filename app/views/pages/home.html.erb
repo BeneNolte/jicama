@@ -2,7 +2,7 @@
 <div class="banner">
     <%= image_tag "jicama-logo-white.png", class: "logo-sizing", style:"display: block; margin-bottom: 10px; margin-top:80px;" %>
     <h3>Your data <br>privacy manager.</h3>
-    <h5 style="font-family: Roboto; color: #A5A5A5; font-size: 14px; font-weight: normal;">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
+    <h5 style="font-family: Roboto; color: #A5A5A5; font-size: 15px; font-weight: normal;">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
 
     <% if user_signed_in? == false %>
       <%= link_to "Join now", new_user_session_path, class: "short-button" %>

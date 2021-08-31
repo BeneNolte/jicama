@@ -1,27 +1,15 @@
 <% if alert %>
   <% if devise_controller? %>
-    <div class="alert" style="top: 113px;" role="alert">
+    <div class="alert" style="bottom: 90px;" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <p class="mb-0"><%= alert %></p>
-    </div>
-  <% else %>
-    <div class="alert" style="bottom: 110px;" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <p><%= alert %></p>
-      <p style="margin-bottom: 0px; font-weight: 500;">Your privacy score has improved !</p>
-      <a href='/dashboard' class='buttontext' style="font-size: 20px;">Go to dashboard</a>
     </div>
   <% end %>
 <% end %>
 
 <% if notice %>
   <% if devise_controller? %>
-    <div class="alert notice-flash" style="top: 113px;" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <p class="mb-0"><%= notice %></p>
-    </div>
-  <% else %>
-    <div class="alert notice-flash" style="bottom: 110px;" role="alert">
+    <div class="alert notice-flash" style="top: 70px;" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <p class="mb-0"><%= notice %></p>
     </div>
