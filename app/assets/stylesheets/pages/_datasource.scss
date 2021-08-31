@@ -136,7 +136,7 @@
   z-index: 4;
 }
 
-.rectangle-container {
+.rectangle-container-horizontal {
   width: 250px;
   height: 5px;
   background-color: lightgrey;
@@ -144,8 +144,24 @@
   border-radius: 6px;
 }
 
-.rectangle-fill  {
+.rectangle-fill-horizontal  {
   height: 5px;
+  background-color: $jicama-purple;
+  border-radius: 6px;
+  border: 1px solid $jicama-purple;
+}
+
+.rectangle-container-vertical {
+  width: 50px;
+  height: 150px;
+  background-color: lightgrey;
+  // border: 1px solid $jicama-purple;
+  border-radius: 6px;
+  margin-right: 5px;
+}
+
+.rectangle-fill-vertical  {
+  width: -50px;
   background-color: $jicama-purple;
   border-radius: 6px;
   border: 1px solid $jicama-purple;
@@ -188,4 +204,10 @@
   border: 2px solid $jicama-purple;
   padding: 20px;
   border-radius: 50%;
+}
+
+.title {
+  a {
+
+  }
 }

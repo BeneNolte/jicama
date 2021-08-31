@@ -81,12 +81,18 @@
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fas fa-search"></i></i></div>
                     <p class="subtitle">Top searched words</p>
-                    <% @chrome_search_words.first(10).each do |word| %>
-                      <div class="content">
-                        <p class="m-0 mr-5"><%= word.word %></p>
-                        <p class="m-0"><%= word.count %></p>
-                      </div>
-                    <% end %>
+                    <div class="content">
+                      <% @chrome_search_words.first(3).each do |word| %>
+                        <div class="title">
+                          <p>"<%= word.word %>"</p>
+                            <div class="rectangle-container-vertical">
+                              <div class="rectangle-fill-vertical" style="height: <%=(word.count*100)/@chrome_search_words.first.count %>%">
+                              </div>
+                            </div>
+                          <p><%= word.count %></p>
+                        </div>
+                      <% end %>
+                    </div>
                   </div>
 
                   <div class="card-boxless">
@@ -95,8 +101,8 @@
                       <div class="content">
                         <div class="title">
                           <p class="m-0 mr-5"><%= word.link %></p>
-                          <div class="rectangle-container">
-                            <div class="rectangle-fill" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
+                          <div class="rectangle-container-horizontal">
+                            <div class="rectangle-fill-horizontal" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
                             </div>
                           </div>
                         </div>
@@ -146,12 +152,12 @@
                     <% @youtube_video_channels.first(5).each do |channel| %>
                       <div class="content">
                         <div class="title">
-                          <p class="m-0 mr-5"><%= channel.title %></p>
-                            <div class="rectangle-container">
-                              <div class="rectangle-fill" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
-                              </div>
+                          <p class="m-0 mr-5"><%= link_to channel.title, channel.url, target: :_blank %></p>
+                          <div class="rectangle-container-horizontal">
+                            <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
                             </div>
                           </div>
+                        </div>
                         <p><%= channel.count %></p>
                       </div>
                     <% end %>
@@ -162,9 +168,9 @@
                     <p class="subtitle">Top watched videos</p>
                     <% @youtube_video_titles.first(3).each do |video| %>
                       <div class="content" style="display: block">
-                       <div class="conten">
+                       <div class="content">
                        <p><%= video.title %></p>
-                       <p><%= video.count %></p>
+                       <p>x<%= video.count %></p>
                        </div>
                         <div class="iframe-container">
                           <iframe width="560"
