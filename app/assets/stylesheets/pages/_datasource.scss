@@ -39,16 +39,36 @@
   text-align: center;
   overflow-y: auto;
   z-index: 5;
+  .card-boxless {
+    padding-top: 0px;
+  }
+  .content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    p {
+      font-weight: lighter;
+      text-align: left;
+      font-size: 14px;
+      margin-bottom: 0px;
+      align-self: flex-end;
+    }
+  }
 }
 
 .insights-map {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: calc(100% + 15px);
+  width: calc(100% + 30px);
   justify-content: center;
   text-align: center;
   z-index: 5;
   overflow: hidden;
+  display: block;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: -15px;
+  border-radius: 20px;
 }
 
 .scrollable {
@@ -114,28 +134,32 @@
   width: 250px;
   height: 15px;
   border: 1px solid $jicama-light-gray;
+  border-radius: 6px;
 }
 
-.rectangle-fill-1 {
-  width: 250px;
+.rectangle-fill  {
   height: 15px;
   background-color: black;
-}
-
-
-.rectangle-fill-2 {
-  width: 150px;
-  height: 15px;
-  background-color: black;
-}
-
-.rectangle-fill-3 {
-  width: 90px;
-  height: 15px;
-  background-color: black;
+  border-radius: 6px;
 }
 
 .video-score p {
   margin-bottom: 0px;
   font-weight: lighter;
+  border-radius: 6px;
+}
+
+.greysubtitle {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: black;
+  font-weight: normal;
+}
+
+#map {
+  height: 53vh;
+  width: 100%;
 }
