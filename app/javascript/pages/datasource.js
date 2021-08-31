@@ -3,8 +3,6 @@ const dataInsightCard = () => {
 
     const defaultDisplay = document.querySelector(".default-display");
     const insightsDisplay = document.querySelector(".insights-display");
-    const insightsTitle = document.getElementById("data-insights-title")
-    const buttonControl = document.getElementById("buttoncontrol")
   
     const insights = document.querySelectorAll(".insights")
   
@@ -18,19 +16,6 @@ const dataInsightCard = () => {
     const interestInsights = document.getElementById("interests-insights");
     const adInsights = document.getElementById("ads-insights");
     const ytInsights = document.getElementById("yt-insights");
-  
-    const insightsTitleLogic = () => {
-      if (defaultDisplay.classList.contains("opacity")) {
-        insightsTitle.style.color = "white";
-        buttonControl.style.color = "white";
-        // line below doesn't work!!
-        buttonControl.setAttribute('disabled', true);
-      } else {
-        insightsTitle.style.color = "#A5A5A5";
-        buttonControl.style.color = "#7551F3";
-        buttonControl.setAttribute('disabled', false);
-      }
-    }
   
     const deleteInsightsLogic = () => {
       insights.forEach((insight) => {
@@ -46,7 +31,6 @@ const dataInsightCard = () => {
       interests.classList.remove("current");
       ads.classList.remove("current");
       youtubeChannels.classList.remove("current");
-      insightsTitleLogic();
     });
   
     locations.addEventListener("click", () => {
@@ -63,7 +47,6 @@ const dataInsightCard = () => {
         insightsDisplay.classList.remove("opacity");
         defaultDisplay.classList.add("opacity");
       }
-      insightsTitleLogic();
     });
   
     interests.addEventListener("click", () => {
@@ -79,7 +62,6 @@ const dataInsightCard = () => {
         insightsDisplay.classList.remove("opacity");
         defaultDisplay.classList.add("opacity");
       }
-      insightsTitleLogic();
     });
   
     ads.addEventListener("click", () => {
@@ -95,7 +77,6 @@ const dataInsightCard = () => {
         insightsDisplay.classList.remove("opacity");
         defaultDisplay.classList.add("opacity");
       }
-      insightsTitleLogic();
     });
   
     youtubeChannels.addEventListener("click", () => {
@@ -111,7 +92,6 @@ const dataInsightCard = () => {
         insightsDisplay.classList.remove("opacity");
         defaultDisplay.classList.add("opacity");
       }
-      insightsTitleLogic();
     });
 
   }
