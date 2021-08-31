@@ -48,6 +48,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 5px;
     p {
       font-weight: lighter;
       text-align: left;
@@ -134,15 +135,17 @@
 
 .rectangle-container {
   width: 250px;
-  height: 15px;
-  border: 1px solid $jicama-light-gray;
+  height: 5px;
+  background-color: lightgrey;
+  // border: 1px solid $jicama-purple;
   border-radius: 6px;
 }
 
 .rectangle-fill  {
-  height: 15px;
-  background-color: black;
+  height: 5px;
+  background-color: $jicama-purple;
   border-radius: 6px;
+  border: 1px solid $jicama-purple;
 }
 
 .video-score p {
@@ -154,11 +157,6 @@
 .greysubtitle {
   margin-top: 0px;
   margin-bottom: 5px;
-}
-
-.subtitle {
-  color: black;
-  font-weight: normal;
 }
 
 #map {
