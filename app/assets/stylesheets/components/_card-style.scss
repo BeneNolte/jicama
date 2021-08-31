@@ -52,7 +52,7 @@
 }
 
 .profile-img {
-  background-image: url(profile.svg);
+  background-image: asset-url('profile.svg');
   background-size: cover;
   height: 160px;
   width: 201px;
@@ -62,7 +62,7 @@
 }
 
 .value-img {
-  background-image: url(value.svg);
+  background-image: asset-url('value.svg');
   background-size: cover;
   height: 136px;
   width: 200px;
@@ -72,7 +72,7 @@
 }
 
 .control-img {
-  background-image: url(control.svg);
+  background-image: asset-url('control.svg');
   background-size: cover;
   background-position: right 35% bottom -3%;
   height: 160px;
