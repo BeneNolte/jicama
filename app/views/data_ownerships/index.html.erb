@@ -5,26 +5,18 @@
       <div class="col-12 col-lg-6">
         <h4 class="app-header greysubtitle">Privacy control</h4>
         <div class="card-purple" id="datacontrol-purple-card">
+          <i class="fab fa-google" style="font-size: 24px; color: white;"></i>
           <div class="d-flex">
-            <i class="fab fa-google mr-3" style="font-size: 24px; color: white;"></i>
-            <h5 class="whitetitle my-0" style="align-self: center; padding-top: 1px;">Auto-Filter</h5>
-          </div>
-          <div class="d-flex">
-            <% if params[:auto_filter] == "0" %>
-              <%= link_to "Adjust", datasource_path(@datasource), class: "buttonpurple" %>
-            <% else %>
-            <% end %>
-            <div class="custom-control custom-switch">
-              <%= form_with url: filter_data_ownerships_path, id:"auto-filter-form", method: :patch do |f| %>
+            <div class="d-none">
+              <%= form_with url: filter_data_ownerships_path, method: :patch do |f| %>
               <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
-                <%= f.check_box :auto_filter, class:"custom-control-input", id:"customSwitch1", value: params[:auto_fitler]  %>
-                  <label class="custom-control-label" for="customSwitch1"></label>
-                <%= f.submit "auto filter", class: "d-none", id: "auto-submit" %>
+                <%= f.submit "auto filter", id: "auto-submit" %>
               <% end %>
             </div>
+            <div class="small-button-white mr-2" id="auto-filter">Auto-filter</div>
            
             <!-- Button trigger modal -->
-            <div data-toggle="modal" data-target="#exampleModal" class= "button-info-white" style= "margin-top: 1px;" >
+            <div data-toggle="modal" data-target="#exampleModal" class= "button-info-white" style= "margin-top: 4px;" >
               <i class="fas fa-cog"></i>
             </div>
 
