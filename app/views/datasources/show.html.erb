@@ -1,11 +1,10 @@
 <%= render 'shared/navbar' %>
 
 <div class="content-wrapper-with-bottombar">
-  <div class="container", style="height: 75%;">
+  <div class="container", style="height: 78%;">
     <div class="row" style="height: 100%; padding-bottom: 10px;">
       <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
-        <h1 class="app-header"><%= @datasource.name.capitalize %> Data</h1>
-        <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "mr-3", id: "buttoncontrol" %>
+        <h1 class="app-header"></h1>
 
         <div class="displays">
           <%# default display %>
@@ -33,10 +32,11 @@
                   <span style="width: <%= @datasource.score %>%; border: 1px solid #7551F3;"></span>
                 </div>
                 <p class="greytext">Privacy score</p>
+                <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button mt-3" %>
               </div>
 
               <h4 class="purpletitle">Your <%= @datasource.name%> Profile</h4>
-              <div class="datasource-content" style="padding-bottom: 10px">
+              <div class="datasource-content" style="padding-bottom: 10px; padding-top: 10px;">
                 <p class="greysubtitle">Ads Clicked</p>
                 <p class="greysubtitle">405</p>
               </div>
