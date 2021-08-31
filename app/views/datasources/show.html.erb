@@ -63,7 +63,6 @@
               <div class="insights insights-map" id="locations-insights">
                 <div>
 
-                  <h4 class="purpletitle">Location history</h4>
                     <div class="card-boxless", style="border-bottom: 1px solid grey">
                     <%= render "shared/searchbar" %>
                     <%# START : adding map to show user's locations %>
@@ -79,7 +78,7 @@
               </div>
               <div class="insights" id="interests-insights">
                 <div>
-                  <h4 class="purpletitle">Search History</h4>
+                  <i class="fas fa-search"></i>
                   <div class="card-boxless", style="border-bottom: 1px solid grey">
                     <p class="greysubtitle" style="margin-bottom: 0px">Top searched words</p>
                     <% @chrome_search_words.first(10).each do |word| %>
