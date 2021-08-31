@@ -31,6 +31,7 @@ class DataOwnershipsController < ApplicationController
     end
     @data_ownership.datasource.update_score
     @data_ownership.datasource.update_value
+
   end
 
   def filter

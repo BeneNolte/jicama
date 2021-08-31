@@ -61,9 +61,9 @@
             <div class="displays">
               <div class="insights insights-map" id="locations-insights">
                 <div>
-
-                  <h4 class="purpletitle">Location history</h4>
-                    <div class="card-boxless" style="padding: 0px">
+                   
+                  <div class="card-boxless" style="padding: 0px; position: relative;  ">
+                    <div class="insights-logo" style="left: 15px;"><i class="fas fa-map-marker-alt"></i></div>
                     <%= render "shared/searchbar" %>
                     <%# START : adding map to show user's locations %>
                     <div id="map"
@@ -77,8 +77,9 @@
               </div>
               <div class="insights" id="interests-insights">
                 <div>
-                  <h4 class="purpletitle">Search History</h4>
+
                   <div class="card-boxless">
+                    <div class="insights-logo"><i class="fas fa-search"></i></i></div>
                     <p class="subtitle">Top searched words</p>
                     <% @chrome_search_words.first(10).each do |word| %>
                       <div class="content">
@@ -104,7 +105,7 @@
               </div>
               <div class="insights" id="ads-insights">
                 <div>
-                  <h4 class="purpletitle">Advertisements</h4>
+
                   <div class="scrollable">
                   </div>
                 </div>
@@ -113,8 +114,9 @@
 
               <div class="insights" id="yt-insights">
                 <div>
-                  <h4 class="purpletitle">Youtube</h4>
+
                   <div class="card-boxless">
+                    <div class="insights-logo"><i class="fab fa-youtube"></i></i></div>
                     <p class="subtitle">Top watched channels</p>
 
                     <% @youtube_video_channels.first(5).each do |channel| %>
