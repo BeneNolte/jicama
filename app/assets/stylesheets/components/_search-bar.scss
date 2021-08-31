@@ -1,8 +1,12 @@
+.search {
+  width: 85%;
+}
+
 .search-bar {
   display: flex;
   border: 1px solid $jicama-light-gray;
   border-radius: 30px;
-  width: 85%;
+  width: 100%;
   justify-items: center;
   padding: 5px;
   place-content: space-around;

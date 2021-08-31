@@ -39,7 +39,6 @@
 
 .insights {
   position: absolute;
-  display: flex;
   height: 100%;
   width: 100%;
   justify-content: center;
@@ -59,9 +58,22 @@
       text-align: left;
       font-size: 14px;
       margin-bottom: 0px;
+      align-self: baseline;
+    }
+    #link-count {
       align-self: flex-end;
     }
   }
+  .title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  margin-right: 10px;
+  #center {
+    align-self: center;
+  }
+}
 }
 
 .insights-map {
@@ -137,7 +149,7 @@
 }
 
 .rectangle-container-horizontal {
-  width: 250px;
+  width: 100%;
   height: 5px;
   background-color: lightgrey;
   // border: 1px solid $jicama-purple;
@@ -152,19 +164,21 @@
 }
 
 .rectangle-container-vertical {
+  position: relative;
   width: 50px;
   height: 150px;
   background-color: lightgrey;
   // border: 1px solid $jicama-purple;
   border-radius: 6px;
-  margin-right: 5px;
 }
 
 .rectangle-fill-vertical  {
-  width: -50px;
+  position: absolute;
   background-color: $jicama-purple;
   border-radius: 6px;
   border: 1px solid $jicama-purple;
+  bottom: 0;
+  width: 100%;
 }
 
 .video-score p {
