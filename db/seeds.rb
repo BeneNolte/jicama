@@ -548,12 +548,11 @@ html_ads_file = File.open('./db/TakeoutBene/My Activity/Ads/MyActivity.html')
 html_ads_doc = Nokogiri::HTML(html_ads_file)
 
 ads_extract = html_ads_doc.css("div.outer-cell")
-puts ads_extract.count
+ads_extract_count = ads_extract.count
 
 #--> MOST CLICKED ADS
 
 ads_with_link_extract = html_ads_doc.css("div.content-cell a")
-puts ads_with_link_extract.first
 
 ads_with_link = []
 # pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)(.+)/
@@ -572,5 +571,5 @@ ads_with_link_extract.each do |ad|
     end
   end
 end
-puts ads_with_link.count
-puts ads_with_link.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+ads_with_link_count = ads_with_link.count
+ads_with_link_ranking = ads_with_link.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
