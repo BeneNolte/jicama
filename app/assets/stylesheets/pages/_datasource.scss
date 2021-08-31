@@ -92,7 +92,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #7551F3;
+  background-color: $jicama-purple;
   i {
     color: white;
     font-size: 25px;
@@ -107,4 +107,35 @@
   transition: all 0.55s ease;
   opacity: 0;
   z-index: 4;
+}
+
+
+.rectangle-container {
+  width: 250px;
+  height: 15px;
+  border: 1px solid $jicama-light-gray;
+}
+
+.rectangle-fill-1 {
+  width: 250px;
+  height: 15px;
+  background-color: black;
+}
+
+
+.rectangle-fill-2 {
+  width: 150px;
+  height: 15px;
+  background-color: black;
+}
+
+.rectangle-fill-3 {
+  width: 90px;
+  height: 15px;
+  background-color: black;
+}
+
+.video-score p {
+  margin-bottom: 0px;
+  font-weight: lighter;
 }
