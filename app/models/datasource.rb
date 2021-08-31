@@ -14,21 +14,29 @@ class Datasource < ApplicationRecord
   def update_score
     # Calculate score of datasources (temporary)
     return if self.size.nil?
-    accessors = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["accessor","buyer"]).count
-    restricted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["restricted"]).count
-    deleted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["deleted"]).count
 
-    companies = accessors + restricted + deleted
-    if companies == 0
-      access_points = 75
-    else
-      access_points = 75 / companies
+    company_points = []
+    self.data_ownerships.each do |data_ownership|
+      company_points << data_ownership.company.rating
     end
+    company_point = 75.0 / company_points.sum
 
-    if self.size <= 1250
-      score = (self.size * 0.02) + (75 - (accessors *  access_points))
+    restricted_points = []
+    self.data_ownerships.each do |data_ownership|
+      restricted_points << data_ownership.company.rating if data_ownership.type_of_ownership == "restricted"
+    end
+    restricted_sum = restricted_points.sum
+
+    access_points = []
+    self.data_ownerships.each do |data_ownership|
+      access_points << data_ownership.company.rating if data_ownership.type_of_ownership == "accessor"
+    end
+    access_sum = access_points.sum
+
+    if self.size <= 25000
+      score = (self.size * 0.001) + (75 - (access_sum * company_point  + restricted_sum * company_point * 0.25))
     else
-      score = 25 + (75 - (accessors *  access_points))
+      score = 25 + (75 - (access_sum * company_point  + restricted_sum * company_point * 0.25))
     end
     self.score = score
     self.save
@@ -37,17 +45,25 @@ class Datasource < ApplicationRecord
   def update_value
     # Calculate score of datasources (temporary)
     return if self.size.nil?
-    puts "hihi"
-    accessors = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["accessor","buyer"]).count
-    restricted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["restricted"]).count
     deleted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["deleted"]).count
 
-    initial = (self.size / 400) * 860.63
-    deletion_value = initial / (accessors + restricted + deleted)
-    value = initial - (deleted * deletion_value)
+    company_points = []
+    self.data_ownerships.each do |data_ownership|
+      company_points << data_ownership.company.rating
+    end
+    company_points_sum = company_points.sum
+
+    delete_points = []
+    self.data_ownerships.each do |data_ownership|
+      delete_points << data_ownership.company.rating if data_ownership.type_of_ownership == "deleted"
+    end
+    delete_sum = delete_points.sum
+
+    initial = (self.size / 4300) * 860.63
+    deletion_value = (initial * 0.2) / company_points_sum
+    value = initial - (deletion_value * delete_sum)
     self.value = value
     self.save
-    puts value
     return value
   end
 end
