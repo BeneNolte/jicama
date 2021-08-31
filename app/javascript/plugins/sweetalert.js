@@ -8,7 +8,7 @@ const initSweetalert = () => {
     });
   }
 
-  const swalButton = document.getElementById("customSwitch1");
+  const swalButton = document.getElementById("auto-filter");
   if (swalButton) { // protect other pages
     swalButton.addEventListener('click', () => {
       swal({
