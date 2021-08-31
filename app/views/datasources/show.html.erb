@@ -93,7 +93,13 @@
                     <p class="subtitle">Top visited links</p>
                     <% @chrome_visited_links.first(5).each do |word| %>
                       <div class="content">
-                        <p class="m-0 mr-5"><%= word.link %></p>
+                        <div class="title">
+                          <p class="m-0 mr-5"><%= word.link %></p>
+                          <div class="rectangle-container">
+                            <div class="rectangle-fill" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
+                            </div>
+                          </div>
+                        </div>
                         <p class="m-0"><%= word.count %></p>
                       </div>
                     <% end %>
@@ -146,10 +152,22 @@
 
                   <div class="card-boxless">
                     <p class="subtitle">Top watched videos</p>
-                    <% @youtube_video_titles.first(5).each do |video| %>
-                      <div class="content">
-                        <p class="m-0 mr-5"><%= video.title %></p>
-                        <p class="m-0"><%= video.count %></p>
+                    <% @youtube_video_titles.first(3).each do |video| %>
+                      <div class="content" style="display: block">
+                       <div class="conten">
+                       <p><%= video.title %></p>
+                       <p><%= video.count %></p>
+                       </div>
+                        <div class="iframe-container">
+                          <iframe width="560"
+                                  height="315"
+                                  src="https://www.youtube.com/embed/<%= video.url.match(/=(.*)/)[1]%>"
+                                  title="YouTube video player"
+                                  frameborder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowfullscreen>
+                          </iframe>
+                        </div>
                       </div>
                     <% end %>
                   </div>
