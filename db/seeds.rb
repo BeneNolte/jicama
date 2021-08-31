@@ -21,32 +21,6 @@ user = User.new(email: "test@gmail.com", password: "123456", first_name: "Jicama
 user.save!
 puts 'Finished!'
 
-puts 'Creating 5 datasources'
-instagram = Datasource.new(name: "Instagram", user: User.all.last, downloaded: false)
-instagram.save!
-instagram.update_score
-instagram.update_value
-spotify= Datasource.new(name: "Spotify", user: User.all.last, downloaded: false)
-spotify.save!
-spotify.update_score
-spotify.update_value
-twitter = Datasource.new(name: "Twitter", user: User.all.last, downloaded: false)
-twitter.save!
-twitter.update_score
-twitter.update_value
-facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: false)
-facebook.save!
-facebook.update_score
-facebook.update_value
-google = Datasource.new(name: "Google", user: User.all.last, downloaded: true, size: 4300)
-google.save!
-google.update_score
-google.update_value
-
-file = URI.open('app/assets/images/Google.png')
-google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
-puts 'Finished!'
-
 
 puts 'Creating 20 companies'
 apple = Company.new(title: "Apple", url: "https://www.apple.com/", rating: 1, description: "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software, and online services.")
@@ -79,6 +53,23 @@ tesla = Company.new(title: "Tesla", url: "https://www.tesla.com/", rating: 2, de
 tesla.save!
 waltdisney = Company.new(title: "Walt Disney", url: "https://www.waltdisney.com/", rating: 1, description: Faker::Company.catch_phrase)
 waltdisney.save!
+puts 'Finished!'
+
+puts 'Creating 5 datasources'
+instagram = Datasource.new(name: "Instagram", user: User.all.last, downloaded: false)
+instagram.save!
+spotify= Datasource.new(name: "Spotify", user: User.all.last, downloaded: false)
+spotify.save!
+twitter = Datasource.new(name: "Twitter", user: User.all.last, downloaded: false)
+twitter.save!
+facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: false)
+facebook.save!
+google = Datasource.new(name: "Google", user: User.all.last, downloaded: true, size: 4300)
+google.save!
+
+
+file = URI.open('app/assets/images/Google.png')
+google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
 puts 'Finished!'
 
 puts 'Creating data ownerships'
