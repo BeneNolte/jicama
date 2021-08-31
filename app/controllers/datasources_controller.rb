@@ -19,10 +19,10 @@ class DatasourcesController < ApplicationController
     @score = @datasource.score
 
 
-    @chrome_search_words = ChromeSearchWord.where(datasource_id: @datasource.id)
-    @chrome_visited_links = ChromeVisitedLink.where(datasource_id: @datasource.id)
-    @youtube_video_channels = YoutubeVideoChannel.where(datasource_id: @datasource.id)
-    @youtube_video_titles = YoutubeVideoTitle.where(datasource_id: @datasource.id)
+    @chrome_search_words = ChromeSearchWord.where(datasource_id: @datasource.id).limit(50)
+    @chrome_visited_links = ChromeVisitedLink.where(datasource_id: @datasource.id).limit(50)
+    @youtube_video_channels = YoutubeVideoChannel.where(datasource_id: @datasource.id).limit(50)
+    @youtube_video_titles = YoutubeVideoTitle.where(datasource_id: @datasource.id).limit(50)
 
     @clicked_advertisements = Advertisement.where(datasource_id: @datasource.id).sort_by(&:count).reverse!
 
