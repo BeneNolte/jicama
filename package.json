@@ -9,15 +9,8 @@
     "bootstrap": "4.6",
     "flatpickr": "^4.6.9",
     "jquery": "^3.6.0",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "midnight.js": "^1.1.1",
-=======
     "mapbox-gl": "^2.4.1",
->>>>>>> d6fa3e3cdbcee6297d8659c90e22652e54e8f19d
-=======
-    "mapbox-gl": "^2.4.1",
->>>>>>> d6fa3e3cdbcee6297d8659c90e22652e54e8f19d
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
