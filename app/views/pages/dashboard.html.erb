@@ -3,7 +3,7 @@
   <div class="container", style="height: 82%;">
     <div class="row" style="height: 100%; padding-bottom: 10px;">
       <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
-        <h1 class="app-header"></h1>
+        <h4 class="app-header greysubtitle">Dashboard</h4>
 
         <div class="card-purple">
           <div class="display-score d-flex">
@@ -18,7 +18,7 @@
             <% end %>
             <button type="button" 
                   style="color: white;"
-                  id= "button-info" 
+                  class= "button-info-white" 
                   data-trigger="focus" 
                   data-container="body" 
                   data-html="true"
@@ -39,15 +39,10 @@
           <p class="whitetext">Since September</p>
         </div>
 
-        <!-- Button trigger modal -->
-        <div class="long-button" data-toggle="modal" data-target="#exampleModal">
-          <i class="fab fa-get-pocket"></i>
-          <h4 class="purpletitle">Privacy cockpit</h4>
-        </div>
         <div class="d-flex justify-content-between my-1">
           <h4 class="greysubtitle">Data valuation</h4>
           <button type="button" 
-                  id= "button-info" 
+                  class= "button-info-purple" 
                   data-trigger="focus" 
                   data-container="body" 
                   data-html="true"
@@ -120,24 +115,3 @@
 
 <%= render 'shared/bottombar', datasource: @google %>
 
-
-
- <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="fatpurpletitle" id="exampleModalLabel">Privacy cockpit</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'button' %>
-      </div>
-      <div class="modal-footer">
-        <div class="buttonpurple" data-dismiss="modal">Save changes</div>
-      </div>
-    </div>
-  </div>
-</div>
