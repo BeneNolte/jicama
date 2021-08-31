@@ -56,6 +56,13 @@
       margin-bottom: 0px;
       align-self: flex-end;
     }
+
+
+    .greysubtitle {
+      margin-top: 0px;
+      margin-bottom: 5px;
+    }
+
   }
 }
 
@@ -101,7 +108,6 @@
   width: fit-content;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .data-insights-card {
@@ -152,11 +158,6 @@
   margin-bottom: 0px;
   font-weight: lighter;
   border-radius: 6px;
-}
-
-.greysubtitle {
-  margin-top: 0px;
-  margin-bottom: 5px;
 }
 
 #map {
