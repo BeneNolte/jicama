@@ -52,7 +52,6 @@
                 <p class="purpletitle"><%= @datasource.value.round(2)  %> €</p>
 
               </div>
-
             </div>
 
           </div>
@@ -64,11 +63,10 @@
                 <div>
 
                   <h4 class="purpletitle">Location history</h4>
-                    <div class="card-boxless", style="border-bottom: 1px solid grey">
+                    <div class="card-boxless" style="padding: 0px">
                     <%= render "shared/searchbar" %>
                     <%# START : adding map to show user's locations %>
                     <div id="map"
-                      style="width: 100%; height: 350px;"
                       data-markers="<%= @markers.to_json %>"
                       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
                     </div>
@@ -80,20 +78,20 @@
               <div class="insights" id="interests-insights">
                 <div>
                   <h4 class="purpletitle">Search History</h4>
-                  <div class="card-boxless", style="border-bottom: 1px solid grey">
-                    <p class="greysubtitle" style="margin-bottom: 0px">Top searched words</p>
+                  <div class="card-boxless">
+                    <p class="subtitle">Top searched words</p>
                     <% @chrome_search_words.first(10).each do |word| %>
-                      <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
+                      <div class="content">
                         <p class="m-0 mr-5"><%= word.word %></p>
                         <p class="m-0"><%= word.count %></p>
                       </div>
                     <% end %>
                   </div>
 
-                  <div class="card-boxless", style="border-bottom: 1px solid grey">
-                    <p class="greysubtitle" style="margin-bottom: 0px">Top visited links</p>
+                  <div class="card-boxless">
+                    <p class="subtitle">Top visited links</p>
                     <% @chrome_visited_links.first(5).each do |word| %>
-                      <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
+                      <div class="content">
                         <p class="m-0 mr-5"><%= word.link %></p>
                         <p class="m-0"><%= word.count %></p>
                       </div>
@@ -103,7 +101,6 @@
                   <div class="scrollable">
                   </div>
                 </div>
-
               </div>
               <div class="insights" id="ads-insights">
                 <div>
@@ -112,24 +109,33 @@
                   </div>
                 </div>
               </div>
+
+
               <div class="insights" id="yt-insights">
                 <div>
                   <h4 class="purpletitle">Youtube</h4>
-                  <div class="card-boxless", style="border-bottom: 1px solid grey">
-                    <p class="greysubtitle" style="margin-bottom: 0px">Top watched channels</p>
+                  <div class="card-boxless">
+                    <p class="subtitle">Top watched channels</p>
 
-                    <% @youtube_video_channels.first(10).each do |channel| %>
-                      <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
-                        <p class="m-0 mr-5"><%= channel.title %></p>
-                        <p class="m-0"><%= channel.count %></p>
+                    <% @youtube_video_channels.first(5).each do |channel| %>
+                      <div class="content">
+                        <div class="title">
+                          <p class="m-0 mr-5"><%= channel.title %></p>
+                            <div class="rectangle-container">
+                              <div class="rectangle-fill" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
+                              </div>
+                            </div>
+                          </div>
+                        <p><%= channel.count %></p>
                       </div>
                     <% end %>
                   </div>
 
-                  <div class="card-boxless", style="border-bottom: 1px solid grey">
-                    <p class="greysubtitle" style="margin-bottom: 0px">Top watched videos</p>
+
+                  <div class="card-boxless">
+                    <p class="subtitle" style="margin-bottom: 0px">Top watched videos</p>
                     <% @youtube_video_titles.first(5).each do |video| %>
-                      <div class="greytext", style="display: flex; justify-content: space-between; width: 100%">
+                      <div class="content">
                         <p class="m-0 mr-5"><%= video.title %></p>
                         <p class="m-0"><%= video.count %></p>
                       </div>
