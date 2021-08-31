@@ -7,7 +7,7 @@
 
         <div class="displays">
           <%# default display %>
-          <div class="default-display">
+          <div class="default-display <%= params[:start_date] ? "opacity" : "" %>">
             <h4 class="greysubtitle">Digital Footprint</h4>
 
             <div class="digital-footprint">
@@ -57,9 +57,9 @@
           </div>
 
           <%# when the user click on a insight %>
-          <div class="insights-display opacity">
+          <div class="insights-display <%= params[:start_date] ? "" : "opacity" %>">
             <div class="displays">
-              <div class="insights insights-map" id="locations-insights">
+              <div class="insights insights-map <%= params[:start_date] ? "" : "opacity" %>" id="locations-insights">
                 <div>
 
                   <div class="card-boxless" style="padding: 0px; position: relative;  ">
@@ -75,7 +75,8 @@
                   </div>
                 </div>
               </div>
-              <div class="insights" id="interests-insights">
+
+              <div class="insights opacity" id="interests-insights">
                 <div>
 
                   <div class="card-boxless">
@@ -116,7 +117,7 @@
                 </div>
               </div>
 
-              <div class="insights" id="ads-insights">
+              <div class="insights opacity" id="ads-insights">
                 <div>
 
                   <div class="card-boxless">
@@ -142,7 +143,7 @@
                 </div>
               </div>
 
-              <div class="insights" id="yt-insights" style="z-index: 4;">
+              <div class="insights opacity" id="yt-insights" style="z-index: 4;">
                 <div>
 
                   <div class="card-boxless">
@@ -173,6 +174,13 @@
                        <p>x<%= video.count %></p>
                        </div>
                         <div class="iframe-container">
+
+                        <!-- Uncomment to display the video picture only
+                        <%= link_to video.url do %>
+                          <img src="https://img.youtube.com/vi/<%= video.url.match(/=(.*)/)[1]%>/0.jpg" alt="">
+                        <% end %>
+                        -->
+
                           <iframe width="560"
                                   height="315"
                                   src="https://www.youtube.com/embed/<%= video.url.match(/=(.*)/)[1]%>"
@@ -203,12 +211,12 @@
   <div class="carousel">
     <div class="data-insights-container">
 
-      <div class="data-insights-card current" id="digital-footprint">
+      <div class="data-insights-card <%= params[:start_date] ? "" : "current" %>" id="digital-footprint">
         <i class="fas fa-shoe-prints" style="transform: rotate(-90deg)"></i>
         <h4 class="whitetitle mt-2 mb-0">Footprint</h4>
       </div>
 
-      <div class="data-insights-card" id="locations">
+      <div class="data-insights-card <%= params[:start_date] ? "current" : "" %>" id="locations">
         <i class="fas fa-map-marker-alt"></i>
         <h4 class="whitetitle mt-2 mb-0">Locations</h4>
       </div>
