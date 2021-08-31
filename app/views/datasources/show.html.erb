@@ -152,7 +152,7 @@
                     <% @youtube_video_channels.first(5).each do |channel| %>
                       <div class="content">
                         <div class="title">
-                          <p class="m-0 mr-5"><%= channel.title %></p>
+                          <p class="m-0 mr-5"><%= link_to channel.title, channel.url, target: :_blank %></p>
                           <div class="rectangle-container-horizontal">
                             <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
                             </div>
