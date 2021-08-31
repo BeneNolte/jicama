@@ -96,6 +96,7 @@ button, input[type="submit"], input[type="reset"] {
   color: #7551F3;
   font-size: 12px;
   font-weight: 600;
+  width: 75px;
 
   &:active {
     color: white;
@@ -126,17 +127,6 @@ button, input[type="submit"], input[type="reset"] {
   cursor: pointer;
   color: #7551F3;
   font-size: 15px;
-  font-weight: 600;
-}
-
-#buttoncontrol {
-  position: absolute;
-  right: 10px;
-  top: 75px;
-  cursor: pointer;
-  color: #7551F3;
-  font-size: 15px;
-  z-index: 6;
   font-weight: 600;
 }
 
