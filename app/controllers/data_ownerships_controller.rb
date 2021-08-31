@@ -23,11 +23,11 @@ class DataOwnershipsController < ApplicationController
     authorize @data_ownership
     @data_ownership.update(data_ownerships_params)
     if data_ownerships_params["type_of_ownership"] == "restricted"
-      redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor"), alert: "#{@data_ownership.company.title} has now a restricted access to your personal data"
+      redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor", dataprivacy: "restricted", company: @data_ownership.company.title)
     elsif data_ownerships_params["type_of_ownership"] == "deleted"
-      redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor"), alert: "An email has been sent to #{@data_ownership.company.title} to delete all the data they have on you"
+      redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor", dataprivacy: "deleted", company: @data_ownership.company.title)
     elsif data_ownerships_params["type_of_ownership"] == "accessor"
-      redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor"), notice: "#{@data_ownership.company.title} has now access to your data"
+      redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor", dataprivacy: "allowed", company: @data_ownership.company.title)
     end
     @data_ownership.datasource.update_score
     @data_ownership.datasource.update_value
@@ -40,7 +40,7 @@ class DataOwnershipsController < ApplicationController
     @datasource.update_score
     @datasource.update_value
     skip_authorization
-    redirect_to datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor", autofilter: true)
+    redirect_to datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor", dataprivacy: "filter")
   end
 
   private

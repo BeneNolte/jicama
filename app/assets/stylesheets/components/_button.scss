@@ -64,7 +64,7 @@ button, input[type="submit"], input[type="reset"] {
   }
 }
 
-.small-button {
+.small-button, .swal-button, .swal-button-confirm {
   background-color: white;
   cursor: pointer;
   padding: 5px 10px;

@@ -2,9 +2,28 @@ import swal from 'sweetalert';
 
 const initSweetalert = () => {
 
-  if (document.location.href.includes("autofilter=true")) {
-    swal("Your data privacy has improved!", {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+
+  if (document.location.href.includes("dataprivacy=filter")) {
+    swal("Auto-filter is activated, Your data privacy has improved!", {
       icon: "success",
+      buttons: false,
+    });
+  } else if (document.location.href.includes("dataprivacy=restricted")) {
+    swal(`${params.company} has now a restricted access to your personal data`, {
+      icon: "success",
+      buttons: false,
+    });
+  } else if (document.location.href.includes("dataprivacy=deleted")) {
+    swal(`An email has been sent to ${params.company} to delete all the data they have on you`, {
+      icon: "success",
+      buttons: false,
+    });
+  } else if (document.location.href.includes("dataprivacy=allowed")) {
+    swal(`${params.company} has now access to your data`, {
+      icon: "info",
+      buttons: false,
     });
   }
 
@@ -14,8 +33,6 @@ const initSweetalert = () => {
       swal({
         title: "Activate auto-filter?",
         text: "Once activated and according to your preferences, the access to your personal data will be automatically restricted and emails will be sent to make sure companies will delete your infos",
-        buttons: true,
-        dangerMode: true,
       })
       .then((willDelete) => {
         if (willDelete) {
