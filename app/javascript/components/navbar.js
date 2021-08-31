@@ -5,7 +5,7 @@ const initUpdateNavbarOnScroll = () => {
   const process = document.querySelector('.process-explanation-home');
   const statistics = document.querySelector('.statistics-home');
   const footer = document.querySelector('.footer');
-  console.log(banner.offsetHeight)
+
   if (navbar) {
     window.addEventListener('scroll', () => {
       if (window.scrollY >= 0 && window.scrollY < (banner.offsetHeight - navbar.offsetHeight)) {
