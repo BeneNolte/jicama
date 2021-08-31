@@ -17,7 +17,7 @@ YoutubeVideoTitle.destroy_all
 YoutubeVideoChannel.destroy_all
 
 puts 'Creating a user'
-user = User.new(email: "test@gmail.com", password: "123456", first_name: "Jicama", last_name: "Team")
+user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")
 user.save!
 puts 'Finished!'
 
@@ -38,7 +38,7 @@ facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: fal
 facebook.save!
 facebook.update_score
 facebook.update_value
-google = Datasource.new(name: "Google", user: User.all.last, downloaded: true, size: 400)
+google = Datasource.new(name: "Google", user: User.all.last, downloaded: true, size: 4290)
 google.save!
 google.update_score
 google.update_value
