@@ -40,7 +40,7 @@ class DataOwnershipsController < ApplicationController
     @datasource.update_score
     @datasource.update_value
     skip_authorization
-    redirect_to datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), alert: "Congratulations !! We restricted the access of your data and send emails to the companies that have your data according to your preferences"
+    redirect_to datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor", autofilter: true)
   end
 
   private
