@@ -113,7 +113,15 @@
               <div class="insights" id="ads-insights">
                 <div>
 
-                <div class="card-boxless">
+                  <div class="card-boxless">
+                    <div class="insights-logo"><i class="fas fa-dollar-sign"></i></i></div>
+                    <p class="subtitle">Number of ads displayed</p>
+                      <div class="circle-container">
+                        <p class="m-0"><%= @clicked_advertisements.count %>
+                      </div>
+                  </div>
+
+                  <div class="card-boxless", style="margin-top: 10px">
                     <p class="subtitle">Top clicked ads</p>
                     <% @clicked_advertisements.first(5).each do |ad| %>
                       <div class="content">
