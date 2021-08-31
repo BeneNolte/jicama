@@ -31,7 +31,7 @@
                   <span style="width: <%= @datasource.score %>%; border: 1px solid #7551F3;"></span>
                 </div>
                 <p class="greytext">Privacy score</p>
-                <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button mt-3" %>
+                <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button mt-5" %>
               </div>
 
               <h4 class="purpletitle">Your <%= @datasource.name%> Profile</h4>
@@ -81,15 +81,15 @@
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fas fa-search"></i></i></div>
                     <p class="subtitle">Top searched words</p>
-                    <div class="content">
+                    <div class="content" style="justify-content: space-evenly">
                       <% @chrome_search_words.first(3).each do |word| %>
                         <div class="title">
-                          <p>"<%= word.word %>"</p>
+                          <p id="center">"<%= word.word %>"</p>
                             <div class="rectangle-container-vertical">
                               <div class="rectangle-fill-vertical" style="height: <%=(word.count*100)/@chrome_search_words.first.count %>%">
                               </div>
                             </div>
-                          <p><%= word.count %></p>
+                          <p id="center"><%= word.count %></p>
                         </div>
                       <% end %>
                     </div>
@@ -106,7 +106,7 @@
                             </div>
                           </div>
                         </div>
-                        <p class="m-0"><%= word.count %></p>
+                        <p class="m-0" id="link-count"><%= word.count %></p>
                       </div>
                     <% end %>
                   </div>
@@ -152,13 +152,13 @@
                     <% @youtube_video_channels.first(5).each do |channel| %>
                       <div class="content">
                         <div class="title">
-                          <p class="m-0 mr-5"><%= link_to channel.title, channel.url, target: :_blank %></p>
+                          <p class="m-0 mr-5"><%= channel.title %></p>
                           <div class="rectangle-container-horizontal">
                             <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
                             </div>
                           </div>
                         </div>
-                        <p><%= channel.count %></p>
+                        <p id="link-count"><%= channel.count %></p>
                       </div>
                     <% end %>
                   </div>
