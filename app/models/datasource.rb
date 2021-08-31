@@ -45,7 +45,6 @@ class Datasource < ApplicationRecord
   def update_value
     # Calculate score of datasources (temporary)
     return if self.size.nil?
-    binding.pry
     company_points = []
     self.data_ownerships.each do |data_ownership|
       company_points << data_ownership.company.rating
