@@ -5,7 +5,7 @@
       <div class="col-12 col-lg-6">
         <h4 class="app-header greysubtitle">Privacy control</h4>
         <div class="card-purple" id="datacontrol-purple-card">
-          <div class="d-flex">s
+          <div class="d-flex">
             <i class="fab fa-google mr-3" style="font-size: 24px; color: white;"></i>
             <h5 class="whitetitle my-0" style="align-self: center; padding-top: 1px;">Auto-Filter</h5>
           </div>
@@ -22,24 +22,12 @@
                 <%= f.submit "auto filter", class: "d-none", id: "auto-submit" %>
               <% end %>
             </div>
-            <button type="button" 
-                    style="color: white; padding-top: 1px;"
-                    id= "button-info" 
-                    data-trigger="focus" 
-                    data-container="body" 
-                    data-html="true"
-                    data-toggle="popover" 
-                    data-placement="left" 
-                    data-content="For each company below, you can either choose to <em>restrict</em> or <em>delete</em> their access to your data individually, or you can rely on the <strong>autofilter</strong> to deal with every company at once according to your preferences ! <br><br>
-                                  <a href='/dashboard' class='buttontext'>Go to privacy cockpit</a>
-                                  <hr>
-                                  <strong>Accessors</strong> : companies that have access to your data <br><br>
-                                  <strong>Buyers</strong> : companies that have bought the access to your data <br><br>
-                                  <strong>Restricted</strong> : companies that don't have access to your data anymore but may still have your former data <br><br>
-                                  <strong>Deleted</strong> : companies that neither have access to your data nor have any data about you
-                                  ">
-                <i class="far fa-question-circle"></i>
-              </button>
+            
+            <!-- Button trigger modal -->
+            <div data-toggle="modal" data-target="#exampleModal" class= "button-info-white" style= "margin-top: 1px;" >
+              <i class="fas fa-cog"></i>
+            </div>
+
           </div>
         </div>
         <div class="d-flex justify-content-between mt-4">
@@ -62,6 +50,24 @@
               </li>
             </ul>
           </div>
+
+          <button type="button" 
+                  class= "button-info-purple" 
+                  id= "info-control"
+                  data-trigger="focus" 
+                  data-container="body" 
+                  data-html="true"
+                  data-toggle="popover" 
+                  data-placement="left" 
+                  data-content="For each company below, you can either choose to <em>restrict</em> or <em>delete</em> their access to your data individually, or you can rely on the <strong>autofilter</strong> to deal with every company at once according to your preferences ! <br>
+                                <hr>
+                                <strong>Accessors</strong> : companies that have access to your data <br><br>
+                                <strong>Buyers</strong> : companies that have bought the access to your data <br><br>
+                                <strong>Restricted</strong> : companies that don't have access to your data anymore but may still have your former data <br><br>
+                                <strong>Deleted</strong> : companies that neither have access to your data nor have any data about you
+                                ">
+            <i class="far fa-question-circle"></i>
+          </button>
 
           <!--
           <div>
@@ -180,3 +186,23 @@
 </div>
 
 <%= render 'shared/bottombar', datasource: @datasource %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="fatpurpletitle" id="exampleModalLabel">Privacy cockpit</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'button' %>
+      </div>
+      <div class="modal-footer">
+        <div class="buttonpurple" data-dismiss="modal">Save changes</div>
+      </div>
+    </div>
+  </div>
+</div>
