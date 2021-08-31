@@ -29,7 +29,7 @@ import { initAutoFilter } from '../components/data_ownership_toggle';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { dataInsightCard } from "../pages/datasource";
-import { initNavbar } from "../components/navbar";
+import { initUpdateNavbarOnScroll } from "../components/navbar";
 import { initBottombar } from "../components/bottombar"
 import { initPopover } from "../components/popover"
 
@@ -39,7 +39,7 @@ document.addEventListener('turbolinks:load', () => {
 
   initAutoFilter();
   dataInsightCard();
-  initNavbar();
+  initUpdateNavbarOnScroll();
   initBottombar();
   initMapbox();
   initFlatpickr();

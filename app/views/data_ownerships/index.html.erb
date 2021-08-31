@@ -1,27 +1,9 @@
+<%= render 'shared/navbar' %>
 <div class="content-wrapper-with-bottombar">
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-6">
-
-        <div class="page-header">
-          <h1><%= @datasource.name %> Data</h1>
-          <% if user_signed_in? %>
-            <div class="dropdown">
-              <a class="profile dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag image_path('empty-profile.png'), class: "avatar" %>
-              </a>
-
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <%= link_to "Update profile", edit_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </div>
-            </div>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
-        </div>
+        <h1 class="app-header">Control Data</h1>
         <div class="card-purple" id="datacontrol-purple-card">
           <div class="d-flex">
             <i class="fab fa-google mr-3" style="font-size: 24px; color: white;"></i>
