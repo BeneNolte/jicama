@@ -23,6 +23,7 @@ const initUpdateNavbarOnScroll = () => {
         navbar.classList.remove('navbar-lewagon-home-transparent');
       } else if (window.scrollY >= (statistics.offsetTop - navbar.offsetHeight) && window.scrollY < statistics.offsetTop) {
         navbar.classList.add('navbar-lewagon-home-transparent');
+        navbar.classList.remove('navbar-lewagon-home-white');
       } else if (window.scrollY >= (statistics.offsetTop) && window.scrollY < footer.offsetTop) {
         navbar.classList.remove('navbar-lewagon-home-transparent');
         navbar.classList.add('navbar-lewagon-home-white');
