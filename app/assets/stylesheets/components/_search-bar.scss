@@ -2,11 +2,11 @@
   display: flex;
   border: 1px solid $jicama-light-gray;
   border-radius: 30px;
-  width: 100%;
+  width: 85%;
   justify-items: center;
   padding: 5px;
   place-content: space-around;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   input[type="date"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
@@ -35,7 +35,7 @@
 }
 
 .search-bar-item-2 {
-  width: 40%;
+  width: 35%;
   p {
     margin-bottom: 0px;
     font-weight: lighter;
