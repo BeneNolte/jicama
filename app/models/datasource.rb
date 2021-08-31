@@ -45,8 +45,7 @@ class Datasource < ApplicationRecord
   def update_value
     # Calculate score of datasources (temporary)
     return if self.size.nil?
-    deleted = DataOwnership.where(datasource_id: self.id).where(type_of_ownership: ["deleted"]).count
-
+    binding.pry
     company_points = []
     self.data_ownerships.each do |data_ownership|
       company_points << data_ownership.company.rating
@@ -62,8 +61,6 @@ class Datasource < ApplicationRecord
     initial = (self.size / 4300) * 860.63
     deletion_value = (initial * 0.2) / company_points_sum
     value = initial - (deletion_value * delete_sum)
-    self.value = value
-    self.save
-    return value
+    self.update(value: value)
   end
 end

@@ -24,6 +24,7 @@ class DatasourcesController < ApplicationController
     @youtube_video_channels = YoutubeVideoChannel.where(datasource_id: @datasource.id)
     @youtube_video_titles = YoutubeVideoTitle.where(datasource_id: @datasource.id)
 
+    @clicked_advertisements = Advertisement.where(datasource_id: @datasource.id).sort_by(&:count).reverse!
 
     @locations = current_user.locations.limit(1000)
 
