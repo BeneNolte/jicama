@@ -78,7 +78,7 @@
 
 .insights-map {
   position: absolute;
-  height: calc(100% + 15px);
+  height: 100%;
   width: calc(100% + 30px);
   justify-content: center;
   text-align: center;
@@ -87,7 +87,6 @@
   display: block;
   margin-left: -15px;
   margin-right: -15px;
-  margin-bottom: -15px;
   border-radius: 20px;
 }
 
