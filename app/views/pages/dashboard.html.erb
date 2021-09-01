@@ -20,24 +20,26 @@
         <div class="card-purple">
           <div class="display-score d-flex">
             <% if @score < 30 %>
-              <h1 class="fatblacktitle jicama-red">Bad</h1>
+              <h1 class="fatblacktitle">Bad</h1>
             <% elsif @score < 60 %>
-              <h1 class="fatblacktitle jicama-yellow">Medium</h1>
+              <h1 class="fatblacktitle">Medium</h1>
             <% elsif @score < 90 %>
-              <h1 class="fatblacktitle jicama-green">Good</h1>
+              <h1 class="fatblacktitle">Good</h1>
             <% else %>
-              <h1 class="fatblacktitle jicama-green">Very Good</h1>
+              <h1 class="fatblacktitle">Very Good</h1>
             <% end %>
           </div>
           <div class="display-score">
-            <p class="blacktext">Privacy score</p>
-            <p class="blacktext">Overall</p>
+            <p class="greytext">Privacy score</p>
+            <p class="greytext">Overall</p>
           </div>
 
           <div class="meter">
             <span style="width: <%= @score%>%;"></span>
           </div>
-          <p class="blacktext">Since September</p>
+
+          <p class="blacktext">Since August</p>
+
         </div>
 
         <div class="app-header d-flex justify-content-between mb-1">
@@ -65,7 +67,7 @@
               <p class="greytext">Data value</p>
               <h4 class="blacktitle"><%= @value %> €</h4>
             </div>
-            <p class="greytext">September</p>
+            <p class="greytext">August</p>
           </div>
 
           <div class="data-valuation-details">
@@ -76,7 +78,7 @@
               <p class="greytext">Value recovered</p>
               <h4 class="blacktitle">0,00 €</h4>
             </div>
-            <p class="greytext">September</p>
+            <p class="greytext">August</p>
           </div>
 
           <div class="data-valuation-details">
@@ -121,7 +123,7 @@
     </div>
   </div>
 
-  <div class="carousel">
+  <div class="carousel" style="margin-bottom: 15px;">
     <div class="datasource-selection">
       <%= link_to datasource_path(@google) do %>
         <div class="logo-design">
