@@ -13,30 +13,29 @@
             <div class="digital-footprint">
 
               <div class="digital-footprint-score">
-                <div class="display-score">
-                  <div class="display-score d-flex"  style="margin-right: 50px">
+                <div class="d-flex justify-content-between">
+                  <%= image_tag @google.photo, class:"datasource-logo mr-3  " %>
+                  <div>
                     <% if @score < 30 %>
-                      <h1 class="fatblacktitle">Bad</h1>
+                      <h1 class="fatblacktitle jicama-red">Bad</h1>
                     <% elsif @score < 60 %>
-                      <h1 class="fatblacktitle">Medium</h1>
+                      <h1 class="fatblacktitle jicama-yellow">Medium</h1>
                     <% elsif @score < 90 %>
-                      <h1 class="fatblacktitle">Good</h1>
+                      <h1 class="fatblacktitle jicama-green">Good</h1>
                     <% else %>
-                      <h1 class="fatblacktitle">Very Good</h1>
+                      <h1 class="fatblacktitle jicama-green">Very Good</h1>
                     <% end %>
                   </div>
-                  <%= image_tag @google.photo, class:"datasource-logo" %>
                 </div>
                 <div class="meter">
                   <span style="width: <%= @datasource.score %>%;"></span>
                 </div>
                 <p class="greytext">Privacy score</p>
 
-                <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button mt-3", id: "button-control" %>
+                <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button mt-3 mb-1", id: "button-control" %>
 
               </div>
-
-              <h4 class="blacktitle" style="font-size: 20px">Your <%= @datasource.name%> Profile</h4>
+              <p class="blacktitle" style="font-size: 20px">Your <%= @datasource.name%> Profile</p>
               <div class="datasource-content" style="padding-bottom: 10px; padding-top: 10px;">
                 <p class="greysubtitle">Ads Clicked</p>
                 <p class="greysubtitle">405</p>

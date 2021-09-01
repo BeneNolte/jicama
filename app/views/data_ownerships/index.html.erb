@@ -115,10 +115,10 @@
                     <strong style="font-size: 14px">Level of trust: </strong>
                     <div>
                       <% if data_ownership.company.rating == 1 %>
-                        <div style="color: #DB0000; font-size: 14px; margin-left: 10px;">High</div>
+                        <div style="color: #007C64; font-size: 14px; margin-left: 10px;">High</div>
                       <% end %>
                       <% if data_ownership.company.rating == 3 %>
-                        <div style="color: #007C64; font-size: 14px; margin-left: 10px;">Low</div>
+                        <div style="color: #DB0000; font-size: 14px; margin-left: 10px;">Low</div>
                       <% end %>
                       <% if data_ownership.company.rating == 2  %>
                         <div style="color: #FCB111; font-size: 14px; margin-left: 10px;">Medium</div>
@@ -135,13 +135,15 @@
                   <div class="mb-3 d-flex"><strong style="font-size: 14px">Current status: &ensp;<%= data_ownership.type_of_ownership.capitalize %></strong></div>
                   <div class="restrict d-flex justify-content-between">
                     <div style="margin-bottom: 25px;">
-                      <div class="small-button">
-                        <% if data_ownership.type_of_ownership == "restricted" || data_ownership.type_of_ownership == "deleted" %>
+                      <% if data_ownership.type_of_ownership == "restricted" || data_ownership.type_of_ownership == "deleted" %>
+                        <div class="small-button jicama-green">
                           <%= button_to "Allow", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "accessor"} ), method: 'patch' %>
-                        <% else %>
+                        </div>
+                      <% else %>
+                        <div class="small-button jicama-yellow">
                           <%= button_to "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch' %>
-                        <% end %>
-                      </div>
+                        </div>
+                      <% end %>
                     </div>
                     <% if data_ownership.type_of_ownership == "restricted" || data_ownership.type_of_ownership == "deleted" %>
                       <p class="greytext ml-3" style="width: 230px"><%= Company.find(data_ownership.company_id).title.capitalize %> will have access to your data via Google.</p>
@@ -151,8 +153,8 @@
                   </div>
                   <div class="delete d-flex justify-content-between mb-3">
                     <div>
-                      <div class="small-button">
-                        <%= button_to "Deletion", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "deleted" %>
+                      <div class="small-button jicama-red">
+                        <%= button_to "Delete", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "deleted" %>
                       </div>
                     </div>
                     <p class="greytext ml-3" style="width: 230px">Jicama will contact <%= Company.find(data_ownership.company_id).title.capitalize %> in your name to delete the data they collected of you.</p>

@@ -238,8 +238,8 @@ puts "Finished!"
 
 # 4. LOCATIONS
 # html_file = File.open('./db/TakeoutBene/My Activity/Maps/MyActivity.html')
-youtube_file = ENV.fetch("SECRET_LOCATIONS")
-html_file = URI.open(youtube_file)
+locations_file = ENV.fetch("SECRET_LOCATIONS")
+html_file = URI.open(locations_file)
 html_doc = Nokogiri::HTML(html_file)
 # html_doc = Nokogiri::HTML(html_file)
 dateExtracts = html_doc.search("div.mdl-typography--body-1")
@@ -277,59 +277,62 @@ puts "Finished!"
 
 # html_ads_file = File.open('./db/TakeoutBene/My Activity/Ads/MyActivity.html')
 # html_ads_doc = Nokogiri::HTML(html_ads_file)
+html_ads_file = ENV.fetch("SECRET_ADS")
+html_file = URI.open(html_ads_file)
+html_ads_doc = Nokogiri::HTML(html_file)
 
-# ads_extract = html_ads_doc.css("div.outer-cell")
-# ads_extract_count = ads_extract.count
+ads_extract = html_ads_doc.css("div.outer-cell")
+ads_extract_count = ads_extract.count
 
-# ads_extract = html_ads_doc.css("div.content-cell")
-# ads_with_link_extract = html_ads_doc.css("div.content-cell a")
-# ads_extract_date = html_ads_doc.css("div.content-cell br")
+ads_extract = html_ads_doc.css("div.content-cell")
+ads_with_link_extract = html_ads_doc.css("div.content-cell a")
+ads_extract_date = html_ads_doc.css("div.content-cell br")
 
 
-# ads_with_link = []
-# pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)/
-# pattern_g = /url\?q=(\w*:\/\/[.\w]+\/)/
+ads_with_link = []
+pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)/
+pattern_g = /url\?q=(\w*:\/\/[.\w]+\/)/
 
-# ads_extract.each do |ad|
-#   if ad.css('a').attribute('href')&.value.present?
-#     # line below equiv if !ad.attribute('href').nil? && ad.attribute('href').value.present?
-#     attr = ad.css('a').attribute('href').value
-#     if attr.match(pattern_g).nil?
-#       if attr.match(pattern_yt)
-#         ads_with_link << attr
-#       end
-#     else
-#       ads_with_link << attr.match(pattern_g)[1]
-#     end
-#   else
-#     ads_with_link << ""
-#   end
-# end
+ads_extract.each do |ad|
+  if ad.css('a').attribute('href')&.value.present?
+    # line below equiv if !ad.attribute('href').nil? && ad.attribute('href').value.present?
+    attr = ad.css('a').attribute('href').value
+    if attr.match(pattern_g).nil?
+      if attr.match(pattern_yt)
+        ads_with_link << attr
+      end
+    else
+      ads_with_link << attr.match(pattern_g)[1]
+    end
+  else
+    ads_with_link << ""
+  end
+end
 
-# ads_sorted = ads_with_link.select { |ads| ads != "" }
-# ads_with_link_ranking = ads_sorted.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
+ads_sorted = ads_with_link.select { |ads| ads != "" }
+ads_with_link_ranking = ads_sorted.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
-# puts "Creating Bene's Ads seeds"
+puts "Creating Bene's Ads seeds"
 
-# ads_with_link.each do |ads|
-#   if ads == ""
-#     Advertisement.create!(
-#       status: false,
-#       link: "",
-#       count: 1,
-#       timestamp: "all",
-#       datasource: google
-#     )
-#   end
-# end
+ads_with_link.each do |ads|
+  if ads == ""
+    Advertisement.create!(
+      status: false,
+      link: "",
+      count: 1,
+      timestamp: "all",
+      datasource: google
+    )
+  end
+end
 
-# ads_with_link_ranking.each do |link, count|
-#   Advertisement.create!(
-#     status: true,
-#     link: link,
-#     count: count,
-#     timestamp: "all",
-#     datasource: google
-#   )
-# end
-# puts "Finished!"
+ads_with_link_ranking.each do |link, count|
+  Advertisement.create!(
+    status: true,
+    link: link,
+    count: count,
+    timestamp: "all",
+    datasource: google
+  )
+end
+puts "Finished!"
