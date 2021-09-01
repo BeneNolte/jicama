@@ -10,9 +10,13 @@
         </div>
       </div>
       <% if user_signed_in? == false %>
-        <%= link_to "Login", new_user_session_path, class: "short-button-light" %>
+        <div class="short-button-light">
+          <%= link_to "Login", new_user_session_path, class: "whitetext" %>
+        </div>
       <% else %>
-        <%= link_to "Logout", dashboard_path, class: "short-button-light" %>
+        <div class="short-button-light">
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "whitetext" %>
+        </div>
       <% end %>
     <%# </div> %>
   </div>

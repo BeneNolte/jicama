@@ -1,7 +1,7 @@
 <%= form_tag datasource_path, class:"simple_form search", method: :get do %>
   <div class="search-bar">
     <div class="search-bar-item-1">
-      <p>From</p>
+      <label for="start_date">From</label>
       <%= date_field_tag :start_date,
           params[:start_date],
           class: "datepicker",
@@ -10,7 +10,7 @@
     </div>
 
     <div class="search-bar-item-2">
-      <p>To</p>
+      <label for="end_date">To</label>
       <%= date_field_tag :end_date,
           params[:end_date],
           class: "datepicker",

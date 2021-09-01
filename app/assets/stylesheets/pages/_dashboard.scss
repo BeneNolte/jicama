@@ -67,6 +67,7 @@
   width: 60px;
   height: 60px;
   box-shadow: 0 0px 12px 1px rgba(0, 0, 0 , 0.08);
+  text-align-last: center;
 
   img {
     width: 30px;
@@ -74,21 +75,21 @@
     object-fit: cover;
   }
 
-  &:active {
-    border: 1px solid #7551F3;
-    opacity: 0.25;
+  .fab, .fas {
+    font-size: 30px;
+    opacity: 0.8;
   }
 
-  .fa-plus:before {
-      width:50px;
-      height: 50px;
-      content: "\f067";
-      text-align: center;
-      font-size: 25px;
-      position: relative;
-      bottom: -2px;
-      left: 4px;
-      color: #7551F3;
+  .fas {
+    position: relative;
+    font-size: 25px;
+    color: $jicama-purple;
+    bottom: -3px;
+    opacity: 1;
+  }
+
+  &:active {
+    opacity: 0.1;
   }
 }
 
@@ -102,4 +103,7 @@
 .datasources-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1Fr;
+  margin-bottom: 10px;
+  justify-items: center;
+  row-gap: 10px;
 }
