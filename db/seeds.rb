@@ -238,8 +238,8 @@ puts "Finished!"
 
 # 4. LOCATIONS
 # html_file = File.open('./db/TakeoutBene/My Activity/Maps/MyActivity.html')
-youtube_file = ENV.fetch("SECRET_LOCATIONS")
-html_file = URI.open(youtube_file)
+locations_file = ENV.fetch("SECRET_LOCATIONS")
+html_file = URI.open(locations_file)
 html_doc = Nokogiri::HTML(html_file)
 # html_doc = Nokogiri::HTML(html_file)
 dateExtracts = html_doc.search("div.mdl-typography--body-1")
@@ -275,11 +275,14 @@ puts "Finished!"
 
 #--> NUMBER OF ADS & MOST CLICKED ADS
 
-html_ads_file = File.open('./db/TakeoutBene/My Activity/Ads/MyActivity.html')
-html_ads_doc = Nokogiri::HTML(html_ads_file)
+# html_ads_file = File.open('./db/TakeoutBene/My Activity/Ads/MyActivity.html')
+# html_ads_doc = Nokogiri::HTML(html_ads_file)
+html_ads_file = ENV.fetch("SECRET_ADS")
+html_file = URI.open(html_ads_file)
+html_ads_doc = Nokogiri::HTML(html_file)
 
-# ads_extract = html_ads_doc.css("div.outer-cell")
-# ads_extract_count = ads_extract.count
+ads_extract = html_ads_doc.css("div.outer-cell")
+ads_extract_count = ads_extract.count
 
 ads_extract = html_ads_doc.css("div.content-cell")
 ads_with_link_extract = html_ads_doc.css("div.content-cell a")

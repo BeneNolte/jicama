@@ -4,15 +4,15 @@ const initBottombar = () => {
   const datacontrolButton = document.getElementById("datacontrol-button")
 
   if (document.location.pathname.includes("datasources") && !document.location.pathname.includes("data_ownerships")) {
-    datasourceButton.style.opacity = 1;
+    setTimeout(() => { datasourceButton.style.opacity = 1; }, 100);
   }
 
   if (document.location.pathname === "/dashboard") {
-    dashboardButton.style.opacity = 1;
+    setTimeout(() => { dashboardButton.style.opacity = 1; }, 100);
   }
 
   if (document.location.pathname.includes("data_ownerships")) {
-    datacontrolButton.style.opacity = 1;
+    setTimeout(() => { datacontrolButton.style.opacity = 1; }, 100);
   }
 }
 
