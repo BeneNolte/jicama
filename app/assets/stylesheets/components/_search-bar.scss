@@ -1,5 +1,5 @@
 .search {
-  width: 85%;
+  width: 95%;
 }
 
 .search-bar {
@@ -8,49 +8,69 @@
   border-radius: 30px;
   width: 100%;
   justify-items: center;
+  align-items: center;
   padding: 5px;
-  place-content: space-around;
+  place-content: center;
   margin-bottom: 10px;
   input[type="date"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
   }
+  ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+  ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+  ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+      color: transparent;
+  }
 }
 
 .search-bar-item-1 {
-  width: 40%;
   border-right: 1px solid $jicama-light-gray;
   margin-right: 15px;
-  margin-left: 15px;
   padding-right: 10px;
-  p {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 30px;
+  label {
     margin-bottom: 0px;
+    margin-right: 5px;
+    margin-left: 5px;
     font-weight: lighter;
     font-size: 14px;
     text-align: left;
   }
   input {
-    width: 100%;
+    width: 90px;
     border-style: none;
     font-size: 14px;
-    border-bottom: 1px solid $jicama-light-gray;
+    overflow: hidden;
+    flex-grow: 1;
+    background-color: transparent;
   }
 }
 
 .search-bar-item-2 {
-  width: 35%;
-  p {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 30px;
+  label {
     margin-bottom: 0px;
+    margin-right: 5px;
     font-weight: lighter;
     font-size: 14px;
     text-align: left;
   }
   input {
-    width: 100%;
+    width: 90px;
     border-style: none;
-    border-bottom: 1px solid $jicama-light-gray;
     font-size: 14px;
+    overflow: hidden;
+    flex-grow: 1;
+    background-color: transparent;
   }
 }
 
@@ -61,5 +81,7 @@ form.simple_form.search {
 .search {
   button {
     color: $jicama-grey-text;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
