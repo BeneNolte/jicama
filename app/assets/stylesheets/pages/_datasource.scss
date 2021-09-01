@@ -14,6 +14,7 @@
   position: absolute;
   width: 100%;
   transition: all 0.3s ease;
+  overflow-y: auto;
 }
 
 .insights-display {
@@ -142,6 +143,23 @@
   .fas,
   .fab {
     color: #474453;
+  }
+  h4 {
+    font-size: 17px;
+  }
+}
+
+
+@media(max-height: 750px) {
+  .data-insights-card {
+    width: 80px;
+    height: 80px;
+    i {
+      font-size: 22px;
+    }
+    h4 {
+      font-size: 14px;
+    }
   }
 }
 
