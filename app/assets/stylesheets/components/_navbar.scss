@@ -43,17 +43,9 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 42px;
-  margin-left: 6px;
-  opacity: 1;
-  margin-top: 6px;
-}
-
 .navbar-lewagon-home .navbar-brand img {
   width: 42px;
   margin-left: 6px;
-  opacity: 1;
   margin-top: 6px;
 }
 
@@ -99,6 +91,9 @@
   border-color: rgba(0, 0, 0, 0);
 }
 
+.logo-navbar {
+  opacity: 0;
+}
 // .navbar-jicama {
 //   justify-content: flex-end;
 //   height: 50px;
