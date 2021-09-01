@@ -231,7 +231,9 @@
 
 .circle-container {
   border: 2px solid $jicama-purple;
-  padding: 30px;
+  padding: 20px;
   border-radius: 50%;
-  font-weight: bold;
+  width: 90px;
+  height: 90px;
+  padding-top: 30px;
 }
