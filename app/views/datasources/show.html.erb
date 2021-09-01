@@ -85,7 +85,7 @@
                     <div class="content" style="justify-content: space-evenly">
                       <% @chrome_search_words.first(3).each do |word| %>
                         <div class="title">
-                          <p id="center">"<%= word.word %>"</p>
+                          <p class="purple-bold" id="center">"<%= word.word %>"</p>
                             <div class="rectangle-container-vertical">
                               <div class="rectangle-fill-vertical" style="height: <%=(word.count*100)/@chrome_search_words.first.count %>%">
                               </div>
