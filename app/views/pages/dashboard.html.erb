@@ -17,27 +17,43 @@
           </button>
         </div>
 
-        <div class="card-purple">
-          <div class="display-score d-flex">
-            <% if @score < 30 %>
-              <h1 class="fatblacktitle jicama-red">Bad</h1>
-            <% elsif @score < 60 %>
-              <h1 class="fatblacktitle jicama-yellow">Medium</h1>
-            <% elsif @score < 90 %>
-              <h1 class="fatblacktitle jicama-green">Good</h1>
-            <% else %>
-              <h1 class="fatblacktitle jicama-green">Very Good</h1>
-            <% end %>
+        <div class="card-purple d-flex">
+          <div class="d-flex">
+            <span style="color: #7652F6">
+              <i class="far fa-circle"></i>
+            </span>
+            <div class="display-score", style="margin-right: 10px">
+              <% if @score < 30 %>
+                <h1 class="middleblacktitle jicama-red">Bad</h1>
+              <% elsif @score < 60 %>
+                <h1 class="middleblacktitle jicama-yellow">Medium</h1>
+              <% elsif @score < 90 %>
+                <h1 class="middleblacktitle jicama-green">Good</h1>
+              <% else %>
+                <h1 class="middleblacktitle jicama-green">Very Good</h1>
+              <% end %>
+            </div>
           </div>
-          <div class="display-score">
-            <p class="blacktext">Privacy score</p>
-            <p class="blacktext">Overall</p>
+          <div class="privacy-container d-flex">
+            <div class="social-bar d-flex", style="margin-right: 5px">
+              <i class="fab fa-google"></i>
+              <div class="meter">
+                <span style="width: <%= @score%>%;"></span>
+              </div>
+            </div>
+            <div class="social-bar d-flex", style="margin-right: 5px">
+              <i class="fab fa-facebook"></i>
+              <div class="meter">
+                <span style="width: 100%;"></span>
+              </div>
+            </div>
+            <div class="social-bar d-flex", style="margin-right: 5px">
+              <i class="fab fa-instagram"></i>
+              <div class="meter">
+                <span style="width: 100%;"></span>
+              </div>
+            </div>
           </div>
-
-          <div class="meter">
-            <span style="width: <%= @score%>%;"></span>
-          </div>
-          <p class="blacktext">Since August</p>
         </div>
 
         <div class="app-header d-flex justify-content-between mb-1">
