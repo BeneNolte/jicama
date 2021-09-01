@@ -31,7 +31,7 @@
                   <span style="width: <%= @datasource.score %>%;"></span>
                 </div>
                 <p class="greytext">Privacy score</p>
-                <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button-white mt-5" %>
+                <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button-white mt-3" %>
               </div>
 
               <h4 class="blacktitle">Your <%= @datasource.name%> Profile</h4>
@@ -209,7 +209,7 @@
   </div>
 
   <div class="carousel">
-    <div class="data-insights-container">
+    <div class="data-insights-container" style="margin-top: 10px;">
 
       <div class="data-insights-card <%= params[:start_date] ? "" : "current" %>" id="digital-footprint">
         <i class="fas fa-shoe-prints" style="transform: rotate(-90deg)"></i>

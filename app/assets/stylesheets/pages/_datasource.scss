@@ -139,18 +139,13 @@
   }
   .fas,
   .fab {
-    color: black;
+    color: #474453;
   }
-}
-
-.carousel {
-  overflow-x: auto;
-  padding: 15px 0px 15px 0px;
 }
 
 .current {
   transition: all 0.3s ease;
-  border: 1.5px solid black;
+  border: 1.5px solid #474453;
 }
 .opacity {
   transition: all 0.55s ease;
