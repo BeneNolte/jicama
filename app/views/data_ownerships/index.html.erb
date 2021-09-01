@@ -3,24 +3,40 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-6">
-        <h4 class="app-header greysubtitle">Privacy control</h4>
+
+        <div class="app-header d-flex justify-content-between mb-1">
+          <h4 class="purplesubtitle">Privacy control</h4>
+          <button type="button"
+                  class= "button-info-purple"
+                  data-trigger="focus"
+                  data-container="body"
+                  data-html="true"
+                  data-toggle="popover"
+                  data-placement="left"
+                  data-content="For each company below, you can either choose to <em>restrict</em> or <em>delete</em> their access to your data individually, or you can rely on the <strong>autofilter</strong> to deal with every company at once according to your preferences ! <br>
+                                <hr>
+                                <strong>Accessors</strong> : companies that have access to your data <br><br>
+                                <strong>Buyers</strong> : companies that have bought the access to your data <br><br>
+                                <strong>Restricted</strong> : companies that don't have access to your data anymore but may still have your former data <br><br>
+                                <strong>Deleted</strong> : companies that neither have access to your data nor have any data about you
+                                ">
+            <i class="far fa-question-circle"></i>
+          </button>
+        </div>
         <div class="card-purple" id="datacontrol-purple-card">
-          <i class="fab fa-google" style="font-size: 24px; color: white;"></i>
-          <div class="d-flex">
-            <div class="d-none">
-              <%= form_with url: filter_data_ownerships_path, method: :patch do |f| %>
-              <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
-                <%= f.submit "auto filter", id: "auto-submit" %>
-              <% end %>
-            </div>
-            <div class="small-button-white mr-2" id="auto-filter">Auto-filter</div>
+          <div class="d-none">
+            <%= form_with url: filter_data_ownerships_path, method: :patch do |f| %>
+            <%# If the auto-filter should work, we need to add a field for it in the DB for the User true<>false --> handled via controller user (parked for now as we don't even know how to categories companies%>
+              <%= f.submit "auto filter", id: "auto-submit" %>
+            <% end %>
+          </div>
+          <div class="small-button-white mr-2" id="auto-filter">Auto-filter</div>
 
             <!-- Button trigger modal -->
-            <div data-toggle="modal" data-target="#exampleModal" class= "button-info-white" style= "margin-top: 4px;" >
+            <div data-toggle="modal" data-target="#exampleModal" class= "button-info-purple" style= "margin-top: 4px;" >
               <i class="fas fa-cog"></i>
             </div>
 
-          </div>
         </div>
         <div class="d-flex justify-content-between mt-4">
           <div class="carousel">
@@ -43,24 +59,6 @@
             </ul>
           </div>
 
-          <button type="button"
-                  class= "button-info-purple"
-                  id= "info-control"
-                  data-trigger="focus"
-                  data-container="body"
-                  data-html="true"
-                  data-toggle="popover"
-                  data-placement="left"
-                  data-content="For each company below, you can either choose to <em>restrict</em> or <em>delete</em> their access to your data individually, or you can rely on the <strong>autofilter</strong> to deal with every company at once according to your preferences ! <br>
-                                <hr>
-                                <strong>Accessors</strong> : companies that have access to your data <br><br>
-                                <strong>Buyers</strong> : companies that have bought the access to your data <br><br>
-                                <strong>Restricted</strong> : companies that don't have access to your data anymore but may still have your former data <br><br>
-                                <strong>Deleted</strong> : companies that neither have access to your data nor have any data about you
-                                ">
-            <i class="far fa-question-circle"></i>
-          </button>
-
           <!--
           <div>
           <%#= Datasource.find(data_ownership.datasource_id).name %>
@@ -78,15 +76,15 @@
             <div class="company-rating-btn">
               <div>
                 <% if data_ownership.company.rating == 1 %>
-                  <div class="fas fa-circle fa-lg", style="color:green">
+                  <div class="fas fa-circle fa-lg", style="color: #007C64;">
                   </div>
                 <% end %>
                 <% if data_ownership.company.rating == 3 %>
-                  <div class="fas fa-circle fa-lg", style="color:red">
+                  <div class="fas fa-circle fa-lg", style="color: #DB0000;">
                   </div>
                 <% end %>
                 <% if data_ownership.company.rating == 2  %>
-                  <div class="fas fa-circle fa-lg", style="color:orange">
+                  <div class="fas fa-circle fa-lg", style="color: #FCB111;">
                   </div>
                 <% end %>
               </div>
@@ -117,13 +115,13 @@
                     <strong style="font-size: 14px">Level of trust: </strong>
                     <div>
                       <% if data_ownership.company.rating == 1 %>
-                        <div style="color:green; font-size: 14px; margin-left: 10px;">High</div>
+                        <div style="color: #DB0000; font-size: 14px; margin-left: 10px;">High</div>
                       <% end %>
                       <% if data_ownership.company.rating == 3 %>
-                        <div style="color:red; font-size: 14px; margin-left: 10px;">Low</div>
+                        <div style="color: #007C64; font-size: 14px; margin-left: 10px;">Low</div>
                       <% end %>
                       <% if data_ownership.company.rating == 2  %>
-                        <div style="color:orange; font-size: 14px; margin-left: 10px;">Medium</div>
+                        <div style="color: #FCB111; font-size: 14px; margin-left: 10px;">Medium</div>
                       <% end %>
                     </div>
                   </div>
@@ -134,7 +132,7 @@
                   <strong style="font-size: 14px">Who did they get my data from?</strong>
                   <%= image_tag @datasource.photo, class:"datasource-logo ml-3" %>
                   <hr>
-                  <div class="mb-2 d-flex"><strong style="font-size: 14px">Current status: &ensp;<%= data_ownership.type_of_ownership.capitalize %></strong></div>
+                  <div class="mb-3 d-flex"><strong style="font-size: 14px">Current status: &ensp;<%= data_ownership.type_of_ownership.capitalize %></strong></div>
                   <div class="restrict d-flex justify-content-between">
                     <div style="margin-bottom: 25px;">
                       <div class="small-button">
@@ -193,7 +191,7 @@
         <%= render 'button' %>
       </div>
       <div class="modal-footer">
-        <div class="buttonpurple" data-dismiss="modal">Save changes</div>
+        <div class="small-button-white" data-dismiss="modal">Save</div>
       </div>
     </div>
   </div>
