@@ -10,11 +10,28 @@
 .bottombar-link {
   opacity: 0.3;
   transition: all 0.3s ease;
-  i, img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  i {
     color: black;
     cursor: pointer;
-    font-size: 33px;
     height: 33px;
     width: auto;
+    align-self: center;
+
   }
+  img {
+    color: black;
+    cursor: pointer;
+    height: 37px;
+    width: auto;
+  }
+}
+
+#fa-lock {
+  font-size: 29px;
+}
+#fa-chart-bar {
+  font-size: 33px;
 }
