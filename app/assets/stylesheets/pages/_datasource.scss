@@ -163,9 +163,9 @@
 
 .rectangle-fill-horizontal  {
   height: 5px;
-  background-color: $jicama-purple;
+  background-color: $jicama-black;
   border-radius: 6px;
-  border: 1px solid $jicama-purple;
+  border: 1px solid $jicama-black;
 }
 
 .rectangle-container-vertical {
@@ -179,15 +179,20 @@
 
 .rectangle-fill-vertical  {
   position: absolute;
-  background-color: $jicama-purple;
+  background-color: $jicama-black;
   border-radius: 6px;
-  border: 1px solid $jicama-purple;
+  border: 1px solid $jicama-black;
   bottom: 0;
   width: 100%;
 }
 
 .purple-bold {
   color: $jicama-purple;
+  font-weight: 400 !important;
+}
+
+.header-grey {
+  color: $jicama-header-grey;
   font-weight: 400 !important;
 }
 

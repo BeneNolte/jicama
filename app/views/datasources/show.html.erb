@@ -87,12 +87,12 @@
                     <div class="content" style="justify-content: space-evenly">
                       <% @chrome_search_words.first(3).each do |word| %>
                         <div class="title">
-                          <p class="purple-bold" id="center">"<%= word.word %>"</p>
+                          <p class="purple-bold" id="center"><%= word.word %></p>
                             <div class="rectangle-container-vertical">
                               <div class="rectangle-fill-vertical" style="height: <%=(word.count*100)/@chrome_search_words.first.count %>%">
                               </div>
                             </div>
-                          <p id="center"><%= word.count %></p>
+                          <p class="purple-bold" id="center"><%= word.count %></p>
                         </div>
                       <% end %>
                     </div>
@@ -103,13 +103,13 @@
                     <% @chrome_visited_links.first(5).each do |word| %>
                       <div class="content">
                         <div class="title">
-                          <p class="m-0 mr-5"><%= word.link %></p>
+                          <p class="header-grey m-0 mr-5"><%= word.link %></p>
                           <div class="rectangle-container-horizontal">
                             <div class="rectangle-fill-horizontal" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
                             </div>
                           </div>
                         </div>
-                        <p class="m-0" id="link-count"><%= word.count %></p>
+                        <p class="header-grey m-0" id="link-count"><%= word.count %></p>
                       </div>
                     <% end %>
                   </div>
@@ -155,13 +155,13 @@
                     <% @youtube_video_channels.first(5).each do |channel| %>
                       <div class="content">
                         <div class="title">
-                          <p class="m-0 mr-5"><%= channel.title %></p>
+                          <p class="header-grey m-0 mr-5"><%= channel.title %></p>
                           <div class="rectangle-container-horizontal">
                             <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
                             </div>
                           </div>
                         </div>
-                        <p id="link-count"><%= channel.count %></p>
+                        <p class="header-grey" id="link-count"><%= channel.count %></p>
                       </div>
                     <% end %>
                   </div>
@@ -172,8 +172,8 @@
                     <% @youtube_video_titles.first(3).each do |video| %>
                       <div class="content" style="display: block">
                        <div class="content">
-                       <p><%= video.title %></p>
-                       <p>x<%= video.count %></p>
+                       <p class="header-grey"><%= video.title %></p>
+                       <p class="header-grey">x<%= video.count %></p>
                        </div>
                         <div class="iframe-container">
 
