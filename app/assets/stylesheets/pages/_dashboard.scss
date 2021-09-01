@@ -16,31 +16,36 @@
 }
 
 .data-valuation {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 0px 40px rgba(0,0,0,0.08);
   padding: 10px;
   background-color: white;
   border-radius: 20px;
   flex-grow: 1;
+  height: 30vh;
 
   .data-valuation-logo {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  background-color: #7551F3;
-  width: 40px;
-  margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0px 20px 6px rgba(0, 0, 0, 0.12);
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+    background-color: #2B2A35;
+    width: 38px;
+    height: 38px;
+    margin-right: 19px;
+    margin-top: px;
+    border: 0.5px solid #2B2A35;
     i {
-      color: white;
-      font-size: 25px;
+    color: white;
+    font-size: 19px;
     }
   }
 }
 
 .data-valuation-details {
   display: flex;
+  margin: 20px 10px;
 }
 
 .data-valuation-values {
@@ -54,39 +59,45 @@
 }
 
 .logo-design {
+  transition: all 0.3s ease;
   border-radius: 50px;
   background-color: white;
-  padding: 10px;
+  padding: 15px;
   margin: 5px;
-  border: 1px solid $jicama-grey-text;
-  width: fit-content;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 0px 12px 1px rgba(0, 0, 0 , 0.08);
+  text-align-last: center;
 
   img {
-    width:50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
+  }
+  
+  .fab, .fas {
+    font-size: 30px;
+    opacity: 0.8;
+  }
+  
+  .fas {
+    position: relative;
+    font-size: 25px;
+    color: $jicama-purple;
+    bottom: -3px;
+    opacity: 1;
   }
 
   &:active {
-    border: 1px solid $jicama-purple;
-  }
-
-  .logo-plus {
-    width:50px;
-    height: 50px;
-    font-size: 30px;
-    position: relative; 
-    color: $jicama-grey-text;
-
-    i {
-      position: absolute;
-      right: 13px;
-      bottom: 10px;
-    }
+    opacity: 0.1;
   }
 }
+
 
 .datasources-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1Fr;
+  margin-bottom: 10px;
+  justify-items: center;
+  row-gap: 10px;
 }

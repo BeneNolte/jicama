@@ -4,9 +4,14 @@
     display : inline-block;
     width : 100px;
     height : 52px;
-    background-color: blue;
+    background-color: $jicama-purple;
     border-radius: 30px;
     border: 2px solid gray;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: $jicama-purple;
+  background-color: $jicama-purple;
 }
 
 /* After slide changes */

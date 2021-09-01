@@ -14,3 +14,15 @@
 .swal-modal {
   border-radius: 20px;
 }
+
+.swal-icon--success__line {
+  background-color: $jicama-green;
+}
+
+.swal-icon--info::before, .swal-icon--info::after {
+  background-color: $jicama-yellow;
+}
+
+.swal-icon--info {
+  border-color: $jicama-yellow;
+}
