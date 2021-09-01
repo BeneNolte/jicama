@@ -17,13 +17,13 @@
                   <%= image_tag @google.photo, class:"datasource-logo mr-3  " %>
                   <div>
                     <% if @score < 30 %>
-                      <h1 class="fatblacktitle jicama-red">Bad</h1>
+                      <h1 class="fatblacktitle">Bad</h1>
                     <% elsif @score < 60 %>
-                      <h1 class="fatblacktitle jicama-yellow">Medium</h1>
+                      <h1 class="fatblacktitle">Medium</h1>
                     <% elsif @score < 90 %>
-                      <h1 class="fatblacktitle jicama-green">Good</h1>
+                      <h1 class="fatblacktitle">Good</h1>
                     <% else %>
-                      <h1 class="fatblacktitle jicama-green">Very Good</h1>
+                      <h1 class="fatblacktitle">Very Good</h1>
                     <% end %>
                   </div>
                 </div>
@@ -209,10 +209,7 @@
               </div>
             </div>
           </div>
-        </div>
-
-
-      </div>
+          </div>
     </div>
   </div>
 
