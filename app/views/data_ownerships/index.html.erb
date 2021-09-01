@@ -76,15 +76,15 @@
             <div class="company-rating-btn">
               <div>
                 <% if data_ownership.company.rating == 1 %>
-                  <div class="fas fa-circle fa-lg", style="color:green">
+                  <div class="fas fa-circle fa-lg", style="color: #007C64;">
                   </div>
                 <% end %>
                 <% if data_ownership.company.rating == 3 %>
-                  <div class="fas fa-circle fa-lg", style="color:red">
+                  <div class="fas fa-circle fa-lg", style="color: #DB0000;">
                   </div>
                 <% end %>
                 <% if data_ownership.company.rating == 2  %>
-                  <div class="fas fa-circle fa-lg", style="color:orange">
+                  <div class="fas fa-circle fa-lg", style="color: #FCB111;">
                   </div>
                 <% end %>
               </div>
@@ -115,13 +115,13 @@
                     <strong style="font-size: 14px">Level of trust: </strong>
                     <div>
                       <% if data_ownership.company.rating == 1 %>
-                        <div style="color:green; font-size: 14px; margin-left: 10px;">High</div>
+                        <div style="color: #DB0000; font-size: 14px; margin-left: 10px;">High</div>
                       <% end %>
                       <% if data_ownership.company.rating == 3 %>
-                        <div style="color:red; font-size: 14px; margin-left: 10px;">Low</div>
+                        <div style="color: #007C64; font-size: 14px; margin-left: 10px;">Low</div>
                       <% end %>
                       <% if data_ownership.company.rating == 2  %>
-                        <div style="color:orange; font-size: 14px; margin-left: 10px;">Medium</div>
+                        <div style="color: #FCB111; font-size: 14px; margin-left: 10px;">Medium</div>
                       <% end %>
                     </div>
                   </div>
@@ -191,7 +191,7 @@
         <%= render 'button' %>
       </div>
       <div class="modal-footer">
-        <div class="buttonpurple" data-dismiss="modal">Save changes</div>
+        <div class="small-button-white" data-dismiss="modal">Save</div>
       </div>
     </div>
   </div>
