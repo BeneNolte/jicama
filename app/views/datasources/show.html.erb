@@ -24,6 +24,7 @@
                   <p class="greytext", style="margin-right: 10px">Privacy score:</p>
                   <div>
                     <% if @score < 30 %>
+
                       <h1 class="middleblacktitle">Bad</h1>
                     <% elsif @score < 60 %>
                       <h1 class="middleblacktitle">Medium</h1>
@@ -31,6 +32,7 @@
                       <h1 class="middleblacktitle">Good</h1>
                     <% else %>
                       <h1 class="middleblacktitle">Very Good</h1>
+
                     <% end %>
                   </div>
                 </div>
@@ -39,22 +41,21 @@
 
               </div>
               <p class="blacktitle" style="font-size: 20px">Your <%= @datasource.name%> Profile</p>
-              <div class="datasource-content" style="padding-bottom: 10px; padding-top: 10px;">
+              <div class="datasource-content" >
                 <p class="greysubtitle">Ads Clicked</p>
                 <p class="greysubtitle">405</p>
               </div>
-              <div class="datasource-content" style="padding-bottom: 10px">
+              <div class="datasource-content" >
                 <p class="greysubtitle">Companies shared with</p>
                 <p class="greysubtitle"> <%= @datasource.data_ownerships.count %></p>
               </div>
-              <div class="datasource-content" style="padding-bottom: 10px; border-bottom: 1px solid lightgrey;">
+              <div class="datasource-content" >
                 <p class="greysubtitle">Data uploaded</p>
                 <p class="greysubtitle"><%= (@datasource.size / 1000.0).round(2)  %> GB</p>
               </div>
-              <div class="datasource-content" style="padding-top: 10px">
+              <div class="datasource-content" >
                 <p class="blacktitle" style="font-size: 20px">Data Value</p>
                 <p class="blacktitle" style="font-size: 20px"><%= @datasource.value.round(2)  %> €</p>
-
               </div>
             </div>
 
@@ -125,7 +126,9 @@
                 <div>
 
                   <div class="card-boxless">
-                    <div class="insights-logo"><i class="fas fa-dollar-sign"></i></i></div>
+                    <div class="insights-logo">
+                      <i class="fas fa-dollar-sign"></i>
+                    </div>
                     <p class="subtitle">Number of ads viewed</p>
                       <div class="circle-container">
                         <p class="m-0"><%= @viewed_advertisements.count %></p>
@@ -158,7 +161,7 @@
                 <div>
 
                   <div class="card-boxless">
-                    <div class="insights-logo"><i class="fab fa-youtube"></i></i></div>
+                    <div class="insights-logo"><i class="fab fa-youtube"></i></div>
                     <p class="subtitle">Top watched channels</p>
 
                     <% @youtube_video_channels.first(5).each do |channel| %>
@@ -180,10 +183,10 @@
                     <p class="subtitle">Top watched videos</p>
                     <% @youtube_video_titles.first(3).each do |video| %>
                       <div class="content" style="display: block">
-                       <div class="content">
-                       <p class="header-grey"><%= video.title %></p>
-                       <p class="header-grey">x<%= video.count %></p>
-                       </div>
+                        <div class="content">
+                          <p class="header-grey"><%= video.title %></p>
+                          <p class="header-grey">x<%= video.count %></p>
+                        </div>
                         <div class="iframe-container">
 
                         <!-- Uncomment to display the video picture only
@@ -191,7 +194,6 @@
                           <img src="https://img.youtube.com/vi/<%= video.url.match(/=(.*)/)[1]%>/0.jpg" alt="">
                         <% end %>
                         -->
-
                           <iframe width="560"
                                   height="315"
                                   src="https://www.youtube.com/embed/<%= video.url.match(/=(.*)/)[1]%>"
@@ -213,13 +215,11 @@
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
   </div>
 
-  <div class="carousel">
+  <div class="carousel" id="show-carousel">
     <div class="data-insights-container" style="margin-top: 5px;">
 
       <div class="data-insights-card <%= params[:start_date] ? "" : "current" %>" id="digital-footprint">
