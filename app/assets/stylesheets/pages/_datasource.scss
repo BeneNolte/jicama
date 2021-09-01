@@ -163,14 +163,14 @@
 
 .rectangle-fill-horizontal  {
   height: 5px;
-  background-color: $jicama-purple;
+  background-color: $jicama-black;
   border-radius: 6px;
-  border: 1px solid $jicama-purple;
+  border: 1px solid $jicama-black;
 }
 
 .rectangle-container-vertical {
   position: relative;
-  width: 50px;
+  width: 5px;
   height: 150px;
   background-color: lightgrey;
   // border: 1px solid $jicama-purple;
@@ -179,11 +179,21 @@
 
 .rectangle-fill-vertical  {
   position: absolute;
-  background-color: $jicama-purple;
+  background-color: $jicama-black;
   border-radius: 6px;
-  border: 1px solid $jicama-purple;
+  border: 1px solid $jicama-black;
   bottom: 0;
   width: 100%;
+}
+
+.purple-bold {
+  color: $jicama-purple;
+  font-weight: 400 !important;
+}
+
+.header-grey {
+  color: $jicama-header-grey;
+  font-weight: 400 !important;
 }
 
 .video-score p {
