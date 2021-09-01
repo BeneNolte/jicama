@@ -1,5 +1,3 @@
-
-
 .meter {
     display: flex;
     justify-content: space-between;
@@ -13,7 +11,7 @@
 }
 
 .meter > span {
-display: block;
+  display: block;
   height: 100%;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;

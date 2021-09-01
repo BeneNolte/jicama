@@ -14,6 +14,7 @@
   position: absolute;
   width: 100%;
   transition: all 0.3s ease;
+  overflow-y: visible;;
 }
 
 .insights-display {
@@ -78,7 +79,7 @@
 
 .insights-map {
   position: absolute;
-  height: calc(100% + 15px);
+  height: 100%;
   width: calc(100% + 30px);
   justify-content: center;
   text-align: center;
@@ -87,8 +88,10 @@
   display: block;
   margin-left: -15px;
   margin-right: -15px;
-  margin-bottom: -15px;
   border-radius: 20px;
+  .marker {
+    opacity: 80%;
+  }
 }
 
 .scrollable {
@@ -141,6 +144,23 @@
   .fas,
   .fab {
     color: #474453;
+  }
+  h4 {
+    font-size: 17px;
+  }
+}
+
+
+@media(max-height: 750px) {
+  .data-insights-card {
+    width: 80px;
+    height: 80px;
+    i {
+      font-size: 22px;
+    }
+    h4 {
+      font-size: 14px;
+    }
   }
 }
 
@@ -237,4 +257,8 @@
   width: 90px;
   height: 90px;
   padding-top: 30px;
+}
+
+.privacy-container {
+  display: flex;
 }

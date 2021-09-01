@@ -13,24 +13,28 @@
             <div class="digital-footprint">
 
               <div class="digital-footprint-score">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex">
                   <%= image_tag @google.photo, class:"datasource-logo mr-3  " %>
-                  <div>
-                    <% if @score < 30 %>
-                      <h1 class="fatblacktitle">Bad</h1>
-                    <% elsif @score < 60 %>
-                      <h1 class="fatblacktitle">Medium</h1>
-                    <% elsif @score < 90 %>
-                      <h1 class="fatblacktitle">Good</h1>
-                    <% else %>
-                      <h1 class="fatblacktitle">Very Good</h1>
-                    <% end %>
-                  </div>
+                  <p class="blacktitle" ><%= @datasource.name%></p>
                 </div>
                 <div class="meter">
                   <span style="width: <%= @datasource.score %>%;"></span>
                 </div>
-                <p class="greytext">Privacy score</p>
+                <div class="privacy-container">
+                  <p class="greytext", style="margin-right: 10px; font-size: 20px;">Privacy score:</p>
+                  <div>
+                    <% if @score < 30 %>
+                      <h1 class="middleblacktitle">Bad</h1>
+                    <% elsif @score < 60 %>
+                      <h1 class="middleblacktitle">Medium</h1>
+                    <% elsif @score < 90 %>
+                      <h1 class="middleblacktitle">Good</h1>
+                    <% else %>
+                      <h1 class="middleblacktitle">Very Good</h1>
+
+                    <% end %>
+                  </div>
+                </div>
 
                 <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button mt-3 mb-1", id: "button-control" %>
 
@@ -219,27 +223,27 @@
 
       <div class="data-insights-card <%= params[:start_date] ? "" : "current" %>" id="digital-footprint">
         <i class="fas fa-shoe-prints" style="transform: rotate(-90deg)"></i>
-        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Footprint</h4>
+        <h4 class="blacktitle mt-2 mb-0">Footprint</h4>
       </div>
 
       <div class="data-insights-card <%= params[:start_date] ? "current" : "" %>" id="locations">
         <i class="fas fa-map-marker-alt"></i>
-        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Locations</h4>
+        <h4 class="blacktitle mt-2 mb-0">Locations</h4>
       </div>
 
       <div class="data-insights-card" id="interests">
         <i class="fas fa-search"></i>
-        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Search</h4>
+        <h4 class="blacktitle mt-2 mb-0">Search</h4>
       </div>
 
       <div class="data-insights-card" id="ads">
         <i class="fas fa-dollar-sign"></i>
-        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Ads</h4>
+        <h4 class="blacktitle mt-2 mb-0">Ads</h4>
       </div>
 
       <div class="data-insights-card" id="youtube-channels">
         <i class="fab fa-youtube"></i>
-        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Youtube</h4>
+        <h4 class="blacktitle mt-2 mb-0">Youtube</h4>
       </div>
     </div>
   </div>
