@@ -1,7 +1,7 @@
 <%= render 'shared/navbar' %>
 
 <div class="content-wrapper-with-bottombar">
-  <div class="container", style="height: 83%;">
+  <div class="container", style="height: 80%;">
     <div class="row" style="height: 100%; padding-bottom: 10px;">
       <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
 
@@ -31,7 +31,9 @@
                   <span style="width: <%= @datasource.score %>%;"></span>
                 </div>
                 <p class="greytext">Privacy score</p>
+
                 <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button mt-3", id: "button-control" %>
+
               </div>
 
               <h4 class="blacktitle">Your <%= @datasource.name%> Profile</h4>
@@ -209,31 +211,31 @@
   </div>
 
   <div class="carousel">
-    <div class="data-insights-container">
+    <div class="data-insights-container" style="margin-top: 10px;">
 
       <div class="data-insights-card <%= params[:start_date] ? "" : "current" %>" id="digital-footprint">
         <i class="fas fa-shoe-prints" style="transform: rotate(-90deg)"></i>
-        <h4 class="whitetitle mt-2 mb-0">Footprint</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Footprint</h4>
       </div>
 
       <div class="data-insights-card <%= params[:start_date] ? "current" : "" %>" id="locations">
         <i class="fas fa-map-marker-alt"></i>
-        <h4 class="whitetitle mt-2 mb-0">Locations</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Locations</h4>
       </div>
 
       <div class="data-insights-card" id="interests">
         <i class="fas fa-search"></i>
-        <h4 class="whitetitle mt-2 mb-0">Search</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Search</h4>
       </div>
 
       <div class="data-insights-card" id="ads">
         <i class="fas fa-dollar-sign"></i>
-        <h4 class="whitetitle mt-2 mb-0">Ads</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Ads</h4>
       </div>
 
       <div class="data-insights-card" id="youtube-channels">
         <i class="fab fa-youtube"></i>
-        <h4 class="whitetitle mt-2 mb-0">Youtube</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Youtube</h4>
       </div>
     </div>
   </div>

@@ -16,28 +16,27 @@
 }
 
 .data-valuation {
-  box-shadow: 0 0px 40px rgba(0,0,0,0.08);
-  padding: 10px;
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.08);
+  padding: 20px 10px;
   background-color: white;
   border-radius: 20px;
   flex-grow: 1;
-  height: 30vh;
+  margin-bottom: 0px;
+  height: 35.5vh;
 
   .data-valuation-logo {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0px 20px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0px 20px 1px rgb(231, 230, 236);
     justify-content: center;
     align-items: center;
     border-radius: 20%;
-    background-color: #2B2A35;
+    background-color: #ffffff;
     width: 38px;
     height: 38px;
     margin-right: 19px;
-    margin-top: px;
-    border: 0.5px solid #2B2A35;
     i {
-    color: white;
+    color: #7551F3;
     font-size: 19px;
     }
   }
@@ -45,7 +44,8 @@
 
 .data-valuation-details {
   display: flex;
-  margin: 20px 10px;
+  margin: 0px 10px 10px;
+  align-items: center;
 }
 
 .data-valuation-values {
@@ -74,12 +74,12 @@
     height: 30px;
     object-fit: cover;
   }
-  
+
   .fab, .fas {
     font-size: 30px;
     opacity: 0.8;
   }
-  
+
   .fas {
     position: relative;
     font-size: 25px;
@@ -93,6 +93,12 @@
   }
 }
 
+.fa-question-circle {
+  color: #5c5c5c;
+  position: relative;
+  bottom: 5px;
+  right: 5px;
+}
 
 .datasources-grid {
   display: grid;
