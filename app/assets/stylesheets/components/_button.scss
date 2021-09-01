@@ -10,6 +10,9 @@ button, input[type="submit"], input[type="reset"] {
 
 a {
   text-decoration: none;
+  &:active {
+    text-decoration: none;
+  }
 }
 
 .transp-button {
@@ -164,13 +167,15 @@ a {
   padding: 18px 15px;
   background-color: black;
   border-radius: 50%;
-  margin-bottom: 35px;
-  box-shadow: 0px 0px 16px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.08);
   opacity: 0.7;
+  bottom: 20px;
+  position: relative;
 }
 
 #auto-filter {
   border-radius: 20px;
   width: 130px;
   font-size: 14px;
+  color: black;
 }
