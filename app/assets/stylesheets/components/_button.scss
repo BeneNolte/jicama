@@ -79,11 +79,18 @@ a {
   text-decoration: none;
   border: 0.5px solid white;
 
+  a {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 0px;
+    font-weight: 600;
+  }
   &:active {
     text-decoration: none;
     color: black;
     background-color: white;
   }
+
 }
 
 .small-button, .swal-button, .swal-button-confirm {
@@ -177,6 +184,7 @@ a {
   opacity: 0.7;
   bottom: 20px;
   position: relative;
+  margin: 0px 5px;
 }
 
 #auto-filter {

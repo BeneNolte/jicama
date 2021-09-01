@@ -3,7 +3,7 @@
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: white;
 }
 
@@ -32,7 +32,7 @@
   font-size: 29px;
 }
 #fa-chart-bar {
-  font-size: 33px;
+  font-size: 32px;
 }
 
 @media(max-height: 750px) {
