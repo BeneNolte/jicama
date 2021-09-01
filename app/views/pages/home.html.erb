@@ -5,9 +5,13 @@
     <h5 style="font-family: Roboto; color: #A5A5A5; font-size: 15px; font-weight: normal;">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
 
     <% if user_signed_in? == false %>
-      <%= link_to "Join now", new_user_session_path, class: "short-button" %>
+      <div class="short-button">
+        <%= link_to "Join now", new_user_session_path, class: "blacktext" %>
+      </div>
     <% else %>
-      <%= link_to "Dashboard", dashboard_path, class: "short-button" %>
+      <div class="short-button">
+        <%= link_to "Dashboard", dashboard_path, class: "blacktext" %>
+      </div>
     <% end %>
 
 </div>
