@@ -12,7 +12,7 @@
           </div>
            <div class="items-flex">
             <i class="fas fa-check", style="color: green"></i>
-            <li><a href="https://takeout.google.com/settings/takeout?pli=1">Go on your Google Takeout account</a></li>
+            <li><%= link_to "Go on your Google Takeout account", "https://takeout.google.com/settings/takeout?pli=1", target: :_blank%></li>
           </div>
         </ol>
         <li class="title-action">2. Select the datafiles to download</li>
@@ -23,7 +23,14 @@
           </div>
           <div class="items-flex">
             <i class="fas fa-check", style="color: green"></i>
-            <li>Select Chrome, Location History, Profile, and YouTube and YouTube Music (if any)</li>
+            <li>Select :</li>
+            <ul style="m0">
+            <li>Chrome</li>
+            <li>Location History</li>
+            <li>Profile</li>
+            <li>YouTube and YouTube Music</li>
+            <li>My Activity</li>
+            </ul>
           </div>
           <div class="items-flex">
             <i class="fas fa-check", style="color: green"></i>
