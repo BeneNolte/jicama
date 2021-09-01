@@ -1,7 +1,7 @@
 <%= render 'shared/navbar' %>
 
 <div class="content-wrapper-with-bottombar">
-  <div class="container", style="height: 83%;">
+  <div class="container", style="height: 80%;">
     <div class="row" style="height: 100%; padding-bottom: 10px;">
       <div class="col-12 col-lg-6" style="display: flex; flex-direction: column">
 
@@ -31,7 +31,9 @@
                   <span style="width: <%= @datasource.score %>%;"></span>
                 </div>
                 <p class="greytext">Privacy score</p>
-                <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button mt-3", id: "button-control" %>
+
+                <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button mt-3", id: "button-control" %>
+
               </div>
 
               <h4 class="blacktitle">Your <%= @datasource.name%> Profile</h4>
@@ -85,12 +87,12 @@
                     <div class="content" style="justify-content: space-evenly">
                       <% @chrome_search_words.first(3).each do |word| %>
                         <div class="title">
-                          <p id="center">"<%= word.word %>"</p>
+                          <p class="purple-bold" id="center"><%= word.word %></p>
                             <div class="rectangle-container-vertical">
                               <div class="rectangle-fill-vertical" style="height: <%=(word.count*100)/@chrome_search_words.first.count %>%">
                               </div>
                             </div>
-                          <p id="center"><%= word.count %></p>
+                          <p class="purple-bold" id="center"><%= word.count %></p>
                         </div>
                       <% end %>
                     </div>
@@ -101,13 +103,13 @@
                     <% @chrome_visited_links.first(5).each do |word| %>
                       <div class="content">
                         <div class="title">
-                          <p class="m-0 mr-5"><%= word.link %></p>
+                          <p class="header-grey m-0 mr-5"><%= word.link %></p>
                           <div class="rectangle-container-horizontal">
                             <div class="rectangle-fill-horizontal" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
                             </div>
                           </div>
                         </div>
-                        <p class="m-0" id="link-count"><%= word.count %></p>
+                        <p class="header-grey m-0" id="link-count"><%= word.count %></p>
                       </div>
                     <% end %>
                   </div>
@@ -160,13 +162,13 @@
                     <% @youtube_video_channels.first(5).each do |channel| %>
                       <div class="content">
                         <div class="title">
-                          <p class="m-0 mr-5"><%= channel.title %></p>
+                          <p class="header-grey m-0 mr-5"><%= channel.title %></p>
                           <div class="rectangle-container-horizontal">
                             <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
                             </div>
                           </div>
                         </div>
-                        <p id="link-count"><%= channel.count %></p>
+                        <p class="header-grey" id="link-count"><%= channel.count %></p>
                       </div>
                     <% end %>
                   </div>
@@ -177,8 +179,8 @@
                     <% @youtube_video_titles.first(3).each do |video| %>
                       <div class="content" style="display: block">
                        <div class="content">
-                       <p><%= video.title %></p>
-                       <p>x<%= video.count %></p>
+                       <p class="header-grey"><%= video.title %></p>
+                       <p class="header-grey">x<%= video.count %></p>
                        </div>
                         <div class="iframe-container">
 
@@ -216,31 +218,31 @@
   </div>
 
   <div class="carousel">
-    <div class="data-insights-container">
+    <div class="data-insights-container" style="margin-top: 10px;">
 
       <div class="data-insights-card <%= params[:start_date] ? "" : "current" %>" id="digital-footprint">
         <i class="fas fa-shoe-prints" style="transform: rotate(-90deg)"></i>
-        <h4 class="whitetitle mt-2 mb-0">Footprint</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Footprint</h4>
       </div>
 
       <div class="data-insights-card <%= params[:start_date] ? "current" : "" %>" id="locations">
         <i class="fas fa-map-marker-alt"></i>
-        <h4 class="whitetitle mt-2 mb-0">Locations</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Locations</h4>
       </div>
 
       <div class="data-insights-card" id="interests">
         <i class="fas fa-search"></i>
-        <h4 class="whitetitle mt-2 mb-0">Search</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Search</h4>
       </div>
 
       <div class="data-insights-card" id="ads">
         <i class="fas fa-dollar-sign"></i>
-        <h4 class="whitetitle mt-2 mb-0">Ads</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Ads</h4>
       </div>
 
       <div class="data-insights-card" id="youtube-channels">
         <i class="fab fa-youtube"></i>
-        <h4 class="whitetitle mt-2 mb-0">Youtube</h4>
+        <h4 class="blacktitle mt-2 mb-0" style="font-size: 17px;">Youtube</h4>
       </div>
     </div>
   </div>
