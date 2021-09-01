@@ -237,8 +237,11 @@ puts "Finished!"
 # Links if we want them ? channelLinks = html_doc.css("div.mdl-grid div:nth-child(2) a").attribute('href').value
 
 # 4. LOCATIONS
-html_file = File.open('./db/TakeoutBene/My Activity/Maps/MyActivity.html')
+# html_file = File.open('./db/TakeoutBene/My Activity/Maps/MyActivity.html')
+youtube_file = ENV.fetch("SECRET_LOCATIONS")
+html_file = URI.open(youtube_file)
 html_doc = Nokogiri::HTML(html_file)
+# html_doc = Nokogiri::HTML(html_file)
 dateExtracts = html_doc.search("div.mdl-typography--body-1")
 locations = []
 
