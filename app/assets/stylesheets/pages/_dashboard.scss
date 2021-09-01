@@ -16,31 +16,36 @@
 }
 
 .data-valuation {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 0px 40px rgba(0,0,0,0.08);
   padding: 10px;
   background-color: white;
   border-radius: 20px;
   flex-grow: 1;
+  height: 30vh;
 
   .data-valuation-logo {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  background-color: #7551F3;
-  width: 40px;
-  margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0px 20px 6px rgba(0, 0, 0, 0.12);
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+    background-color: #2B2A35;
+    width: 38px;
+    height: 38px;
+    margin-right: 19px;
+    margin-top: px;
+    border: 0.5px solid #2B2A35;
     i {
-      color: white;
-      font-size: 25px;
+    color: white;
+    font-size: 19px;
     }
   }
 }
 
 .data-valuation-details {
   display: flex;
+  margin: 20px 10px;
 }
 
 .data-valuation-values {
@@ -56,10 +61,13 @@
 .logo-design {
   border-radius: 50px;
   background-color: white;
-  padding: 10px;
+  padding: 15px;
   margin: 5px;
-  border: 1px solid $jicama-grey-text;
-  width: fit-content;
+  border: 1px solid white;
+  width: -webkit-fit-content;
+  width: 63px;
+  height: 63px;
+  box-shadow: 0 0px 12px 1px rgba(0, 0, 0 , 0.08);
 
   img {
     width:50px;
@@ -68,14 +76,14 @@
   }
 
   &:active {
-    border: 1px solid $jicama-purple;
+    background-color: #FBFBFB;
   }
 
   .logo-plus {
     width:50px;
     height: 50px;
     font-size: 30px;
-    position: relative; 
+    position: relative;
     color: $jicama-grey-text;
 
     i {
@@ -86,7 +94,68 @@
   }
 }
 
+.google-design {
+    border-radius: 50px;
+    background-color: white;
+    padding: 15px;
+    margin: 5px;
+    border: 1px solid white;
+    width: fit-content;
+    box-shadow: 0 0px 12px 1px rgba(0, 0, 0 , 0.08);
+
+  img {
+    width: 31px;
+    height: 32px;
+    object-fit: cover;
+  }
+
+  &:active {
+    background-color: #FBFBFB;
+  }
+
+  .logo-plus {
+    width:50px;
+    height: 50px;
+    font-size: 30px;
+    position: relative;
+    color: $jicama-grey-text;
+
+    i {
+      position: absolute;
+      right: 13px;
+      bottom: 10px;
+    }
+  }
+}
+
+.fa-plus:before {
+    content: "\f067";
+    text-align: center;
+    font-size: 25px;
+    position: relative;
+    bottom: -2px;
+    left: 4px;
+    color: #7551F3;
+}
+
 .datasources-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1Fr;
+}
+
+.datasources-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1Fr;
+}
+
+.question-symbol {
+  margin-top: 17px;
+  margin-right: 8px;
+  color: #7551F3;
+}
+
+.button-info-purple {
+    color: #7551F3;
+    margin-right: 8px;
+    margin-top: -7px;
 }

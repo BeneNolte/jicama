@@ -8,7 +8,7 @@
         <div class="displays">
           <%# default display %>
           <div class="default-display <%= params[:start_date] ? "opacity" : "" %>">
-            <h4 class="greysubtitle">Digital Footprint</h4>
+            <h4 class="purplesubtitle">Digital Footprint</h4>
 
             <div class="digital-footprint">
 
@@ -16,25 +16,25 @@
                 <div class="display-score">
                   <div class="display-score d-flex"  style="margin-right: 50px">
                     <% if @score < 30 %>
-                      <h1 class="fatpurpletitle">Bad</h1>
+                      <h1 class="fatblacktitle">Bad</h1>
                     <% elsif @score < 60 %>
-                      <h1 class="fatpurpletitle">Medium</h1>
+                      <h1 class="fatblacktitle">Medium</h1>
                     <% elsif @score < 90 %>
-                      <h1 class="fatpurpletitle">Good</h1>
+                      <h1 class="fatblacktitle">Good</h1>
                     <% else %>
-                      <h1 class="fatpurpletitle">Very Good</h1>
+                      <h1 class="fatblacktitle">Very Good</h1>
                     <% end %>
                   </div>
                   <%= image_tag @google.photo, class:"datasource-logo" %>
                 </div>
                 <div class="meter">
-                  <span style="width: <%= @datasource.score %>%; border: 1px solid #7551F3;"></span>
+                  <span style="width: <%= @datasource.score %>%;"></span>
                 </div>
                 <p class="greytext">Privacy score</p>
                 <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button mt-5" %>
               </div>
 
-              <h4 class="purpletitle">Your <%= @datasource.name%> Profile</h4>
+              <h4 class="blacktitle">Your <%= @datasource.name%> Profile</h4>
               <div class="datasource-content" style="padding-bottom: 10px; padding-top: 10px;">
                 <p class="greysubtitle">Ads Clicked</p>
                 <p class="greysubtitle">405</p>
@@ -48,8 +48,8 @@
                 <p class="greysubtitle"><%= (@datasource.size / 1000.0).round(2)  %> GB</p>
               </div>
               <div class="datasource-content" style="padding-top: 10px">
-                <p class="purpletitle">Data Value</p>
-                <p class="purpletitle"><%= @datasource.value.round(2)  %> €</p>
+                <p class="blacktitle">Data Value</p>
+                <p class="blacktitle"><%= @datasource.value.round(2)  %> €</p>
 
               </div>
             </div>

@@ -127,11 +127,13 @@
   width: 100px;
   height: 100px;
   margin: 0px 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  // box-shadow: 0 2px 45px 6px rgba(0, 0, 0, 0.08);
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: $jicama-purple;
+  background: linear-gradient(80deg, black 50%, #2B2A35);
+  // background-color: #2B2A35;
+  opacity: 1;
   i {
     color: white;
     font-size: 25px;
