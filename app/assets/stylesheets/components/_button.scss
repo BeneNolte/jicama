@@ -8,6 +8,10 @@ button, input[type="submit"], input[type="reset"] {
 	outline: inherit;
 }
 
+a {
+  text-decoration: none;
+}
+
 .transp-button {
   background-color: transparent;
   height: 50px;
@@ -29,6 +33,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .short-button-black {
+  transition: all 0.3s ease;
   padding: 10px 45px;
   background-color: white;
   border-radius: 50px;
@@ -47,6 +52,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .short-button-light {
+  transition: all 0.3s ease;
   padding: 5px 21px;
   background-color: black;
   border-radius: 50px;
@@ -65,6 +71,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .small-button, .swal-button, .swal-button-confirm {
+  transition: all 0.3s ease;
   background-color: white;
   cursor: pointer;
   padding: 5px 10px;
@@ -90,6 +97,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .small-button-white {
+  transition: all 0.3s ease;
   background-color: #7551F3;
   cursor: pointer;
   padding: 5px 10px;
@@ -99,7 +107,7 @@ button, input[type="submit"], input[type="reset"] {
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   width: 100px;
 
@@ -114,20 +122,6 @@ button, input[type="submit"], input[type="reset"] {
   }
 }
 
-.buttonpurple {
-  cursor: pointer;
-  padding: 10px;
-  background-color: #7551F3;
-  display: flex;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0px;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-}
-
 .buttontext {
   cursor: pointer;
   color: #7551F3;
@@ -136,19 +130,18 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .button-info-purple {
+  font-size: 20px;
+  transition: all 0.3s ease;
   color: #7551F3;
   &:active {
     color: black;
   }
 }
 .button-info-white {
+  font-size: 20px;
+  transition: all 0.3s ease;
   color: white;
   &:active {
     color: black;
   }
-}
-#info-control {
-  position: absolute;
-  right: 30px;
-  top: 15px;
 }

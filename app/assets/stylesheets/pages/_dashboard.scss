@@ -59,103 +59,40 @@
 }
 
 .logo-design {
+  transition: all 0.3s ease;
   border-radius: 50px;
   background-color: white;
   padding: 15px;
   margin: 5px;
-  border: 1px solid white;
-  width: -webkit-fit-content;
-  width: 63px;
-  height: 63px;
+  width: 60px;
+  height: 60px;
   box-shadow: 0 0px 12px 1px rgba(0, 0, 0 , 0.08);
 
   img {
-    width:50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
   }
 
   &:active {
-    background-color: #FBFBFB;
+    border: 1px solid #7551F3;
+    opacity: 0.25;
   }
 
-  .logo-plus {
-    width:50px;
-    height: 50px;
-    font-size: 30px;
-    position: relative;
-    color: $jicama-grey-text;
-
-    i {
-      position: absolute;
-      right: 13px;
-      bottom: 10px;
-    }
+  .fa-plus:before {
+      width:50px;
+      height: 50px;
+      content: "\f067";
+      text-align: center;
+      font-size: 25px;
+      position: relative;
+      bottom: -2px;
+      left: 4px;
+      color: #7551F3;
   }
-}
-
-.google-design {
-    border-radius: 50px;
-    background-color: white;
-    padding: 15px;
-    margin: 5px;
-    border: 1px solid white;
-    width: fit-content;
-    box-shadow: 0 0px 12px 1px rgba(0, 0, 0 , 0.08);
-
-  img {
-    width: 31px;
-    height: 32px;
-    object-fit: cover;
-  }
-
-  &:active {
-    background-color: #FBFBFB;
-  }
-
-  .logo-plus {
-    width:50px;
-    height: 50px;
-    font-size: 30px;
-    position: relative;
-    color: $jicama-grey-text;
-
-    i {
-      position: absolute;
-      right: 13px;
-      bottom: 10px;
-    }
-  }
-}
-
-.fa-plus:before {
-    content: "\f067";
-    text-align: center;
-    font-size: 25px;
-    position: relative;
-    bottom: -2px;
-    left: 4px;
-    color: #7551F3;
 }
 
 .datasources-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1Fr;
-}
-
-.datasources-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1Fr;
-}
-
-.question-symbol {
-  margin-top: 17px;
-  margin-right: 8px;
-  color: #7551F3;
-}
-
-.button-info-purple {
-    color: #7551F3;
-    margin-right: 8px;
-    margin-top: -7px;
 }
