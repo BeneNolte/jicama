@@ -1,9 +1,10 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12 col-lg-6">
       <h1>Your turn!</h1>
       <h4>Follow these steps to help us analyze your data:</h4>
-      <ol>
+
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
         <li class="title-action">1. Sign in to Google Takeout</li>
         <ol>
           <div class="items-flex">
@@ -15,6 +16,12 @@
             <li><%= link_to "Go on your Google Takeout account", "https://takeout.google.com/settings/takeout?pli=1", target: :_blank%></li>
           </div>
         </ol>
+      </div>
+    </div>
+
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
         <li class="title-action">2. Select the datafiles to download</li>
         <ol>
           <div class="items-flex">
@@ -38,6 +45,13 @@
             <li>Click on "next step"</li>
           </div>
         </ol>
+      </div>
+    </div>
+
+
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
         <li class="title-action">3. Create the export</li>
         <ol>
           <div class="items-flex">
@@ -49,6 +63,13 @@
             <li>Click on "create export"</li>
           </div>
         </ol>
+      </div>
+    </div>
+
+
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
         <li class="title-action">4. You are almost set!</li>
         <ol>
         <div class="items-flex">
@@ -56,7 +77,9 @@
             <li><a href="https:">Upload your data</a></li>
           </div>
         </ol>
-      </ol>
+      </div>
+    </div>
+
       <%= link_to "Done", datasource_path(@google), class: "short-button" %><br />
     </div>
   </div>
