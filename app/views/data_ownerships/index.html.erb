@@ -6,13 +6,13 @@
 
         <div class="app-header d-flex justify-content-between mb-1">
           <h4 class="purplesubtitle">Privacy control</h4>
-          <button type="button" 
-                  class= "button-info-purple" 
-                  data-trigger="focus" 
-                  data-container="body" 
+          <button type="button"
+                  class= "button-info-purple"
+                  data-trigger="focus"
+                  data-container="body"
                   data-html="true"
-                  data-toggle="popover" 
-                  data-placement="left" 
+                  data-toggle="popover"
+                  data-placement="left"
                   data-content="For each company below, you can either choose to <em>restrict</em> or <em>delete</em> their access to your data individually, or you can rely on the <strong>autofilter</strong> to deal with every company at once according to your preferences ! <br>
                                 <hr>
                                 <strong>Accessors</strong> : companies that have access to your data <br><br>
@@ -31,7 +31,7 @@
             <% end %>
           </div>
           <div class="small-button-white mr-2" id="auto-filter">Auto-filter</div>
-           
+
             <!-- Button trigger modal -->
             <div data-toggle="modal" data-target="#exampleModal" class= "button-info-purple" style= "margin-top: 4px;" >
               <i class="fas fa-cog"></i>
@@ -89,7 +89,7 @@
                 <% end %>
               </div>
               <div style="margin-left: 10px">
-                <strong><%= Company.find(data_ownership.company_id).title.capitalize %></strong>
+                <strong><%= Company.find(data_ownership.company_id).title %></strong>
               </div>
             </div>
             <div>

@@ -31,7 +31,9 @@
                   <span style="width: <%= @datasource.score %>%;"></span>
                 </div>
                 <p class="greytext">Privacy score</p>
-                <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button-white mt-3" %>
+
+                <%= link_to "Control", datasource_data_ownerships_path(@datasource), class: "small-button mt-3", id: "button-control" %>
+
               </div>
 
               <h4 class="blacktitle">Your <%= @datasource.name%> Profile</h4>
