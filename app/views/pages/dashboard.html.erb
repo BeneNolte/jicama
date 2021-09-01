@@ -59,7 +59,7 @@
         <div class="data-valuation">
           <div class="data-valuation-details">
             <div class="data-valuation-logo">
-              <i class="fas fa-dollar-sign"></i>
+              <i class="fas fa-money-bill-wave"></i>
             </div>
             <div class="data-valuation-values">
               <p class="greytext">Data value</p>
@@ -70,7 +70,7 @@
 
           <div class="data-valuation-details">
             <div class="data-valuation-logo">
-              <i class="fas fa-dollar-sign"></i>
+              <i class="fas fa-chart-line"></i>
             </div>
             <div class="data-valuation-values">
               <p class="greytext">Value recovered</p>
@@ -81,7 +81,7 @@
 
           <div class="data-valuation-details">
             <div class="data-valuation-logo">
-              <i class="fas fa-dollar-sign"></i>
+              <i class="far fa-building"></i>
             </div>
             <div class="data-valuation-values">
               <p class="greytext">Companies restricted</p>
@@ -91,11 +91,11 @@
           </div>
           <div class="data-valuation-details">
             <div class="data-valuation-logo">
-              <i class="fas fa-dollar-sign"></i>
+              <i class="fas fa-database"></i>
             </div>
             <div class="data-valuation-values">
-              <p class="greytext">Companies restricted</p>
-              <h4 class="blacktitle"><%= DataOwnership.all.where(type_of_ownership: ["restricted","deleted"]).count %></h4>
+              <p class="greytext">Overall data storage</p>
+              <h4 class="blacktitle"><%= (@google.size / 1000.0).round(2)  %> GB</h4>
             </div>
             <p class="greytext">All time</p>
           </div>

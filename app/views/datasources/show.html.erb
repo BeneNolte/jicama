@@ -36,7 +36,7 @@
 
               </div>
 
-              <h4 class="blacktitle">Your <%= @datasource.name%> Profile</h4>
+              <h4 class="blacktitle" style="font-size: 20px">Your <%= @datasource.name%> Profile</h4>
               <div class="datasource-content" style="padding-bottom: 10px; padding-top: 10px;">
                 <p class="greysubtitle">Ads Clicked</p>
                 <p class="greysubtitle">405</p>
@@ -50,8 +50,8 @@
                 <p class="greysubtitle"><%= (@datasource.size / 1000.0).round(2)  %> GB</p>
               </div>
               <div class="datasource-content" style="padding-top: 10px">
-                <p class="blacktitle">Data Value</p>
-                <p class="blacktitle"><%= @datasource.value.round(2)  %> €</p>
+                <p class="blacktitle" style="font-size: 20px">Data Value</p>
+                <p class="blacktitle" style="font-size: 20px"><%= @datasource.value.round(2)  %> €</p>
 
               </div>
             </div>
@@ -218,7 +218,7 @@
   </div>
 
   <div class="carousel">
-    <div class="data-insights-container" style="margin-top: 10px;">
+    <div class="data-insights-container" style="margin-top: 5px;">
 
       <div class="data-insights-card <%= params[:start_date] ? "" : "current" %>" id="digital-footprint">
         <i class="fas fa-shoe-prints" style="transform: rotate(-90deg)"></i>

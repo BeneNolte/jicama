@@ -10,6 +10,9 @@ button, input[type="submit"], input[type="reset"] {
 
 a {
   text-decoration: none;
+  &:active {
+    text-decoration: none;
+  }
 }
 
 .transp-button {
@@ -107,6 +110,7 @@ a {
 #button-control {
   width: 100%;
   border-radius: 30px;
+  font-size: 14px;
 }
 
 .small-button-white {
@@ -120,7 +124,7 @@ a {
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   width: 100px;
 
@@ -159,7 +163,19 @@ a {
   }
 }
 
+#dashboard-button {
+  padding: 18px 15px;
+  background-color: black;
+  border-radius: 50%;
+  box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.08);
+  opacity: 0.7;
+  bottom: 20px;
+  position: relative;
+}
+
 #auto-filter {
   border-radius: 20px;
   width: 130px;
+  font-size: 14px;
+  color: black;
 }
