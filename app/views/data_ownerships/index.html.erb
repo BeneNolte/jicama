@@ -153,9 +153,15 @@
                   </div>
                   <div class="delete d-flex justify-content-between mb-3">
                     <div>
-                      <div class="small-button jicama-red", style="border-color: #DB0000">
-                        <%= button_to "Delete", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "deleted" %>
-                      </div>
+                      <% if data_ownership.type_of_ownership == "deleted" %>
+                        <div class="small-button jicama-red" style="border-color: #fb9d9d">
+                          <%= button_to "Delete", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', disabled: true %>
+                        </div>
+                      <% else %>
+                        <div class="small-button jicama-red" style="border-color: #DB0000">
+                          <%= button_to "Delete", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch' %>
+                        </div>
+                      <% end %>
                     </div>
                     <p class="greytext ml-3" style="width: 230px">Jicama will contact <%= Company.find(data_ownership.company_id).title.capitalize %> in your name to delete the data they collected of you.</p>
                   </div>
