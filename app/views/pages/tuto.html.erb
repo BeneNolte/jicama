@@ -1,60 +1,105 @@
+<%= render 'shared/navbar' %>
+
 <div class="tuto-container">
 
   <div class="tuto" id="tuto-1">
-    <h4 class="title-action">Sign in to <br>Google Takeout</h4>
-    <%= image_tag image_path("tuto-takeout.png") %>
+    <div class="card-style">
+      <h4 class="title-action">Sign in to <br>Google Takeout</h4>
+      <%= image_tag image_path("tuto-takeout.png") %>
       <div class="tuto-instructions">
-        <p>Go on Google Takeout and login with your account</p>
+        <p>Go on <%= link_to "Google Takeout", "https://takeout.google.com/settings/takeout?pli=1", target: :_blank%> and login <br>to your account</p>
       </div>
-      <%= link_to "Google Takeout", "https://takeout.google.com/settings/takeout?pli=1", target: :_blank%>
-    <div class="dots">
+
+      <div class="tuto-end">
+        <div class="dots">
+          <div class="dot-fill"></div>
+          <div class="dot-empty"></div>
+          <div class="dot-empty"></div>
+          <div class="dot-empty"></div>
+        </div>
+        <%= link_to "Next", tuto_path(@google, anchor: "tuto-2"), class:"next-button"%>
+      </div>
     </div>
-      <div class="next-button">
-        <%= link_to "Next", "#" %>
-      </div>
   </div>
 
 
   <div class="tuto" id="tuto-2">
-    <h4 class="title-action">Select the <br>relevant files</h4>
-    <%= image_tag image_path("tuto-select.png") %>
-    <div class="tuto-instructions">
-      <p>Unselect all the options and make sure the following options are selected</p>
-      <ul>
-        <li>Chrome</li>
-        <li>Location History</li>
-        <li>Profile</li>
-        <li>YouTube and YouTube Music</li>
-        <li>My Activity</li>
-      </ul>
-    </div>
-    <div class="next-button">
-      <%= link_to "Next", "#" %>
+    <div class="card-style">
+      <h4 class="title-action">Select the <br>relevant files</h4>
+      <%= image_tag image_path("tuto-select.png") %>
+      <div class="tuto-instructions">
+        <p>Unselect default options and <br>make sure you select :</p>
+        <div class="row align-items-start">
+          <div class="col">
+            <ul>
+              <li>Chrome</li>
+              <li>Profile</li>
+              <li>YouTube</li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul>
+              <li>My Activity</li>
+              <li>Location History</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="tuto-end">
+        <div class="dots">
+          <div class="dot-empty"></div>
+          <div class="dot-fill"></div>
+          <div class="dot-empty"></div>
+          <div class="dot-empty"></div>
+        </div>
+        <%= link_to "Next", tuto_path(@google, anchor: "tuto-3"), class:"next-button"%>
+      </div>
     </div>
   </div>
 
 
 
   <div class="tuto" id="tuto-3">
-    <h4 class="title-action">Export your <br>personal data</h4>
-    <%= image_tag image_path("tuto-download.png") %>
-    <div class="tuto-instructions">
-      <p>Click on "create export" and make sure frequency is set as 1 export</p>
-    </div>
-    <div class="next-button">
-      <%= link_to "Next", "#" %>
+    <div class="card-style">
+      <h4 class="title-action">Export your <br>personal data</h4>
+      <%= image_tag image_path("tuto-download.png") %>
+      <div class="tuto-instructions">
+        <p>Click on "create export" and make sure frequency is set as 1 export</p>
+      </div>
+      <div class="tuto-end">
+        <div class="dots">
+          <div class="dot-empty"></div>
+          <div class="dot-empty"></div>
+          <div class="dot-fill"></div>
+          <div class="dot-empty"></div>
+        </div>
+        <%= link_to "Next", tuto_path(@google, anchor: "tuto-4"), class:"next-button"%>
+      </div>
     </div>
   </div>
 
 
 
   <div class="tuto" id="tuto-4">
-    <h4 class="title-action">Upload your <br>personal data</h4>
-    <%= image_tag image_path("tuto-upload.png") %>
-    <div class="tuto-instructions">
-      <p>You are almost set!</p>
+    <div class="card-style">
+      <h4 class="title-action">Upload your <br>personal data</h4>
+      <%= image_tag image_path("tuto-upload.png") %>
+      <div class="tuto-instructions">
+        <p>You are almost set!</p>
+        <%# <%= simple_form_for  %> %>
+      </div>
+      <div class="tuto-end">
+        <div class="dots">
+          <div class="dot-empty"></div>
+          <div class="dot-empty"></div>
+          <div class="dot-empty"></div>
+          <div class="dot-fill"></div>
+        </div>
+        <div class="done-button">
+          <%= link_to "Done", datasource_path(@google) %><br />
+        </div>
+      </div>
     </div>
-    <%= link_to "Done", datasource_path(@google), class: "short-button" %><br />
   </div>
 
 </div>
