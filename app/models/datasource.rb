@@ -5,7 +5,7 @@ class Datasource < ApplicationRecord
   has_many :interest_recommendations, dependent: :destroy
   has_many :locations, dependent: :destroy
   has_one_attached :photo
-  has_one_attached :file
+  has_one_attached :file, service: :s3
   has_many :chrome_search_words, dependent: :destroy
   has_many :chrome_visited_links, dependent: :destroy
   has_many :youtube_video_titles, dependent: :destroy
