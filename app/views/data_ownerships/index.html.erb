@@ -130,7 +130,7 @@
                   </div>
                   <hr>
                   <strong style="font-size: 14px">Who did they get my data from?</strong>
-                  <%= image_tag @datasource.photo, class:"datasource-logo ml-3" %>
+                  <%= cl_image_tag @datasource.photo.key, class:"datasource-logo ml-3" %>
                   <hr>
                   <div class="mb-3 d-flex"><strong style="font-size: 14px">Current status: &ensp;<%= data_ownership.type_of_ownership.capitalize %></strong></div>
                   <div class="restrict d-flex justify-content-between">
