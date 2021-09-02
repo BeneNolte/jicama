@@ -71,7 +71,6 @@
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  margin-right: 10px;
   #center {
     align-self: center;
   }
@@ -159,7 +158,7 @@
     color: #474453;
   }
   h4 {
-    font-size: 17px;
+    font-size: 15px;
   }
 }
 
@@ -259,9 +258,14 @@
 
 .insights-logo {
   position: absolute;
-  top: 2px;
-  color: $jicama-grey-text;
-  font-size: 14px;
+  right: 0px;
+  background-color: $jicama-dark-grey;
+  height: 28px;
+  width: 28px;
+  border-radius: 50px;
+  color: white;
+  font-size: 13px;
+  padding: 4px;
 }
 
 .circle-container {

@@ -1,4 +1,5 @@
 .search {
+  height: 30px;
   width: 95%;
 }
 
@@ -13,6 +14,10 @@
   padding: 5px;
   place-content: center;
   margin-bottom: 10px;
+  position: relative;
+  bottom: -9px;
+  z-index: 1;
+  background: white;
   input[type="date"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
