@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-between;
   box-sizing: content-box;
-  height: 10px;
+  height: 7px;
   position: relative;
   background: white;
   border-radius: 25px;
   margin: 15px 0px;
   border: 0.01px solid #A8A8A8;
-
+  flex-grow: 1;
 }
 
 .meter > span {
@@ -22,4 +22,8 @@
   position: relative;
   overflow: hidden;
   opacity: 0.9;
+}
+
+.absent-meter > span {
+  background: linear-gradient(80deg, white, 0%, white);
 }

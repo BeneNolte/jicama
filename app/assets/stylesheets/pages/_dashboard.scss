@@ -110,8 +110,47 @@
 
 .privacy-container {
   flex-direction: column;
+  flex-grow: 1;
+}
+
+.shiny-score {
+  display: flex;
 }
 
 .display-score {
   vertical-align: middle;
+}
+
+.circle-container {
+  border: 2px solid $jicama-purple;
+  padding: 20px;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  padding-top: 30px;
+}
+
+.privacy-container {
+  display: flex;
+  margin-left: 15px;
+}
+
+.score-display {
+  // margin-top: 20px;
+  border-radius: 50px;
+  width: 72px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.social-icons {
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+.absent-source {
+  opacity: 0.3;
 }
