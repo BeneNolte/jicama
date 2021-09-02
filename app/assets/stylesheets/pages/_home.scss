@@ -109,6 +109,12 @@
   margin-top: 0px;
 }
 
+@media(max-height: 750px) {
+  .logo-sizing {
+    width: 250px;
+  }
+}
+
 .mini-logo-sizing {
   width: 80px;
   height: 60px;
