@@ -35,11 +35,15 @@
                     <% end %>
                   </div>
                 </div>
-
-                <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button mt-3 mb-1", id: "button-control" %>
-
               </div>
-              <p class="blacktitle" style="font-size: 20px">Your <%= @datasource.name%> Profile</p>
+              <div class="d-flex space-between">
+                <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button mt-3 mb-1", id: "button-control" %>
+                <p class="blacktitle" style="font-size: 20px">Your <%= @datasource.name%> Profile</p>
+              </div>
+              <div class="datasource-content" >
+                <p class="greysubtitle">Google Searches</p>
+                <p class="greysubtitle">405</p>
+              </div>
               <div class="datasource-content" >
                 <p class="greysubtitle">Ads Clicked</p>
                 <p class="greysubtitle">405</p>
