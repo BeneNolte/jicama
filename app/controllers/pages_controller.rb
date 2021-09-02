@@ -33,7 +33,7 @@ class PagesController < ApplicationController
   end
 
   def tuto
-    datasources = Datasource.all
-    @google = datasources.find_by(name: "Google")
+    datasources = current_user.datasources
+    @datasource = datasources.find(params[:datasource_id])
   end
 end
