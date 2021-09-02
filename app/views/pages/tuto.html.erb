@@ -4,11 +4,13 @@
 
   <div class="tuto" id="tuto-1">
     <div class="card-style">
+
       <h4 class="title-action">Sign in to Google Takeout</h4>
       <%= image_tag image_path("tuto-takeout.png") %>
       <div class="tuto-instructions">
         <p>Go on <%= link_to "Google Takeout", "https://takeout.google.com/settings/takeout?pli=1", target: :_blank%> and login <br>to your account</p>
       </div>
+
       <div class="tuto-end">
         <div class="dots">
           <div class="dot-fill"></div>
@@ -81,6 +83,7 @@
 
   <div class="tuto" id="tuto-4">
     <div class="card-style">
+
       <h4 class="title-action">Upload your personal data</h4>
       <%= image_tag image_path("tuto-upload.png") %>
       <div class="tuto-instructions">
@@ -93,7 +96,6 @@
               <%#= f.input :photo, as: :file, input_html: { multiple: true, class: "hidden" }, label: "Upload your files" %>
           <%# </div> %>
         <%# end %>
-
       </div>
       <div class="tuto-end">
         <div class="dots">

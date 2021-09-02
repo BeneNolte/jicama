@@ -24,6 +24,7 @@
         object-fit: contain;
       }
       .tuto-instructions {
+
         height: 150px;
         display: flex;
         flex-direction: column;
@@ -67,6 +68,7 @@
           height: 30px;
           border-radius: 15px;
           background-color: $jicama-black;
+
           box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
           display: flex;
           justify-content: center;
@@ -89,6 +91,7 @@
       }
     }
   }
+
 }
 
 .upload-file-btn {
