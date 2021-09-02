@@ -7,7 +7,7 @@
   height: 70px;
   /* mix-blend-mode: exclusion; */
   background-color: white;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
 }
 
 // .color-change {
@@ -91,9 +91,19 @@
   border-color: rgba(0, 0, 0, 0);
 }
 
+.navbar-nav {
+  background-color: white;
+  width: 160px;
+  padding: 20px;
+  float: right;
+  right: -10px;
+  position: relative;
+}
+
 .logo-navbar {
   opacity: 0;
 }
+
 // .navbar-jicama {
 //   justify-content: flex-end;
 //   height: 50px;

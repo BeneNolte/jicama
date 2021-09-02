@@ -1,86 +1,60 @@
-<div class="container">
-      <h1>Your turn!</h1>
-      <h4>Follow these steps to help us analyze your data:</h4>
+<div class="tuto-container">
 
-
-  <div class="row">
-    <div class="col-12 col-lg-6">
-        <li class="title-action">1. Sign in to Google Takeout</li>
-        <ol>
-          <div class="items-flex">
-            <i class="fas fa-check", style="color: green"></i>
-            <li>Make sure you are connected on your Google account</li>
-          </div>
-           <div class="items-flex">
-            <i class="fas fa-check", style="color: green"></i>
-            <li><%= link_to "Go on your Google Takeout account", "https://takeout.google.com/settings/takeout?pli=1", target: :_blank%></li>
-          </div>
-        </ol>
+  <div class="tuto" id="tuto-1">
+    <h4 class="title-action">Sign in to <br>Google Takeout</h4>
+    <%= image_tag image_path("tuto-takeout.png") %>
+      <div class="tuto-instructions">
+        <p>Go on Google Takeout and login with your account</p>
       </div>
+      <%= link_to "Google Takeout", "https://takeout.google.com/settings/takeout?pli=1", target: :_blank%>
+    <div class="dots">
     </div>
-
-
-  <div class="row">
-    <div class="col-12 col-lg-6">
-        <li class="title-action">2. Select the datafiles to download</li>
-        <ol>
-          <div class="items-flex">
-            <i class="fas fa-check", style="color: green"></i>
-            <li>Unselect all the options</li>
-          </div>
-          <div class="items-flex">
-            <i class="fas fa-check", style="color: green"></i>
-            <li>Select the following options:
-              <ol>
-                <li>Chrome</li>
-                <li>Location History</li>
-                <li>Profile</li>
-                <li>YouTube and YouTube Music</li>
-                <li>My Activity</li>
-              </ol>
-            </li>
-          </div>
-          <div class="items-flex">
-            <i class="fas fa-check", style="color: green"></i>
-            <li>Click on "next step"</li>
-          </div>
-        </ol>
+      <div class="next-button">
+        <%= link_to "Next", "#" %>
       </div>
+  </div>
+
+
+  <div class="tuto" id="tuto-2">
+    <h4 class="title-action">Select the <br>relevant files</h4>
+    <%= image_tag image_path("tuto-select.png") %>
+    <div class="tuto-instructions">
+      <p>Unselect all the options and make sure the following options are selected</p>
+      <ul>
+        <li>Chrome</li>
+        <li>Location History</li>
+        <li>Profile</li>
+        <li>YouTube and YouTube Music</li>
+        <li>My Activity</li>
+      </ul>
     </div>
-
-
-
-  <div class="row">
-    <div class="col-12 col-lg-6">
-        <li class="title-action">3. Create the export</li>
-        <ol>
-          <div class="items-flex">
-            <i class="fas fa-check", style="color: green"></i>
-            <li>Make sure frequency is 1 export</li>
-          </div>
-          <div class="items-flex">
-            <i class="fas fa-check", style="color: green"></i>
-            <li>Click on "create export"</li>
-          </div>
-        </ol>
-      </div>
-    </div>
-
-
-
-  <div class="row">
-    <div class="col-12 col-lg-6">
-        <li class="title-action">4. You are almost set!</li>
-        <ol>
-        <div class="items-flex">
-            <i class="fas fa-check", style="color: green"></i>
-            <li><a href="https:">Upload your data</a></li>
-          </div>
-        </ol>
-      </div>
-    </div>
-
-      <%= link_to "Done", datasource_path(@google), class: "short-button" %><br />
+    <div class="next-button">
+      <%= link_to "Next", "#" %>
     </div>
   </div>
+
+
+
+  <div class="tuto" id="tuto-3">
+    <h4 class="title-action">Export your <br>personal data</h4>
+    <%= image_tag image_path("tuto-download.png") %>
+    <div class="tuto-instructions">
+      <p>Click on "create export" and make sure frequency is set as 1 export</p>
+    </div>
+    <div class="next-button">
+      <%= link_to "Next", "#" %>
+    </div>
+  </div>
+
+
+
+  <div class="tuto" id="tuto-4">
+    <h4 class="title-action">Upload your <br>personal data</h4>
+    <%= image_tag image_path("tuto-upload.png") %>
+    <div class="tuto-instructions">
+      <p>You are almost set!</p>
+    </div>
+    <%= link_to "Done", datasource_path(@google), class: "short-button" %><br />
+  </div>
+
 </div>

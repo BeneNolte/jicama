@@ -27,16 +27,18 @@ a {
 }
 
 .short-button {
-  padding: 10px 45px;
+  padding: 15px 55px;
   background-color: white;
   border-radius: 50px;
   margin: 10px 0px;
   color: black;
-  font-size: 17px;
-  font-weight: normal;
+  font-size: 18px;
+  font-weight: bolder;
   text-decoration: none;
   box-shadow: 0px 0px 32px -3px white;
-
+  a {
+    color: black;
+  }
   &:active {
     text-decoration: none;
     color: black;
@@ -46,13 +48,13 @@ a {
 
 .short-button-black {
   transition: all 0.3s ease;
-  padding: 10px 45px;
+  padding: 10px 55px;
   background-color: white;
   border-radius: 50px;
   margin: 10px 0px;
   color: black;
-  font-size: 17px;
-  font-weight: normal;
+  font-size: 18px;
+  font-weight: 600;
   -webkit-text-decoration: bolder;
   text-decoration: none;
   border: 0.5px solid black;
@@ -77,11 +79,18 @@ a {
   text-decoration: none;
   border: 0.5px solid white;
 
+  a {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 0px;
+    font-weight: 600;
+  }
   &:active {
     text-decoration: none;
     color: black;
     background-color: white;
   }
+
 }
 
 .small-button, .swal-button, .swal-button-confirm {
@@ -113,7 +122,8 @@ a {
 #button-control {
   width: 100%;
   border-radius: 30px;
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .small-button-white {
@@ -160,9 +170,9 @@ a {
 .button-info-white {
   font-size: 20px;
   transition: all 0.3s ease;
-  color: white;
+  color: black;
   &:active {
-    color: black;
+    color: rgba(0,0,0, 0.7);
   }
 }
 
@@ -170,15 +180,18 @@ a {
   padding: 15px;
   background-color: black;
   border-radius: 50%;
-  box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.08);
+  box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.2);
   opacity: 0.7;
   bottom: 20px;
   position: relative;
+  margin: 0px 5px;
 }
 
 #auto-filter {
   border-radius: 20px;
   width: 130px;
   font-size: 14px;
-  color: black;
+  color: white;
+  border: none;
+  background-color: #2c2b34;
 }

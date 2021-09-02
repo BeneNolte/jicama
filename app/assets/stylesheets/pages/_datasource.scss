@@ -14,6 +14,7 @@
   position: absolute;
   width: 100%;
   transition: all 0.3s ease;
+  overflow-y: visible;;
 }
 
 .insights-display {
@@ -30,7 +31,7 @@
 
 .digital-footprint, .insights-display {
   background-color: white;
-  box-shadow: 0 0 60px 0px rgba(0,0,0,0.08);
+  box-shadow: 0 0 60px 0px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   border-radius: 20px;
@@ -114,6 +115,7 @@
 .datasource-content {
   display: flex;
   justify-content: space-between;
+  padding: 0px;
 }
 
 .data-insights-container {
@@ -134,7 +136,7 @@
   border-radius: 10px;
   background-color: white;
   opacity: 1;
-  box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.2);
   i {
     color: white;
     font-size: 25px;
@@ -142,6 +144,23 @@
   .fas,
   .fab {
     color: #474453;
+  }
+  h4 {
+    font-size: 17px;
+  }
+}
+
+
+@media(max-height: 750px) {
+  .data-insights-card {
+    width: 80px;
+    height: 80px;
+    i {
+      font-size: 22px;
+    }
+    h4 {
+      font-size: 14px;
+    }
   }
 }
 
@@ -238,4 +257,8 @@
   width: 90px;
   height: 90px;
   padding-top: 30px;
+}
+
+.privacy-container {
+  display: flex;
 }

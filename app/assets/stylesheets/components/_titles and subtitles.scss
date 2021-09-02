@@ -1,5 +1,6 @@
 .greysubtitle {
-  color: #A5A5A5;
+  color: #5d5d5d;
+  font-weight: 500;
   font-size: 18px;
 }
 .purplesubtitle {
@@ -26,6 +27,14 @@
   opacity: 1;
 }
 
+.middleblacktitle {
+  color: #2c2b34;
+  font-weight: bold;
+  font-size: 20px;
+  opacity: 1;
+  margin: 0px
+}
+
 .fatpurpletitle {
   color: #7551F3;
   font-weight: bold;
@@ -45,10 +54,11 @@
 }
 
 .greytext {
-  color: #67656f;
+  color: #5d5d5d;
   font-size: 14px;
   margin-bottom: 0px;
   align-self: baseline;
+  font-weight: 500;
   p {
     text-align: left;
   }

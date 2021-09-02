@@ -1,7 +1,14 @@
 
 .carousel {
   overflow-x: auto;
+  padding: 15px 0px 15px 0px;
+  margin-top: -25px;
   &::-webkit-scrollbar {
   display: none;
   }
+}
+
+#show-carousel {
+  padding: 31px 1px;
+  margin-top: -33px;
 }
