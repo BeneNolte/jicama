@@ -78,6 +78,19 @@
 }
 }
 
+.show-subtitle {
+  align-self: center;
+  margin: 0;
+}
+
+.show-subtitle-data {
+  align-self: center;
+  margin: 0;
+  font-weight: 700;
+  color: #484553;
+}
+
+
 .insights-map {
   position: absolute;
   height: 100%;
@@ -98,7 +111,6 @@
 .scrollable {
   background-color: white;
   background: linear-gradient(rgba(246, 244, 244, 0), white 100%);
-  z-index: 10000;
   position: sticky;
   width: 100%;
   height: 75px;
@@ -247,8 +259,9 @@
 
 .insights-logo {
   position: absolute;
-  left: 0px;
+  top: 2px;
   color: $jicama-grey-text;
+  font-size: 14px;
 }
 
 .circle-container {
@@ -262,4 +275,28 @@
 
 .privacy-container {
   display: flex;
+}
+
+
+
+.data-valuation-logo {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0px 10px 1px rgb(231, 230, 236);
+  justify-content: center;
+  align-items: center;
+  border-radius: 20%;
+  background-color: #ffffff;
+  width: 38px;
+  height: 38px;
+  margin-right: 19px;
+  i {
+  color: #7551F3;
+  font-size: 19px;
+  }
+}
+
+.google-insight-card {
+  align-items: center;
+  margin-bottom: 11px;
 }

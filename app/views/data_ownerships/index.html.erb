@@ -115,13 +115,13 @@
                     <strong style="font-size: 14px">Level of trust: </strong>
                     <div>
                       <% if data_ownership.company.rating == 1 %>
-                        <div style="color: #007C64; font-size: 14px; margin-left: 10px; font-weight: bold;">High</div>
+                        <div style="color: #007C64; font-size: 14px; margin-left: 10px; font-weight: 600;">High</div>
                       <% end %>
                       <% if data_ownership.company.rating == 3 %>
-                        <div style="color: #DB0000; font-size: 14px; margin-left: 10px; font-weight: bold;">Low</div>
+                        <div style="color: #DB0000; font-size: 14px; margin-left: 10px; font-weight: 600;">Low</div>
                       <% end %>
                       <% if data_ownership.company.rating == 2  %>
-                        <div style="color: #FCB111; font-size: 14px; margin-left: 10px; font-weight: bold;">Medium</div>
+                        <div style="color: #FCB111; font-size: 14px; margin-left: 10px; font-weight: 600;">Medium</div>
                       <% end %>
                     </div>
                   </div>

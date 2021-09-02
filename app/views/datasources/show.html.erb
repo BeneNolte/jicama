@@ -12,54 +12,102 @@
 
             <div class="digital-footprint">
 
-              <div class="digital-footprint-score">
-                <div class="d-flex">
-                  <%= image_tag @google.photo, class:"datasource-logo mr-3  " %>
-                  <p class="blacktitle" ><%= @datasource.name%></p>
-                </div>
-                <div class="meter">
-                  <span style="width: <%= @datasource.score %>%;"></span>
-                </div>
-                <div class="privacy-container">
-                  <p class="greytext", style="margin-right: 10px; font-size: 20px;">Privacy score:</p>
-                  <div>
-                    <% if @score < 30 %>
-                      <h1 class="middleblacktitle">Bad</h1>
-                    <% elsif @score < 60 %>
-                      <h1 class="middleblacktitle">Medium</h1>
-                    <% elsif @score < 90 %>
-                      <h1 class="middleblacktitle">Good</h1>
-                    <% else %>
-                      <h1 class="middleblacktitle">Very Good</h1>
 
+
+
+
+
+              <div class="digital-footprint-score">
+                <div class="d-flex justify-content-between">
+                  <div class="display-score d-flex">
+                    <% if @score < 30 %>
+                      <h1 class="fatblacktitle">Bad</h1>
+                    <% elsif @score < 60 %>
+                      <h1 class="fatblacktitle">Medium</h1>
+                    <% elsif @score < 90 %>
+                      <h1 class="fatblacktitle">Good</h1>
+                    <% else %>
+                      <h1 class="fatblacktitle">Very Good</h1>
                     <% end %>
                   </div>
+                  <%= image_tag @google.photo, class:"datasource-logo" %>
+                </div>
+                <div class="display-score">
+                  <p class="greytext">Privacy score</p>
+                  <p class="greytext"><%= @datasource.name%></p>
+                </div>
+
+
+                <div class="meter">
+                  <span style="width: <%= @score%>%;"></span>
+                </div>
+
+                <p class="greytext">Since August</p>
+              </div>
+
+
+              <div class="d-flex justify-content-between">
+                <p class="blacktitle show-title" style="font-size: 18px">Your<%#= @datasource.name%> Profile</p>
+                <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button show-title", id: "button-control" %>
+              </div>
+              <div class="d-flex justify-content-between google-insight-card">
+                <div class="d-flex">
+                  <div class="data-valuation-logo">
+                    <%= image_tag image_path("bills.png"), style: "height: 15px;" %>
+                  </div>
+                   <p class="greysubtitle show-subtitle">Data Value</p>
+                </div>
+                <div class="datasource-content" >
+                  <p class="greysubtitle show-subtitle-data"><%= @datasource.value.round(1)  %> €</p>
                 </div>
               </div>
-              <div class="d-flex space-between">
-                <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button mt-3 mb-1", id: "button-control" %>
-                <p class="blacktitle" style="font-size: 20px">Your <%= @datasource.name%> Profile</p>
+              <div class="d-flex justify-content-between google-insight-card">
+                <div class="d-flex">
+                  <div class="data-valuation-logo">
+                    <%= image_tag image_path("company.png"), style: "height: 20px;" %>
+                  </div>
+                   <p class="greysubtitle show-subtitle">Companies shared with</p>
+                </div>
+                <div class="datasource-content" >
+                  <p class="greysubtitle show-subtitle-data"> <%= @datasource.data_ownerships.count %></p>
+                </div>
               </div>
-              <div class="datasource-content" >
-                <p class="greysubtitle">Google Searches</p>
-                <p class="greysubtitle">405</p>
+
+              <div class="d-flex justify-content-between google-insight-card">
+                <div class="d-flex">
+                  <div class="data-valuation-logo">
+                    <i class="fas fa-search" style="font-size: 17px;"></i>
+                  </div>
+                  <p class="greysubtitle show-subtitle">Google Searches</p>
+                </div>
+                <div class="datasource-content" >
+                  <p class="greysubtitle show-subtitle-data"><%= number_with_delimiter(@datasource.chrome_search_words.pluck(:count).sum, :delimiter => ',')  %></p>
+                </div>
               </div>
-              <div class="datasource-content" >
-                <p class="greysubtitle">Ads Clicked</p>
-                <p class="greysubtitle">405</p>
+              <div class="d-flex justify-content-between google-insight-card">
+                <div class="d-flex">
+                  <div class="data-valuation-logo">
+                    <i class="fas fa-bullhorn" style="font-size: 15px;"></i>
+                  </div>
+                   <p class="greysubtitle show-subtitle">Ads Clicked</p>
+                </div>
+                <div class="datasource-content" >
+                  <p class="greysubtitle show-subtitle-data"><%= number_with_delimiter(@datasource.chrome_visited_links.pluck(:count).sum, :delimiter => ',')  %></p>
+                </div>
               </div>
-              <div class="datasource-content" >
-                <p class="greysubtitle">Companies shared with</p>
-                <p class="greysubtitle"> <%= @datasource.data_ownerships.count %></p>
+
+              <div class="d-flex justify-content-between google-insight-card">
+                <div class="d-flex">
+                  <div class="data-valuation-logo">
+                    <%= image_tag image_path("database.png"), style: "height: 20px;" %>
+                  </div>
+                   <p class="greysubtitle show-subtitle">Data uploaded</p>
+                </div>
+                <div class="datasource-content" >
+                  <p class="greysubtitle show-subtitle-data"><%= (@datasource.size / 1000.0).round(2)  %> GB</p>
+                </div>
               </div>
-              <div class="datasource-content" >
-                <p class="greysubtitle">Data uploaded</p>
-                <p class="greysubtitle"><%= (@datasource.size / 1000.0).round(2)  %> GB</p>
-              </div>
-              <div class="datasource-content" >
-                <p class="blacktitle" style="font-size: 20px">Data Value</p>
-                <p class="blacktitle" style="font-size: 20px"><%= @datasource.value.round(2)  %> €</p>
-              </div>
+
             </div>
 
           </div>
@@ -71,7 +119,8 @@
                 <div>
 
                   <div class="card-boxless" style="padding: 0px; position: relative;  ">
-                    <%# <div class="insights-logo" style="left: 15px;"><i class="fas fa-map-marker-alt"></i></div> %>
+                    <p class="subtitle">Top locations</p>
+                    <div class="insights-logo" style="right: 97px;"><i class="fas fa-map-marker-alt"></i></div>
                     <%= render "shared/searchbar" %>
                     <%# START : adding map to show user's locations %>
                     <div id="map"
@@ -88,7 +137,7 @@
                 <div>
 
                   <div class="card-boxless">
-                    <div class="insights-logo"><i class="fas fa-search"></i></i></div>
+                    <div class="insights-logo" style="right: 50px;"><i class="fas fa-search"></i></div>
                     <p class="subtitle">Top searched words</p>
                     <div class="content" style="justify-content: space-evenly">
                       <% @chrome_search_words.first(3).each do |word| %>
@@ -120,8 +169,6 @@
                     <% end %>
                   </div>
 
-                  <div class="scrollable">
-                  </div>
                 </div>
               </div>
 
@@ -129,9 +176,7 @@
                 <div>
 
                   <div class="card-boxless">
-                    <div class="insights-logo">
-                      <i class="fas fa-dollar-sign"></i>
-                    </div>
+                    <div class="insights-logo" style="right: 47px;"><i class="fas fa-dollar-sign"></i></div>
                     <p class="subtitle">Number of ads viewed</p>
                       <div class="circle-container">
                         <p class="header-grey m-0"><%= @viewed_advertisements.count %></p>
@@ -149,7 +194,7 @@
                     <p class="subtitle", style="margin-bottom: 10px">Top clicked ads</p>
                     <% @viewed_advertisements.first(5).each do |ad| %>
                       <div class="content">
-                        <p class="header-grey m-0 mr-5"><%= ad.link %></p>
+                        <p class="header-grey m-0"><%= ad.link %></p>
                         <p class=" header-grey m-0"><%= ad.count %></p>
                       </div>
                     <% end %>
@@ -164,7 +209,7 @@
                 <div>
 
                   <div class="card-boxless">
-                    <div class="insights-logo"><i class="fab fa-youtube"></i></div>
+                    <div class="insights-logo" style="right: 39px;"><i class="fab fa-youtube"></i></div>
                     <p class="subtitle">Top watched channels</p>
 
                     <% @youtube_video_channels.first(5).each do |channel| %>
