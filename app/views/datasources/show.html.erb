@@ -12,7 +12,7 @@
 
             <div class="digital-footprint">
 
-               
+
               <div class="digital-footprint-score">
                 <div class="d-flex justify-content-between">
                   <div class="display-score d-flex">
@@ -152,19 +152,18 @@
                   <div class="card-boxless">
                     <p class="subtitle">Top visited links</p>
                     <% @chrome_visited_links.first(5).each do |word| %>
-                      <div class="content">
-                        <div class="title">
+                      <div class="content-link">
+                        <div class="title-link">
                           <p class="header-grey m-0 mr-5"><%= word.link %></p>
-                          <div class="rectangle-container-horizontal">
-                            <div class="rectangle-fill-horizontal" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
-                            </div>
+                          <p class="header-grey m-0" id="link-count"><%= word.count %></p>
+                        </div>
+                        <div class="rectangle-container-horizontal">
+                          <div class="rectangle-fill-horizontal" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
                           </div>
                         </div>
-                        <p class="header-grey m-0" id="link-count"><%= word.count %></p>
                       </div>
                     <% end %>
                   </div>
-
                 </div>
               </div>
 
@@ -189,9 +188,15 @@
                   <div class="card-boxless", style="margin-top: 15px">
                     <p class="subtitle", style="margin-bottom: 10px">Top clicked ads</p>
                     <% @viewed_advertisements.first(5).each do |ad| %>
-                      <div class="content">
-                        <p class="header-grey m-0"><%= ad.link %></p>
-                        <p class=" header-grey m-0"><%= ad.count %></p>
+                      <div class="content-link">
+                        <div class="title-link">
+                          <p class="header-grey m-0"><%= ad.link %></p>
+                        <p class="header-grey m-0" id="link-count"><%= ad.count %></p>
+                        </div>
+                        <div class="rectangle-container-horizontal">
+                          <div class="rectangle-fill-horizontal" style="width: <%=(ad.count*100)/@viewed_advertisements.first.count %>%">
+                          </div>
+                        </div>
                       </div>
                     <% end %>
                   </div>
@@ -207,21 +212,19 @@
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fab fa-youtube"></i></div>
                     <p class="subtitle">Top watched channels</p>
-
                     <% @youtube_video_channels.first(5).each do |channel| %>
-                      <div class="content">
-                        <div class="title">
+                      <div class="content-link">
+                        <div class="title-link">
                           <p class="header-grey m-0 mr-5"><%= channel.title %></p>
-                          <div class="rectangle-container-horizontal">
-                            <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
-                            </div>
+                          <p class="header-grey" id="link-count"><%= channel.count %></p>
+                        </div>
+                        <div class="rectangle-container-horizontal">
+                          <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
                           </div>
                         </div>
-                        <p class="header-grey" id="link-count"><%= channel.count %></p>
                       </div>
                     <% end %>
                   </div>
-
 
                   <div class="card-boxless">
                     <p class="subtitle">Top watched videos</p>
