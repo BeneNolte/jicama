@@ -4,12 +4,11 @@
 
   <div class="tuto" id="tuto-1">
     <div class="card-style">
-      <h4 class="title-action">Sign in to <br>Google Takeout</h4>
+      <h4 class="title-action">Sign in to Google Takeout</h4>
       <%= image_tag image_path("tuto-takeout.png") %>
       <div class="tuto-instructions">
         <p>Go on <%= link_to "Google Takeout", "https://takeout.google.com/settings/takeout?pli=1", target: :_blank%> and login <br>to your account</p>
       </div>
-
       <div class="tuto-end">
         <div class="dots">
           <div class="dot-fill"></div>
@@ -25,7 +24,7 @@
 
   <div class="tuto" id="tuto-2">
     <div class="card-style">
-      <h4 class="title-action">Select the <br>relevant files</h4>
+      <h4 class="title-action">Select the relevant files</h4>
       <%= image_tag image_path("tuto-select.png") %>
       <div class="tuto-instructions">
         <p>Unselect default options and <br>make sure you select :</p>
@@ -61,7 +60,7 @@
 
   <div class="tuto" id="tuto-3">
     <div class="card-style">
-      <h4 class="title-action">Export your <br>personal data</h4>
+      <h4 class="title-action">Export your personal data</h4>
       <%= image_tag image_path("tuto-download.png") %>
       <div class="tuto-instructions">
         <p>Click on "create export" and make sure frequency is set as 1 export</p>
@@ -82,11 +81,19 @@
 
   <div class="tuto" id="tuto-4">
     <div class="card-style">
-      <h4 class="title-action">Upload your <br>personal data</h4>
+      <h4 class="title-action">Upload your personal data</h4>
       <%= image_tag image_path("tuto-upload.png") %>
       <div class="tuto-instructions">
         <p>You are almost set!</p>
-        <%# <%= simple_form_for  %> %>
+
+
+        <%#= simple_form_for @datasource do |f| %>
+          <%# <div class="upload-file-btn"> %>
+              <%#= f.label "Your files" %>
+              <%#= f.input :photo, as: :file, input_html: { multiple: true, class: "hidden" }, label: "Upload your files" %>
+          <%# </div> %>
+        <%# end %>
+
       </div>
       <div class="tuto-end">
         <div class="dots">
@@ -95,8 +102,7 @@
           <div class="dot-empty"></div>
           <div class="dot-fill"></div>
         </div>
-        <div class="done-button">
-          <%= link_to "Done", datasource_path(@google) %><br />
+        <%= link_to "Done", datasource_path(@google), class:"done-button" %>
         </div>
       </div>
     </div>
