@@ -13,10 +13,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .diamond {
+  .atom {
     color: black;
     cursor: pointer;
-    height: 33px;
+    height: 40px;
     width: auto;
     align-self: center;
   }
@@ -26,6 +26,7 @@
     height: 33px;
     width: auto;
     align-self: center;
+    margin-bottom: 3px;
   }
   .jicama-logo-bottom {
     color: black;

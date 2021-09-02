@@ -17,7 +17,7 @@
           </button>
         </div>
 
-        <div class="card-purple d-flex">
+        <div class="card-purple">
           <div class="progress" data-percentage=<%= @score %>>
             <span class="progress-left">
               <span class="progress-bar"></span>
@@ -56,9 +56,8 @@
                 <span style="width: <%= @score%>%;"></span>
               </div>
             </div>
-            <div class="social-bar d-flex absent-source">
-
-              <i class="fab fa-facebook social-icons"></i>
+            <%# <div class="social-bar d-flex absent-source">
+              <i class="fab fa-facebook-f social-icons"></i>
               <div class="meter absent-meter">
                 <span style="width: 100%;"></span>
               </div>
@@ -68,6 +67,9 @@
               <div class="meter absent-meter">
                 <span style="width: 100%;"></span>
               </div>
+            </div> %>
+            <div class="logo-design" id="dashboard-connect" data-toggle="modal" data-target="#datasourceModal">
+              Connect datasources
             </div>
           </div>
         </div>
@@ -137,7 +139,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <%# <div class="container">
     <div class="d-flex justify-content-between mb-1" style="margin-top: 5px;">
       <h4 class="purplesubtitle">Datasources</h4>
       <button type="button"
@@ -151,22 +153,22 @@
         <i class="far fa-question-circle"></i>
       </button>
     </div>
-  </div>
+  </div> %>
 
-  <div class="carousel" style="margin-bottom: 15px;">
+  <%# <div class="carousel" style="margin-bottom: 15px;">
     <div class="datasource-selection">
       <%= link_to datasource_path(@google) do %>
-        <div class="logo-design">
-          <%= cl_image_tag("jicama/google_logo.png") %>
-        </div>
-      <% end %>
+        <%# <div class="logo-design"> %>
+          <%#= cl_image_tag("jicama/google_logo.png") %>
+        <%# </div> %>
+      <%# end %>
 
       <!-- Button trigger modal -->
-      <div class="logo-design" data-toggle="modal" data-target="#datasourceModal">
+      <%# <div class="logo-design" data-toggle="modal" data-target="#datasourceModal">
         <i class="fas fa-plus"></i>
-      </div>
-    </div>
-  </div>
+      </div> %>
+    <%# </div>
+  </div> %>
 
 </div>
 

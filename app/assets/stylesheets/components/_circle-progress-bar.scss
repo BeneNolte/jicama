@@ -1,10 +1,8 @@
-body {
-	background: lightgrey;
-}
+
 //styling
 $borderWidth: 12px;
 $animationTime: 1s;
-$border-color-default: #ebe7e7;
+$border-color-default: #f7f7f7;
 $border-color-fill: #7551F3;
 $size: 100px;
 
@@ -26,7 +24,7 @@ $howManySteps: 100; //this needs to be even.
     height: 100%;
     border-radius: 50%;
     box-shadow: 0 0 8px rgba(0,0,0,0.08);
-    border: $borderWidth solid white;
+    border: $borderWidth solid $border-color-default;
     position: absolute;
     top: 0;
     left: 0;
