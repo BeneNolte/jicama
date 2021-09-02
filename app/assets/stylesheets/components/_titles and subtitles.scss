@@ -1,10 +1,10 @@
 .greysubtitle {
   color: #5d5d5d;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 15px;
 }
 .purplesubtitle {
-  color: #5d5d5d;
+  color: $jicama-grey;
   font-size: 18px;
 }
 
@@ -30,8 +30,9 @@
 .middleblacktitle {
   color: #2c2b34;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   opacity: 1;
+  margin: 0px
 }
 
 .fatpurpletitle {
@@ -53,8 +54,8 @@
 }
 
 .greytext {
-  color: #5d5d5d;
-  font-size: 14px;
+  color: $jicama-header-grey;
+  font-size: 15px;
   margin-bottom: 0px;
   align-self: baseline;
   font-weight: 500;
@@ -65,19 +66,19 @@
 
 .whitetext {
   color: white;
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 0px;
 }
 
 .blacktext {
   color: black;
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 0px;
 }
 
 .purpletext {
   color: #7551F3;
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 0px;
 }
 

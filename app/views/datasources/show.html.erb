@@ -12,30 +12,36 @@
 
             <div class="digital-footprint">
 
+
+                
+
+
+      
               <div class="digital-footprint-score">
-                <div class="d-flex">
-                  <%= image_tag @google.photo, class:"datasource-logo mr-3  " %>
-                  <p class="blacktitle" style="font-size: 20px"><%= @datasource.name%></p>
-                </div>
-                <div class="meter">
-                  <span style="width: <%= @datasource.score %>%;"></span>
-                </div>
-                <div class="privacy-container">
-                  <p class="greytext", style="margin-right: 10px">Privacy score:</p>
-                  <div>
+                <div class="d-flex justify-content-between">
+                  <div class="display-score d-flex">
                     <% if @score < 30 %>
-
-                      <h1 class="middleblacktitle">Bad</h1>
+                      <h1 class="fatblacktitle">Bad</h1>
                     <% elsif @score < 60 %>
-                      <h1 class="middleblacktitle">Medium</h1>
+                      <h1 class="fatblacktitle">Medium</h1>
                     <% elsif @score < 90 %>
-                      <h1 class="middleblacktitle">Good</h1>
+                      <h1 class="fatblacktitle">Good</h1>
                     <% else %>
-                      <h1 class="middleblacktitle">Very Good</h1>
-
+                      <h1 class="fatblacktitle">Very Good</h1>
                     <% end %>
                   </div>
+                  <%= image_tag @google.photo, class:"datasource-logo" %>
                 </div>
+                <div class="display-score">
+                  <p class="greytext">Privacy score</p>
+                  <p class="greytext"><%= @datasource.name%></p>
+                </div>
+
+                <div class="meter">
+                  <span style="width: <%= @score%>%;"></span>
+                </div>
+
+                <p class="greytext">Since August</p>
 
                 <%= link_to "Control", datasource_data_ownerships_path(@datasource, type_of_ownership: "accessor"), class: "small-button mt-3 mb-1", id: "button-control" %>
 
@@ -131,14 +137,14 @@
                     </div>
                     <p class="subtitle">Number of ads viewed</p>
                       <div class="circle-container">
-                        <p class="m-0"><%= @viewed_advertisements.count %></p>
+                        <p class="header-grey m-0"><%= @viewed_advertisements.count %></p>
                       </div>
                   </div>
 
                   <div class="card-boxless", style="margin-top: 15px">
                     <p class="subtitle">Value generated (€)</p>
                     <div class="circle-container">
-                      <%= @clicked_advertisements.count*1.5 %>
+                      <p class="header-grey m-0"><%= @clicked_advertisements.count*1.5 %></p>
                     </div>
                   </div>
 
@@ -146,8 +152,8 @@
                     <p class="subtitle", style="margin-bottom: 10px">Top clicked ads</p>
                     <% @viewed_advertisements.first(5).each do |ad| %>
                       <div class="content">
-                        <p class="m-0 mr-5"><%= ad.link %></p>
-                        <p class="m-0"><%= ad.count %></p>
+                        <p class="header-grey m-0 mr-5"><%= ad.link %></p>
+                        <p class=" header-grey m-0"><%= ad.count %></p>
                       </div>
                     <% end %>
                   </div>
