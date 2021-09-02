@@ -41,8 +41,15 @@ const initSweetalert = () => {
       });
     });
   }
+  const buttonDone = document.querySelector(".done-button");
+  if (buttonDone) { // protect other pages
+    buttonDone.addEventListener('click', () => {
+      swal('Done uploading your personal data', {
+        icon: "success",
+        buttons: false,
+      });
+    });
+  }
 };
 
 export { initSweetalert };
-
-
