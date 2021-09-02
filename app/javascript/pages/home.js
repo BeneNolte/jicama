@@ -6,7 +6,9 @@ const logoHome = () => {
     window.addEventListener('scroll', () => {
 
       bigLogo.style.opacity = 1/((window.scrollY + 100)/100);
+
       smallLogo.style.opacity = 1 - 1/((window.scrollY + 50)/50);
+
     })
   }
 }

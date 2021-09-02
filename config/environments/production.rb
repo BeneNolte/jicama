@@ -118,5 +118,5 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   #init Devise
-  config.action_mailer.default_url_options = { :host => 'https://jicama-benenolte.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'https://www.jicama.me' }
 end
