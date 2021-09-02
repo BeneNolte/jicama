@@ -9,6 +9,13 @@ local:
 cloudinary:
   service: Cloudinary
 
+amazon:
+  service: S3
+  access_key_id: <%= ENV["AWSAccessKeyId"] %>
+  secret_access_key: <%= ENV["AWSSecretKey"] %>
+  bucket: "jicama"
+  region: "eu-central-1" # e.g. 'us-east-1'
+
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3

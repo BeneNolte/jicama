@@ -4,7 +4,7 @@ $borderWidth: 12px;
 $animationTime: 1s;
 $border-color-default: #f7f7f7;
 $border-color-fill: #7551F3;
-$size: 100px;
+$size: 130px;
 
 //Create how many steps
 $howManySteps: 100; //this needs to be even.
@@ -15,7 +15,7 @@ $howManySteps: 100; //this needs to be even.
   height: $size;
   line-height: $size;
   background: none;
-  margin: 0 auto;
+  margin: 10px auto;
   box-shadow: none;
   position: relative;
   &:after {
@@ -131,6 +131,5 @@ Due to the split circle of progress-left and progress right, we must use the ani
 }
 //additional styling
 .progress {
-  margin-top: 10px;
   overflow: visible;
 }
