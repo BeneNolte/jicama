@@ -13,6 +13,10 @@
   padding: 5px;
   place-content: center;
   margin-bottom: 10px;
+  position: relative;
+  background-color: white;
+  z-index: 1;
+  top: 35px;
   input[type="date"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;

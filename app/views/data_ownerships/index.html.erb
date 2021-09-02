@@ -115,13 +115,13 @@
                     <strong style="font-size: 14px">Level of trust: </strong>
                     <div>
                       <% if data_ownership.company.rating == 1 %>
-                        <div style="color: #007C64; font-size: 14px; margin-left: 10px;">High</div>
+                        <div style="color: #007C64; font-size: 14px; margin-left: 10px; font-weight: bold;">High</div>
                       <% end %>
                       <% if data_ownership.company.rating == 3 %>
-                        <div style="color: #DB0000; font-size: 14px; margin-left: 10px;">Low</div>
+                        <div style="color: #DB0000; font-size: 14px; margin-left: 10px; font-weight: bold;">Low</div>
                       <% end %>
                       <% if data_ownership.company.rating == 2  %>
-                        <div style="color: #FCB111; font-size: 14px; margin-left: 10px;">Medium</div>
+                        <div style="color: #FCB111; font-size: 14px; margin-left: 10px; font-weight: bold;">Medium</div>
                       <% end %>
                     </div>
                   </div>
@@ -136,11 +136,11 @@
                   <div class="restrict d-flex justify-content-between">
                     <div style="margin-bottom: 25px;">
                       <% if data_ownership.type_of_ownership == "restricted" || data_ownership.type_of_ownership == "deleted" %>
-                        <div class="small-button jicama-green">
+                        <div class="small-button jicama-green", style="border-color: #007C64">
                           <%= button_to "Allow", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "accessor"} ), method: 'patch' %>
                         </div>
                       <% else %>
-                        <div class="small-button jicama-yellow">
+                        <div class="small-button jicama-yellow", style="border-color: #FCB111">
                           <%= button_to "Restrict", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "restricted"} ), method: 'patch' %>
                         </div>
                       <% end %>
@@ -153,7 +153,7 @@
                   </div>
                   <div class="delete d-flex justify-content-between mb-3">
                     <div>
-                      <div class="small-button jicama-red">
+                      <div class="small-button jicama-red", style="border-color: #DB0000">
                         <%= button_to "Delete", datasource_data_ownership_path(@datasource, data_ownership, data_ownership: {type_of_ownership: "deleted"} ), method: 'patch', disabled: data_ownership.type_of_ownership == "deleted" %>
                       </div>
                     </div>

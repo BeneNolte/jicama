@@ -130,14 +130,14 @@
                     </div>
                     <p class="subtitle">Number of ads viewed</p>
                       <div class="circle-container">
-                        <p class="m-0"><%= @viewed_advertisements.count %></p>
+                        <p class="header-grey m-0"><%= @viewed_advertisements.count %></p>
                       </div>
                   </div>
 
                   <div class="card-boxless", style="margin-top: 15px">
                     <p class="subtitle">Value generated (€)</p>
                     <div class="circle-container">
-                      <%= @clicked_advertisements.count*1.5 %>
+                      <p class="header-grey m-0"><%= @clicked_advertisements.count*1.5 %></p>
                     </div>
                   </div>
 
@@ -145,8 +145,8 @@
                     <p class="subtitle", style="margin-bottom: 10px">Top clicked ads</p>
                     <% @viewed_advertisements.first(5).each do |ad| %>
                       <div class="content">
-                        <p class="m-0 mr-5"><%= ad.link %></p>
-                        <p class="m-0"><%= ad.count %></p>
+                        <p class="header-grey m-0 mr-5"><%= ad.link %></p>
+                        <p class=" header-grey m-0"><%= ad.count %></p>
                       </div>
                     <% end %>
                   </div>
