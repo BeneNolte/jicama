@@ -32,7 +32,26 @@
   font-weight: bold;
   font-size: 20px;
   opacity: 1;
-  margin: 0px
+}
+
+.smallblacktitle {
+  color: #2c2b34;
+  font-weight: bold;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.greytext {
+  .middleblacktitle {
+    margin: 0px;
+  }
+}
+
+.score-display {
+  .middleblacktitle {
+    margin-bottom: 0px;
+    margin-top: 12px;
+  }
 }
 
 .fatpurpletitle {
@@ -73,7 +92,7 @@
 
 .blacktext {
   color: black;
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 0px;
 }
 
