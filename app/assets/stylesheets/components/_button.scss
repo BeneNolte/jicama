@@ -174,6 +174,7 @@ a {
   &:active {
     color: #7551F3;
     background-color: white;
+    border: 1px solid #7551F3;
   }
   .button_to {
     input:disabled {
@@ -200,6 +201,12 @@ a {
   }
   &:active {
     color: black;
+  }
+}
+
+#button-setting-autofilter {
+  &:active {
+    color: $jicama-grey;
   }
 }
 

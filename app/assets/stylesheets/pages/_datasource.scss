@@ -71,7 +71,6 @@
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  margin-right: 10px;
   #center {
     align-self: center;
   }
@@ -159,7 +158,7 @@
     color: #474453;
   }
   h4 {
-    font-size: 17px;
+    font-size: 15px;
   }
 }
 
@@ -259,41 +258,14 @@
 
 .insights-logo {
   position: absolute;
-  top: 2px;
-  color: $jicama-grey-text;
-  font-size: 14px;
-}
-
-.circle-container {
-  border: 2px solid $jicama-purple;
-  padding: 20px;
-  border-radius: 50%;
-  width: 90px;
-  height: 90px;
-  padding-top: 30px;
-}
-
-.privacy-container {
-  display: flex;
-}
-
-
-
-.data-valuation-logo {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0px 10px 1px rgb(231, 230, 236);
-  justify-content: center;
-  align-items: center;
-  border-radius: 20%;
-  background-color: #ffffff;
-  width: 38px;
-  height: 38px;
-  margin-right: 19px;
-  i {
-  color: #7551F3;
-  font-size: 19px;
-  }
+  right: 0px;
+  background-color: $jicama-dark-grey;
+  height: 28px;
+  width: 28px;
+  border-radius: 50px;
+  color: white;
+  font-size: 13px;
+  padding: 5px;
 }
 
 .google-insight-card {

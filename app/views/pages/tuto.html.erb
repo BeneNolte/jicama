@@ -18,7 +18,7 @@
           <div class="dot-empty"></div>
           <div class="dot-empty"></div>
         </div>
-        <%= link_to "Next", tuto_path(@google, anchor: "tuto-2"), class:"next-button"%>
+        <%= link_to "Next", "#tuto-2", class:"next-button", data: { turbolinks: false } %>
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@
           <div class="dot-empty"></div>
           <div class="dot-empty"></div>
         </div>
-        <%= link_to "Next", tuto_path(@google, anchor: "tuto-3"), class:"next-button"%>
+        <%= link_to "Next", "#tuto-3", class:"next-button", data: { turbolinks: false } %>
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@
           <div class="dot-fill"></div>
           <div class="dot-empty"></div>
         </div>
-        <%= link_to "Next", tuto_path(@google, anchor: "tuto-4"), class:"next-button"%>
+        <%= link_to "Next", "#tuto-4", class:"next-button", data: { turbolinks: false } %>
       </div>
     </div>
   </div>
@@ -88,25 +88,19 @@
       <%= image_tag image_path("tuto-upload.png") %>
       <div class="tuto-instructions">
         <p>You are almost set!</p>
-
-
-        <%#= simple_form_for @datasource do |f| %>
-          <%# <div class="upload-file-btn"> %>
-              <%#= f.label "Your files" %>
-              <%#= f.input :photo, as: :file, input_html: { multiple: true, class: "hidden" }, label: "Upload your files" %>
-          <%# </div> %>
-        <%# end %>
-      </div>
-      <div class="tuto-end">
-        <div class="dots">
-          <div class="dot-empty"></div>
-          <div class="dot-empty"></div>
-          <div class="dot-empty"></div>
-          <div class="dot-fill"></div>
+        <%= simple_form_for @datasource do |f| %>
+          <%= f.input :file, as: :file, input_html: { class: "hidden" }, label: "Choose file", label_html: { class:"upload-button" } %>
+      </div> <%# This is closing the "tuto-instruction" div %>
+        <div class="tuto-end">
+          <div class="dots">
+            <div class="dot-empty"></div>
+            <div class="dot-empty"></div>
+            <div class="dot-empty"></div>
+            <div class="dot-fill"></div>
+          </div>
+          <%= f.submit "Upload", input_html: { class:"done-button"} %> <%# This has to be inside the "tuto-end" div while being in simple_form %>
         </div>
-        <%= link_to "Done", datasource_path(@google), class:"done-button" %>
-        </div>
-      </div>
+        <% end %> <%# This is closing the simple_form %>
     </div>
   </div>
 
