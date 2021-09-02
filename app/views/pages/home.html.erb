@@ -5,14 +5,10 @@
     <h5 class="greytext" style="color: #858585">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
 
     <% if user_signed_in? == false %>
-      <div class="short-button">
-        <%= link_to "Join now", new_user_session_path %>
-      </div>
+      <%= link_to "Join now", new_user_session_path, class: "short-button" %>
 
     <% else %>
-      <div class="short-button">
-        <%= link_to "Dashboard", dashboard_path %>
-      </div>
+      <%= link_to "Dashboard", dashboard_path, class: "short-button" %>
     <% end %>
 
 </div>
@@ -64,7 +60,11 @@
       </div>
       <% if controller_name != 'sessions' %>
         <div class="text-center margin-button">
-          <%= link_to "Get started", root_path, class: "short-button" %><br />
+         <% if user_signed_in? == false %>
+            <%= link_to "Get started", new_user_session_path, class: "short-button" %>
+          <% else %>
+            <%= link_to "Get started", dashboard_path, class: "short-button" %>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -106,7 +106,11 @@
       </div>
       <% if controller_name != 'sessions' %>
         <div class="text-center margin-button">
-          <%= link_to "Try it yourself", root_path, class: "short-button-black button-final-home" %>
+          <% if user_signed_in? == false %>
+            <%= link_to "Try it yourself", new_user_session_path, class: "short-button-black button-final-home" %>
+          <% else %>
+            <%= link_to "Try it yourself", dashboard_path, class: "short-button-black button-final-home" %>
+          <% end %>
         </div>
       <% end %>
     </div>
