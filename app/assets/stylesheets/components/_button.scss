@@ -114,6 +114,7 @@ a {
   }
   .button_to {
     input:disabled {
+      border:rgba(0,0,0, 0.3);
       opacity: 0.3;
     }
   }
