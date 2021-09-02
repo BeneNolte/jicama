@@ -16,7 +16,7 @@
 }
 
 .data-valuation {
-  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.08);
   padding: 20px 10px;
   background-color: white;
   border-radius: 20px;
@@ -94,7 +94,7 @@
 }
 
 .fa-question-circle {
-  color: #5c5c5c;
+  color: $jicama-grey;
   position: relative;
   bottom: 5px;
   right: 5px;
