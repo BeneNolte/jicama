@@ -15,16 +15,15 @@
               <div class="digital-footprint-score">
                 <div class="d-flex">
                   <%= image_tag @google.photo, class:"datasource-logo mr-3  " %>
-                  <p class="blacktitle" style="font-size: 20px"><%= @datasource.name%></p>
+                  <p class="blacktitle" ><%= @datasource.name%></p>
                 </div>
                 <div class="meter">
                   <span style="width: <%= @datasource.score %>%;"></span>
                 </div>
                 <div class="privacy-container">
-                  <p class="greytext", style="margin-right: 10px">Privacy score:</p>
+                  <p class="greytext", style="margin-right: 10px; font-size: 20px;">Privacy score:</p>
                   <div>
                     <% if @score < 30 %>
-
                       <h1 class="middleblacktitle">Bad</h1>
                     <% elsif @score < 60 %>
                       <h1 class="middleblacktitle">Medium</h1>

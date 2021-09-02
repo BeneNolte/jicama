@@ -2,16 +2,16 @@
 <div class="banner">
     <%= image_tag "jicama-logo-white.png", class: "logo-sizing", style:"display: block; margin-bottom: 10px; margin-top:80px;" %>
     <h3>Your data <br>privacy manager.</h3>
-    <h5 style="font-family: Roboto; color: #A5A5A5; font-size: 15px; font-weight: normal;">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
+    <h5 class="greytext">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
 
     <% if user_signed_in? == false %>
       <div class="short-button">
-        <%= link_to "Join now", new_user_session_path, class: "blacktext" %>
+        <%= link_to "Join now", new_user_session_path %>
       </div>
-      
+
     <% else %>
       <div class="short-button">
-        <%= link_to "Dashboard", dashboard_path, class: "blacktext" %>
+        <%= link_to "Dashboard", dashboard_path %>
       </div>
     <% end %>
 
@@ -50,17 +50,17 @@
       <div class="process-card">
         <i class="fas fa-database info-item-home"></i>
         <h5 class="whitetitle" style="margin-top: 25px; font-size: 25px;">1. Collect</h5>
-        <p class="greytext" style="font-size: 15px;">Collect data from your favorite <br>websites and apps.</p>
+        <p class="greytext" style="font-size: 16px; font-weight: 600;">Collect data from your favorite <br>websites and apps.</p>
       </div>
       <div class="process-card">
         <i class="fas fa-chart-bar info-item-home"></i>
         <h5 class="whitetitle" style="margin-top: 25px; font-size: 25px;">2. View</h5>
-        <p class="greytext" style="font-size: 15px;">See what many companies already know about you.</p>
+        <p class="greytext" style="font-size: 16px; font-weight: 600;">See what many companies already know about you.</p>
       </div>
       <div class="process-card">
         <i class="fas fa-trash-restore info-item-home"></i>
         <h5 class="whitetitle", style="margin-top: 25px; font-size: 25px;">3. Control</h5>
-        <p class="greytext" style="font-size: 15px;">Choose which information companies can access.</p>
+        <p class="greytext" style="font-size: 16px; font-weight: 600;">Choose which information companies can access.</p>
       </div>
       <% if controller_name != 'sessions' %>
         <div class="text-center margin-button">
@@ -75,7 +75,7 @@
   <div class="row">
     <div class="col-12 col-lg-6 box-sizing-white statistics-home">
       <h3 class="title-design-black" style="font-size: 30px; opacity: 0.7;">Let's talk data</h3>
-      <h5 class="purple-subtext-home greytext">Data privacy management of the future: <br> No effort, no costs!  </h5>
+      <h5 class="greytext" style="font-size: 16px; font-weight: 600; text-align: center;">Data privacy management of the future: <br> No effort, no costs!  </h5>
       <%# source: https://dataprivacymanager.net/100-data-privacy-and-data-security-statistics-for-2020/ %>
       <div class="data-statistics-card d-flex">
         <div>
@@ -101,7 +101,7 @@
         </div>
         <div class="inner-stats">
           <div class="stat-big">79%</div>
-          <div class="text-stat greytext">Have adjusted privacy-related settings on their social accounts</div>
+          <div class="text-stat greytext">Have adjusted privacy settings on their social accounts</div>
         </div>
       </div>
       <% if controller_name != 'sessions' %>
