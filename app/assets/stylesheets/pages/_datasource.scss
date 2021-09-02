@@ -27,6 +27,7 @@
 
 .digital-footprint {
   padding: 15px;
+  overflow-y: auto;
 }
 
 .digital-footprint, .insights-display {
@@ -44,8 +45,8 @@
   width: 100%;
   justify-content: center;
   text-align: center;
-  overflow-y: auto;
   z-index: 5;
+  overflow-y: auto;
   .card-boxless {
     padding-top: 0px;
   }
