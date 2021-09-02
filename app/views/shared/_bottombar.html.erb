@@ -2,21 +2,21 @@
 
   <%= link_to datasource_path(datasource) do %>
     <div class= "bottombar-link" id="datasource-button">
-      <i class="far fa-chart-bar" id="fa-chart-bar"></i>
-      <div class="greytext">Insights</div>
+      <%= image_tag "diamond.png", class: "diamond"%>
+      <div class="greytext bottom-bar-text">Datasources</div>
     </div>
   <% end %>
 
   <%= link_to dashboard_path do %>
     <div class= "bottombar-link" id="dashboard-button">
-      <%= image_tag "jicama-logo-white.png"%>
+      <%= image_tag "jicama-logo-white.png", class: "jicama-logo-bottom"%>
     </div>
   <% end %>
 
   <%= link_to datasource_data_ownerships_path(datasource, type_of_ownership: "accessor") do %>
     <div class= "bottombar-link" id="datacontrol-button">
-      <i class="fas fa-shield-alt" id="fa-lock"></i>
-      <div class="greytext">Control</div>
+      <%= image_tag "shield.png", class: "shield"%>
+      <div class="greytext bottom-bar-text">Control</div>
     </div>
   <% end %>
 

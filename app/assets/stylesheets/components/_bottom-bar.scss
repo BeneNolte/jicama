@@ -1,5 +1,5 @@
 .bottombar {
-  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08);
   height: 70px;
   display: flex;
   align-items: center;
@@ -8,32 +8,42 @@
 }
 
 .bottombar-link {
-  opacity: 0.3;
+  opacity: 0.5;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  i {
+  .diamond {
     color: black;
     cursor: pointer;
     height: 33px;
     width: auto;
     align-self: center;
   }
-  img {
+  .shield {
+    color: black;
+    cursor: pointer;
+    height: 33px;
+    width: auto;
+    align-self: center;
+  }
+  .jicama-logo-bottom {
     color: black;
     cursor: pointer;
     height: 37px;
     width: auto;
   }
+  .bottom-bar-text {
+    font-weight: 700;
+    align-self: center;
+  }
+}
+#datasource-button,
+#datacontrol-button {
+  width: 60px;
+  align-self: center;
 }
 
-#fa-lock {
-  font-size: 29px;
-}
-#fa-chart-bar {
-  font-size: 32px;
-}
 
 @media(max-height: 750px) {
   #dashboard-button {

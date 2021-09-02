@@ -195,9 +195,11 @@ videoTitlesExtract = html_doc.css("div.mdl-grid div:nth-child(2) :first-child")
 # trying to retrieve the date : p videoTitlesExtract.first.text
 videoTitlesExtract.each do |element|
   if element.text.length > 3 && element.attribute('href')&.value.present?
-  videos << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
+  content = [I18n.transliterate(element.text.encode("iso-8859-1").force_encoding("utf-8")).gsub('?', ''), element.attribute('href').value]
+  videos << content
   end
 end
+
 rankedVideoTitles = videos.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
 puts "Creating Youtube Video Titles all time seeds"
@@ -217,7 +219,8 @@ channels = []
 videoChannelsExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
 videoChannelsExtract.each do |element|
   if element.text.length > 3 && element.attribute('href')&.value.present?
-  channels << [element.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8"), element.attribute('href').value]
+    content = [I18n.transliterate(element.text.encode("iso-8859-1").force_encoding("utf-8")).gsub('?', ''), element.attribute('href').value]
+    channels << content
   end
 end
 rankedVideoChannels = channels.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
@@ -255,7 +258,7 @@ dateExtracts.each do |dateExtract|
     if match_data.nil? == false
       latitude = match_data[1].split(",")[0]
       longitude = match_data[1].split(",")[1]
-      locationName = locationExtract.text.gsub(/[^[:ascii:]]/, "").encode("iso-8859-1").force_encoding("utf-8")
+      locationName = I18n.transliterate(locationExtract.text.encode("iso-8859-1").force_encoding("utf-8")).gsub('?', '')
       locations << [latitude, longitude, locationName, locationDate]
     end
   end

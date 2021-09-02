@@ -2,7 +2,7 @@
 <div class="banner">
     <%= image_tag "jicama-logo-white.png", class: "logo-sizing", style:"display: block; margin-bottom: 10px; margin-top:80px;" %>
     <h3>Your data <br>privacy manager.</h3>
-    <h5 class="greytext">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
+    <h5 class="greytext" style="color: #858585">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
 
     <% if user_signed_in? == false %>
       <div class="short-button">
@@ -50,17 +50,17 @@
       <div class="process-card">
         <i class="fas fa-database info-item-home"></i>
         <h5 class="whitetitle" style="margin-top: 25px; font-size: 25px;">1. Collect</h5>
-        <p class="greytext" style="font-size: 16px; font-weight: 600;">Collect data from your favorite <br>websites and apps.</p>
+        <p class="greytext" style="font-size: 16px; font-weight: 600; color: #858585">Collect data from your favorite <br>websites and apps.</p>
       </div>
       <div class="process-card">
         <i class="fas fa-chart-bar info-item-home"></i>
         <h5 class="whitetitle" style="margin-top: 25px; font-size: 25px;">2. View</h5>
-        <p class="greytext" style="font-size: 16px; font-weight: 600;">See what many companies already know about you.</p>
+        <p class="greytext" style="font-size: 16px; font-weight: 600; color: #858585">See what many companies already know about you.</p>
       </div>
       <div class="process-card">
         <i class="fas fa-trash-restore info-item-home"></i>
         <h5 class="whitetitle", style="margin-top: 25px; font-size: 25px;">3. Control</h5>
-        <p class="greytext" style="font-size: 16px; font-weight: 600;">Choose which information companies can access.</p>
+        <p class="greytext" style="font-size: 16px; font-weight: 600; color: #858585">Choose which information companies can access.</p>
       </div>
       <% if controller_name != 'sessions' %>
         <div class="text-center margin-button">

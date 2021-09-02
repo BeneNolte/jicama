@@ -5,7 +5,7 @@
 .search-bar {
   display: flex;
   border: 1px solid $jicama-light-gray;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 0px rgba(0,0,0,0.08);
   border-radius: 30px;
   width: 100%;
   justify-items: center;
@@ -38,14 +38,14 @@
     margin-bottom: 0px;
     margin-right: 5px;
     margin-left: 5px;
-    font-weight: lighter;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
   }
   input {
     width: 90px;
     border-style: none;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 300;
     overflow: hidden;
     flex-grow: 1;
     background-color: transparent;
@@ -61,14 +61,14 @@
   label {
     margin-bottom: 0px;
     margin-right: 5px;
-    font-weight: lighter;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
   }
   input {
     width: 90px;
     border-style: none;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 300;
     overflow: hidden;
     flex-grow: 1;
     background-color: transparent;

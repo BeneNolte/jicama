@@ -27,11 +27,12 @@
 
 .digital-footprint {
   padding: 15px;
+  overflow-y: auto;
 }
 
 .digital-footprint, .insights-display {
   background-color: white;
-  box-shadow: 0 0 60px 0px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px 0px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
   border-radius: 20px;
@@ -44,8 +45,8 @@
   width: 100%;
   justify-content: center;
   text-align: center;
-  overflow-y: auto;
   z-index: 5;
+  overflow-y: auto;
   .card-boxless {
     padding-top: 0px;
   }
@@ -97,7 +98,6 @@
 .scrollable {
   background-color: white;
   background: linear-gradient(rgba(246, 244, 244, 0), white 100%);
-  z-index: 10000;
   position: sticky;
   width: 100%;
   height: 75px;
@@ -136,7 +136,7 @@
   border-radius: 10px;
   background-color: white;
   opacity: 1;
-  box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 15px 1px rgba(97, 69, 69, 0.08);
   i {
     color: white;
     font-size: 25px;
@@ -209,12 +209,12 @@
 
 .purple-bold {
   color: $jicama-purple;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
 }
 
 .header-grey {
   color: $jicama-header-grey;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
 }
 
 .video-score p {
@@ -246,6 +246,7 @@
 
 .insights-logo {
   position: absolute;
-  left: 0px;
+  top: 2px;
   color: $jicama-grey-text;
+  font-size: 14px;
 }
