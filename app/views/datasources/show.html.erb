@@ -29,7 +29,7 @@
                   <%= image_tag @google.photo, class:"datasource-logo" %>
                 </div>
                 <div class="display-score">
-                  <p class="greytext">Privacy score</p>
+                  <p class="greytext">Privacy score: <%= @score.round %></p>
                   <p class="greytext"><%= @datasource.name%></p>
                 </div>
 
@@ -134,7 +134,7 @@
 
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fas fa-search"></i></div>
-                    <p class="subtitle">Top searched words</p>
+                    <p class="subtitle" style="margin-bottom: 15px;">Top searched words</p>
                     <div class="content" style="justify-content: space-evenly">
                       <% @chrome_search_words.first(3).each do |word| %>
                         <div class="title">
@@ -173,7 +173,7 @@
 
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fas fa-dollar-sign"></i></div>
-                    <p class="subtitle">Number of ads viewed</p>
+                    <p class="subtitle" style="margin-bottom: 15px;">Number of ads viewed</p>
                       <div class="circle-container">
                         <p class="header-grey m-0"><%= @viewed_advertisements.count %></p>
                       </div>
@@ -206,7 +206,7 @@
 
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fab fa-youtube"></i></div>
-                    <p class="subtitle">Top watched channels</p>
+                    <p class="subtitle" style="margin-bottom: 15px;">Top watched channels</p>
 
                     <% @youtube_video_channels.first(5).each do |channel| %>
                       <div class="content">
