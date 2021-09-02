@@ -1,10 +1,11 @@
 .search {
+  height: 30px;
   width: 95%;
 }
 
 .search-bar {
   display: flex;
-  border: 1px solid $jicama-light-gray;
+  border: 1px solid $jicama-grey;
   box-shadow: 0 2px 0px rgba(0,0,0,0.08);
   border-radius: 30px;
   width: 100%;
@@ -13,6 +14,10 @@
   padding: 5px;
   place-content: center;
   margin-bottom: 10px;
+  position: relative;
+  bottom: -9px;
+  z-index: 1;
+  background: white;
   input[type="date"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;

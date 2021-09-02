@@ -6,8 +6,8 @@
         <div class="app-header d-flex justify-content-between mb-1">
           <h4 class="purplesubtitle">Privacy score</h4>
           <button type="button"
-                  class= "button-info-purple"
-
+                  class= "button-info"
+                  data-trigger="focus"
                   data-container="body"
                   data-html="true"
                   data-toggle="popover"
@@ -18,34 +18,66 @@
         </div>
 
         <div class="card-purple">
-          <div class="display-score d-flex">
-            <% if @score < 30 %>
-              <h1 class="fatblacktitle">Bad</h1>
-            <% elsif @score < 60 %>
-              <h1 class="fatblacktitle">Medium</h1>
-            <% elsif @score < 90 %>
-              <h1 class="fatblacktitle">Good</h1>
-            <% else %>
-              <h1 class="fatblacktitle">Very Good</h1>
-            <% end %>
+          <div class="progress" data-percentage=<%= @score %>>
+            <span class="progress-left">
+              <span class="progress-bar"></span>
+            </span>
+            <span class="progress-right">
+              <span class="progress-bar"></span>
+            </span>
+            <div class="progress-value">
+              <% if @score < 30 %>
+              <div class="score-display">
+                <h1 class="middleblacktitle"><%= @score %><span style="font-size: 18px;">%</span></h1>
+                <h1 class="smallblacktitle">bad</h1>
+              </div>
+              <% elsif @score < 60 %>
+              <div class="score-display">
+                <h1 class="middleblacktitle"><%= @score %>%</h1>
+                <h1 class="smallblacktitle">medium</h1>
+              </div>
+              <% elsif @score < 90 %>
+              <div class="score-display">
+                <h1 class="middleblacktitle"><%= @score %>%</h1>
+                <h1 class="smallblacktitle">good</h1>
+              </div>
+              <% else %>
+              <div class="score-display">
+                <h1 class="middleblacktitle"><%= @score %>%</h1>
+                <h1 class="smallblacktitle">very good</h1>
+              </div>
+              <% end %>
+            </div>
           </div>
-          <div class="display-score">
-            <p class="greytext">Privacy score</p>
-            <p class="greytext">Overall</p>
+          <div class="privacy-container d-flex">
+            <div class="social-bar d-flex">
+              <i class="fab fa-google social-icons"></i>
+              <div class="meter">
+                <span style="width: <%= @score%>%;"></span>
+              </div>
+            </div>
+            <%# <div class="social-bar d-flex absent-source">
+              <i class="fab fa-facebook-f social-icons"></i>
+              <div class="meter absent-meter">
+                <span style="width: 100%;"></span>
+              </div>
+            </div>
+            <div class="social-bar d-flex absent-source">
+              <i class="fab fa-instagram social-icons"></i>
+              <div class="meter absent-meter">
+                <span style="width: 100%;"></span>
+              </div>
+            </div> %>
+            <div id="dashboard-connect" data-toggle="modal" data-target="#datasourceModal">
+              Connect datasources
+            </div>
           </div>
-
-          <div class="meter">
-            <span style="width: <%= @score%>%;"></span>
-          </div>
-
-          <p class="blacktext">Since August</p>
-
         </div>
 
         <div class="app-header d-flex justify-content-between mb-1">
           <h4 class="purplesubtitle">Data valuation</h4>
           <button type="button"
-                  class= "button-info-purple"
+                  class= "button-info"
                   data-trigger="focus"
                   data-container="body"
                   data-html="true"
@@ -107,11 +139,11 @@
     </div>
   </div>
 
-  <div class="container">
+  <%# <div class="container">
     <div class="d-flex justify-content-between mb-1" style="margin-top: 5px;">
       <h4 class="purplesubtitle">Datasources</h4>
       <button type="button"
-            class= "button-info-purple"
+            class= "button-info"
             data-trigger="focus"
             data-container="body"
             data-html="true"
@@ -121,22 +153,22 @@
         <i class="far fa-question-circle"></i>
       </button>
     </div>
-  </div>
+  </div> %>
 
-  <div class="carousel" style="margin-bottom: 15px;">
+  <%# <div class="carousel" style="margin-bottom: 15px;">
     <div class="datasource-selection">
       <%= link_to datasource_path(@google) do %>
-        <div class="logo-design">
-          <%= cl_image_tag("jicama/google_logo.png") %>
-        </div>
-      <% end %>
+        <%# <div class="logo-design"> %>
+          <%#= cl_image_tag("jicama/google_logo.png") %>
+        <%# </div> %>
+      <%# end %>
 
       <!-- Button trigger modal -->
-      <div class="logo-design" data-toggle="modal" data-target="#datasourceModal">
+      <%# <div class="logo-design" data-toggle="modal" data-target="#datasourceModal">
         <i class="fas fa-plus"></i>
-      </div>
-    </div>
-  </div>
+      </div> %>
+    <%# </div>
+  </div> %>
 
 </div>
 
