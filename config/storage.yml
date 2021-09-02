@@ -11,8 +11,8 @@ cloudinary:
 
 amazon:
   service: S3
-  access_key_id: <%= ENV["S3_ACCESS_ID"] %>
-  secret_access_key: <%= ENV["S3_ACCESS_KEY"] %>
+  access_key_id: <%= ENV["AWSAccessKeyId"] %>
+  secret_access_key: <%= ENV["AWSSecretKey"] %>
   bucket: "jicama"
   region: "eu-central-1" # e.g. 'us-east-1'
 

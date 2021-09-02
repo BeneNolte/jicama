@@ -72,3 +72,4 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem 'cloudinary', '~> 1.16.0'
 gem 'google-api-client'
+gem 'aws-sdk', '~> 2'
