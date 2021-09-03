@@ -5,10 +5,10 @@
     <h5 class="greytext" style="color: #858585">Own your data, own your future. Regain data control and see your digital footprint for free.</h5>
 
     <% if user_signed_in? == false %>
-      <%= link_to "Join now", new_user_session_path, class: "short-button" %>
+      <%= link_to "Join now", new_user_session_path, class: "short-button main-home-button" %>
 
     <% else %>
-      <%= link_to "Dashboard", dashboard_path, class: "short-button", id: "main-home-button" %>
+      <%= link_to "Dashboard", dashboard_path, class: "short-button main-home-button" %>
     <% end %>
 
 </div>
@@ -61,9 +61,9 @@
       <% if controller_name != 'sessions' %>
         <div class="text-center margin-button">
          <% if user_signed_in? == false %>
-            <%= link_to "Get started", new_user_session_path, class: "short-button" %>
+            <%= link_to "Get started", new_user_session_path, class: "short-button main-home-button" %>
           <% else %>
-            <%= link_to "Get started", dashboard_path, class: "short-button" %>
+            <%= link_to "Get started", dashboard_path, class: "short-button main-home-button" %>
           <% end %>
         </div>
       <% end %>

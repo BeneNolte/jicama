@@ -8,7 +8,19 @@
         <div class="displays">
           <%# default display %>
           <div class="default-display <%= params[:start_date] ? "opacity" : "" %>">
-            <h4 class="purplesubtitle">Digital Footprint</h4>
+            <div class="d-flex justify-content-between ">
+              <h4 class="purplesubtitle">Digital Footprint</h4>
+              <button type="button"
+                      class= "button-info"
+                      data-trigger="focus"
+                      data-container="body"
+                      data-html="true"
+                      data-toggle="popover"
+                      data-placement="left"
+                      data-content="Here is your Google digital footprint etc.">
+                <i class="far fa-question-circle"></i>
+              </button>
+            </div>
 
             <div class="digital-footprint">
 
@@ -29,7 +41,7 @@
                   <%= cl_image_tag @google.photo.key, class:"datasource-logo" %>
                 </div>
                 <div class="display-score">
-                  <p class="greytext">Privacy score: <%= @score.round %></p>
+                  <p class="greytext">Privacy score: <%= @score.round %><span style="font-size: 10px;">%</span></p>
                   <p class="greytext"><%= @datasource.name%></p>
                 </div>
 

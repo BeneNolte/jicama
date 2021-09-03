@@ -47,6 +47,17 @@ a {
   }
 }
 
+.main-home-button {
+  &:active {
+    color: $jicama-grey;
+    background-color: white;
+  }
+  &:hover {
+    color: $jicama-grey;
+    background-color: white;
+  }
+}
+
 .short-button-black {
   transition: all 0.3s ease;
   padding: 10px 55px;
