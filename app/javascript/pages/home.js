@@ -22,8 +22,8 @@ const logoHome = () => {
         event.preventDefault();
         setInterval(() => {
           var $badge = $('#nhb_01');
-          count += 10;
-          homeButton.style.boxShadow = `0px 0px ${count}px ${3 + count / 10}px white`; 
+          count += 8;
+          homeButton.style.boxShadow = `0px 0px ${count}px ${3 + count / 30}px white`; 
           $badge.text(count.toFixed(2));
         }, 10);
   
