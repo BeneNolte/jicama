@@ -27,7 +27,7 @@ const logoHome = () => {
           $badge.text(count.toFixed(2));
         }, 10);
   
-        setTimeout(() => { window.location.href = '/dashboard' }, 500);
+        setTimeout(() => { window.location.href = '/dashboard' }, 600);
       })
     })
     
