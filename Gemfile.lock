@@ -455,6 +455,7 @@ DEPENDENCIES
   pundit
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
+  rubyzip (>= 1.0.0)
   sass-rails (>= 6)
   selenium-webdriver
   sidekiq

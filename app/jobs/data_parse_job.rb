@@ -1,3 +1,5 @@
+require 'zip'
+
 class DataParseJob < ApplicationJob
   queue_as :default
 
@@ -6,14 +8,15 @@ class DataParseJob < ApplicationJob
 
     # Download file
     # zip = amazon.bucket('jicama').object("#{@datasource.file.path}").get(response_target: "#{@datasource.file.url}")
-    zip = datasource.file
-    p zip
+    url = datasource.file.url
+    zip = URI.open(url)
     # unzip file
-    # Zip::File.open("my.zip") do |zipfile|
-    #   zipfile.each do |file|
-    #     # do something with file
-    #   end
-    # end
+    Zip::File.open(zip) do |zipfile|
+      zipfile.each do |file|
+        # do something with file
+        p file.name == "TakeoutBene/Profile/Profile.json"
+      end
+    end
     # Select relevant folders
     # Stock relevant folder in database
     puts "OK I'm done now"
