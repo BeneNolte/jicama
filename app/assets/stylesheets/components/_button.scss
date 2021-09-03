@@ -27,21 +27,33 @@ a {
 }
 
 .short-button {
+  transition: all 0.3s ease;
   padding: 15px 55px;
   background-color: white;
   border-radius: 50px;
   margin: 10px 0px;
-  color: black;
+  color: $jicama-dark-grey;
   font-size: 18px;
   font-weight: bolder;
   text-decoration: none;
   box-shadow: 0px 0px 32px 3px white;
-  a {
-    color: black;
-  }
   &:active {
-    text-decoration: none;
-    color: black;
+    color: white;
+    background-color: black;
+  }
+  &:hover {
+    color: white;
+    background-color: black;
+  }
+}
+
+.main-home-button {
+  &:active {
+    color: $jicama-grey;
+    background-color: white;
+  }
+  &:hover {
+    color: $jicama-grey;
     background-color: white;
   }
 }
@@ -60,7 +72,10 @@ a {
   border: 0.5px solid black;
 
   &:active {
-    text-decoration: none;
+    color: white;
+    background-color: black;
+  }
+  &:hover {
     color: white;
     background-color: black;
   }
@@ -80,13 +95,17 @@ a {
   border: 0.5px solid white;
 
   a {
-    color: white;
     font-size: 16px;
     margin-bottom: 0px;
     font-weight: 600;
   }
   &:active {
-    text-decoration: none;
+    color: $jicama-dark-grey;
+    color: black;
+    background-color: white;
+  }
+  &:hover {
+    color: $jicama-dark-grey;
     color: black;
     background-color: white;
   }
@@ -112,6 +131,10 @@ a {
     color: white;
     background-color: #7551F3;
   }
+  &:hover {
+    color: white;
+    background-color: #7551F3;
+  }
   .button_to {
     input:disabled {
       border:rgba(0,0,0, 0.3);
@@ -127,6 +150,10 @@ a {
     color: white;
     background-color: $jicama-green;
   }
+  &:hover {
+    color: white;
+    background-color: $jicama-green;
+  }
 }
 
 .small-button-red {
@@ -136,12 +163,20 @@ a {
     color: white;
     background-color: $jicama-red;
   }
+  &:hover {
+    color: white;
+    background-color: $jicama-red;
+  }
 }
 
 .small-button-yellow {
   color: $jicama-yellow;
   border: 1px solid $jicama-yellow;
   &:active {
+    color: white;
+    background-color: $jicama-yellow;
+  }
+  &:hover {
     color: white;
     background-color: $jicama-yellow;
   }
@@ -176,6 +211,11 @@ a {
     background-color: white;
     border: 1px solid #7551F3;
   }
+  &:hover {
+    color: #7551F3;
+    background-color: white;
+    border: 1px solid #7551F3;
+  }
   .button_to {
     input:disabled {
       opacity: 0.3;
@@ -191,6 +231,7 @@ a {
 }
 
 .button-info {
+  -webkit-appearance: none;
   font-size: 20px;
   transition: all 0.3s ease;
   color: $jicama-grey;
@@ -202,10 +243,16 @@ a {
   &:active {
     color: black;
   }
+  &:hover {
+    color: black;
+  }
 }
 
 #button-setting-autofilter {
   &:active {
+    color: $jicama-grey;
+  }
+  &:hover {
     color: $jicama-grey;
   }
 }
@@ -229,6 +276,11 @@ a {
   border: 1px solid $white;
   background-color: $jicama-dark-grey;
   &:active {
+    color: $jicama-dark-grey;
+    background-color: $white;
+    border: 1px solid $jicama-dark-grey;
+  }
+  &:hover {
     color: $jicama-dark-grey;
     background-color: $white;
     border: 1px solid $jicama-dark-grey;

@@ -153,8 +153,8 @@
 
 .score-display {
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -176,9 +176,11 @@
 
 .social-icons {
   margin-right: 10px;
-  margin-top: 10px;
+  margin-top: 7px;
+  font-size: 18px;
 }
 
 .absent-source {
   opacity: 0.3;
 }
+

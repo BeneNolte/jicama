@@ -50,12 +50,12 @@ class DatasourcesController < ApplicationController
   def update
     @datasource = Datasource.find(params[:id])
     authorize @datasource
-    if params[:file].nil?
-      render :update
-    else
+    # if params[:file].nil?
+    #   render :update
+    # else
       @datasource.update!(datasource_params)
       redirect_to datasource_path(@datasource), notice: "Your personal data has been uploaded"
-    end
+    # end
   end
 
   private
