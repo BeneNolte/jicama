@@ -26,7 +26,7 @@
                       <h1 class="fatblacktitle">Very Good</h1>
                     <% end %>
                   </div>
-                  <%= image_tag @google.photo, class:"datasource-logo" %>
+                  <%= cl_image_tag @google.photo.key, class:"datasource-logo" %>
                 </div>
                 <div class="display-score">
                   <p class="greytext">Privacy score: <%= @score.round %></p>
