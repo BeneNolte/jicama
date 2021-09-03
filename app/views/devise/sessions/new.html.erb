@@ -9,7 +9,7 @@
             <%= render "devise/shared/omniauth" %>
           </div>
           <br>
-          <p class="separator">Jicama account</p>
+          <p class="separator middleblacktitle">Jicama account</p>
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-inputs">
               <%= f.input :email,
@@ -24,7 +24,9 @@
               <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
             </div>
             <div class="form-actions" style="display: flex; align-items: center; justify-content: space-between;">
-              <%= f.button :submit, "Log in", class:"buttonpurple" %>
+              <div class= "small-button">
+                <%= f.button :submit, "Log in" %>
+              </div>
               <%= render "devise/shared/sign_up" %>
             </div>
           <% end %>
