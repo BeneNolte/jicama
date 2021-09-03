@@ -1,9 +1,9 @@
 # require 'zip'
 
-# class DataParseJob < ApplicationJob
-#   queue_as :default
+class DataParseJob < ApplicationJob
+  queue_as :default
 
-#   def perform(datasource)
+  def perform #(datasource)
 #     # Do something later
 
 #     # Download file
@@ -20,6 +20,6 @@
 #     end
 #     # Select relevant folders
 #     # Stock relevant folder in database
-#     puts "OK I'm done now"
-#   end
-# end
+    puts "OK I'm done now"
+  end
+end
