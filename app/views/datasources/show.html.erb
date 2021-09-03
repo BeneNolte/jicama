@@ -10,16 +10,17 @@
           <div class="default-display <%= params[:start_date] ? "opacity" : "" %>">
             <div class="d-flex justify-content-between ">
               <h4 class="purplesubtitle">Digital Footprint</h4>
-              <button type="button"
-                      class= "button-info"
-                      data-trigger="focus"
-                      data-container="body"
-                      data-html="true"
-                      data-toggle="popover"
-                      data-placement="left"
-                      data-content="Here is your Google digital footprint etc.">
+              <a role="button"
+                 tabindex="0"
+                 class= "button-info"
+                 data-trigger="focus"
+                 data-container="body"
+                 data-html="true"
+                 data-toggle="popover"
+                 data-placement="left"
+                 data-content="Here is your Google digital footprint etc.">
                 <i class="far fa-question-circle"></i>
-              </button>
+              </a>
             </div>
 
             <div class="digital-footprint">
