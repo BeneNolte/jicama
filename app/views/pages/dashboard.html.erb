@@ -18,6 +18,7 @@
         </div>
 
         <div class="card-purple">
+          <h1 class="purplesubtitle" style="text-align: center;">Overall score</h1>
           <div class="progress" data-percentage=<%= @score %>>
             <span class="progress-left">
               <span class="progress-bar"></span>
@@ -28,22 +29,22 @@
             <div class="progress-value">
               <% if @score < 30 %>
               <div class="score-display">
-                <h1 class="middleblacktitle"><%= @score %><span style="font-size: 18px;"></span></h1>
+                <h1 class="middleblacktitle"><%= @score %><span style="font-size: 18px; margin-left: 2px;">%</span></h1>
                 <h1 class="smallblacktitle">bad</h1>
               </div>
               <% elsif @score < 60 %>
               <div class="score-display">
-                <h1 class="middleblacktitle"><%= @score %>%</h1>
+                <h1 class="middleblacktitle"><%= @score %><span style="font-size: 18px; margin-left: 2px;">%</span></h1>
                 <h1 class="smallblacktitle">medium</h1>
               </div>
               <% elsif @score < 90 %>
               <div class="score-display">
-                <h1 class="middleblacktitle"><%= @score %>%</h1>
+                <h1 class="middleblacktitle"><%= @score %><span style="font-size: 18px; margin-left: 2px;">%</span></h1>
                 <h1 class="smallblacktitle">good</h1>
               </div>
               <% else %>
               <div class="score-display">
-                <h1 class="middleblacktitle"><%= @score %>%</h1>
+                <h1 class="middleblacktitle"><%= @score %><span style="font-size: 18px; margin-left: 2px;">%</span></h1>
                 <h1 class="smallblacktitle">very good</h1>
               </div>
               <% end %>
@@ -52,8 +53,11 @@
           <div class="privacy-container d-flex">
             <div class="social-bar d-flex">
               <i class="fab fa-google social-icons"></i>
-              <div class="meter">
-                <span style="width: <%= @score%>%;"></span>
+              <div style="width: 100%;">
+                <p class="smalltitle">Google score: <%= @score%><span style="font-size: 10px;">%</span></p>
+                <div class="meter" style="margin-top: 0px; margin-bottom: 20px;">
+                  <span style="width: <%= @score%>%;"></span>
+                </div>
               </div>
             </div>
             <%# <div class="social-bar d-flex absent-source">
@@ -78,7 +82,7 @@
           <h4 class="purplesubtitle">Data valuation</h4>
           <button type="button"
                   class= "button-info"
-                  data-trigger="focus"
+                  <%# data-trigger="focus" %>
                   data-container="body"
                   data-html="true"
                   data-toggle="popover"
