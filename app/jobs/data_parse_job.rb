@@ -20,11 +20,13 @@ class DataParseJob < ApplicationJob
       end
 
       puts "-------------------------"
+      sup_arr = []
       files.each do |element|
-        p element
+        sup_arr << element.name
       end
+      p sup_arr
       puts "-------------------------"
-      p location = file.name == "TakeoutBene/Location/MyActivity_Location.html"
+      # p location = file.name == "TakeoutBene/Location/MyActivity_Location.html"
       # Stock relevant folder in database
 
       descending = -1
@@ -35,7 +37,7 @@ class DataParseJob < ApplicationJob
       # gender = profileInfos["gender"]["type"].capitalize
 
       # # # # Browser History
-      # browser_file = files[1]
+      # browser_file = files[3]
       # browserHistories = JSON.parse(browser_file.get_input_stream.read)
       # # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
       # monthlySearchWords = []
@@ -154,7 +156,7 @@ class DataParseJob < ApplicationJob
       #     longitude: location[1],
       #     name: location[2],
       #     timestamp: location[3],
-      #     datasource: google
+      #     datasource: datasource
       #   )
       # end
       # puts "Finished!"
@@ -165,7 +167,7 @@ class DataParseJob < ApplicationJob
 
       # # # # #--> NUMBER OF ADS & MOST CLICKED ADS
 
-      # p ads_file = files[3]
+      # p ads_file = files[1]
       # html_ads_doc = Nokogiri::HTML(ads_file.get_input_stream.read)
 
       # ads_extract = html_ads_doc.css("div.outer-cell")
@@ -224,17 +226,20 @@ class DataParseJob < ApplicationJob
       # end
       # puts "Finished!"
 
-      # # # # 3. YOUTUBE CHANNEL HISTORY
+
+
+
+      # # # # YOUTUBE CHANNEL HISTORY
       youtube_file = files[4]
       html_doc = Nokogiri::HTML(youtube_file.get_input_stream.read)
-
+      # binding.pry
       # --> TOP VIDEO TITLES OF ALL TIMES
       videos = []
       videoTitlesExtract = html_doc.css("div.mdl-grid div:nth-child(2) :first-child")
       # trying to retrieve the date : p videoTitlesExtract.first.text
       videoTitlesExtract.each do |element|
         if element.text.length > 3 && element.attribute('href')&.value.present?
-        content = [I18n.transliterate(element.text.encode("iso-8859-1").force_encoding("utf-8")).gsub('?', ''), element.attribute('href').value]
+        content = [I18n.transliterate(element.text.encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace)).gsub('?', ''), element.attribute('href').value]
         videos << content
         end
       end
@@ -248,7 +253,7 @@ class DataParseJob < ApplicationJob
           count: element[1],
           url: element[0][1],
           time_range: "all",
-          datasource: google
+          datasource: datasource
         )
       end
       puts "Finished!"
@@ -258,7 +263,7 @@ class DataParseJob < ApplicationJob
       videoChannelsExtract = html_doc.css("div.mdl-grid div:nth-child(2) a")
       videoChannelsExtract.each do |element|
         if element.text.length > 3 && element.attribute('href')&.value.present?
-          content = [I18n.transliterate(element.text.encode("iso-8859-1").force_encoding("utf-8")).gsub('?', ''), element.attribute('href').value]
+          content = [I18n.transliterate(element.text.encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace)).gsub('?', ''), element.attribute('href').value]
           channels << content
         end
       end
@@ -271,13 +276,13 @@ class DataParseJob < ApplicationJob
           count: element[1],
           url: element[0][1],
           time_range: "all",
-          datasource: google
+          datasource: datasource
         )
       end
       puts "Finished!"
 
 
     end
-    puts "OK I'm done now"
+    puts "OK I'm done with all data charges"
   end
 end
