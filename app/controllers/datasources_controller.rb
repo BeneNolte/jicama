@@ -51,16 +51,22 @@ class DatasourcesController < ApplicationController
     @datasource = Datasource.find(params[:id])
     authorize @datasource
     if params[:datasource].nil?
-      redirect_to datasource_tuto_path(@datasource, uploaded_file: "false")
+      redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
     else
       redirect_to datasource_tuto_path(@datasource, uploaded_file: "true")
-      @datasource.update!(datasource_params)
-      DataParseJob.perform_now(@datasource)
-      redirect_to datasource_path(@datasource, uploaded_file: "done")
+      dataparse_job(@datasource)
+
+      # issue : perform now before first redirection, and not possible to have to redirections and same action ..
     end
   end
-
+  
   private
+  
+  def dataparse_job(datasource)
+    datasource.update!(datasource_params)
+    DataParseJob.perform_now(datasource)
+    redirect_to datasource_path(datasource, uploaded_file: "done")
+  end
 
   def datasource_params
     params.require(:datasource).permit(:file)

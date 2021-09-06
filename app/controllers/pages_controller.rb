@@ -37,6 +37,4 @@ class PagesController < ApplicationController
     @datasource = datasources.find(params[:datasource_id])
   end
 
-  def loading
-  end
 end

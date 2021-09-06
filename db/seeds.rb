@@ -17,10 +17,10 @@ YoutubeVideoTitle.destroy_all
 YoutubeVideoChannel.destroy_all
 Advertisement.destroy_all
 
-# puts 'Creating a user'
-# user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")
-# user.save!
-# puts 'Finished!'
+puts 'Creating a user'
+user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")
+user.save!
+puts 'Finished!'
 
 # puts 'Creating 20 companies'
 # apple = Company.new(title: "Apple", url: "https://www.apple.com/", rating: 1, description: "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software, and online services.")
