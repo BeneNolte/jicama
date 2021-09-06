@@ -3,7 +3,7 @@ const initBottombar = () => {
   const dashboardButton = document.getElementById("dashboard-button")
   const datacontrolButton = document.getElementById("datacontrol-button")
 
-  if (document.location.pathname.includes("datasources") && !document.location.pathname.includes("data_ownerships")) {
+  if (document.location.pathname.includes("datasources") && !document.location.pathname.includes("data_ownerships") && !document.location.pathname.includes("tuto") ) {
     setTimeout(() => { datasourceButton.style.opacity = 1; }, 100);
   }
 

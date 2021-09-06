@@ -50,15 +50,14 @@ class DatasourcesController < ApplicationController
   def update
     @datasource = Datasource.find(params[:id])
     authorize @datasource
-    # if params[:file].nil?
-    #   render :update
-    # else
+    if params[:datasource].nil?
+      redirect_to datasource_tuto_path(@datasource, uploaded_file: "false")
+    else
+      redirect_to datasource_tuto_path(@datasource, uploaded_file: "true")
       @datasource.update!(datasource_params)
-      # redirect to waiting screen waiting
       DataParseJob.perform_now(@datasource)
-      # redirect to waiting screen success
-      redirect_to datasource_path(@datasource), notice: "Your personal data has been uploaded"
-    # end
+      redirect_to datasource_path(@datasource, uploaded_file: "done")
+    end
   end
 
   private
