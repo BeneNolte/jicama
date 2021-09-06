@@ -12,7 +12,11 @@ class DataParseJob < ApplicationJob
     zip = URI.open(url)
     # unzip file
 
-    file_names = { profile: "Takeout/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+    # if datasource.language == "english"
+    #   file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+    # elsif datasource.language == "french"
+      file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activité/Maps/MyActivity.html", ads: "Takeout/Mon activité/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+    # end
     Zip::File.open(zip) do |zipfile|
       # Select relevant folders
       # files = zipfile.select do |file|
@@ -35,52 +39,12 @@ class DataParseJob < ApplicationJob
       # datasource.size = file_size.sum / 1000000.0
       # datasource.save!
       puts "-------------------------"
-<<<<<<< HEAD
-      sup_arr = []
-      files.each do |element|
-        sup_arr << element.name
-      end
-      p sup_arr
-=======
       p files
->>>>>>> f9a525454a996cfd9b6f4e9993c92e5917fffbba
       puts "-------------------------"
       # p location = file.name == "TakeoutBene/Location/MyActivity_Location.html"
       # Stock relevant folder in database
 
       descending = -1
-<<<<<<< HEAD
-      # # # # Profile
-      # # binding.pry
-      # profile_file = files[0]
-      # profileInfos = JSON.parse(profile_file.get_input_stream.read)
-      # gender = profileInfos["gender"]["type"].capitalize
-
-      # # # # Browser History
-      # browser_file = files[3]
-      # browserHistories = JSON.parse(browser_file.get_input_stream.read)
-      # # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
-      # monthlySearchWords = []
-      # browserHistories["Browser History"].each do |browserHistory|
-      #   if DateTime.strptime(browserHistory["time_usec"].to_s.first(10),'%s') > Date.today.beginning_of_month
-      #     monthlySearchWords << browserHistory["title"] unless browserHistory["title"].nil?
-      #   end
-      # end
-      # counts_monthly_search_words = Hash.new(0)
-      # monthlySearchWords.join(" ").split(" ").each { |word| counts_monthly_search_words[word] += 1 if word != "Google" && word != "Search" && word != "Untitled" && word != "Request" && word.length > 3 }
-      # rankedMonthlySearchWords = counts_monthly_search_words.sort_by { |key, value| value.to_i * descending}.to_a
-
-      # puts "Creating Chrome Search Words monthly seeds"
-      # rankedMonthlySearchWords.each do |element|
-      #   ChromeSearchWord.create(
-      #     word: element[0],
-      #     count: element[1],
-      #     time_range: "monthly",
-      #     datasource: datasource
-      #   )
-      # end
-      # puts "Finished!"
-=======
       # # # Profile
       # binding.pry
       profile_file = files[:profile]
@@ -111,7 +75,6 @@ class DataParseJob < ApplicationJob
         )
       end
       puts "Finished!"
->>>>>>> f9a525454a996cfd9b6f4e9993c92e5917fffbba
 
       # --> TOP SEARCH WORDS HISTORY OF ALL TIME
       allSearchWords = []
@@ -144,19 +107,6 @@ class DataParseJob < ApplicationJob
       end
       rankedMonthlyVisitedLinks = monthlyVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
 
-<<<<<<< HEAD
-      # puts "Creating Bene's Maps location seeds"
-      # locations.each do |location|
-      #   Location.create(
-      #     latitude: location[0],
-      #     longitude: location[1],
-      #     name: location[2],
-      #     timestamp: location[3],
-      #     datasource: datasource
-      #   )
-      # end
-      # puts "Finished!"
-=======
       puts "Creating Chrome Visited Links monthly seeds"
       rankedMonthlyVisitedLinks.each do |element|
         ChromeVisitedLink.create(
@@ -175,7 +125,6 @@ class DataParseJob < ApplicationJob
         allVisitedLinks << browserHistory["url"].match(pattern)[1] unless browserHistory["url"].match(pattern).nil?
       end
       rankedAllVisitedLinks = allVisitedLinks.group_by(&:itself).transform_values { |value| value.count }.sort_by { |_, value| value * descending}.to_a
->>>>>>> f9a525454a996cfd9b6f4e9993c92e5917fffbba
 
       puts "Creating Chrome Visited Links all time seeds"
       rankedAllVisitedLinks.each do |element|
@@ -186,7 +135,7 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Finished!"
+      puts "Search Finished!"
 
 
 
@@ -209,16 +158,15 @@ class DataParseJob < ApplicationJob
           if match_data.nil? == false
             latitude = match_data[1].split(",")[0]
             longitude = match_data[1].split(",")[1]
-            locationName = I18n.transliterate(locationExtract.text.encode("iso-8859-1").force_encoding("utf-8")).gsub('?', '')
+            locationName = I18n.transliterate(locationExtract.text.encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace)).gsub('?', '')
             locations << [latitude, longitude, locationName, locationDate]
           end
         end
       end
 
-<<<<<<< HEAD
       # p ads_file = files[1]
       # html_ads_doc = Nokogiri::HTML(ads_file.get_input_stream.read)
-=======
+
       puts "Creating Bene's Maps location seeds"
       locations.each do |location|
         Location.create(
@@ -229,8 +177,10 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
+
       puts "Finished!"
->>>>>>> f9a525454a996cfd9b6f4e9993c92e5917fffbba
+
+      puts "Location Finished!"
 
 
 
@@ -246,9 +196,6 @@ class DataParseJob < ApplicationJob
       ads_with_link_extract = html_ads_doc.css("div.content-cell a")
       ads_extract_date = html_ads_doc.css("div.content-cell br")
 
-
-<<<<<<< HEAD
-=======
       ads_with_link = []
       pattern_yt = /(https?:\/\/www\.(\w+|\d+)\.\w{1,3}\/)/
       pattern_g = /url\?q=(\w*:\/\/[.\w]+\/)/
@@ -295,18 +242,12 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Finished!"
-
->>>>>>> f9a525454a996cfd9b6f4e9993c92e5917fffbba
-
+      puts "Ads Finished!"
 
 
       # # # # YOUTUBE CHANNEL HISTORY
-<<<<<<< HEAD
       youtube_file = files[4]
-=======
       youtube_file = files[:youtube_history]
->>>>>>> f9a525454a996cfd9b6f4e9993c92e5917fffbba
       html_doc = Nokogiri::HTML(youtube_file.get_input_stream.read)
       # binding.pry
       # --> TOP VIDEO TITLES OF ALL TIMES
@@ -332,7 +273,7 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Finished!"
+      puts "Youtube Finished!"
 
       # --> TOP CHANNELS FROM ALL TIMES
       channels = []
