@@ -12,7 +12,11 @@ class DataParseJob < ApplicationJob
     zip = URI.open(url)
     # unzip file
 
-    file_names = { profile: "Takeout/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+    # if datasource.language == "english"
+    #   file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+    # elsif datasource.language == "french"
+      file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activité/Maps/MyActivity.html", ads: "Takeout/Mon activité/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+    # end
     Zip::File.open(zip) do |zipfile|
       # Select relevant folders
       # files = zipfile.select do |file|
@@ -131,7 +135,7 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Finished!"
+      puts "Search Finished!"
 
 
 
@@ -154,7 +158,7 @@ class DataParseJob < ApplicationJob
           if match_data.nil? == false
             latitude = match_data[1].split(",")[0]
             longitude = match_data[1].split(",")[1]
-            locationName = I18n.transliterate(locationExtract.text.encode("iso-8859-1").force_encoding("utf-8")).gsub('?', '')
+            locationName = I18n.transliterate(locationExtract.text.encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace)).gsub('?', '')
             locations << [latitude, longitude, locationName, locationDate]
           end
         end
@@ -170,7 +174,7 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Finished!"
+      puts "Location Finished!"
 
 
 
@@ -233,7 +237,7 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Finished!"
+      puts "Ads Finished!"
 
 
 
@@ -265,7 +269,7 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Finished!"
+      puts "Youtube Finished!"
 
       # --> TOP CHANNELS FROM ALL TIMES
       channels = []
