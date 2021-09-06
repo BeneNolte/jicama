@@ -12,19 +12,30 @@ class DataParseJob < ApplicationJob
     zip = URI.open(url)
     # unzip file
 
-    file_names = ["TakeoutBene/Profile.json" , "TakeoutBene/Chrome/BrowserHistory.json" , "TakeoutBene/Location/MyActivity_Location.html", "TakeoutBene/Ads/MyActivity_Ads.html", "TakeoutBene/YouTube and YouTube Music/history/watch-history.html"]
+    file_names = { profile: "Takeout/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
     Zip::File.open(zip) do |zipfile|
       # Select relevant folders
-      files = zipfile.select do |file|
-        file_names.include?(file.name)
+      # files = zipfile.select do |file|
+      #   file_names.values.include?(file.name)
+      # end
+      datasource.size = File.size(zip) / 1000.0
+      datasource.save!
+
+      files = {}
+      # file_size = []
+      zipfile.each do |file|
+        files[:profile] = file            if file.name == file_names[:profile]
+        files[:browser_history] = file    if file.name == file_names[:browser_history]
+        files[:locations] = file          if file.name == file_names[:locations]
+        files[:ads] = file                if file.name == file_names[:ads]
+        files[:youtube_history] = file    if file.name == file_names[:youtube_history]
+        # file_size << File.size(file)
       end
 
+      # datasource.size = file_size.sum / 1000000.0
+      # datasource.save!
       puts "-------------------------"
-      sup_arr = []
-      files.each do |element|
-        sup_arr << element.name
-      end
-      p sup_arr
+      p files
       puts "-------------------------"
       # p location = file.name == "TakeoutBene/Location/MyActivity_Location.html"
       # Stock relevant folder in database
@@ -32,12 +43,12 @@ class DataParseJob < ApplicationJob
       descending = -1
       # # # Profile
       # binding.pry
-      profile_file = files[0]
+      profile_file = files[:profile]
       profileInfos = JSON.parse(profile_file.get_input_stream.read)
       gender = profileInfos["gender"]["type"].capitalize
 
       # # # Browser History
-      browser_file = files[3]
+      browser_file = files[:browser_history]
       browserHistories = JSON.parse(browser_file.get_input_stream.read)
       # --> TOP SEARCH WORDS HISTORY OF CURRENT MONTH
       monthlySearchWords = []
@@ -126,7 +137,7 @@ class DataParseJob < ApplicationJob
 
 
       # # # Location History
-      location_file = files[2]
+      location_file = files[:locations]
       # locationInfos = JSON.parse(profile_file.get_input_stream.read)
       html_doc = Nokogiri::HTML(location_file.get_input_stream.read)
       # html_doc = Nokogiri::HTML(html_file)
@@ -163,11 +174,9 @@ class DataParseJob < ApplicationJob
 
 
 
-
-
       # # # #--> NUMBER OF ADS & MOST CLICKED ADS
 
-      p ads_file = files[1]
+      ads_file = files[:ads]
       html_ads_doc = Nokogiri::HTML(ads_file.get_input_stream.read)
 
       ads_extract = html_ads_doc.css("div.outer-cell")
@@ -230,7 +239,7 @@ class DataParseJob < ApplicationJob
 
 
       # # # # YOUTUBE CHANNEL HISTORY
-      youtube_file = files[4]
+      youtube_file = files[:youtube_history]
       html_doc = Nokogiri::HTML(youtube_file.get_input_stream.read)
       # binding.pry
       # --> TOP VIDEO TITLES OF ALL TIMES
