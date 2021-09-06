@@ -72,4 +72,7 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem 'cloudinary', '~> 1.16.0'
 gem 'google-api-client'
-gem 'aws-sdk-s3'#, '~> 2'
+gem 'aws-sdk-s3' # , '~> 2'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
