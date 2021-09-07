@@ -36,5 +36,4 @@ class PagesController < ApplicationController
     datasources = current_user.datasources
     @datasource = datasources.find(params[:datasource_id])
   end
-
 end

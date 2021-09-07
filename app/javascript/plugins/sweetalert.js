@@ -43,24 +43,26 @@ const initSweetalert = () => {
   }
 
 
-
-
-
-  if (document.location.href.includes("uploaded_file=false")) {
-    swal("You need to upload a file!", {
-      icon: "info",
-      buttons: false,
+  const inputButton = document.getElementById("datasource_file")
+  const uploadButton = document.getElementById("uploadfile")
+  if (uploadButton) { // protect other pages
+    uploadButton.addEventListener('click', () => {
+      if (inputButton.value != "") {
+        swal({
+          icon: "https://cdn.dribbble.com/users/600626/screenshots/2944614/loading_12.gif",
+          title: "don't leave this page !",
+          text: "Uploading your personal data to Jicama, it might take some time",
+          closeOnClickOutside: false,
+          buttons: false,
+        })
+      }
     });
-  }
-
-  if (document.location.href.includes("uploaded_file=true")) {
-    swal({
-      icon: "https://cdn.dribbble.com/users/600626/screenshots/2944614/loading_12.gif",
-      title: "don't leave this page !",
-      text: "Uploading your personal data to Jicama, it might take some time",
-      buttons: false,
-      closeOnClickOutside: false,
-    })
+    if (document.location.href.includes("uploaded_file=false")) {
+      swal("You need to upload a file!", {
+        icon: "info",
+        buttons: false,
+      });
+    }
   }
 
   if (document.location.href.includes("uploaded_file=done")) {
@@ -70,6 +72,7 @@ const initSweetalert = () => {
       buttons: false,
     })
   }
+  
 
   // const buttonDone = document.querySelector(".done-button");
   // if (buttonDone) { // protect other pages

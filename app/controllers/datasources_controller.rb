@@ -1,6 +1,7 @@
 require "open-uri"
 
 class DatasourcesController < ApplicationController
+
   def show
     @datasource = Datasource.find(params[:id])
     authorize @datasource
@@ -53,20 +54,13 @@ class DatasourcesController < ApplicationController
     if params[:datasource].nil?
       redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
     else
-      redirect_to datasource_tuto_path(@datasource, uploaded_file: "true")
-      dataparse_job(@datasource)
-
-      # issue : perform now before first redirection, and not possible to have to redirections and same action ..
+      @datasource.update!(datasource_params)
+      DataParseJob.perform_now(@datasource)
+      redirect_to dashboard_path(uploaded_file: "done")
     end
   end
   
   private
-  
-  def dataparse_job(datasource)
-    datasource.update!(datasource_params)
-    DataParseJob.perform_now(datasource)
-    redirect_to datasource_path(datasource, uploaded_file: "done")
-  end
 
   def datasource_params
     params.require(:datasource).permit(:file)
