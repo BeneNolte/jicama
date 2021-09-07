@@ -55,9 +55,11 @@ class DatasourcesController < ApplicationController
       redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
     else
       @datasource.update!(datasource_params)
+
       DataParseJob.perform_now(@datasource)
       redirect_to dashboard_path(uploaded_file: "done")
     end
+
   end
   
   private
