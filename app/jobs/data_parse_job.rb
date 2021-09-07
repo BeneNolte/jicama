@@ -13,9 +13,9 @@ class DataParseJob < ApplicationJob
     # unzip file
 
 
-    # if datasource.language == "german"
+    # if datasource.language == "french"
       # file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
-    # elsif datasource.language == "french"
+    # elsif datasource.language == "german"
       # file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
     # else
       file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
@@ -162,7 +162,8 @@ class DataParseJob < ApplicationJob
       dateExtracts.each do |dateExtract|
         locationExtract = dateExtract.search("a")
         if dateExtract.text.present? && locationExtract.present? && locationExtract.attribute('href')&.value.present?
-          pattern =  /(<br>\w+ \d+, \d+, \d+:\d+:\d+ \w+ \w+)/ # NEW PATTERN START:  /((<br>\w+ \d+,)|(<br>\d+ \w+.)) \d+, \d+:\d+:\d+ \w+( \w+)?/
+          pattern =  /(<br>\w+ \d+, \d+, \d+:\d+:\d+ \w+ \w+)/ # OLD PATTERN
+          # pattern =  /((<br>\w+ \d+,)|(<br>\d+ \w+.)) \d+, \d+:\d+:\d+ \w+( \w+)?/ # NEW PATTERN
           p "====================="
           p "====================="
           p "====================="
