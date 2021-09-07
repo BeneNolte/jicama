@@ -98,7 +98,9 @@
             <div class="dot-empty"></div>
             <div class="dot-fill"></div>
           </div>
-          <%= f.submit "Upload", input_html: { class:"done-button"} %> <%# This has to be inside the "tuto-end" div while being in simple_form %>
+          <div id="uploadfile">
+            <%= f.submit "Upload", input_html: { class:"done-button" } %> <%# This has to be inside the "tuto-end" div while being in simple_form %>
+          </div>
         </div>
         <% end %> <%# This is closing the simple_form %>
     </div>

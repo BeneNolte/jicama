@@ -244,6 +244,7 @@ puts "Finished!"
 locations_file = ENV.fetch("SECRET_LOCATIONS")
 html_file = URI.open(locations_file)
 html_doc = Nokogiri::HTML(html_file)
+
 # html_doc = Nokogiri::HTML(html_file)
 dateExtracts = html_doc.search("div.mdl-typography--body-1")
 locations = []

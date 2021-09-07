@@ -6,8 +6,7 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "pages#dashboard"
   get "login", to: "pages#login"
-  get "loading", to: "pages#loading"
-
+  
 	resources :datasources, only: [ :show, :update ] do
     get "tuto", to: "pages#tuto"
 		resources :locations, only: [ :index, :update ]

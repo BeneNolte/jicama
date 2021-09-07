@@ -12,6 +12,7 @@ class DataParseJob < ApplicationJob
     zip = URI.open(url)
     # unzip file
 
+
     # if datasource.language == "german"
       # file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
     # elsif datasource.language == "french"
