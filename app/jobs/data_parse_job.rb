@@ -14,11 +14,11 @@ class DataParseJob < ApplicationJob
 
 
     # if datasource.language == "french"
-      # file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
+      file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
     # elsif datasource.language == "german"
       # file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
     # else
-      file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+      # file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
     # end
 
     Zip::File.open(zip) do |zipfile|
@@ -153,26 +153,31 @@ class DataParseJob < ApplicationJob
       location_file = files[:locations]
       # binding.pry
       # locationInfos = JSON.parse(profile_file.get_input_stream.read)
-      html_doc = Nokogiri::HTML(location_file.get_input_stream.read)
+      html_doc = Nokogiri::HTML(location_file.get_input_stream.read, nil, Encoding::UTF_8.to_s)
       # html_doc = Nokogiri::HTML(html_file)
       dateExtracts = html_doc.search("div.mdl-typography--body-1") # # # # # WARNING we put div. away before mdl-typography
       locations = []
 
 
       dateExtracts.each do |dateExtract|
+
+        # Step 1 : extract the location search date
         locationExtract = dateExtract.search("a")
         if dateExtract.text.present? && locationExtract.present? && locationExtract.attribute('href')&.value.present?
-          pattern =  /(<br>\w+ \d+, \d+, \d+:\d+:\d+ \w+ \w+)/ # OLD PATTERN
-          # pattern =  /((<br>\w+ \d+,)|(<br>\d+ \w+.)) \d+, \d+:\d+:\d+ \w+( \w+)?/ # NEW PATTERN
-          p "====================="
-          p "====================="
-          p "====================="
-          p dateExtract.text
-          p "====================="
-          p "====================="
-          p "====================="
-          date = dateExtract.to_s.match(pattern)[1].encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace).gsub("<br>", "")
+          pattern =  /(<br>(\w+|\d+) (\d+|\w+|\S+) (20\d+))/ # NEW CLEM PATTERN
+          # pattern =  /((<br>\w+ \d+,)|(<br>\d+ \w+.)) \d+, \d+:\d+:\d+ \w+( \w+)?/ # BENE PATTERN
+          dateName = I18n.transliterate(dateExtract.to_s.encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace))
+          date = dateName.match(pattern)[1].gsub("<br>", "")
+          # The bellow method allows to parse dates with french month names, should be duplicated for other languages (ie. German)
+          frenchMonths = [["jan.", "Jan"], ["fev.", "Feb"], ["mar.", "Mar"], ["avr.", "Apr"], ["mai", "May"], ["juin", "Jun"], ["juil.", "Jul"], ["aout", "Aug"], ["sept.", "Sep"], ["oct.", "Oct"], ["nov.", "Nov"], ["dec.", "Dec"]]
+          frenchMonths.each do |french_months, latin_month|
+            if date.match french_months
+              Date.parse date.gsub!(/#{french_months}/, latin_month)
+            end
+          end
           locationDate = Date.parse(date)
+
+          # Step 2 : extract the rest of relevant infos (ie. latitude, longitude and location name)
           match_data = locationExtract.attribute("href").value.match(/(\d+\.\d+\,\d+\.\d+)/)
           if match_data.nil? == false
             latitude = match_data[1].split(",")[0]
@@ -183,7 +188,7 @@ class DataParseJob < ApplicationJob
         end
       end
 
-      puts "Creating Bene's Maps location seeds"
+      puts "Creating Maps location seeds"
       locations.each do |location|
         Location.create(
           latitude: location[0],
