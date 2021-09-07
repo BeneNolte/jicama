@@ -1,6 +1,7 @@
 require "open-uri"
 
 class DatasourcesController < ApplicationController
+
   def show
     @datasource = Datasource.find(params[:id])
     authorize @datasource
@@ -50,17 +51,15 @@ class DatasourcesController < ApplicationController
   def update
     @datasource = Datasource.find(params[:id])
     authorize @datasource
-    # if params[:file].nil?
-    #   render :update
-    # else
+    if params[:datasource].nil?
+      redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
+    else
       @datasource.update!(datasource_params)
-      # redirect to waiting screen waiting
-      # DataParseJob.perform_now(@datasource)
-      # redirect to waiting screen success
-      redirect_to datasource_path(@datasource), notice: "Your personal data has been uploaded"
-    # end
+      DataParseJob.perform_now(@datasource)
+      redirect_to dashboard_path(uploaded_file: "done")
+    end
   end
-
+  
   private
 
   def datasource_params

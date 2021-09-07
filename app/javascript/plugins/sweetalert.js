@@ -41,15 +41,48 @@ const initSweetalert = () => {
       });
     });
   }
-  const buttonDone = document.querySelector(".done-button");
-  if (buttonDone) { // protect other pages
-    buttonDone.addEventListener('click', () => {
-      swal('Done uploading your personal data', {
-        icon: "success",
+
+
+  const inputButton = document.getElementById("datasource_file")
+  const uploadButton = document.getElementById("uploadfile")
+  if (uploadButton) { // protect other pages
+    uploadButton.addEventListener('click', () => {
+      if (inputButton.value != "") {
+        swal({
+          icon: "https://cdn.dribbble.com/users/600626/screenshots/2944614/loading_12.gif",
+          title: "don't leave this page !",
+          text: "Uploading your personal data to Jicama, it might take some time",
+          closeOnClickOutside: false,
+          buttons: false,
+        })
+      }
+    });
+    if (document.location.href.includes("uploaded_file=false")) {
+      swal("You need to upload a file!", {
+        icon: "info",
         buttons: false,
       });
-    });
+    }
   }
+
+  if (document.location.href.includes("uploaded_file=done")) {
+    swal({
+      icon: "success",
+      text: "your data has been successfully downloaded !",
+      buttons: false,
+    })
+  }
+  
+
+  // const buttonDone = document.querySelector(".done-button");
+  // if (buttonDone) { // protect other pages
+  //   buttonDone.addEventListener('click', () => {
+  //     swal('Done uploading your personal data', {
+  //       icon: "success",
+  //       buttons: false,
+  //     });
+  //   });
+  // }
 };
 
 export { initSweetalert };
