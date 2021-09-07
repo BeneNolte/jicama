@@ -55,7 +55,7 @@ class DatasourcesController < ApplicationController
     # else
       @datasource.update!(datasource_params)
       # redirect to waiting screen waiting
-      # DataParseJob.perform_now(@datasource)
+      DataParseJob.perform_now(@datasource)
       # redirect to waiting screen success
       redirect_to datasource_path(@datasource), notice: "Your personal data has been uploaded"
     # end

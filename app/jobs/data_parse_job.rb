@@ -12,11 +12,14 @@ class DataParseJob < ApplicationJob
     zip = URI.open(url)
     # unzip file
 
-    # if datasource.language == "english"
-    #   file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+    # if datasource.language == "german"
+      # file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
     # elsif datasource.language == "french"
-      file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
+      # file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
+    # else
+      file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
     # end
+
     Zip::File.open(zip) do |zipfile|
       # Select relevant folders
       # files = zipfile.select do |file|
@@ -30,9 +33,9 @@ class DataParseJob < ApplicationJob
       zipfile.each do |file|
         # p file.name
 
+        files[:profile] = file            if file.name.force_encoding("utf-8") == file_names[:profile]
         files[:locations] = file          if file.name.force_encoding("utf-8") == file_names[:locations]
         files[:ads] = file                if file.name.force_encoding("utf-8") == file_names[:ads]
-        files[:profile] = file            if file.name.force_encoding("utf-8") == file_names[:profile]
         files[:browser_history] = file    if file.name.force_encoding("utf-8") == file_names[:browser_history]
         files[:youtube_history] = file    if file.name.force_encoding("utf-8") == file_names[:youtube_history]
         # file_size << File.size(file)
@@ -147,18 +150,26 @@ class DataParseJob < ApplicationJob
 
       # # # Location History
       location_file = files[:locations]
-      binding.pry
+      # binding.pry
       # locationInfos = JSON.parse(profile_file.get_input_stream.read)
       html_doc = Nokogiri::HTML(location_file.get_input_stream.read)
       # html_doc = Nokogiri::HTML(html_file)
-      dateExtracts = html_doc.search("div.mdl-typography--body-1")
+      dateExtracts = html_doc.search("div.mdl-typography--body-1") # # # # # WARNING we put div. away before mdl-typography
       locations = []
+
 
       dateExtracts.each do |dateExtract|
         locationExtract = dateExtract.search("a")
         if dateExtract.text.present? && locationExtract.present? && locationExtract.attribute('href')&.value.present?
-          pattern = /(<br>\w+ \d+, \d+, \d+:\d+:\d+ \w+ \w+)/
-          date = dateExtract.to_s.match(pattern)[1].gsub("<br>", "")
+          pattern =  /(<br>\w+ \d+, \d+, \d+:\d+:\d+ \w+ \w+)/ # NEW PATTERN START:  /((<br>\w+ \d+,)|(<br>\d+ \w+.)) \d+, \d+:\d+:\d+ \w+( \w+)?/
+          p "====================="
+          p "====================="
+          p "====================="
+          p dateExtract.text
+          p "====================="
+          p "====================="
+          p "====================="
+          date = dateExtract.to_s.match(pattern)[1].encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace).gsub("<br>", "")
           locationDate = Date.parse(date)
           match_data = locationExtract.attribute("href").value.match(/(\d+\.\d+\,\d+\.\d+)/)
           if match_data.nil? == false
@@ -275,7 +286,7 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Youtube Finished!"
+      puts "Finished!"
 
       # --> TOP CHANNELS FROM ALL TIMES
       channels = []
@@ -298,10 +309,13 @@ class DataParseJob < ApplicationJob
           datasource: datasource
         )
       end
-      puts "Finished!"
+      puts "Youtube Finished!"
 
 
     end
     puts "OK I'm done with all data charges"
+
+    datasource.file.purge
+    puts "Deleting files from Amazon again"
   end
 end
