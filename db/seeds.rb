@@ -16,6 +16,7 @@ ChromeVisitedLink.destroy_all
 YoutubeVideoTitle.destroy_all
 YoutubeVideoChannel.destroy_all
 Advertisement.destroy_all
+puts "All done!"
 
 # puts 'Creating a user'
 # user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")
