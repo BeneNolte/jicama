@@ -129,15 +129,20 @@
 
                   <div class="card-boxless" style="padding: 0px; position: relative;  ">
                     <p class="subtitle">Top locations</p>
-                    <div class="insights-logo" style="right: 15px;"><i class="fas fa-map-marker-alt"></i></div>
-                    <%= render "shared/searchbar" %>
-                    <%# START : adding map to show user's locations %>
-                    <div id="map"
-                      data-markers="<%= @markers.to_json %>"
-                      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-                    </div>
-                    <%# END : adding map to show user's locations %>
-
+                    <% if Location.all.empty? %>
+                      <div class="card-boxless">
+                        <%= "#{@datasource.name} has no location information about you" %>
+                      </div>
+                    <% else %>
+                        <div class="insights-logo" style="right: 15px;"><i class="fas fa-map-marker-alt"></i></div>
+                        <%= render "shared/searchbar" %>
+                        <%# START : adding map to show user's locations %>
+                        <div id="map"
+                          data-markers="<%= @markers.to_json %>"
+                          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+                        </div>
+                        <%# END : adding map to show user's locations %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -148,33 +153,45 @@
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fas fa-search"></i></div>
                     <p class="subtitle" style="margin-bottom: 15px;">Top searched words</p>
-                    <div class="content" style="justify-content: space-evenly">
-                      <% @chrome_search_words.first(3).each do |word| %>
-                        <div class="title">
-                          <p class="purple-bold" id="center"><%= word.word %></p>
-                            <div class="rectangle-container-vertical">
-                              <div class="rectangle-fill-vertical" style="height: <%=(word.count*100)/@chrome_search_words.first.count %>%">
+                    <% if ChromeSearchWord.all.empty? %>
+                      <div class="card-boxless">
+                        <%= "#{@datasource.name} has no browser history information about you" %>
+                      </div>
+                    <% else %>
+                      <div class="content" style="justify-content: space-evenly">
+                        <% @chrome_search_words.first(3).each do |word| %>
+                          <div class="title">
+                            <p class="purple-bold" id="center"><%= word.word %></p>
+                              <div class="rectangle-container-vertical">
+                                <div class="rectangle-fill-vertical" style="height: <%=(word.count*100)/@chrome_search_words.first.count %>%">
+                                </div>
                               </div>
-                            </div>
-                          <p class="purple-bold" id="center"><%= word.count %></p>
-                        </div>
-                      <% end %>
-                    </div>
+                            <p class="purple-bold" id="center"><%= word.count %></p>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
                   </div>
 
                   <div class="card-boxless">
                     <p class="subtitle">Top visited links</p>
-                    <% @chrome_visited_links.first(5).each do |word| %>
-                      <div class="content-link">
-                        <div class="title-link">
-                          <p class="header-grey m-0 mr-5"><%= word.link %></p>
-                          <p class="header-grey m-0" id="link-count"><%= word.count %></p>
-                        </div>
-                        <div class="rectangle-container-horizontal">
-                          <div class="rectangle-fill-horizontal" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
+                    <% if ChromeSearchWord.all.empty? %>
+                      <div class="card-boxless">
+                        <%= "#{@datasource.name} has no browser history information about you" %>
+                      </div>
+                    <% else %>
+                      <% @chrome_visited_links.first(5).each do |word| %>
+                        <div class="content-link">
+                          <div class="title-link">
+                            <p class="header-grey m-0 mr-5"><%= word.link %></p>
+                            <p class="header-grey m-0" id="link-count"><%= word.count %></p>
+                          </div>
+                          <div class="rectangle-container-horizontal">
+                            <div class="rectangle-fill-horizontal" style="width: <%=(word.count*100)/@chrome_visited_links.first.count %>%">
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>
@@ -182,39 +199,56 @@
 
               <div class="insights opacity" id="ads-insights">
                 <div>
-
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fas fa-dollar-sign"></i></div>
-                    <p class="subtitle" style="margin-bottom: 15px;">Number of ads viewed</p>
-                      <div class="circle-container">
-                        <p class="header-grey m-0"><%= @viewed_advertisements.count %></p>
-                      </div>
-                  </div>
-
-                  <div class="card-boxless", style="margin-top: 15px">
-                    <p class="subtitle">Value generated (€)</p>
-                    <div class="circle-container">
-                      <p class="header-grey m-0"><%= @clicked_advertisements.count*1.5 %></p>
+                      <p class="subtitle" style="margin-bottom: 15px;">Number of ads viewed</p>
+                      <% if Advertisement.all.empty? %>
+                        <div class="card-boxless">
+                          <%= "#{@datasource.name} has no Advertisement information about you" %>
+                        </div>
+                      <% else %>
+                        <div class="circle-container">
+                          <p class="header-grey m-0"><%= @viewed_advertisements.count %></p>
+                        </div>
+                      <% end %>
                     </div>
-                  </div>
 
-                  <div class="card-boxless", style="margin-top: 15px">
-                    <p class="subtitle", style="margin-bottom: 10px">Top clicked ads</p>
-                    <% @viewed_advertisements.first(5).each do |ad| %>
-                      <div class="content-link">
-                        <div class="title-link">
-                          <p class="header-grey m-0"><%= ad.link %></p>
-                        <p class="header-grey m-0" id="link-count"><%= ad.count %></p>
+                    <div class="card-boxless", style="margin-top: 15px">
+                      <p class="subtitle">Value generated (€)</p>
+                      <% if Advertisement.all.empty? %>
+                        <div class="card-boxless">
+                          <%= "#{@datasource.name} has no Advertisement information about you" %>
                         </div>
-                        <div class="rectangle-container-horizontal">
-                          <div class="rectangle-fill-horizontal" style="width: <%=(ad.count*100)/@viewed_advertisements.first.count %>%">
+                      <% else %>
+                        <div class="circle-container">
+                          <p class="header-grey m-0"><%= @clicked_advertisements.count*1.5 %></p>
+                        </div>
+                      <% end %>
+                    </div>
+
+                    <div class="card-boxless", style="margin-top: 15px">
+                      <p class="subtitle", style="margin-bottom: 10px">Top clicked ads</p>
+                      <% if Advertisement.all.empty? %>
+                        <div class="card-boxless">
+                          <%= "#{@datasource.name} has no Advertisement information about you" %>
+                        </div>
+                      <% else %>
+                        <% @viewed_advertisements.first(5).each do |ad| %>
+                          <div class="content-link">
+                            <div class="title-link">
+                              <p class="header-grey m-0"><%= ad.link %></p>
+                            <p class="header-grey m-0" id="link-count"><%= ad.count %></p>
+                            </div>
+                            <div class="rectangle-container-horizontal">
+                              <div class="rectangle-fill-horizontal" style="width: <%=(ad.count*100)/@viewed_advertisements.first.count %>%">
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
+                        <% end %>
+                      <% end %>
+                    </div>
 
-                  <div class="scrollable">
+                    <div class="scrollable">
                   </div>
                 </div>
               </div>
@@ -224,47 +258,58 @@
 
                   <div class="card-boxless">
                     <div class="insights-logo"><i class="fab fa-youtube"></i></div>
-                    <p class="subtitle" style="margin-bottom: 15px;">Top watched channels</p>
-
-                    <% @youtube_video_channels.first(5).each do |channel| %>
-                      <div class="content-link">
-                        <div class="title-link">
-                          <p class="header-grey m-0 mr-5"><%= channel.title %></p>
-                          <p class="header-grey" id="link-count"><%= channel.count %></p>
+                      <p class="subtitle" style="margin-bottom: 15px;">Top watched channels</p>
+                      <% if YoutubeVideoTitle.all.empty? %>
+                        <div class="card-boxless">
+                          <%= "#{@datasource.name} has no YouTube history information about you" %>
                         </div>
-                        <div class="rectangle-container-horizontal">
-                          <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
+                      <% else %>
+                      <% @youtube_video_channels.first(5).each do |channel| %>
+                        <div class="content-link">
+                          <div class="title-link">
+                            <p class="header-grey m-0 mr-5"><%= channel.title %></p>
+                            <p class="header-grey" id="link-count"><%= channel.count %></p>
+                          </div>
+                          <div class="rectangle-container-horizontal">
+                            <div class="rectangle-fill-horizontal" style="width: <%=(channel.count*100)/@youtube_video_channels.first.count %>%">
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
                   </div>
 
                   <div class="card-boxless">
                     <p class="subtitle">Top watched videos</p>
-                    <% @youtube_video_titles.first(3).each do |video| %>
-                      <div class="content" style="display: block">
-                        <div class="content">
-                          <p class="header-grey"><%= video.title %></p>
-                          <p class="header-grey">x<%= video.count %></p>
-                        </div>
-                        <div class="iframe-container">
-
-                        <!-- Uncomment to display the video picture only
-                        <%= link_to video.url do %>
-                          <img src="https://img.youtube.com/vi/<%= video.url.match(/=(.*)/)[1]%>/0.jpg" alt="">
-                        <% end %>
-                        -->
-                          <iframe width="560"
-                                  height="315"
-                                  src="https://www.youtube.com/embed/<%= video.url.match(/=(.*)/)[1]%>"
-                                  title="YouTube video player"
-                                  frameborder="0"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowfullscreen>
-                          </iframe>
-                        </div>
+                    <% if YoutubeVideoTitle.all.empty? %>
+                      <div class="card-boxless">
+                        <%= "#{@datasource.name} has no YouTube history information about you" %>
                       </div>
+                    <% else %>
+                      <% @youtube_video_titles.first(3).each do |video| %>
+                        <div class="content" style="display: block">
+                          <div class="content">
+                            <p class="header-grey"><%= video.title %></p>
+                            <p class="header-grey">x<%= video.count %></p>
+                          </div>
+                          <div class="iframe-container">
+
+                          <!-- Uncomment to display the video picture only
+                          <%= link_to video.url do %>
+                            <img src="https://img.youtube.com/vi/<%= video.url.match(/=(.*)/)[1]%>/0.jpg" alt="">
+                          <% end %>
+                          -->
+                            <iframe width="560"
+                                    height="315"
+                                    src="https://www.youtube.com/embed/<%= video.url.match(/=(.*)/)[1]%>"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                          </div>
+                        </div>
+                      <% end %>
                     <% end %>
                   </div>
 
