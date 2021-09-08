@@ -3,7 +3,7 @@ const uploadButton = () => {
   const done = document.querySelector('input[name="commit"]')
   const inputButton = document.getElementById("datasource_file")
 
-  if (done) {
+  if (inputButton) {
     done.disabled = true
     inputButton.addEventListener('change', () => {
       if (inputButton.value != "") {

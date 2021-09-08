@@ -51,14 +51,14 @@ class DatasourcesController < ApplicationController
   def update
     @datasource = Datasource.find(params[:id])
     authorize @datasource
-    if params[:datasource][:file].nil?
-      redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
-    else
-      @datasource.update!(datasource_params)
+    # if params[:datasource][:file].nil?
+    #   redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
+    # else
 
-      DataParseJob.perform_now(@datasource)
-      redirect_to dashboard_path(uploaded_file: "done")
-    end
+    # => the condition is handled in js
+    @datasource.update!(datasource_params)
+    DataParseJob.perform_now(@datasource)
+    redirect_to dashboard_path(uploaded_file: "done")
   end
   
   private
