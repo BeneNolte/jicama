@@ -11,6 +11,7 @@ class Datasource < ApplicationRecord
   has_many :youtube_video_titles, dependent: :destroy
   has_many :youtube_video_channels, dependent: :destroy
 
+  LANGUAGES = %w(English Français German)
 
   def update_score
     # Calculate score of datasources (temporary)
