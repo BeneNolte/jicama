@@ -62,12 +62,6 @@ const initSweetalert = () => {
         })
       } 
     })
-    if (document.location.href.includes("uploaded_file=false")) {
-      swal("You need to upload a file and choose the right language!", {
-        icon: "info",
-        buttons: false,
-      });
-    }
   }
 
   if (document.location.href.includes("uploaded_file=done")) {
