@@ -2,7 +2,27 @@ require 'json'
 require 'date'
 require 'nokogiri'
 require 'faker'
+require 'open-uri'
 descending = -1
+
+company_name = 'Apple_Inc'
+url = "https://en.wikipedia.org/wiki/#{company_name}"
+
+html_file = URI.open(url).read
+html_doc = Nokogiri::HTML(html_file)
+
+html_doc.search('p').first(3).each do |element|
+  if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
+    paragraph = element.text.gsub(/\[.*?\]/, '')
+    puts paragraph
+  end
+end
+
+# html_doc.search('.infobox-data').each do |element|
+#   if "123456789".include?(element.text[0])
+#     puts element.text
+#   end
+# end
 
 # CREATING THE SEEDS
 puts "Cleaning db"
