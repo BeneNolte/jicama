@@ -175,13 +175,20 @@ class DataParseJob < ApplicationJob
               Date.parse date.gsub!(/#{french_months}/, latin_month)
             end
           end
+          # The bellow method allows to parse dates with german month names !!!TO BE ADJUSTED!!!
+          germanMonths = [["jan.", "Jan"], ["feb.", "Feb"], ["mar.", "Mar"], ["apr.", "Apr"], ["mai", "May"], ["juni", "Jun"], ["juli", "Jul"], ["aug.", "Aug"], ["sept.", "Sep"], ["okt.", "Oct"], ["nov.", "Nov"], ["dez.", "Dec"]]
+          germanMonths.each do |german_months, latin_month|
+            if date.match german_months
+              Date.parse date.gsub!(/#{german_months}/, latin_month)
+            end
+          end
           locationDate = Date.parse(date)
 
           # Step 2 : extract the rest of relevant infos (ie. latitude, longitude and location name)
-          match_data = locationExtract.attribute("href").value.match(/(\d+\.\d+\,\d+\.\d+)/)
+          match_data = locationExtract.attribute("href").value.match(/@(-?\d+\.\d*),(-?\d+\.\d*)/)
           if match_data.nil? == false
-            latitude = match_data[1].split(",")[0]
-            longitude = match_data[1].split(",")[1]
+            latitude = match_data[1]
+            longitude = match_data[2]
             locationName = I18n.transliterate(locationExtract.text.encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace)).gsub('?', '')
             locations << [latitude, longitude, locationName, locationDate]
           end
