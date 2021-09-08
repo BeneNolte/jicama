@@ -56,15 +56,29 @@ class DatasourcesController < ApplicationController
     else
       @datasource.update!(datasource_params)
 
+      # # # # API CALL # # # #
+
+      # Run the authorize code to display the password to the user with a link to gmail
+
+      # Background job to retrieve emails
+      # Store the emails in Jicama Database in order to display the titles to the user
+      # Email.new(title: ..., subject: ...)
+
+      # # # # # # # # # # # #
+
       DataParseJob.perform_now(@datasource)
       redirect_to dashboard_path(uploaded_file: "done")
     end
 
   end
-  
+
   private
 
   def datasource_params
     params.require(:datasource).permit(:file)
+  end
+
+  def google_api
+
   end
 end

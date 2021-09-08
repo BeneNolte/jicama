@@ -442,7 +442,7 @@ DEPENDENCIES
   dotenv-rails
   faker
   font-awesome-sass
-  google-api-client
+  google-api-client (~> 0.9)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   omniauth

@@ -71,7 +71,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem 'cloudinary', '~> 1.16.0'
-gem 'google-api-client'
+gem 'google-api-client', '~> 0.9', require: 'google/apis/gmail_v1'
 gem 'aws-sdk-s3' # , '~> 2'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
