@@ -13,13 +13,14 @@ class DataParseJob < ApplicationJob
     # unzip file
 
 
-    # if datasource.language == "french"
+    case datasource.language
+    when "English"
+      file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
+    when "Français"
       file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
-    # elsif datasource.language == "german"
-      # file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Mon activit\xC3\xA9/Maps/MonActivit\xC3\xA9.html", ads: "Takeout/Mon activit\xC3\xA9/Solutions publicitaires/MonActivit\xC3\xA9.html", youtube_history: "Takeout/YouTube et YouTube Music/historique/watch-history.html"}
-    # else
-      # file_names = { profile: "Takeout/Profile/Profile.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/My Activity/Maps/MyActivity.html", ads: "Takeout/My Activity/Ads/MyActivity.html", youtube_history: "Takeout/YouTube and YouTube Music/history/watch-history.html"}
-    # end
+    when "German"
+      file_names = { profile: "Takeout/Profil/Profil.json" , browser_history: "Takeout/Chrome/BrowserHistory.json" , locations: "Takeout/Meine Aktivit\xC3\xA4ten/Maps/MeineAktivit\xC3\xA4ten.html", ads: "Takeout/Meine Aktivit\xC3\xA4ten/Anzeigen/MeineAktivit\xC3\xA4ten.html", youtube_history: "Takeout/YouTube und YouTube Music/Verlauf/Wiedergabeverlauf.html"}
+    end
 
     Zip::File.open(zip) do |zipfile|
       # Select relevant folders
@@ -32,7 +33,7 @@ class DataParseJob < ApplicationJob
       files = {}
       # file_size = []
       zipfile.each do |file|
-        # p file.name
+        p file.name
 
         files[:profile] = file            if file.name.force_encoding("utf-8") == file_names[:profile]
         files[:locations] = file          if file.name.force_encoding("utf-8") == file_names[:locations]
@@ -55,10 +56,10 @@ class DataParseJob < ApplicationJob
       # Stock relevant folder in database
       descending = -1
       # # # Profile
-      # binding.pry
-      profile_file = files[:profile]
-      profileInfos = JSON.parse(profile_file.get_input_stream.read)
-      gender = profileInfos["gender"]["type"].capitalize
+      # # binding.pry
+      # profile_file = files[:profile]
+      # profileInfos = JSON.parse(profile_file.get_input_stream.read)
+      # gender = profileInfos["gender"]["type"].capitalize
 
       # # # Browser History
       browser_file = files[:browser_history]
@@ -84,6 +85,7 @@ class DataParseJob < ApplicationJob
         )
       end
       puts "Finished!"
+
 
       # --> TOP SEARCH WORDS HISTORY OF ALL TIME
       allSearchWords = []
@@ -164,8 +166,7 @@ class DataParseJob < ApplicationJob
         # Step 1 : extract the location search date
         locationExtract = dateExtract.search("a")
         if dateExtract.text.present? && locationExtract.present? && locationExtract.attribute('href')&.value.present?
-          pattern =  /(<br>(\w+|\d+) (\d+|\w+|\S+) (20\d+))/ # NEW CLEM PATTERN
-          # pattern =  /((<br>\w+ \d+,)|(<br>\d+ \w+.)) \d+, \d+:\d+:\d+ \w+( \w+)?/ # BENE PATTERN
+          pattern =  /((<br>\d+\.\d+\.20\d+)|(<br>\d+ \w+. 20\d+)|(<br>\w+ \d+, 20\d+))/
           dateName = I18n.transliterate(dateExtract.to_s.encode("iso-8859-1", invalid: :replace, undef: :replace).encode("utf-8", invalid: :replace, undef: :replace))
           date = dateName.match(pattern)[1].gsub("<br>", "")
           # The bellow method allows to parse dates with french month names, should be duplicated for other languages (ie. German)
@@ -209,7 +210,7 @@ class DataParseJob < ApplicationJob
 
 
 
-      # # # #--> NUMBER OF ADS & MOST CLICKED ADS
+      # # #--> NUMBER OF ADS & MOST CLICKED ADS
 
       ads_file = files[:ads]
       html_ads_doc = Nokogiri::HTML(ads_file.get_input_stream.read)

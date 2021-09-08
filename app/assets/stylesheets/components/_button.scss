@@ -285,3 +285,12 @@ a {
     border: 1px solid $jicama-dark-grey;
   }
 }
+
+#datasource_language {
+  border-radius: 50px;
+  height: 35px;
+
+  option {
+    font-size: 12px;
+  }
+}
