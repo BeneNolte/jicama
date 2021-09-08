@@ -6,6 +6,14 @@ class DataParseJob < ApplicationJob
   def perform(datasource)
     # Do something later
 
+    # Cleaning previous data
+    datasource.locations.destroy_all
+    datasource.chrome_search_words.destroy_all
+    datasource.chrome_visited_links.destroy_all
+    datasource.youtube_video_titles.destroy_all
+    datasource.youtube_video_channels.destroy_all
+    datasource.advertisements.destroy_all
+
     # Download file
     # zip = amazon.bucket('jicama').object("#{@datasource.file.path}").get(response_target: "#{@datasource.file.url}")
     url = datasource.file.url
