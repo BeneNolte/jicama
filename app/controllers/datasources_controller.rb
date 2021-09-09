@@ -1,4 +1,9 @@
 require "open-uri"
+require 'json'
+require "google/apis/gmail_v1"
+require "googleauth"
+require "googleauth/stores/file_token_store"
+require "fileutils"
 
 class DatasourcesController < ApplicationController
 
@@ -51,34 +56,86 @@ class DatasourcesController < ApplicationController
   def update
     @datasource = Datasource.find(params[:id])
     authorize @datasource
-    if params[:datasource].nil?
-      redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
-    else
-      @datasource.update!(datasource_params)
+    # if params[:datasource][:file].nil?
+    #   redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
+    # else
+    # => the condition is handled in js
 
-      # # # # API CALL # # # #
+    @datasource.update!(datasource_params)
+    # # # # API CALL # # # #
 
-      # Run the authorize code to display the password to the user with a link to gmail
+    # Run the authorize code to display the password to the user with a link to gmail
+    # OOB_URI = "https://www.jicama.me".freeze
+    # OOB_URI = ENV.fetch("OOB_URI").freeze
+    # APPLICATION_NAME = ENV.fetch("APPLICATION_NAME").freeze
+    # CREDENTIALS_PATH = ENV.fetch("CREDENTIALS_PATH").freeze
 
-      # Background job to retrieve emails
-      # Store the emails in Jicama Database in order to display the titles to the user
-      # Email.new(title: ..., subject: ...)
+    # TOKEN_PATH = "token.yaml".freeze
+    # SCOPE = Google::Apis::GmailV1::AUTH_GMAIL_READONLY
 
-      # # # # # # # # # # # #
+    # Initialize the API
+    @service = Google::Apis::GmailV1::GmailService.new
+    @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
+    @service.authorization = authorize_google
 
-      DataParseJob.perform_now(@datasource)
-      redirect_to dashboard_path(uploaded_file: "done")
+    # # # # # # # LATER # # # # # #
+    # Background job to retrieve emails
+    company_title_arr = GoogleApiJob.perform_now(@service)
+
+    # Store the emails in Jicama Database in order to display the titles to the user
+    company_title_arr.each do |company_name|
+      new_co = Company.new(title: company_name, url: "www.test.de", description: "test test test", rating: 1).save!
+      DataOwnership.new(company_id: new_co.id, datasource_id: @datasource.id, status: true, type_of_ownership: "accessor").save!
     end
 
+    # # # # # # # # # # # #
+
+    # DataParseJob.perform_now(@datasource)
+    redirect_to dashboard_path(uploaded_file: "done")
   end
 
   private
 
   def datasource_params
-    params.require(:datasource).permit(:file)
+    params.require(:datasource).permit(:file, :language)
   end
 
-  def google_api
-
+  def authorize_google
+    client_id = Google::Auth::ClientId.from_file("/Users/benediktnolte/code/BeneNolte/jicama/app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+    token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
+    authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_GMAIL_READONLY, token_store # unsure we can put this here: put SCOPE
+    # user_id = "default"
+    user_id = current_user.email
+    credentials = authorizer.get_credentials(user_id)
+    if credentials.nil?
+      url = authorizer.get_authorization_url(base_url: ENV["OOB_URI"].freeze)
+      # puts "Open the following URL in the browser and enter the " \ "resulting code after authorization:\n"
+      # p url
+      raise
+      code = gets
+      credentials = authorizer.get_and_store_credentials_from_code(user_id: user_id, code: code, base_url: ENV["OOB_URI"].freeze)
+    end
+    credentials
   end
+
+  # def create_google_url
+  #   client_id = Google::Auth::ClientId.from_file("/Users/benediktnolte/code/BeneNolte/jicama/app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+  #   token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
+  #   authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_GMAIL_READONLY, token_store # unsure we can put this here: put SCOPE
+  #   # user_id = "default"
+  #   url = authorizer.get_authorization_url(base_url: ENV["OOB_URI"].freeze)
+  #   # raise
+  #   return url
+  # end
+
+  # def authorize_google
+  #   user_id = current_user.email
+  #   credentials = authorizer.get_credentials(user_id)
+  #   if credentials.nil?
+  #     # url = authorizer.get_authorization_url(base_url: ENV["OOB_URI"].freeze)
+  #     code = gets
+  #     credentials = authorizer.get_and_store_credentials_from_code(user_id: user_id, code: code, base_url: ENV["OOB_URI"].freeze)
+  #   end
+  #   credentials
+  # end
 end

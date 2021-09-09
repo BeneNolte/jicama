@@ -51,18 +51,17 @@ const initSweetalert = () => {
         swal({
           icon: "https://cdn.dribbble.com/users/600626/screenshots/2944614/loading_12.gif",
           title: "don't leave this page !",
-          text: "Uploading your personal data to Jicama, it might take some time",
+          text: `Uploading your personal data to Jicama, it might take some time
+
+                 Resume of your upload :
+
+                 file uploaded : ${document.getElementById("datasource_file").value}
+                 language of the file : ${document.getElementById("datasource_language").value}`,
           closeOnClickOutside: false,
           buttons: false,
         })
-      }
-    });
-    if (document.location.href.includes("uploaded_file=false")) {
-      swal("You need to upload a file!", {
-        icon: "info",
-        buttons: false,
-      });
-    }
+      } 
+    })
   }
 
   if (document.location.href.includes("uploaded_file=done")) {
