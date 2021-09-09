@@ -67,7 +67,7 @@ class DatasourcesController < ApplicationController
     @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
     @service.authorization = authorize_google
 
-    # DataParseJob.perform_now(@datasource)
+    DataParseJob.perform_now(@datasource)
     redirect_to dashboard_path(uploaded_file: "done")
   end
 
@@ -86,9 +86,6 @@ class DatasourcesController < ApplicationController
     credentials = authorizer.get_credentials(user_id)
     if credentials.nil?
       url = authorizer.get_authorization_url(base_url: ENV["OOB_URI"].freeze)
-      # puts "Open the following URL in the browser and enter the " \ "resulting code after authorization:\n"
-      # p url
-      raise
       code = gets
       credentials = authorizer.get_and_store_credentials_from_code(user_id: user_id, code: code, base_url: ENV["OOB_URI"].freeze)
     end
