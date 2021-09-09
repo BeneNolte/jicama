@@ -75,7 +75,7 @@ class PagesController < ApplicationController
     end
 
     # DataParseJob.perform_now(@datasource)
-    redirect_to datasource_path(@datasource, code: @code, credentials: @credentials)
+    redirect_to datasource_tuto_path(@datasource, code: @code, credentials: @credentials, anchor: "tuto-5")
   end
 
   private
