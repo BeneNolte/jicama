@@ -1,4 +1,9 @@
 require "open-uri"
+require 'json'
+require "google/apis/gmail_v1"
+require "googleauth"
+require "googleauth/stores/file_token_store"
+require "fileutils"
 
 class DatasourcesController < ApplicationController
 
@@ -54,16 +59,41 @@ class DatasourcesController < ApplicationController
     # if params[:datasource][:file].nil?
     #   redirect_to datasource_tuto_path(@datasource, uploaded_file: "false", anchor: "tuto-4")
     # else
-
     # => the condition is handled in js
+
     @datasource.update!(datasource_params)
-    DataParseJob.perform_now(@datasource)
+
+    @service = Google::Apis::GmailV1::GmailService.new
+    @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
+    @service.authorization = authorize_google
+
+    # DataParseJob.perform_now(@datasource)
     redirect_to dashboard_path(uploaded_file: "done")
   end
-  
+
   private
 
   def datasource_params
     params.require(:datasource).permit(:file, :language)
   end
+
+  def authorize_google
+    client_id = Google::Auth::ClientId.from_file("/Users/benediktnolte/code/BeneNolte/jicama/app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+    token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
+    authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_GMAIL_READONLY, token_store # unsure we can put this here: put SCOPE
+    # user_id = "default"
+    user_id = current_user.email
+    credentials = authorizer.get_credentials(user_id)
+    if credentials.nil?
+      url = authorizer.get_authorization_url(base_url: ENV["OOB_URI"].freeze)
+      # puts "Open the following URL in the browser and enter the " \ "resulting code after authorization:\n"
+      # p url
+      raise
+      code = gets
+      credentials = authorizer.get_and_store_credentials_from_code(user_id: user_id, code: code, base_url: ENV["OOB_URI"].freeze)
+    end
+    credentials
+  end
+
+
 end
