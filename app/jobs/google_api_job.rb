@@ -19,7 +19,6 @@ class GoogleApiJob < ApplicationJob
             "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye", "yt", "yu", "za", "zm", "zw"]
 
     @list_of_companies = []
-
     user_id = "me"
     result = service.list_user_messages(user_id)
     message_tester = result.messages
@@ -53,12 +52,21 @@ class GoogleApiJob < ApplicationJob
     @list_of_companies.flatten!
     @list_of_companies.sort_by! { |h| h[:company_domain] }
 
+    @unwanted_compagnies = ["google", "apple", ".edu", "gmail", "youtube"]
+
     def filter
       (0..@list_of_companies.count).to_a.each do |index|
         unless @list_of_companies[index + 1].nil?
           if @list_of_companies[index][:company_domain] == @list_of_companies[index + 1][:company_domain]
             @list_of_companies[index][:number_of_emails] += @list_of_companies[index + 1][:number_of_emails]
             @list_of_companies.delete_at(index + 1)
+          end
+
+          if @unwanted_compagnies.any? { |company| @list_of_companies[index][:email].include? company }
+            @list_of_companies.delete_at(index)
+          end
+          if @unwanted_compagnies.any? { |company| @list_of_companies[index][:company_domain].include? company }
+            @list_of_companies.delete_at(index)
           end
         end
       end
