@@ -46,13 +46,13 @@
       <div class="tuto-instructions">
         <p>Unselect default options and <br>make sure you select :</p>
         <div class="row align-items-start">
-          <div class="col">
+          <div class="col", style="padding: 0px;">
             <ul>
               <li>Chrome</li>
               <li>Profile</li>
             </ul>
           </div>
-          <div class="col">
+          <div class="col", style="padding: 0px;">
             <ul>
               <li>My Activity</li>
               <li>YouTube</li>
@@ -96,10 +96,10 @@
   <div class="tuto" id="tuto-4">
     <div class="card-style">
 
-      <h4 class="title-action">Find out who owns your data</h4>
+      <h4 class="title-action">Give access to Gmail</h4>
       <%= image_tag image_path("tuto-company.png") %>
       <div class="tuto-instructions">
-        <%= link_to "Connect to Google", @url, class:"upload-button" %>
+        <p>Jicama use gmail to track those who have access to your data</p>
       </div>
         <div class="tuto-end">
           <div class="dots">
@@ -108,7 +108,7 @@
             <div class="dot-empty"></div>
             <div class="dot-fill"></div>
           </div>
-        <%= link_to "", class:"next-button", data: { turbolinks: false } %>
+        <%= link_to "Connect to Google", @url,  class:"google-button", data: { turbolinks: false } %>
         </div>
     </div>
   </div>
@@ -117,10 +117,10 @@
   <div class="tuto" id="tuto-5">
     <div class="card-style">
 
-      <h4 class="title-action">Upload your personal data</h4>
+      <h4 class="title-action">You are almost set!</h4>
       <%= image_tag image_path("tuto-upload.png") %>
       <div class="tuto-instructions">
-        <p>You are almost set!</p>
+        <p>Upload your personal data</p>
         <%= simple_form_for @datasource do |f| %>
           <%= f.input :file, as: :file, input_html: { class: "hidden" }, label: "Choose file", label_html: { class:"upload-button" } %>
           <%= f.input :language, as: :select, input_html: { class: "form-select" }, :collection => Datasource::LANGUAGES, label_html: { class:"d-none" }, selected: "English" %>
