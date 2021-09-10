@@ -52,7 +52,7 @@ class PagesController < ApplicationController
   def google
     # if params[:id].nil?
       @code = params[:code]
-      client_id = Google::Auth::ClientId.from_file(ENV["CREDENTIALS_PATH"]) # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+      client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # "app/controllers/google-credentials.json"
       token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
       authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
       @credentials = authorizer.get_and_store_credentials_from_code(user_id: current_user.email, code: @code, base_url: ENV["OOB_URI"].freeze)
@@ -68,7 +68,8 @@ class PagesController < ApplicationController
       # Store the emails in Jicama Database in order to display the titles to the user
       company_title_arr.each do |company|
         if Company.find_by(title: company[:company_domain].capitalize).nil?
-          new_co = Company.new(title: company[:company_domain].capitalize, url: "www.test.de", description: "test test test", rating: 1)
+          description = webscrapper(company[:company_domain].capitalize)
+          new_co = Company.new(title: company[:company_domain].capitalize, url: "www.test.de", description: description, rating: 1)
           new_co.save!
           data_ownership = DataOwnership.new(company_id: new_co.id, datasource_id: @datasource.id, status: true, type_of_ownership: "accessor")
           data_ownership.save!
@@ -82,7 +83,7 @@ class PagesController < ApplicationController
 
   private
   def create_google_url
-    client_id = Google::Auth::ClientId.from_file(ENV["CREDENTIALS_PATH"]) # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+    client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # "app/controllers/google-credentials.json"
     token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
     authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
     # user_id = "default"
@@ -91,8 +92,23 @@ class PagesController < ApplicationController
     return url
   end
 
+  def webscrapper(company_name)
+    url = "https://en.wikipedia.org/wiki/#{company_name}"
+
+    html_file = URI.open(url).read
+    html_doc = Nokogiri::HTML(html_file)
+
+    paragraph = ""
+    html_doc.search('p').first(3).each do |element|
+      if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
+        paragraph = element.text.gsub(/\[.*?\]/, '')
+      end
+    end
+    return paragraph
+  end
+
   def authorize_google
-    client_id = Google::Auth::ClientId.from_file(ENV["CREDENTIALS_PATH"]) # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+    client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # "app/controllers/google-credentials.json"
     token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
     authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
     # user_id = "default"

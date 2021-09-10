@@ -5,7 +5,71 @@ require 'faker'
 require 'open-uri'
 descending = -1
 
-# company_name = 'Apple_Inc'
+# CREATING THE SEEDS
+puts "Cleaning db"
+puts "🗑  Deleting all assets"
+User.destroy_all
+Datasource.destroy_all
+Location.destroy_all
+Company.destroy_all
+ChromeSearchWord.destroy_all
+ChromeVisitedLink.destroy_all
+YoutubeVideoTitle.destroy_all
+YoutubeVideoChannel.destroy_all
+Advertisement.destroy_all
+puts "All done!"
+
+# puts 'Creating a user'
+# user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")
+# user.save!
+# puts 'Finished!'
+
+# puts 'Creating 20 companies'
+# apple = Company.new(title: "Apple Inc", url: "https://www.apple.com/", rating: 1, description: "Apple Inc. is an American multinational technology company that specializes in consumer electronics, computer software, and online services.")
+# apple.save!
+# adform = Company.new(title: "Adform", url: "https://site.adform.com/", rating: 3, description: "Adform is a global digital media advertising technology company. Its operations are headquartered in Europe, and its clients vary in size and industry.")
+# adform.save!
+# airbus = Company.new(title: "Airbus", url: "https://www.airbus.com/", rating: 2, description: Faker::Company.catch_phrase)
+# airbus.save!
+# amazon = Company.new(title: "Amazon", url: "https://www.amazon.com/", rating: 3, description: Faker::Company.catch_phrase)
+# amazon.save!
+# axciom = Company.new(title: "Axciom", url: "https://www.acxiom.com/", rating: 3, description: "Acxiom (pronounced ax-ee-um) is a Conway, Arkansas-based database marketing company. The company collects, analyzes and sells customer and business information used for targeted advertising campaigns.")
+# axciom.save!
+# experian = Company.new(title: "Experian", url: "https://www.experian.fr/", rating: 3, description: "Experian plc is an Anglo-Irish multinational consumer credit reporting company. Experian collects and aggregates information on over 1 billion people and businesses including 235 million individual U.S. consumers and more than 25 million U.S. businesses.")
+# experian.save!
+# huawei = Company.new(title: "Huawei", url: "https://www.huawei.com/", rating: 3, description: Faker::Company.catch_phrase)
+# huawei.save!
+# hsbc = Company.new(title: "HSBC", url: "https://www.hsbc.com/", rating: 1, description: Faker::Company.catch_phrase)
+# hsbc.save!
+# levis = Company.new(title: "Levi's", url: "https://www.levi.com/", rating: 2, description: "Levi Strauss & Co. is an American clothing company known worldwide for its Levi's brand of denim jeans.")
+# levis.save!
+# netflix = Company.new(title: "Netflix", url: "https://www.netflix.com/", rating: 3, description: Faker::Company.catch_phrase)
+# netflix.save!
+# nike = Company.new(title: "Nike", url: "https://www.nike.com/", rating: 2, description: Faker::Company.catch_phrase)
+# nike.save!
+# randstad = Company.new(title: "Randstad", url: "https://www.randstad.com/", rating: 1, description: Faker::Company.catch_phrase)
+# randstad.save!
+# spotify = Company.new(title: "Spotify", url: "https://www.spotify.com/", rating: 2, description: Faker::Company.catch_phrase)
+# spotify.save!
+# tesla = Company.new(title: "Tesla", url: "https://www.tesla.com/", rating: 2, description: Faker::Company.catch_phrase)
+# tesla.save!
+# waltdisney = Company.new(title: "Walt Disney", url: "https://www.waltdisney.com/", rating: 1, description: Faker::Company.catch_phrase)
+# waltdisney.save!
+# puts 'Finished!'
+
+# puts 'Creating 5 datasources'
+# instagram = Datasource.new(name: "Instagram", user: User.all.last, downloaded: false)
+# instagram.save!
+# spotify= Datasource.new(name: "Spotify", user: User.all.last, downloaded: false)
+# spotify.save!
+# twitter = Datasource.new(name: "Twitter", user: User.all.last, downloaded: false)
+# twitter.save!
+# facebook = Datasource.new(name: "Facebook", user: User.all.last, downloaded: false)
+# facebook.save!
+# google = Datasource.new(name: "Google", user: User.all.last, downloaded: true, size: 4300)
+# google.save!
+
+# company_name = 'Meetup'
 # url = "https://en.wikipedia.org/wiki/#{company_name}"
 
 # html_file = URI.open(url).read
@@ -17,7 +81,6 @@ descending = -1
 #     puts paragraph
 #   end
 # end
-
 
 # # WIKIPEDIA SCRAPING
 # company_name = "Apple"
@@ -39,7 +102,7 @@ descending = -1
 #   end
 # end
 
-# # CRUNCHBASE SCRAPING
+# CRUNCHBASE SCRAPING
 # company_name = "tesla-motors"
 # url = "https://www.crunchbase.com/organization/#{company_name}"
 # html_file = URI.open(url).read
@@ -70,23 +133,16 @@ descending = -1
 #   end
 # end
 
-# CREATING THE SEEDS
-puts "Cleaning db"
-puts "🗑  Deleting all assets"
-User.destroy_all
-Datasource.destroy_all
-Location.destroy_all
-Company.destroy_all
-ChromeSearchWord.destroy_all
-ChromeVisitedLink.destroy_all
-YoutubeVideoTitle.destroy_all
-YoutubeVideoChannel.destroy_all
-Advertisement.destroy_all
-puts "All done!"
 
-# puts 'Creating a user'
-# user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")
-# user.save!
+
+
+
+
+
+
+
+# file = URI.open('app/assets/images/Google.png')
+# google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
 # puts 'Finished!'
 
 # puts 'Creating 20 companies'
