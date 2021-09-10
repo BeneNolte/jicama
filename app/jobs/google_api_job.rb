@@ -68,12 +68,12 @@ class GoogleApiJob < ApplicationJob
           if @unwanted_compagnies.any? { |company| @list_of_companies[index][:company_domain].include? company }
             @list_of_companies.delete_at(index)
           end
+
         end
       end
     end
 
     10.times { filter }
-
     return @list_of_companies
   end
 end
