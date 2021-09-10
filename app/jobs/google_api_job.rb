@@ -3,7 +3,7 @@ class GoogleApiJob < ApplicationJob
 
   def perform(service)
     # Do something later
-    tlds = ["com", "gov", "net", "mil", "org", "ac", "ad", "ae", "af", "ag", "ai", "al", "am", "an", "ao", "aq", "ar",
+    tlds = ["com", "edu", "gov", "net", "mil", "org", "ac", "ad", "ae", "af", "ag", "ai", "al", "am", "an", "ao", "aq", "ar",
             "as", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bm", "bn", "bo", "br",
             "bs", "bt", "bv", "bw", "by", "bz", "ca", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "cr",
             "cs", "cu", "cv", "cw", "cx", "cy", "cz", "dd", "de", "dj", "dk", "dm", "do", "dz", "ec", "ee", "eg", "eh", "er",
@@ -19,23 +19,53 @@ class GoogleApiJob < ApplicationJob
             "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye", "yt", "yu", "za", "zm", "zw"]
 
     @list_of_companies = []
+
     user_id = "me"
     result = service.list_user_messages(user_id)
     message_tester = result.messages
-    message_tester.each_with_index do |email, index|
+    message_tester.each do |email|
       message = service.get_user_message(user_id, email.id, fields: "payload/headers")
-      # p (index + 1)
 
       message.payload.headers.each do |header|
+        @company = {}
+
         if header.name == "From"
-          # binding.pry
-          sender_email = header.value.chop!.split("@").last.split(".")  #.match(/d=(\w+(.\w+){1,})/)[1] #if header.name == "DKIM-Signature"
-          sender_email.reject! { |part| tlds.include?(part) }
-          @list_of_companies << sender_email.last
+          ## Getting domain :
+          domain = header.value.chomp(">").split("@").last.split(".")
+          domain.reject! { |part| tlds.include?(part) }
+          @company[:company_domain] = domain.last
+
+          ## redeem email :
+          email_address = header.value.split("<").last
+          @company[:email] = email_address
+        end
+
+        @list_of_companies << @company unless @company.empty?
+      end
+    end
+
+    @list_of_companies = @list_of_companies.tally.to_a
+
+    @list_of_companies.each do |company|
+      company.first[:number_of_emails] = company.last
+      company.pop
+    end
+    @list_of_companies.flatten!
+    @list_of_companies.sort_by! { |h| h[:company_domain] }
+
+    def filter
+      (0..@list_of_companies.count).to_a.each do |index|
+        unless @list_of_companies[index + 1].nil?
+          if @list_of_companies[index][:company_domain] == @list_of_companies[index + 1][:company_domain]
+            @list_of_companies[index][:number_of_emails] += @list_of_companies[index + 1][:number_of_emails]
+            @list_of_companies.delete_at(index + 1)
+          end
         end
       end
     end
 
-    return @list_of_companies.tally
+    10.times { filter }
+
+    return @list_of_companies
   end
 end
