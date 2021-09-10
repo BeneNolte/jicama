@@ -124,12 +124,12 @@
         <%= simple_form_for @datasource do |f| %>
           <%= f.input :file, as: :file, input_html: { class: "hidden" }, label: "Choose file", label_html: { class:"upload-button" } %>
           <%= f.input :language, as: :select, input_html: { class: "form-select" }, :collection => Datasource::LANGUAGES, label_html: { class:"d-none" }, selected: "English" %>
-      </div> <%# This is closing the "tuto-instruction" div %>
           <div class="tuto-end">
             <div id="uploadfile">
               <%= f.submit "Upload" %> <%# This has to be inside the "tuto-end" div while being in simple_form %>
             </div>
           </div>
+      </div> <%# This is closing the "tuto-instruction" div %>
         <% end %> <%# This is closing the simple_form %>
     </div>
   </div>
