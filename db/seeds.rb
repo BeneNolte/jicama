@@ -6,18 +6,18 @@ require 'open-uri'
 descending = -1
 
 # CREATING THE SEEDS
-# puts "Cleaning db"
-# puts "🗑  Deleting all assets"
-# User.destroy_all
-# Datasource.destroy_all
-# Location.destroy_all
-# Company.destroy_all
-# ChromeSearchWord.destroy_all
-# ChromeVisitedLink.destroy_all
-# YoutubeVideoTitle.destroy_all
-# YoutubeVideoChannel.destroy_all
-# Advertisement.destroy_all
-# puts "All done!"
+puts "Cleaning db"
+puts "🗑  Deleting all assets"
+User.destroy_all
+Datasource.destroy_all
+Location.destroy_all
+Company.destroy_all
+ChromeSearchWord.destroy_all
+ChromeVisitedLink.destroy_all
+YoutubeVideoTitle.destroy_all
+YoutubeVideoChannel.destroy_all
+Advertisement.destroy_all
+puts "All done!"
 
 # puts 'Creating a user'
 # user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")
@@ -69,18 +69,18 @@ descending = -1
 # google = Datasource.new(name: "Google", user: User.all.last, downloaded: true, size: 4300)
 # google.save!
 
-company_name = 'Trello'
-url = "https://en.wikipedia.org/wiki/#{company_name}"
+# company_name = 'Meetup'
+# url = "https://en.wikipedia.org/wiki/#{company_name}"
 
-html_file = URI.open(url).read
-html_doc = Nokogiri::HTML(html_file)
+# html_file = URI.open(url).read
+# html_doc = Nokogiri::HTML(html_file)
 
-html_doc.search('p').first(3).each do |element|
-  if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
-    paragraph = element.text.gsub(/\[.*?\]/, '')
-    puts paragraph
-  end
-end
+# html_doc.search('p').first(3).each do |element|
+#   if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
+#     paragraph = element.text.gsub(/\[.*?\]/, '')
+#     puts paragraph
+#   end
+# end
 
 # # WIKIPEDIA SCRAPING
 # company_name = "Apple"
