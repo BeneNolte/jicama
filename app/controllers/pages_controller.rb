@@ -66,9 +66,9 @@ class PagesController < ApplicationController
 
       @datasource = Datasource.find_by(name: "Google")
       # Store the emails in Jicama Database in order to display the titles to the user
-      company_title_arr.each do |company_name|
-        if Company.find_by(title: company_name.capitalize).nil?
-          new_co = Company.new(title: company_name.capitalize, url: "www.test.de", description: "test test test", rating: 1)
+      company_title_arr.each do |company|
+        if Company.find_by(title: company[:company_domain].capitalize).nil?
+          new_co = Company.new(title: company[:company_domain].capitalize, url: "www.test.de", description: "test test test", rating: 1)
           new_co.save!
           data_ownership = DataOwnership.new(company_id: new_co.id, datasource_id: @datasource.id, status: true, type_of_ownership: "accessor")
           data_ownership.save!
