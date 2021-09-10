@@ -25,6 +25,7 @@ class DataOwnershipsController < ApplicationController
     if data_ownerships_params["type_of_ownership"] == "restricted"
       redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor", dataprivacy: "restricted", company: @data_ownership.company.title)
     elsif data_ownerships_params["type_of_ownership"] == "deleted"
+      google(@data_ownership.company)
       redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor", dataprivacy: "deleted", company: @data_ownership.company.title)
     elsif data_ownerships_params["type_of_ownership"] == "accessor"
       redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor", dataprivacy: "allowed", company: @data_ownership.company.title)
@@ -35,8 +36,26 @@ class DataOwnershipsController < ApplicationController
   end
 
   def filter
-    @datasource = Datasource.find_by(name: "Google")
+    @datasource = Datasource.where(user_id: current_user.id).find_by(name: "Google")
+    deleted_previous = @datasource.data_ownerships.where(type_of_ownership: "deleted")
+    previous_arr = []
+    deleted_previous.each do |company|
+      previous_arr << company
+    end
+
     current_user.auto_filter!
+    deleted_after = @datasource.data_ownerships.where(type_of_ownership: "deleted")
+    after_arr = []
+    deleted_after.each do |company|
+      after_arr << company
+    end
+
+    deleted_new = after_arr - previous_arr
+
+    deleted_new.each do |dataownership|
+      google(dataownership.company)
+    end
+
     @datasource.update_score
     @datasource.update_value
     skip_authorization
@@ -47,5 +66,43 @@ class DataOwnershipsController < ApplicationController
 
   def data_ownerships_params
     params.require(:data_ownership).permit(:status, :type_of_ownership)
+  end
+
+  def authorize_google
+    client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+    token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
+    authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
+    # user_id = "default"
+    user_id = current_user.email
+    credentials = authorizer.get_credentials(user_id)
+    if credentials.nil?
+      url = authorizer.get_authorization_url(base_url: ENV["OOB_URI"].freeze)
+      # puts "Open the following URL in the browser and enter the " \ "resulting code after authorization:\n"
+      # p url
+      code = gets
+      credentials = authorizer.get_and_store_credentials_from_code(user_id: user_id, code: code, base_url: ENV["OOB_URI"].freeze)
+    end
+    credentials
+  end
+
+  def google(company)
+    @service = Google::Apis::GmailV1::GmailService.new
+    @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
+    @service.authorization = authorize_google
+
+    m = Mail.new(
+        to: "pierrebigjean@gmail.com",
+        from: "ha.be.nolte@gmail.com",
+        subject: "Test Subject",
+        body:"#{company.title}")
+    msg = m.encoded
+    # or m.to_s
+    # this doesn't base64 encode. It just turns the Mail::Message object into an appropriate string.
+    message_object = Google::Apis::GmailV1::Message.new(raw:m.to_s)
+    @service.send_user_message("me", message_object)
+
+    # @data_ownership = DataOwnership.find(params[:id])
+    # authorize @data_ownership
+    # redirect_to datasource_data_ownerships_path(type_of_ownership: "accessor", dataprivacy: "deleted", company: @data_ownership.company.title)
   end
 end
