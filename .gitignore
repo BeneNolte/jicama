@@ -43,5 +43,5 @@ yarn-debug.log*
 .env*
 
 /db/TakeoutBene
-/app/controllers/users/google-credentials.json
+/app/controllers/google-credentials.json
 Gemfile.lock
