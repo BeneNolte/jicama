@@ -5,7 +5,6 @@ require 'faker'
 require 'open-uri'
 descending = -1
 
-<<<<<<< HEAD
 # CREATING THE SEEDS
 # puts "Cleaning db"
 # puts "🗑  Deleting all assets"
@@ -19,91 +18,10 @@ descending = -1
 # YoutubeVideoChannel.destroy_all
 # Advertisement.destroy_all
 # puts "All done!"
-=======
-# company_name = 'Apple_Inc'
-# url = "https://en.wikipedia.org/wiki/#{company_name}"
-
-# html_file = URI.open(url).read
-# html_doc = Nokogiri::HTML(html_file)
-
-# html_doc.search('p').first(3).each do |element|
-#   if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
-#     paragraph = element.text.gsub(/\[.*?\]/, '')
-#     puts paragraph
-#   end
-# end
-
-
-# # WIKIPEDIA SCRAPING
-# company_name = "Apple"
-# url_google = "https://www.google.com/search?q=#{company_name}_wikipedia"
-# html_file_google = URI.open(url_google).read
-# html_doc_google = Nokogiri::HTML(html_file_google)
-# html_doc_google.search("a").first(20).each do |element|
-#   puts element
-# end
-
-
-# url = "https://en.wikipedia.org/wiki/#{company_name}"
-# html_file = URI.open(url).read
-# html_doc = Nokogiri::HTML(html_file)
-# html_doc.search('p').first(2).each do |element|
-#   if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
-#     paragraph = element.text.gsub(/\[.*?\]/, '')
-#     puts paragraph
-#   end
-# end
-
-# # CRUNCHBASE SCRAPING
-# company_name = "tesla-motors"
-# url = "https://www.crunchbase.com/organization/#{company_name}"
-# html_file = URI.open(url).read
-# html_doc = Nokogiri::HTML(html_file)
-# html_doc.search('p').first(2).each do |element|
-#   puts element.text
-# end
-
-# Company.all.each do |company|
-#   company_name = company.title
-#   url = "https://en.wikipedia.org/wiki/#{company_name}"
-
-#   html_file = URI.open(url).read
-#   html_doc = Nokogiri::HTML(html_file)
-
-#   html_doc.search('p').first(3).each do |element|
-#     if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
-#       paragraph = element.text.gsub(/\[.*?\]/, '')
-#       company.description = paragraph
-#       company.save!
-#     end
-#   end
-# end
-
-# html_doc.search('.infobox-data').each do |element|
-#   if "123456789".include?(element.text[0])
-#     puts element.text
-#   end
-# end
-
-# CREATING THE SEEDS
-puts "Cleaning db"
-puts "🗑  Deleting all assets"
-User.destroy_all
-Datasource.destroy_all
-Location.destroy_all
-Company.destroy_all
-ChromeSearchWord.destroy_all
-ChromeVisitedLink.destroy_all
-YoutubeVideoTitle.destroy_all
-YoutubeVideoChannel.destroy_all
-Advertisement.destroy_all
-puts "All done!"
->>>>>>> e2ac7461f73f83875a8e6db8228001e330769ddc
 
 # puts 'Creating a user'
 # user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")
 # user.save!
-<<<<<<< HEAD
 # puts 'Finished!'
 
 # puts 'Creating 20 companies'
@@ -151,7 +69,7 @@ puts "All done!"
 # google = Datasource.new(name: "Google", user: User.all.last, downloaded: true, size: 4300)
 # google.save!
 
-company_name = 'Apple_Inc'
+company_name = 'Trello'
 url = "https://en.wikipedia.org/wiki/#{company_name}"
 
 html_file = URI.open(url).read
@@ -184,7 +102,7 @@ end
 #   end
 # end
 
-# # CRUNCHBASE SCRAPING
+# CRUNCHBASE SCRAPING
 # company_name = "tesla-motors"
 # url = "https://www.crunchbase.com/organization/#{company_name}"
 # html_file = URI.open(url).read
@@ -225,8 +143,6 @@ end
 
 # file = URI.open('app/assets/images/Google.png')
 # google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
-=======
->>>>>>> e2ac7461f73f83875a8e6db8228001e330769ddc
 # puts 'Finished!'
 
 # puts 'Creating 20 companies'
