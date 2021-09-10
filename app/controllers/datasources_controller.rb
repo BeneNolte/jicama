@@ -61,13 +61,14 @@ class DatasourcesController < ApplicationController
     # else
     # => the condition is handled in js
 
+    # raise
     @datasource.update!(datasource_params)
+    DataParseJob.perform_later(@datasource)
 
-    @service = Google::Apis::GmailV1::GmailService.new
-    @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
-    @service.authorization = authorize_google
+    # @service = Google::Apis::GmailV1::GmailService.new
+    # @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
+    # @service.authorization = authorize_google
 
-    DataParseJob.perform_now(@datasource)
     redirect_to dashboard_path(uploaded_file: "done")
   end
 

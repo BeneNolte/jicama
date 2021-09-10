@@ -74,6 +74,8 @@ class PagesController < ApplicationController
           data_ownership.save!
         end
       end
+      @datasource.update_score
+      @datasource.update_value
       # DataParseJob.perform_now(@datasource)
       redirect_to datasource_tuto_path(@datasource, code: @code, credentials: @credentials, anchor: "tuto-5")
   end
