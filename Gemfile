@@ -75,4 +75,5 @@ gem 'google-api-client', '~> 0.9', require: 'google/apis/gmail_v1'
 gem 'aws-sdk-s3' # , '~> 2'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+gem 'sidekiq-scheduler', '~> 3.0'
 gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version

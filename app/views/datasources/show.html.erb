@@ -42,7 +42,7 @@
                   <%= cl_image_tag @google.photo.key, class:"datasource-logo" %>
                 </div>
                 <div class="display-score">
-                  <p class="greytext">Privacy score: <%= @score %><span style="font-size: 10px;">%</span></p>
+                  <p class="greytext">Privacy score: <%= @score.round %><span style="font-size: 10px;">%</span></p>
                   <p class="greytext"><%= @datasource.name%></p>
                 </div>
 
