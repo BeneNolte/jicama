@@ -70,19 +70,19 @@ descending = -1
 #   end
 # end
 
-# # CREATING THE SEEDS
-# puts "Cleaning db"
-# puts "🗑  Deleting all assets"
-# User.destroy_all
-# Datasource.destroy_all
-# Location.destroy_all
-# Company.destroy_all
-# ChromeSearchWord.destroy_all
-# ChromeVisitedLink.destroy_all
-# YoutubeVideoTitle.destroy_all
-# YoutubeVideoChannel.destroy_all
-# Advertisement.destroy_all
-# puts "All done!"
+# CREATING THE SEEDS
+puts "Cleaning db"
+puts "🗑  Deleting all assets"
+User.destroy_all
+Datasource.destroy_all
+Location.destroy_all
+Company.destroy_all
+ChromeSearchWord.destroy_all
+ChromeVisitedLink.destroy_all
+YoutubeVideoTitle.destroy_all
+YoutubeVideoChannel.destroy_all
+Advertisement.destroy_all
+puts "All done!"
 
 # puts 'Creating a user'
 # user = User.new(email: "benedikt@jicama.com", password: "123456", first_name: "Jicama", last_name: "Team")

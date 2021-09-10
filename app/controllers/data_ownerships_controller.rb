@@ -69,7 +69,7 @@ class DataOwnershipsController < ApplicationController
   end
 
   def authorize_google
-    client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+    client_id = Google::Auth::ClientId.from_file(ENV["CREDENTIALS_PATH"]) # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
     token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
     authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
     # user_id = "default"
