@@ -50,37 +50,39 @@ class PagesController < ApplicationController
 
 
   def google
-    @code = params[:code]
-    client_id = Google::Auth::ClientId.from_file("/Users/benediktnolte/code/BeneNolte/jicama/app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
-    token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
-    authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_GMAIL_READONLY, token_store # unsure we can put this here: put SCOPE
-    @credentials = authorizer.get_and_store_credentials_from_code(user_id: current_user.email, code: @code, base_url: ENV["OOB_URI"].freeze)
+    # if params[:id].nil?
+      @code = params[:code]
+      client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+      token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
+      authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
+      @credentials = authorizer.get_and_store_credentials_from_code(user_id: current_user.email, code: @code, base_url: ENV["OOB_URI"].freeze)
 
-    @service = Google::Apis::GmailV1::GmailService.new
-    @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
-    @service.authorization = authorize_google
+      @service = Google::Apis::GmailV1::GmailService.new
+      @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
+      @service.authorization = authorize_google
 
-    # Background job to retrieve emails
-    company_title_arr = GoogleApiJob.perform_now(@service)
+      # Background job to retrieve emails
+      company_title_arr = GoogleApiJob.perform_now(@service)
 
-    @datasource = Datasource.find_by(name: "Google")
-    # Store the emails in Jicama Database in order to display the titles to the user
-    company_title_arr.each do |company_name|
-      new_co = Company.new(title: company_name, url: "www.test.de", description: "test test test", rating: 1)
-      new_co.save!
-      data_ownership = DataOwnership.new(company_id: new_co.id, datasource_id: @datasource.id, status: true, type_of_ownership: "accessor")
-      data_ownership.save!
-    end
-
-    # DataParseJob.perform_now(@datasource)
-    redirect_to datasource_path(@datasource, code: @code, credentials: @credentials)
+      @datasource = Datasource.find_by(name: "Google")
+      # Store the emails in Jicama Database in order to display the titles to the user
+      company_title_arr.each do |company_name|
+        if Company.find_by(title: company_name.capitalize).nil?
+          new_co = Company.new(title: company_name.capitalize, url: "www.test.de", description: "test test test", rating: 1)
+          new_co.save!
+          data_ownership = DataOwnership.new(company_id: new_co.id, datasource_id: @datasource.id, status: true, type_of_ownership: "accessor")
+          data_ownership.save!
+        end
+      end
+      # DataParseJob.perform_now(@datasource)
+      redirect_to datasource_tuto_path(@datasource, code: @code, credentials: @credentials, anchor: "tuto-5")
   end
 
   private
   def create_google_url
-    client_id = Google::Auth::ClientId.from_file("/Users/benediktnolte/code/BeneNolte/jicama/app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+    client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
     token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
-    authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_GMAIL_READONLY, token_store # unsure we can put this here: put SCOPE
+    authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
     # user_id = "default"
     url = authorizer.get_authorization_url(base_url: ENV["OOB_URI"].freeze)
     # raise
@@ -88,9 +90,9 @@ class PagesController < ApplicationController
   end
 
   def authorize_google
-    client_id = Google::Auth::ClientId.from_file("/Users/benediktnolte/code/BeneNolte/jicama/app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
+    client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # ENV["CREDENTIALS_PATH"]
     token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
-    authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_GMAIL_READONLY, token_store # unsure we can put this here: put SCOPE
+    authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
     # user_id = "default"
     user_id = current_user.email
     credentials = authorizer.get_credentials(user_id)
