@@ -69,7 +69,7 @@ class DatasourcesController < ApplicationController
     # @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
     # @service.authorization = authorize_google
 
-    redirect_to dashboard_path(uploaded_file: "done")
+    redirect_to dashboard_path(uploaded_file: "inprogress")
   end
 
   private

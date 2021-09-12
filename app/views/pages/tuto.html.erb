@@ -126,11 +126,11 @@
           <%= f.input :language, as: :select, input_html: { class: "form-select" }, :collection => Datasource::LANGUAGES, label_html: { class:"d-none" }, selected: "English" %>
           <div class="tuto-end">
             <div id="uploadfile">
-              <%= f.submit "Upload" %> <%# This has to be inside the "tuto-end" div while being in simple_form %>
+              <%= f.submit "Upload" %>
             </div>
           </div>
-      </div> <%# This is closing the "tuto-instruction" div %>
-        <% end %> <%# This is closing the simple_form %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
