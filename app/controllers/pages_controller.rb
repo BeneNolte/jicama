@@ -4,6 +4,7 @@ require "google/apis/gmail_v1"
 require "googleauth"
 require "googleauth/stores/file_token_store"
 require "fileutils"
+require 'nokogiri'
 
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
@@ -94,15 +95,20 @@ class PagesController < ApplicationController
 
   def webscrapper(company_name)
     url = "https://en.wikipedia.org/wiki/#{company_name}"
-
-    html_file = URI.open(url).read
-    html_doc = Nokogiri::HTML(html_file)
-
     paragraph = ""
+
+    begin
+    html_file = URI.open(url).read
+    rescue OpenURI::HTTPError
+      paragraph = "No description available"
+    else
+    html_doc = Nokogiri::HTML(html_file)
     html_doc.search('p').first(3).each do |element|
       if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
         paragraph = element.text.gsub(/\[.*?\]/, '')
       end
+    end
+
     end
     return paragraph
   end
