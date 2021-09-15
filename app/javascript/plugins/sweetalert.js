@@ -67,7 +67,7 @@ const initSweetalert = () => {
   if (document.location.href.includes("uploaded_file=done")) {
     swal({
       icon: "success",
-      text: "your data has been successfully downloaded !",
+      text: "Download started. This will take about 5-10 minutes. On 'Control' you can already see which companies own your data!",
       buttons: false,
     })
   }

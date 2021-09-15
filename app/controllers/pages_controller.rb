@@ -4,6 +4,7 @@ require "google/apis/gmail_v1"
 require "googleauth"
 require "googleauth/stores/file_token_store"
 require "fileutils"
+require 'net/http'
 
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
@@ -64,12 +65,27 @@ class PagesController < ApplicationController
       # Background job to retrieve emails
       company_title_arr = GoogleApiJob.perform_now(@service)
 
-      @datasource = Datasource.find_by(name: "Google")
+      @search_arr = []
+      company_title_arr.each do |company|
+        @search_arr << company.values[2]
+        @avg_searches = @search_arr.sum / @search_arr.length
+      end
+
+      @datasource = Datasource.find_by(user_id: current_user.id)
       # Store the emails in Jicama Database in order to display the titles to the user
       company_title_arr.each do |company|
         if Company.find_by(title: company[:company_domain].capitalize).nil?
+          # Calculate rating
+          if company[:number_of_emails] > @avg_searches * 1.33
+            rating = 3
+          elsif company[:number_of_emails] < @avg_searches * 0.66
+            rating = 1
+          else
+            rating = 2
+          end
           description = webscrapper(company[:company_domain].capitalize)
-          new_co = Company.new(title: company[:company_domain].capitalize, url: "www.test.de", description: description, rating: 1)
+          # new_co = Company.new(title: company[:company_domain].capitalize, url: "www.test.de", description: description, rating: 1)
+          new_co = Company.new(title: company[:company_domain].capitalize, rating: rating, email: company[:email], contact_times: company[:number_of_emails], description: description)
           new_co.save!
           data_ownership = DataOwnership.new(company_id: new_co.id, datasource_id: @datasource.id, status: true, type_of_ownership: "accessor")
           data_ownership.save!
@@ -94,15 +110,18 @@ class PagesController < ApplicationController
 
   def webscrapper(company_name)
     url = "https://en.wikipedia.org/wiki/#{company_name}"
+    begin
+      html_file = URI.open(url).read
+      html_doc = Nokogiri::HTML(html_file)
 
-    html_file = URI.open(url).read
-    html_doc = Nokogiri::HTML(html_file)
-
-    paragraph = ""
-    html_doc.search('p').first(3).each do |element|
-      if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
-        paragraph = element.text.gsub(/\[.*?\]/, '')
+      paragraph = ""
+      html_doc.search('p').first(3).each do |element|
+        if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
+          paragraph = element.text.gsub(/\[.*?\]/, '')
+        end
       end
+    rescue
+      paragraph = "Sorry, we do not know this company yet. The score is based on the number of contacts you had with it."
     end
     return paragraph
   end

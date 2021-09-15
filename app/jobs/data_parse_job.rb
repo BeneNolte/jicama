@@ -326,5 +326,9 @@ class DataParseJob < ApplicationJob
     puts "OK I'm done with all data charges"
     datasource.file.purge
     puts "Deleting files from Amazon again"
+    datasource.downloaded = true
+    datasource.update_score
+    datasource.update_value
+    puts "Updated score & value of datasource"
   end
 end

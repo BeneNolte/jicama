@@ -188,18 +188,18 @@
 }
 
 
-@media(max-height: 750px) {
-  .data-insights-card {
-    width: 80px;
-    height: 80px;
-    i {
-      font-size: 22px;
-    }
-    h4 {
-      font-size: 14px;
-    }
-  }
-}
+// @media(max-height: 750px) {
+//   .data-insights-card {
+//     width: 80px;
+//     height: 80px;
+//     i {
+//       font-size: 22px;
+//     }
+//     h4 {
+//       font-size: 14px;
+//     }
+//   }
+// }
 
 .current {
   transition: all 0.3s ease;
