@@ -64,13 +64,23 @@ const initSweetalert = () => {
   //   })
   // }
 
-  if (document.location.href.includes("uploaded_file=done")) {
+  // if (document.location.href.includes("uploaded_file=done")) {
+  //   swal({
+  //     icon: "success",
+  //     text: "your data has been successfully downloaded !",
+  //     buttons: false,
+  //   })
+  // }
+
+  if (document.location.href.includes("uploaded_file=inprogress")) {
     swal({
-      icon: "success",
-      text: "Download started. This will take about 5-10 minutes. On 'Control' you can already see which companies own your data!",
-      buttons: false,
+      icon: "https://cdn.dribbble.com/users/600626/screenshots/2944614/loading_12.gif",
+      title: "Uploading your data to Jicama",
+      text: "Download started. This will take about 5-10 minutes before your score is calculated",
+      button: "Go to Jicama anyway",
     })
   }
+
 
 
   // const buttonDone = document.querySelector(".done-button");

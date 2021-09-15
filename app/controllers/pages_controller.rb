@@ -5,6 +5,7 @@ require "googleauth"
 require "googleauth/stores/file_token_store"
 require "fileutils"
 require 'net/http'
+require 'nokogiri'
 
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
@@ -56,7 +57,7 @@ class PagesController < ApplicationController
       client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # "app/controllers/google-credentials.json"
       token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
       authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
-      @credentials = authorizer.get_and_store_credentials_from_code(user_id: current_user.email, code: @code, base_url: ENV["OOB_URI"].freeze)
+      @credentials = authorizer.get_and_store_credentials_from_code(user_id: "default", code: @code, base_url: ENV["OOB_URI"].freeze)
 
       @service = Google::Apis::GmailV1::GmailService.new
       @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
