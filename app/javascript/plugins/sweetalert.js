@@ -76,7 +76,7 @@ const initSweetalert = () => {
     swal({
       icon: "https://cdn.dribbble.com/users/600626/screenshots/2944614/loading_12.gif",
       title: "Uploading your data to Jicama",
-      text: `it might take some time`,
+      text: "Download started. This will take about 5-10 minutes before your score is calculated",
       button: "Go to Jicama anyway",
     })
   }

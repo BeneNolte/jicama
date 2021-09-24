@@ -63,7 +63,7 @@
           <!--
           <div>
           <%#= Datasource.find(data_ownership.datasource_id).name %>
-          <%= image_tag @datasource.photo, class:"rounded-google-logo" %>
+          <%= cl_image_tag @datasource.photo.key, class:"datasource-logo" %>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
               Control
             </button>

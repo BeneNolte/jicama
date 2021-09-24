@@ -39,6 +39,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         google = Datasource.create!(user: current_user, name: "Google", downloaded: false, size: 0, score: 0, value: 0)
         file = URI.open(helpers.image_url("Google.png"))
         google.photo.attach(io: file, filename: 'Google.png', content_type: 'image/png')
+        # cl_image_tag @datasource.photo.key, class:"datasource-logo ml-3"
         redirect_to datasource_tuto_path(google)
       else
         redirect_to datasource_path(google)

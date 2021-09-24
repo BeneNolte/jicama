@@ -1,7 +1,7 @@
 class DataOwnershipsController < ApplicationController
   def index
     @datasource = Datasource.find(params[:datasource_id])
-    @data_ownerships = policy_scope(DataOwnership)
+    @data_ownerships = policy_scope(@datasource.data_ownerships)
 
     # Filtering Companies
     if params[:type_of_ownership].present? && params[:type_of_ownership] != "all"
@@ -91,10 +91,25 @@ class DataOwnershipsController < ApplicationController
     @service.authorization = authorize_google
 
     m = Mail.new(
-        to: "pierrebigjean@gmail.com",
-        from: "ha.be.nolte@gmail.com",
-        subject: "Test Subject",
-        body:"#{company.title}")
+        to: "ha.be.nolte@gmail.com",
+        from: "#{current_user.email}",
+        subject: "#{company.title} data erasure request - from #{current_user.first_name} #{current_user.last_name}",
+        body:"Hello #{company.title} Team,
+
+My name is #{current_user.first_name} #{current_user.last_name}, and I hereby request to erase all personal data that you hold about me.
+
+Please send me an email confirmation of the complete and permanent erasure of the personal data once you have completed the erasure process.
+
+My personal details are:
+
+Name: #{current_user.first_name} #{current_user.last_name}
+Email: #{current_user.email}
+
+As evidence of my interaction with your company, I received in total #{company.contact_times} email(s) from you which indicates that you are holding personal data about me.
+
+Thanks,
+Benedikt Nolte
+#{company.email}")
     msg = m.encoded
     # or m.to_s
     # this doesn't base64 encode. It just turns the Mail::Message object into an appropriate string.
