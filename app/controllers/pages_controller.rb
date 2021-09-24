@@ -57,7 +57,7 @@ class PagesController < ApplicationController
       client_id = Google::Auth::ClientId.from_file("app/controllers/google-credentials.json") # URI.open(ENV.fetch("CREDENTIALS_PATH")).read.freeze # "app/controllers/google-credentials.json"
       token_store = Google::Auth::Stores::FileTokenStore.new file: "token.yaml".freeze # unsure we can put this here: put TOKEN_PATH
       authorizer = Google::Auth::UserAuthorizer.new client_id, Google::Apis::GmailV1::AUTH_SCOPE, token_store # unsure we can put this here: put SCOPE
-      @credentials = authorizer.get_and_store_credentials_from_code(user_id: "default", code: @code, base_url: ENV["OOB_URI"].freeze)
+      @credentials = authorizer.get_and_store_credentials_from_code(user_id: current_user.email, code: @code, base_url: ENV["OOB_URI"].freeze)
 
       @service = Google::Apis::GmailV1::GmailService.new
       @service.client_options.application_name = ENV["APPLICATION_NAME"].freeze
@@ -119,6 +119,9 @@ class PagesController < ApplicationController
       html_doc.search('p').first(3).each do |element|
         if (element.text.split[0] == company_name.split('_')[0]) || (element.text.split[0] == company_name.split('_')[0] + ",")
           paragraph = element.text.gsub(/\[.*?\]/, '')
+          if paragraph.length < 30
+            paragraph = "Sorry, we do not know this company yet. The score is based on the number of contacts you had with it."
+          end
         end
       end
     rescue
